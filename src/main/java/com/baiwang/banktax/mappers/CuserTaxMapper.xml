@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baiwang.banktax.dao.CuserTaxMapper" >
+  <resultMap id="BaseResultMap" type="com.baiwang.banktax.beans.CuserTax" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="userid" property="userid" jdbcType="BIGINT" />
+    <result column="receipt_code" property="receiptCode" jdbcType="VARCHAR" />
+    <result column="receipt_num" property="receiptNum" jdbcType="VARCHAR" />
+    <result column="receipt_time" property="receiptTime" jdbcType="DATE" />
+    <result column="tax_sn_to" property="taxSnTo" jdbcType="VARCHAR" />
+    <result column="tax_sn_from" property="taxSnFrom" jdbcType="VARCHAR" />
+    <result column="sum_money" property="sumMoney" jdbcType="DECIMAL" />
+    <result column="sum_tax" property="sumTax" jdbcType="DECIMAL" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="datail" property="datail" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userid, receipt_code, receipt_num, receipt_time, tax_sn_to, tax_sn_from, sum_money, 
+    sum_tax, addtime, datail
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from bt_cuser_tax
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from bt_cuser_tax
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.baiwang.banktax.beans.CuserTax" >
+    insert into bt_cuser_tax (id, userid, receipt_code, 
+      receipt_num, receipt_time, tax_sn_to, 
+      tax_sn_from, sum_money, sum_tax, 
+      addtime, datail)
+    values (#{id,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, #{receiptCode,jdbcType=VARCHAR}, 
+      #{receiptNum,jdbcType=VARCHAR}, #{receiptTime,jdbcType=DATE}, #{taxSnTo,jdbcType=VARCHAR}, 
+      #{taxSnFrom,jdbcType=VARCHAR}, #{sumMoney,jdbcType=DECIMAL}, #{sumTax,jdbcType=DECIMAL}, 
+      #{addtime,jdbcType=TIMESTAMP}, #{datail,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.baiwang.banktax.beans.CuserTax" >
+    insert into bt_cuser_tax
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="receiptCode != null" >
+        receipt_code,
+      </if>
+      <if test="receiptNum != null" >
+        receipt_num,
+      </if>
+      <if test="receiptTime != null" >
+        receipt_time,
+      </if>
+      <if test="taxSnTo != null" >
+        tax_sn_to,
+      </if>
+      <if test="taxSnFrom != null" >
+        tax_sn_from,
+      </if>
+      <if test="sumMoney != null" >
+        sum_money,
+      </if>
+      <if test="sumTax != null" >
+        sum_tax,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="datail != null" >
+        datail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="receiptCode != null" >
+        #{receiptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptNum != null" >
+        #{receiptNum,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptTime != null" >
+        #{receiptTime,jdbcType=DATE},
+      </if>
+      <if test="taxSnTo != null" >
+        #{taxSnTo,jdbcType=VARCHAR},
+      </if>
+      <if test="taxSnFrom != null" >
+        #{taxSnFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="sumMoney != null" >
+        #{sumMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="sumTax != null" >
+        #{sumTax,jdbcType=DECIMAL},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="datail != null" >
+        #{datail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.baiwang.banktax.beans.CuserTax" >
+    update bt_cuser_tax
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="receiptCode != null" >
+        receipt_code = #{receiptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptNum != null" >
+        receipt_num = #{receiptNum,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptTime != null" >
+        receipt_time = #{receiptTime,jdbcType=DATE},
+      </if>
+      <if test="taxSnTo != null" >
+        tax_sn_to = #{taxSnTo,jdbcType=VARCHAR},
+      </if>
+      <if test="taxSnFrom != null" >
+        tax_sn_from = #{taxSnFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="sumMoney != null" >
+        sum_money = #{sumMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="sumTax != null" >
+        sum_tax = #{sumTax,jdbcType=DECIMAL},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="datail != null" >
+        datail = #{datail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.baiwang.banktax.beans.CuserTax" >
+    update bt_cuser_tax
+    set userid = #{userid,jdbcType=BIGINT},
+      receipt_code = #{receiptCode,jdbcType=VARCHAR},
+      receipt_num = #{receiptNum,jdbcType=VARCHAR},
+      receipt_time = #{receiptTime,jdbcType=DATE},
+      tax_sn_to = #{taxSnTo,jdbcType=VARCHAR},
+      tax_sn_from = #{taxSnFrom,jdbcType=VARCHAR},
+      sum_money = #{sumMoney,jdbcType=DECIMAL},
+      sum_tax = #{sumTax,jdbcType=DECIMAL},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      datail = #{datail,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

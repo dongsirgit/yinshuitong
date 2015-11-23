@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baiwang.banktax.dao.UserLogMapper" >
+  <resultMap id="BaseResultMap" type="com.baiwang.banktax.beans.UserLog" >
+    <result column="id" property="id" jdbcType="BIGINT" />
+    <result column="userid" property="userid" jdbcType="BIGINT" />
+    <result column="info" property="info" jdbcType="VARCHAR" />
+    <result column="createdtime" property="createdtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <insert id="insert" parameterType="com.baiwang.banktax.beans.UserLog" >
+    insert into bt_user_log (id, userid, info, 
+      createdtime)
+    values (#{id,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, #{info,jdbcType=VARCHAR}, 
+      #{createdtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.baiwang.banktax.beans.UserLog" >
+    insert into bt_user_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="info != null" >
+        info,
+      </if>
+      <if test="createdtime != null" >
+        createdtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="info != null" >
+        #{info,jdbcType=VARCHAR},
+      </if>
+      <if test="createdtime != null" >
+        #{createdtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

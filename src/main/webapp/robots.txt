@@ -1,0 +1,4 @@
+User-agent: * 
+Allow:/
+Visit-time: 0100-0800
+Request-rate: 60/1m 0100 - 0759 

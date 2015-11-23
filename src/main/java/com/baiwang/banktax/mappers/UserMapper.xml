@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baiwang.banktax.dao.IUserMapper">
+    <resultMap id="BaseResultMap" type="com.baiwang.banktax.beans.Cuser">
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="user_name" property="userName" jdbcType="VARCHAR" />
+        <result column="user_pass" property="userPass" jdbcType="VARCHAR" />
+        <result column="user_type" property="userType" jdbcType="TINYINT" />
+        <result column="pay_pass" property="payPass" jdbcType="VARCHAR" />
+        <result column="corp_name" property="corpName" jdbcType="VARCHAR" />
+        <result column="tax_sn" property="taxSn" jdbcType="VARCHAR" />
+        <result column="logopath" property="logopath" jdbcType="VARCHAR" />
+        <result column="ap_name" property="apName" jdbcType="VARCHAR" />
+        <result column="mail" property="mail" jdbcType="VARCHAR" />
+        <result column="mail_status" property="mailStatus" jdbcType="BIT" />
+        <result column="invite_uid" property="inviteUid" jdbcType="BIGINT" />
+        <result column="mail_link" property="mailLink" jdbcType="VARCHAR" />
+        <result column="isvip" property="isvip" jdbcType="BIT" />
+        <result column="islock" property="islock" jdbcType="BIT" />
+        <result column="lock_mess" property="lockMess" jdbcType="VARCHAR" />
+        <result column="lock_muserid" property="lockMuserid" jdbcType="INTEGER" />
+        <result column="idcard" property="idcard" jdbcType="VARCHAR" />
+        <result column="idcard_front" property="idcardFront" jdbcType="VARCHAR" />
+        <result column="idcard_back" property="idcardBack" jdbcType="VARCHAR" />
+        <result column="mobilephone" property="mobilephone" jdbcType="VARCHAR" />
+        <result column="phone_status" property="phoneStatus" jdbcType="BIT" />
+        <result column="idcard_status" property="idcardStatus"
+            jdbcType="BIT" />
+        <result column="qq_relation" property="qqRelation" jdbcType="VARCHAR" />
+        <result column="address" property="address" jdbcType="VARCHAR" />
+        <result column="video_status" property="videoStatus" jdbcType="BIT" />
+        <result column="scene_statuse" property="sceneStatuse"
+            jdbcType="BIT" />
+        <result column="weibo_relation" property="weiboRelation"
+            jdbcType="VARCHAR" />
+        <result column="last_log_time" property="lastLogTime" jdbcType="TIMESTAMP" />
+        <result column="last_log_ip" property="lastLogIp" jdbcType="VARCHAR" />
+        <result column="reg_time" property="regTime" jdbcType="TIMESTAMP" />
+        <result column="reg_ip" property="regIp" jdbcType="VARCHAR" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+        <result column="update_ip" property="updateIp" jdbcType="VARCHAR" />
+        <result column="remark" property="remark" jdbcType="VARCHAR" />
+
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, user_name, user_pass,
+        mail,mobilephone,invite_uid,tax_sn,last_log_time,ap_name,idcard,corp_name,user_type
+    </sql>
+    <select id="selectMaxUid" resultType="Integer">
+       select max(id)
+       from bt_cuser
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+        parameterType="string">
+        select
+        <include refid="Base_Column_List" />
+        from bt_cuser
+        where user_name = #{userName,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByNameAndPass" resultMap="BaseResultMap"
+        parameterType="com.baiwang.banktax.beans.Cuser">
+        select
+        <include refid="Base_Column_List" />
+        from bt_cuser
+        where user_name = #{userName,jdbcType=VARCHAR} and
+        user_pass=#{userPass,jdbcType=VARCHAR}
+    </select>
+    <select id="selectById" resultMap="BaseResultMap" parameterType="LONG">
+        select
+        <include refid="Base_Column_List" />
+        from bt_cuser
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <select id="selectByMail" resultType="int" parameterType="string">
+        select
+        count(*) from bt_cuser
+        where mail = #{mail,jdbcType=VARCHAR}
+    </select>
+    <select id="selectUserByMail" resultMap="BaseResultMap"
+        parameterType="string">
+        select
+        <include refid="Base_Column_List" />
+        from bt_cuser
+        where mail = #{mail,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByNameAndMail" parameterType="com.baiwang.banktax.beans.Cuser"
+        resultMap="BaseResultMap">
+        select id,user_name,user_pass,mail from bt_cuser
+        where
+        user_name = #{userName,jdbcType=VARCHAR} and mail =
+        #{mail,jdbcType=VARCHAR}
+    </select>
+
+    <delete id="deleteById" parameterType="java.lang.Long">
+        delete from bt_cuser
+        where
+        id = #{id,jdbcType=BIGINT}
+    </delete>
+
+    <insert id="insertSelective" parameterType="com.baiwang.banktax.beans.Cuser">
+        insert into bt_cuser
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userName != null">
+                user_name,
+            </if>
+            <if test="userPass != null">
+                user_pass,
+            </if>
+            <if test="userType != null">
+                user_type,
+            </if>
+            <if test="mail != null">
+                mail,
+            </if>
+            <if test="mobilephone != null">
+                mobilephone,
+            </if>
+            <if test="inviteUid != null">
+                invite_uid,
+            </if>
+            <if test="taxSn != null">
+                tax_sn,
+            </if>
+            <if test="regIp != null">
+                reg_ip,
+            </if>
+            <if test="address != null">
+            </if>
+            <if test="apName != null">
+                ap_name,
+            </if>
+            <if test="idcard != null">
+                idcard,
+            </if>
+            <if test="corpName != null">
+                corp_name,
+            </if>
+            <if test="payPass != 
+                null"> pay_pass,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="userPass != null">
+                #{userPass,jdbcType=VARCHAR},
+            </if>
+            <if test="userType != null">
+                #{userType,jdbcType=TINYINT},
+            </if>
+            <if test="mail != null">
+                #{mail,jdbcType=VARCHAR},
+            </if>
+            <if test="mobilephone != null">
+                #{mobilephone,jdbcType=VARCHAR},
+            </if>
+            <if test="inviteUid != null">
+                #{inviteUid,jdbcType=BIGINT},
+            </if>
+            <if test="taxSn != null">
+                #{taxSn,jdbcType=VARCHAR},
+            </if>
+            <if test="regIp != null">
+                #{regIp,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="idcard != null">
+                #{idcard,jdbcType=VARCHAR},
+            </if>
+            <if test="apName != null">
+                #{apName,jdbcType=VARCHAR},
+            </if>
+            <if test="corpName != null">
+                #{corpName,jdbcType=VARCHAR},
+            </if>
+            <if test="payPass != null">
+                #{payPass,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <!--<update id="updateByIdSelective" parameterType="com.baiwang.banktax.beans.Cuser" 
+        > update bt_cuser <set > <if test="userName != null" > user_name = #{userName,jdbcType=VARCHAR}, 
+        </if> <if test="userPass != null" > user_pass = #{userPass,jdbcType=VARCHAR}, 
+        </if> <if test="mail != null" > mail = #{mail,jdbcType=VARCHAR}, </if> <if 
+        test="taxSn != null" > tax_sn= #{taxSn,jdbcType=VARCHAR}, </if> <if test="inviteUid 
+        != null" > invite_uid= #{inviteUid,jdbcType=BIGINT}, </if> </set> where id 
+        = #{id,jdbcType=BIGINT} </update> -->
+    <update id="updateLogById" parameterType="com.baiwang.banktax.beans.Cuser">
+        update bt_cuser
+        set
+        last_log_ip=#{lastLogIp,jdbcType=VARCHAR},last_log_time=#{lastLogTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updatePassById" parameterType="com.baiwang.banktax.beans.Cuser">
+        update bt_cuser
+        set
+        user_pass = #{userPass,jdbcType=VARCHAR}
+        where id =
+        #{id,jdbcType=BIGINT}
+    </update>
+</mapper>

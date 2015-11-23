@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baiwang.banktax.dao.PuserMapper" >
+  <resultMap id="BaseResultMap" type="com.baiwang.banktax.beans.Puser" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_pass" property="userPass" jdbcType="VARCHAR" />
+    <result column="pay_pass" property="payPass" jdbcType="VARCHAR" />
+    <result column="corp_name" property="corpName" jdbcType="VARCHAR" />
+    <result column="logopath" property="logopath" jdbcType="VARCHAR" />
+    <result column="mail" property="mail" jdbcType="VARCHAR" />
+    <result column="mail_status" property="mailStatus" jdbcType="BIT" />
+    <result column="mail_link" property="mailLink" jdbcType="VARCHAR" />
+    <result column="invite_uid" property="inviteUid" jdbcType="BIGINT" />
+    <result column="isvip" property="isvip" jdbcType="BIT" />
+    <result column="islock" property="islock" jdbcType="BIT" />
+    <result column="lock_mess" property="lockMess" jdbcType="VARCHAR" />
+    <result column="lock_muserid" property="lockMuserid" jdbcType="INTEGER" />
+    <result column="idcard" property="idcard" jdbcType="VARCHAR" />
+    <result column="idcard_z" property="idcardZ" jdbcType="VARCHAR" />
+    <result column="idcard_f" property="idcardF" jdbcType="VARCHAR" />
+    <result column="realname" property="realname" jdbcType="VARCHAR" />
+    <result column="phonenum" property="phonenum" jdbcType="VARCHAR" />
+    <result column="phone_status" property="phoneStatus" jdbcType="BIT" />
+    <result column="idcard_status" property="idcardStatus" jdbcType="BIT" />
+    <result column="qq_relation" property="qqRelation" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="video_status" property="videoStatus" jdbcType="BIT" />
+    <result column="scene_statuse" property="sceneStatuse" jdbcType="BIT" />
+    <result column="weibo_relation" property="weiboRelation" jdbcType="VARCHAR" />
+    <result column="last_log_time" property="lastLogTime" jdbcType="TIMESTAMP" />
+    <result column="last_log_ip" property="lastLogIp" jdbcType="VARCHAR" />
+    <result column="reg_time" property="regTime" jdbcType="TIMESTAMP" />
+    <result column="reg_ip" property="regIp" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_ip" property="updateIp" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_name, user_pass, pay_pass, corp_name, logopath, mail, mail_status, mail_link, 
+    invite_uid, isvip, islock, lock_mess, lock_muserid, idcard, idcard_z, idcard_f, realname, 
+    phonenum, phone_status, idcard_status, qq_relation, address, video_status, scene_statuse, 
+    weibo_relation, last_log_time, last_log_ip, reg_time, reg_ip, update_time, update_ip, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from bt_puser
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+   <select id="selectByNameFromPuser" resultMap="BaseResultMap" parameterType="string" >
+    select 
+    <include refid="Base_Column_List" />
+    from bt_puser
+    where user_name = #{userName,jdbcType=VARCHAR} 
+  </select>
+  
+   <select id="selectById" resultMap="BaseResultMap" parameterType="LONG" >
+    select 
+    <include refid="Base_Column_List" />
+    from bt_puser
+    where id = #{id,jdbcType=BIGINT} 
+  </select>
+  
+  <select id="selectByNameAndPass" resultMap="BaseResultMap" parameterType="com.baiwang.banktax.beans.Cuser" >
+    select 
+    <include refid="Base_Column_List" />
+    from bt_puser
+    where user_name = #{userName,jdbcType=VARCHAR} and user_pass=#{userPass,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByNameAndMail" resultMap="BaseResultMap" parameterType="com.baiwang.banktax.beans.Cuser" >
+    select 
+    <include refid="Base_Column_List" />
+    from bt_puser
+    where user_name = #{userName,jdbcType=VARCHAR} and mail=#{mail,jdbcType=VARCHAR}
+  </select>
+  
+  
+  
+  
+    <select id="selectByMailFromPuser" resultType="int" parameterType="string" >
+  select count(*) from bt_puser
+    where mail = #{mail,jdbcType=VARCHAR} 
+  </select>
+  
+  
+  
+  
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from bt_puser
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.baiwang.banktax.beans.Puser" >
+    insert into bt_puser (id, user_name, user_pass, 
+      pay_pass, corp_name, logopath, 
+      mail, mail_status, mail_link, 
+      invite_uid, isvip, islock, lock_mess, 
+      lock_muserid, idcard, idcard_z, 
+      idcard_f, realname, phonenum, 
+      phone_status, idcard_status, qq_relation, 
+      address, video_status, scene_statuse, 
+      weibo_relation, last_log_time, last_log_ip, 
+      reg_time, reg_ip, update_time, 
+      update_ip, remark)
+    values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{userPass,jdbcType=VARCHAR}, 
+      #{payPass,jdbcType=VARCHAR}, #{corpName,jdbcType=VARCHAR}, #{logopath,jdbcType=VARCHAR}, 
+      #{mail,jdbcType=VARCHAR}, #{mailStatus,jdbcType=BIT}, #{mailLink,jdbcType=VARCHAR}, 
+      #{inviteUid,jdbcType=BIGINT}, #{isvip,jdbcType=BIT}, #{islock,jdbcType=BIT}, #{lockMess,jdbcType=VARCHAR}, 
+      #{lockMuserid,jdbcType=INTEGER}, #{idcard,jdbcType=VARCHAR}, #{idcardZ,jdbcType=VARCHAR}, 
+      #{idcardF,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}, #{phonenum,jdbcType=VARCHAR}, 
+      #{phoneStatus,jdbcType=BIT}, #{idcardStatus,jdbcType=BIT}, #{qqRelation,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{videoStatus,jdbcType=BIT}, #{sceneStatuse,jdbcType=BIT}, 
+      #{weiboRelation,jdbcType=VARCHAR}, #{lastLogTime,jdbcType=TIMESTAMP}, #{lastLogIp,jdbcType=VARCHAR}, 
+      #{regTime,jdbcType=TIMESTAMP}, #{regIp,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateIp,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.baiwang.banktax.beans.Puser" >
+    insert into bt_puser
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="userPass != null" >
+        user_pass,
+      </if>
+      <if test="payPass != null" >
+        pay_pass,
+      </if>
+      <if test="corpName != null" >
+        corp_name,
+      </if>
+      <if test="logopath != null" >
+        logopath,
+      </if>
+      <if test="mail != null" >
+        mail,
+      </if>
+      <if test="mailStatus != null" >
+        mail_status,
+      </if>
+      <if test="mailLink != null" >
+        mail_link,
+      </if>
+      <if test="inviteUid != null" >
+        invite_uid,
+      </if>
+      <if test="isvip != null" >
+        isvip,
+      </if>
+      <if test="islock != null" >
+        islock,
+      </if>
+      <if test="lockMess != null" >
+        lock_mess,
+      </if>
+      <if test="lockMuserid != null" >
+        lock_muserid,
+      </if>
+      <if test="idcard != null" >
+        idcard,
+      </if>
+      <if test="idcardZ != null" >
+        idcard_z,
+      </if>
+      <if test="idcardF != null" >
+        idcard_f,
+      </if>
+      <if test="realname != null" >
+        realname,
+      </if>
+      <if test="phonenum != null" >
+        phonenum,
+      </if>
+      <if test="phoneStatus != null" >
+        phone_status,
+      </if>
+      <if test="idcardStatus != null" >
+        idcard_status,
+      </if>
+      <if test="qqRelation != null" >
+        qq_relation,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="videoStatus != null" >
+        video_status,
+      </if>
+      <if test="sceneStatuse != null" >
+        scene_statuse,
+      </if>
+      <if test="weiboRelation != null" >
+        weibo_relation,
+      </if>
+      <if test="lastLogTime != null" >
+        last_log_time,
+      </if>
+      <if test="lastLogIp != null" >
+        last_log_ip,
+      </if>
+      <if test="regTime != null" >
+        reg_time,
+      </if>
+      <if test="regIp != null" >
+        reg_ip,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateIp != null" >
+        update_ip,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPass != null" >
+        #{userPass,jdbcType=VARCHAR},
+      </if>
+      <if test="payPass != null" >
+        #{payPass,jdbcType=VARCHAR},
+      </if>
+      <if test="corpName != null" >
+        #{corpName,jdbcType=VARCHAR},
+      </if>
+      <if test="logopath != null" >
+        #{logopath,jdbcType=VARCHAR},
+      </if>
+      <if test="mail != null" >
+        #{mail,jdbcType=VARCHAR},
+      </if>
+      <if test="mailStatus != null" >
+        #{mailStatus,jdbcType=BIT},
+      </if>
+      <if test="mailLink != null" >
+        #{mailLink,jdbcType=VARCHAR},
+      </if>
+      <if test="inviteUid != null" >
+        #{inviteUid,jdbcType=BIGINT},
+      </if>
+      <if test="isvip != null" >
+        #{isvip,jdbcType=BIT},
+      </if>
+      <if test="islock != null" >
+        #{islock,jdbcType=BIT},
+      </if>
+      <if test="lockMess != null" >
+        #{lockMess,jdbcType=VARCHAR},
+      </if>
+      <if test="lockMuserid != null" >
+        #{lockMuserid,jdbcType=INTEGER},
+      </if>
+      <if test="idcard != null" >
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardZ != null" >
+        #{idcardZ,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardF != null" >
+        #{idcardF,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null" >
+        #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenum != null" >
+        #{phonenum,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneStatus != null" >
+        #{phoneStatus,jdbcType=BIT},
+      </if>
+      <if test="idcardStatus != null" >
+        #{idcardStatus,jdbcType=BIT},
+      </if>
+      <if test="qqRelation != null" >
+        #{qqRelation,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="videoStatus != null" >
+        #{videoStatus,jdbcType=BIT},
+      </if>
+      <if test="sceneStatuse != null" >
+        #{sceneStatuse,jdbcType=BIT},
+      </if>
+      <if test="weiboRelation != null" >
+        #{weiboRelation,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLogTime != null" >
+        #{lastLogTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLogIp != null" >
+        #{lastLogIp,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null" >
+        #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regIp != null" >
+        #{regIp,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateIp != null" >
+        #{updateIp,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+   <insert id="insertRegister" parameterType="com.baiwang.banktax.beans.Cuser" >
+    insert into bt_puser
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="userPass != null" >
+        user_pass,
+      </if>
+      <if test="payPass != null" >
+        pay_pass,
+      </if>
+      <if test="corpName != null" >
+        corp_name,
+      </if>
+      <if test="mail != null" >
+        mail,
+      </if>
+      <if test="inviteUid != null" >
+        invite_uid,
+      </if>
+   </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPass != null" >
+        #{userPass,jdbcType=VARCHAR},
+      </if>
+      <if test="payPass != null" >
+        #{payPass,jdbcType=VARCHAR},
+      </if>
+      <if test="corpName != null" >
+        #{corpName,jdbcType=VARCHAR},
+      </if>
+      <if test="mail != null" >
+        #{mail,jdbcType=VARCHAR},
+      </if>
+      <if test="inviteUid != null" >
+        #{inviteUid,jdbcType=BIGINT},
+      </if>
+  </trim>
+  </insert>
+  <update id="updateSelectiveByUsername" parameterType="com.baiwang.banktax.beans.Cuser">
+  update bt_puser
+   <set >
+     
+      <if test="userPass != null" >
+        user_pass = #{userPass,jdbcType=VARCHAR},
+      </if>
+      
+    </set>
+    where user_name=#{userName,jdbcType=VARCHAR}
+  
+  
+  </update>
+  
+  <update id="updateById" parameterType="com.baiwang.banktax.beans.Puser">
+   update bt_puser
+    <set >
+     
+      <if test="userPass != null" >
+        user_pass = #{userPass,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLogIp != null">
+        last_log_ip=#{lastLogIp,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLogTime != null">
+        last_log_time=#{lastLogTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.baiwang.banktax.beans.Puser" >
+    update bt_puser
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPass != null" >
+        user_pass = #{userPass,jdbcType=VARCHAR},
+      </if>
+      <if test="payPass != null" >
+        pay_pass = #{payPass,jdbcType=VARCHAR},
+      </if>
+      <if test="corpName != null" >
+        corp_name = #{corpName,jdbcType=VARCHAR},
+      </if>
+      <if test="logopath != null" >
+        logopath = #{logopath,jdbcType=VARCHAR},
+      </if>
+      <if test="mail != null" >
+        mail = #{mail,jdbcType=VARCHAR},
+      </if>
+      <if test="mailStatus != null" >
+        mail_status = #{mailStatus,jdbcType=BIT},
+      </if>
+      <if test="mailLink != null" >
+        mail_link = #{mailLink,jdbcType=VARCHAR},
+      </if>
+      <if test="inviteUid != null" >
+        invite_uid = #{inviteUid,jdbcType=BIGINT},
+      </if>
+      <if test="isvip != null" >
+        isvip = #{isvip,jdbcType=BIT},
+      </if>
+      <if test="islock != null" >
+        islock = #{islock,jdbcType=BIT},
+      </if>
+      <if test="lockMess != null" >
+        lock_mess = #{lockMess,jdbcType=VARCHAR},
+      </if>
+      <if test="lockMuserid != null" >
+        lock_muserid = #{lockMuserid,jdbcType=INTEGER},
+      </if>
+      <if test="idcard != null" >
+        idcard = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardZ != null" >
+        idcard_z = #{idcardZ,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardF != null" >
+        idcard_f = #{idcardF,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null" >
+        realname = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenum != null" >
+        phonenum = #{phonenum,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneStatus != null" >
+        phone_status = #{phoneStatus,jdbcType=BIT},
+      </if>
+      <if test="idcardStatus != null" >
+        idcard_status = #{idcardStatus,jdbcType=BIT},
+      </if>
+      <if test="qqRelation != null" >
+        qq_relation = #{qqRelation,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="videoStatus != null" >
+        video_status = #{videoStatus,jdbcType=BIT},
+      </if>
+      <if test="sceneStatuse != null" >
+        scene_statuse = #{sceneStatuse,jdbcType=BIT},
+      </if>
+      <if test="weiboRelation != null" >
+        weibo_relation = #{weiboRelation,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLogTime != null" >
+        last_log_time = #{lastLogTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLogIp != null" >
+        last_log_ip = #{lastLogIp,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null" >
+        reg_time = #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regIp != null" >
+        reg_ip = #{regIp,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateIp != null" >
+        update_ip = #{updateIp,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.baiwang.banktax.beans.Puser" >
+    update bt_puser
+    set user_name = #{userName,jdbcType=VARCHAR},
+      user_pass = #{userPass,jdbcType=VARCHAR},
+      pay_pass = #{payPass,jdbcType=VARCHAR},
+      corp_name = #{corpName,jdbcType=VARCHAR},
+      logopath = #{logopath,jdbcType=VARCHAR},
+      mail = #{mail,jdbcType=VARCHAR},
+      mail_status = #{mailStatus,jdbcType=BIT},
+      mail_link = #{mailLink,jdbcType=VARCHAR},
+      invite_uid = #{inviteUid,jdbcType=BIGINT},
+      isvip = #{isvip,jdbcType=BIT},
+      islock = #{islock,jdbcType=BIT},
+      lock_mess = #{lockMess,jdbcType=VARCHAR},
+      lock_muserid = #{lockMuserid,jdbcType=INTEGER},
+      idcard = #{idcard,jdbcType=VARCHAR},
+      idcard_z = #{idcardZ,jdbcType=VARCHAR},
+      idcard_f = #{idcardF,jdbcType=VARCHAR},
+      realname = #{realname,jdbcType=VARCHAR},
+      phonenum = #{phonenum,jdbcType=VARCHAR},
+      phone_status = #{phoneStatus,jdbcType=BIT},
+      idcard_status = #{idcardStatus,jdbcType=BIT},
+      qq_relation = #{qqRelation,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      video_status = #{videoStatus,jdbcType=BIT},
+      scene_statuse = #{sceneStatuse,jdbcType=BIT},
+      weibo_relation = #{weiboRelation,jdbcType=VARCHAR},
+      last_log_time = #{lastLogTime,jdbcType=TIMESTAMP},
+      last_log_ip = #{lastLogIp,jdbcType=VARCHAR},
+      reg_time = #{regTime,jdbcType=TIMESTAMP},
+      reg_ip = #{regIp,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_ip = #{updateIp,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

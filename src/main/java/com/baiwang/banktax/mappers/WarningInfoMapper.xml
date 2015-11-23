@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baiwang.banktax.dao.WarningInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.baiwang.banktax.beans.WarningInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="apply_id" property="applyId" jdbcType="BIGINT" />
+    <result column="info_type" property="infoType" jdbcType="TINYINT" />
+    <result column="source_website" property="sourceWebsite" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="publish_time" property="publishTime" jdbcType="VARCHAR" />
+    <result column="source_url" property="sourceUrl" jdbcType="VARCHAR" />
+    <result column="fetch_time" property="fetchTime" jdbcType="TIMESTAMP" />
+    <result column="muserid" property="muserid" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.baiwang.banktax.beans.WarningInfo" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, apply_id, info_type, source_website, title, publish_time, source_url, fetch_time, 
+    muserid
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from bt_warning_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from bt_warning_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.baiwang.banktax.beans.WarningInfo" >
+    insert into bt_warning_info (id, apply_id, info_type, 
+      source_website, title, publish_time, 
+      source_url, fetch_time, muserid, 
+      content)
+    values (#{id,jdbcType=BIGINT}, #{applyId,jdbcType=BIGINT}, #{infoType,jdbcType=TINYINT}, 
+      #{sourceWebsite,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{publishTime,jdbcType=VARCHAR}, 
+      #{sourceUrl,jdbcType=VARCHAR}, #{fetchTime,jdbcType=TIMESTAMP}, #{muserid,jdbcType=INTEGER}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.baiwang.banktax.beans.WarningInfo" >
+    insert into bt_warning_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="applyId != null" >
+        apply_id,
+      </if>
+      <if test="infoType != null" >
+        info_type,
+      </if>
+      <if test="sourceWebsite != null" >
+        source_website,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="publishTime != null" >
+        publish_time,
+      </if>
+      <if test="sourceUrl != null" >
+        source_url,
+      </if>
+      <if test="fetchTime != null" >
+        fetch_time,
+      </if>
+      <if test="muserid != null" >
+        muserid,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="applyId != null" >
+        #{applyId,jdbcType=BIGINT},
+      </if>
+      <if test="infoType != null" >
+        #{infoType,jdbcType=TINYINT},
+      </if>
+      <if test="sourceWebsite != null" >
+        #{sourceWebsite,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="publishTime != null" >
+        #{publishTime,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceUrl != null" >
+        #{sourceUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="fetchTime != null" >
+        #{fetchTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="muserid != null" >
+        #{muserid,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.baiwang.banktax.beans.WarningInfo" >
+    update bt_warning_info
+    <set >
+      <if test="applyId != null" >
+        apply_id = #{applyId,jdbcType=BIGINT},
+      </if>
+      <if test="infoType != null" >
+        info_type = #{infoType,jdbcType=TINYINT},
+      </if>
+      <if test="sourceWebsite != null" >
+        source_website = #{sourceWebsite,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="publishTime != null" >
+        publish_time = #{publishTime,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceUrl != null" >
+        source_url = #{sourceUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="fetchTime != null" >
+        fetch_time = #{fetchTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="muserid != null" >
+        muserid = #{muserid,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.baiwang.banktax.beans.WarningInfo" >
+    update bt_warning_info
+    set apply_id = #{applyId,jdbcType=BIGINT},
+      info_type = #{infoType,jdbcType=TINYINT},
+      source_website = #{sourceWebsite,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      publish_time = #{publishTime,jdbcType=VARCHAR},
+      source_url = #{sourceUrl,jdbcType=VARCHAR},
+      fetch_time = #{fetchTime,jdbcType=TIMESTAMP},
+      muserid = #{muserid,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.baiwang.banktax.beans.WarningInfo" >
+    update bt_warning_info
+    set apply_id = #{applyId,jdbcType=BIGINT},
+      info_type = #{infoType,jdbcType=TINYINT},
+      source_website = #{sourceWebsite,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      publish_time = #{publishTime,jdbcType=VARCHAR},
+      source_url = #{sourceUrl,jdbcType=VARCHAR},
+      fetch_time = #{fetchTime,jdbcType=TIMESTAMP},
+      muserid = #{muserid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baiwang.banktax.dao.UserAttachtBatchMapper" >
+  <resultMap id="BaseResultMap" type="com.baiwang.banktax.beans.UserAttachtBatch" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="userid" property="userid" jdbcType="BIGINT" />
+    <result column="apply_id" property="applyId" jdbcType="BIGINT" />
+    <result column="createdtime" property="createdtime" jdbcType="TIMESTAMP" />
+    <result column="batch_note" property="batchNote" jdbcType="VARCHAR" />
+    <result column="batch_type" property="batchType" jdbcType="TINYINT" />
+    <result column="batch_name" property="batchName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userid, apply_id, createdtime, batch_note, batch_type, batch_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from bt_user_attacht_batch
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectByCondition" resultMap="BaseResultMap" parameterType="com.baiwang.banktax.beans.UserAttachtBatch" >
+    select 
+    <include refid="Base_Column_List" /> 
+    from bt_user_attacht_batch
+    where apply_id = #{applyId,jdbcType=BIGINT} and batch_type=#{batchType,jdbcType=TINYINT}
+  </select>
+  <select id="selectByApplyId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+	select 
+    <include refid="Base_Column_List" />
+    from bt_user_attacht_batch
+	where apply_id = #{applyId,jdbcType=BIGINT}
+	order by batch_type
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from bt_user_attacht_batch
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.baiwang.banktax.beans.UserAttachtBatch"  useGeneratedKeys="true" keyProperty="id">
+    <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">
+		SELECT LAST_INSERT_ID() AS id
+	</selectKey>
+    insert into bt_user_attacht_batch (userid, apply_id, 
+      createdtime, batch_note, batch_type, 
+      batch_name)
+    values ( #{userid,jdbcType=BIGINT}, #{applyId,jdbcType=BIGINT}, 
+      #{createdtime,jdbcType=TIMESTAMP}, #{batchNote,jdbcType=VARCHAR}, #{batchType,jdbcType=TINYINT}, 
+      #{batchName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.baiwang.banktax.beans.UserAttachtBatch" >
+    insert into bt_user_attacht_batch
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="applyId != null" >
+        apply_id,
+      </if>
+      <if test="createdtime != null" >
+        createdtime,
+      </if>
+      <if test="batchNote != null" >
+        batch_note,
+      </if>
+      <if test="batchType != null" >
+        batch_type,
+      </if>
+      <if test="batchName != null" >
+        batch_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="applyId != null" >
+        #{applyId,jdbcType=BIGINT},
+      </if>
+      <if test="createdtime != null" >
+        #{createdtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="batchNote != null" >
+        #{batchNote,jdbcType=VARCHAR},
+      </if>
+      <if test="batchType != null" >
+        #{batchType,jdbcType=TINYINT},
+      </if>
+      <if test="batchName != null" >
+        #{batchName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.baiwang.banktax.beans.UserAttachtBatch" >
+    update bt_user_attacht_batch
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="applyId != null" >
+        apply_id = #{applyId,jdbcType=BIGINT},
+      </if>
+      <if test="createdtime != null" >
+        createdtime = #{createdtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="batchNote != null" >
+        batch_note = #{batchNote,jdbcType=VARCHAR},
+      </if>
+      <if test="batchType != null" >
+        batch_type = #{batchType,jdbcType=TINYINT},
+      </if>
+      <if test="batchName != null" >
+        batch_name = #{batchName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.baiwang.banktax.beans.UserAttachtBatch" >
+    update bt_user_attacht_batch
+    set userid = #{userid,jdbcType=BIGINT},
+      apply_id = #{applyId,jdbcType=BIGINT},
+      createdtime = #{createdtime,jdbcType=TIMESTAMP},
+      batch_note = #{batchNote,jdbcType=VARCHAR},
+      batch_type = #{batchType,jdbcType=TINYINT},
+      batch_name = #{batchName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baiwang.banktax.dao.ApplyLoanGuarantyMapper" >
+  <resultMap id="BaseResultMap" type="com.baiwang.banktax.beans.ApplyLoanGuaranty" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="apply_loan_id" property="applyLoanId" jdbcType="INTEGER" />
+    <result column="descript" property="descript" jdbcType="VARCHAR" />
+    <result column="guaranty_value" property="guarantyValue" jdbcType="INTEGER" />
+    <result column="guaranty" property="guaranty" jdbcType="VARCHAR" />
+    <result column="guaranty_type" property="guarantyType" jdbcType="TINYINT" />
+    <result column="createdtime" property="createdtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, apply_loan_id, descript, guaranty_value, guaranty, guaranty_type, createdtime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from bt_apply_loan_guaranty
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from bt_apply_loan_guaranty
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.baiwang.banktax.beans.ApplyLoanGuaranty" >
+    insert into bt_apply_loan_guaranty (id, apply_loan_id, descript, 
+      guaranty_value, guaranty, guaranty_type, 
+      createdtime)
+    values (#{id,jdbcType=BIGINT}, #{applyLoanId,jdbcType=INTEGER}, #{descript,jdbcType=VARCHAR}, 
+      #{guarantyValue,jdbcType=INTEGER}, #{guaranty,jdbcType=VARCHAR}, #{guarantyType,jdbcType=TINYINT}, 
+      #{createdtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.baiwang.banktax.beans.ApplyLoanGuaranty" >
+    insert into bt_apply_loan_guaranty
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="applyLoanId != null" >
+        apply_loan_id,
+      </if>
+      <if test="descript != null" >
+        descript,
+      </if>
+      <if test="guarantyValue != null" >
+        guaranty_value,
+      </if>
+      <if test="guaranty != null" >
+        guaranty,
+      </if>
+      <if test="guarantyType != null" >
+        guaranty_type,
+      </if>
+      <if test="createdtime != null" >
+        createdtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="applyLoanId != null" >
+        #{applyLoanId,jdbcType=INTEGER},
+      </if>
+      <if test="descript != null" >
+        #{descript,jdbcType=VARCHAR},
+      </if>
+      <if test="guarantyValue != null" >
+        #{guarantyValue,jdbcType=INTEGER},
+      </if>
+      <if test="guaranty != null" >
+        #{guaranty,jdbcType=VARCHAR},
+      </if>
+      <if test="guarantyType != null" >
+        #{guarantyType,jdbcType=TINYINT},
+      </if>
+      <if test="createdtime != null" >
+        #{createdtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.baiwang.banktax.beans.ApplyLoanGuaranty" >
+    update bt_apply_loan_guaranty
+    <set >
+      <if test="applyLoanId != null" >
+        apply_loan_id = #{applyLoanId,jdbcType=INTEGER},
+      </if>
+      <if test="descript != null" >
+        descript = #{descript,jdbcType=VARCHAR},
+      </if>
+      <if test="guarantyValue != null" >
+        guaranty_value = #{guarantyValue,jdbcType=INTEGER},
+      </if>
+      <if test="guaranty != null" >
+        guaranty = #{guaranty,jdbcType=VARCHAR},
+      </if>
+      <if test="guarantyType != null" >
+        guaranty_type = #{guarantyType,jdbcType=TINYINT},
+      </if>
+      <if test="createdtime != null" >
+        createdtime = #{createdtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.baiwang.banktax.beans.ApplyLoanGuaranty" >
+    update bt_apply_loan_guaranty
+    set apply_loan_id = #{applyLoanId,jdbcType=INTEGER},
+      descript = #{descript,jdbcType=VARCHAR},
+      guaranty_value = #{guarantyValue,jdbcType=INTEGER},
+      guaranty = #{guaranty,jdbcType=VARCHAR},
+      guaranty_type = #{guarantyType,jdbcType=TINYINT},
+      createdtime = #{createdtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

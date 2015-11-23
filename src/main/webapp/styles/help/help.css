@@ -1,0 +1,18 @@
+@charset "utf-8";
+/* CSS Document */
+/*帮助中心*/
+.content{ margin:30px auto; color:#656565;}
+.content_l{ float:left; height:614px; font-size:14px; width:152px; background:#fff;}
+.content_r{ float:right; height:554px;  height:auto !important; min-height:554px; width:760px; padding:30px 37px; background:#fff; position:relative;}
+.content_l h3{ font-size:14px; color:#fff; font-weight:normal; width:152px; height:30px; line-height:30px; text-align:center; background:#e70011; margin-bottom:10px;}
+.content_l ul li{ text-align:center; height:24px; line-height:24px; width:152px; cursor:pointer;}
+.content_l ul li.current{ background:#dcc09a; color:#fff;}
+.helpcenter li{ line-height:20px;}
+.helpcenter li{ display:none;}
+.helpcenter li.current{ display:block;}
+.content_l li a:link,.content_l li a:visited{ color:#656565;}
+.content_l .current a:link,.content_l .current a:visited{ color:#fff;}
+.content_l_btn{ display:block; background:#e80e1d; text-align:center; margin:5px auto;}
+.content_l_btn:link,.content_l_btn:visited{ color:#fff;}
+.ftcblue{ color:#3c426e; font-weight:bold;}
+.helpcenter p span{ color:#ac7832;}
