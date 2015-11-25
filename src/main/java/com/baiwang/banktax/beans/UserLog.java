@@ -1,18 +1,8 @@
 package com.baiwang.banktax.beans;
 
-import java.io.Serializable;
 import java.util.Date;
-/**
- * 
-  * @ClassName: UserLog
-  * @Description:用户操作记录表
-  * @author 张衡
-  * @date 2015年7月31日 下午2:31:09
- */
-public class UserLog implements Serializable{
-    
-    private static final long serialVersionUID = 1L;
 
+public class UserLog {
     private Long id;
 
     private Long userid;
@@ -20,6 +10,8 @@ public class UserLog implements Serializable{
     private String info;
 
     private Date createdtime;
+
+    private String optIp;
 
     public Long getId() {
         return id;
@@ -51,5 +43,13 @@ public class UserLog implements Serializable{
 
     public void setCreatedtime(Date createdtime) {
         this.createdtime = createdtime;
+    }
+
+    public String getOptIp() {
+        return optIp;
+    }
+
+    public void setOptIp(String optIp) {
+        this.optIp = optIp == null ? null : optIp.trim();
     }
 }

@@ -7,9 +7,7 @@ package com.baiwang.banktax.mappers;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
-import com.baiwang.banktax.beans.Cuser;
-import com.baiwang.banktax.beans.Puser;
-import com.baiwang.banktax.services.iface.IPuserService;
+import com.baiwang.banktax.beans.User;
 import com.baiwang.banktax.services.iface.IUserService;
 import com.baiwang.banktax.utils.ConfigUtil;
 import com.baiwang.banktax.utils.StringUtils;
@@ -21,32 +19,18 @@ import com.baiwang.banktax.utils.StringUtils;
   * @date 2015年9月25日 下午5:44:43
   */
 public class MainTest {
-	private static final String sessionInfo = ConfigUtil.getSessionInfoName();
+	private static final String sessionInfo = ConfigUtil.getLoginedUserStr();
 	
 	@Resource
 	private IUserService userService;
 	
-	@Resource
-	private IPuserService puserService;
-	
 	void logUserInfo(HttpSession session) {
-		String typeUser = (String) session.getAttribute("typeUser");
-		if (null == typeUser)
-			return;
-		if ("0".equals(typeUser)) {
-			Cuser user = (Cuser) session.getAttribute(sessionInfo);
+			User user = (User) session.getAttribute(sessionInfo);
 			logUserInfo(user);
-		} else if ("1".equals(typeUser)) {
-			Puser user = (Puser) session.getAttribute(sessionInfo);
-			logUserInfo(user);
-		}
 	}
 	
-	private void logUserInfo(Cuser user) {
-		userService.updateLogById(user);
-	}
-
-	private void logUserInfo(Puser user) {
+	private void logUserInfo(User user) {
+		//userService.updateLogById(user);
 	}
 	
 	public static void main(String[] args) {

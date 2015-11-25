@@ -1,21 +1,17 @@
 package com.baiwang.banktax.beans;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class Cuser implements Serializable{
-    
-    private static final long serialVersionUID = 1L;
-
+public class User {
     private Long id;
+
+    private String mobilePhone;
 
     private String userName;
 
     private String userPass;
 
     private Byte userType;
-
-    private String payPass;
 
     private String corpName;
 
@@ -29,10 +25,6 @@ public class Cuser implements Serializable{
 
     private Boolean mailStatus;
 
-    private Long inviteUid;
-
-    private String inviteCode;
-    
     private String mailLink;
 
     private Boolean isvip;
@@ -49,8 +41,6 @@ public class Cuser implements Serializable{
 
     private String idcardBack;
 
-    private String mobilephone;
-
     private Boolean phoneStatus;
 
     private Boolean idcardStatus;
@@ -63,19 +53,31 @@ public class Cuser implements Serializable{
 
     private Boolean sceneStatuse;
 
-    private String weiboRelation;
+    private Byte taxVerify;
+
+    private String taxUsername;
+
+    private String taxPass;
 
     private Date lastLogTime;
 
-    private String lastLogIp;
+    private Date updateTime;
 
     private Date regTime;
 
+    private String lastLogIp;
+
     private String regIp;
 
-    private Date updateTime;
-
     private String updateIp;
+
+    private String areaClass;
+
+    private String industryClass;
+
+    private Byte taxClass;
+
+    private Long inviteUid;
 
     private String remark;
 
@@ -85,6 +87,16 @@ public class Cuser implements Serializable{
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getMobilePhone() {
+    
+        return mobilePhone;
+    }
+
+    public void setMobilePhone(String mobilePhone) {
+    
+        this.mobilePhone = mobilePhone == null ? null : mobilePhone.trim();
     }
 
     public String getUserName() {
@@ -109,14 +121,6 @@ public class Cuser implements Serializable{
 
     public void setUserType(Byte userType) {
         this.userType = userType;
-    }
-
-    public String getPayPass() {
-        return payPass;
-    }
-
-    public void setPayPass(String payPass) {
-        this.payPass = payPass == null ? null : payPass.trim();
     }
 
     public String getCorpName() {
@@ -165,14 +169,6 @@ public class Cuser implements Serializable{
 
     public void setMailStatus(Boolean mailStatus) {
         this.mailStatus = mailStatus;
-    }
-
-    public Long getInviteUid() {
-        return inviteUid;
-    }
-
-    public void setInviteUid(Long inviteUid) {
-        this.inviteUid = inviteUid;
     }
 
     public String getMailLink() {
@@ -239,14 +235,6 @@ public class Cuser implements Serializable{
         this.idcardBack = idcardBack == null ? null : idcardBack.trim();
     }
 
-    public String getMobilephone() {
-        return mobilephone;
-    }
-
-    public void setMobilephone(String mobilephone) {
-        this.mobilephone = mobilephone == null ? null : mobilephone.trim();
-    }
-
     public Boolean getPhoneStatus() {
         return phoneStatus;
     }
@@ -295,12 +283,28 @@ public class Cuser implements Serializable{
         this.sceneStatuse = sceneStatuse;
     }
 
-    public String getWeiboRelation() {
-        return weiboRelation;
+    public Byte getTaxVerify() {
+        return taxVerify;
     }
 
-    public void setWeiboRelation(String weiboRelation) {
-        this.weiboRelation = weiboRelation == null ? null : weiboRelation.trim();
+    public void setTaxVerify(Byte taxVerify) {
+        this.taxVerify = taxVerify;
+    }
+
+    public String getTaxUsername() {
+        return taxUsername;
+    }
+
+    public void setTaxUsername(String taxUsername) {
+        this.taxUsername = taxUsername == null ? null : taxUsername.trim();
+    }
+
+    public String getTaxPass() {
+        return taxPass;
+    }
+
+    public void setTaxPass(String taxPass) {
+        this.taxPass = taxPass == null ? null : taxPass.trim();
     }
 
     public Date getLastLogTime() {
@@ -311,12 +315,12 @@ public class Cuser implements Serializable{
         this.lastLogTime = lastLogTime;
     }
 
-    public String getLastLogIp() {
-        return lastLogIp;
+    public Date getUpdateTime() {
+        return updateTime;
     }
 
-    public void setLastLogIp(String lastLogIp) {
-        this.lastLogIp = lastLogIp == null ? null : lastLogIp.trim();
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
     public Date getRegTime() {
@@ -327,20 +331,20 @@ public class Cuser implements Serializable{
         this.regTime = regTime;
     }
 
+    public String getLastLogIp() {
+        return lastLogIp;
+    }
+
+    public void setLastLogIp(String lastLogIp) {
+        this.lastLogIp = lastLogIp == null ? null : lastLogIp.trim();
+    }
+
     public String getRegIp() {
         return regIp;
     }
 
     public void setRegIp(String regIp) {
         this.regIp = regIp == null ? null : regIp.trim();
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
     }
 
     public String getUpdateIp() {
@@ -351,6 +355,38 @@ public class Cuser implements Serializable{
         this.updateIp = updateIp == null ? null : updateIp.trim();
     }
 
+    public String getAreaClass() {
+        return areaClass;
+    }
+
+    public void setAreaClass(String areaClass) {
+        this.areaClass = areaClass == null ? null : areaClass.trim();
+    }
+
+    public String getIndustryClass() {
+        return industryClass;
+    }
+
+    public void setIndustryClass(String industryClass) {
+        this.industryClass = industryClass == null ? null : industryClass.trim();
+    }
+
+    public Byte getTaxClass() {
+        return taxClass;
+    }
+
+    public void setTaxClass(Byte taxClass) {
+        this.taxClass = taxClass;
+    }
+
+    public Long getInviteUid() {
+        return inviteUid;
+    }
+
+    public void setInviteUid(Long inviteUid) {
+        this.inviteUid = inviteUid;
+    }
+
     public String getRemark() {
         return remark;
     }
@@ -358,15 +394,4 @@ public class Cuser implements Serializable{
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
     }
-
-    public String getInviteCode() {
-    
-        return inviteCode;
-    }
-
-    public void setInviteCode(String inviteCode) {
-    
-        this.inviteCode = inviteCode;
-    }
-    
 }

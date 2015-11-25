@@ -11,19 +11,16 @@ package com.baiwang.banktax.utils;
   * @date 2015年8月3日 下午3:14:19
   */
 public class Constant {
-	public final static int SUCCESS = 0;//表示找回密码时，验证成功
-	public final static int USER_NAME_ERROR = 1;//登陆的时候，用户名错误
-	public final static int PASSWORD_ERROR = 2;//登陆的时候密码错误
-	public final static int IMAGE_CODE_ERROR = 3;//验证码错误
-	public final static int USER_NAME_SUCCESS = 4;//用户名可以使用
-	public final static int USER_NAME_EXIST = 5;//注册的时候，用户名已经存在
-	public final static int USER_IDCARD_ERROR = 11;//注册的时候，身份证号输入错误
-	public final static int USER_INVITECODE_ERROR = 12;//注册的时候，输入的邀请码有误
-	public final static int TAX_NAME_EXIST =6;//税号已经存在
-	public final static int MAIL_ERROR =7;//找回密码的时候，填写的邮箱信息错误
-	public final static int REGIST_MAIL_ERROR =8;//注册的时候，填写的邮箱信息错误
-	public final static int REGIST_MAIL_SUCCESS =9;//注册密码的时候，填写的邮箱信息正确
-	public final static int RETRIEVE_PASS_LATER=10;//找回密码的时候，服务器发送邮件没开，提示稍后再试
+	public final static int SUCCESS = 0;//表示成功状态
+	public final static int USER_MOBILEPHONE_EXIST = 1;//手机号已存在
+	public final static int USER_PHONECODE_ERROR = 2;//手机验证码输入错误
+	public final static int USER_PHONENUM_ERROR = 3;//发送手机验证码时,手机号不存在
+	public final static int USER_LOGIN_ERROR = 4;//登录失败
+	
+	public final static int USER_PARAMETER_MISS =15;//前台参数未接收到
+	//0~15预留给登录与注册模块
+	public final static int UNKNOWN_ERROR=16;
+	
 	
 //-----以下三个属性支持上传文件的路径定位-------------
 	//目录分隔符（unix类系统为/ win类系统为\）

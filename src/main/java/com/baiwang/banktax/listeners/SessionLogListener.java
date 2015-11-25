@@ -10,8 +10,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import com.baiwang.banktax.beans.Cuser;
-import com.baiwang.banktax.beans.Puser;
+import com.baiwang.banktax.beans.User;
 import com.baiwang.banktax.services.iface.IUserService;
 import com.baiwang.banktax.utils.ConfigUtil;
 
@@ -24,7 +23,7 @@ import com.baiwang.banktax.utils.ConfigUtil;
  */
 public class SessionLogListener implements HttpSessionListener {
 	private static final Log logger = LogFactory.getLog(SessionLogListener.class);
-	private static final String sessionInfo = ConfigUtil.getSessionInfoName();
+	private static final String sessionInfo = ConfigUtil.getLoginedUserStr();
 	IUserService userService;
 
     public SessionLogListener() {
@@ -55,22 +54,18 @@ public class SessionLogListener implements HttpSessionListener {
 		if (null == typeUser)
 			return;
 		if ("0".equals(typeUser)) {
-			Cuser user = (Cuser) session.getAttribute(sessionInfo);
+			User user = (User) session.getAttribute(sessionInfo);
 			logUserInfo(user);
 		} else if ("1".equals(typeUser)) {
-			Puser user = (Puser) session.getAttribute(sessionInfo);
+		    User user = (User) session.getAttribute(sessionInfo);
 			logUserInfo(user);
 		}
 	}
 
-	private void logUserInfo(Cuser user) {
-		userService.updateLogById(user);
+	private void logUserInfo(User user) {
+		//userService.updateLogById(user);
 		logger.info("LogUsr：" + user.getUserName() + "  --LoginAt：" 
 				+ user.getLastLogTime() + "  --LogIP：" + user.getLastLogIp());
-	}
-
-	private void logUserInfo(Puser user) {
-		//TODO
 	}
 
 	private Object getObjectFromApplication(ServletContext servletContext,String beanName){  

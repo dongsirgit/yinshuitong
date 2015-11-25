@@ -1,6 +1,6 @@
 package com.baiwang.banktax.model;
 
-import com.baiwang.banktax.beans.Cuser;
+import com.baiwang.banktax.beans.User;
 
 /**
  * sessionInfo模型，只要登录成功，就需要设置到session里面，便于系统使用
@@ -11,13 +11,13 @@ import com.baiwang.banktax.beans.Cuser;
 public class SessionInfo implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private Cuser user;
+	private User user;
 
-	public Cuser getUser() {
+	public User getUser() {
 		return user;
 	}
 
-	public void setUser(Cuser user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 

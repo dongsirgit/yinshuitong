@@ -116,14 +116,43 @@ public class StringUtils {
 
     }
 
+    /**
+     * 检查传入的字符串是否为null或空字符串
+      * @author liujingui
+      * @param str  
+      * @return boolean: <br>true:是null或空字符串
+      * @date 2015年10月31日 下午10:59:12
+     */
     public static boolean isBlank(String str) {
         return (str == null || str.trim().length() == 0);
     }
 
+    /**
+     * 检查传入的字符串是否为null或空字符串
+      * @author liujingui
+      * @param str  
+      * @return boolean: <br>true:不是null或空字符串
+      * @date 2015年10月31日 下午10:59:12
+     */
     public static boolean isNotBlank(String str) {
         return (str != null && str.trim().length() > 0);
     }
 
+    /**
+     * 检查所有的传入的字符串是否为null或空字符串
+      * @author liujingui
+      * @param 所有的字符串
+      * @return boolean: <br />true->传入的字符串有null或空字符串
+      * @date 2015年10月31日 下午10:53:13
+     */
+    public static boolean hasBlank(String... str){
+        for(int i=0;i<str.length;i++){
+            if(str[i] == null || str[i].trim().length() == 0)
+                return true;
+        }
+        return false;
+    }
+    
     /**
      * 根据KEY获取map数据中的值
      */

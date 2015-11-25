@@ -1,18 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
-  import="com.baiwang.banktax.beans.Puser,com.baiwang.banktax.beans.Cuser,com.baiwang.banktax.utils.ConfigUtil "%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
 	String basePath = request.getContextPath();
-	String typeUser = (String)session.getAttribute("typeUser");
-	Cuser cuser = null;
-	Puser puser = null;
-	Byte userType = null;
-	if(null!=typeUser && "0".equals(typeUser)){
-		cuser = (Cuser) session.getAttribute(ConfigUtil.getSessionInfoName());
-	}else if(null!=typeUser && "1".equals(typeUser)){
-		puser = (Puser) session.getAttribute(ConfigUtil.getSessionInfoName());
-	}
 	int showPage = 0;
 	try{
 		showPage = Integer.valueOf((request.getParameter("showPage") == null ||"".equals(request.getParameter("showPage")) || 
@@ -22,7 +12,6 @@
 		response.sendRedirect(basePath+"/users/init/userInfo?showPage=0");
 	}
 	String pageBack = request.getParameter("page");
-	if(null!=cuser) userType = cuser.getUserType();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>   
@@ -99,7 +88,7 @@
 </script> 
 </head>
 <body>
-	<iframe src="<%=basePath %>/basic/head" width="100%" height="75px" frameborder="0" scrolling="no"></iframe>
+	<iframe src="<%=basePath%>/basic/head" width="100%" height="75px" frameborder="0" scrolling="no"></iframe>
 	
 	<div class="content center clearfix act_list_nobg">
 		<div class="content_l">

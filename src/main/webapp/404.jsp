@@ -7,7 +7,7 @@
 <!-- <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0" /> -->
 <title>找不到页面</title>
 <link href="<%=basePath %>/styles/common/base.css" rel="stylesheet" type="text/css"/>
-<script src="<%=basePath %>/scripts/common/jquery.min.js"></script>
+<script src="<%=basePath %>/scripts/common/jquery-1.11.1.min.js"></script>
 <script src="<%=basePath %>/scripts/common/common.js"></script>
 <script type="text/javascript"> 
      if(top!=self){

@@ -2,16 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.baiwang.banktax.dao.UserLogMapper" >
   <resultMap id="BaseResultMap" type="com.baiwang.banktax.beans.UserLog" >
-    <result column="id" property="id" jdbcType="BIGINT" />
+    <id column="id" property="id" jdbcType="BIGINT" />
     <result column="userid" property="userid" jdbcType="BIGINT" />
     <result column="info" property="info" jdbcType="VARCHAR" />
     <result column="createdtime" property="createdtime" jdbcType="TIMESTAMP" />
+    <result column="opt_ip" property="optIp" jdbcType="VARCHAR" />
   </resultMap>
+  <sql id="Base_Column_List" >
+    id, userid, info, createdtime, opt_ip
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from bt_user_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from bt_user_log
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
   <insert id="insert" parameterType="com.baiwang.banktax.beans.UserLog" >
     insert into bt_user_log (id, userid, info, 
-      createdtime)
+      createdtime, opt_ip)
     values (#{id,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, #{info,jdbcType=VARCHAR}, 
-      #{createdtime,jdbcType=TIMESTAMP})
+      #{createdtime,jdbcType=TIMESTAMP}, #{optIp,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.baiwang.banktax.beans.UserLog" >
     insert into bt_user_log
@@ -28,6 +42,9 @@
       <if test="createdtime != null" >
         createdtime,
       </if>
+      <if test="optIp != null" >
+        opt_ip,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -42,6 +59,35 @@
       <if test="createdtime != null" >
         #{createdtime,jdbcType=TIMESTAMP},
       </if>
+      <if test="optIp != null" >
+        #{optIp,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.baiwang.banktax.beans.UserLog" >
+    update bt_user_log
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="info != null" >
+        info = #{info,jdbcType=VARCHAR},
+      </if>
+      <if test="createdtime != null" >
+        createdtime = #{createdtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="optIp != null" >
+        opt_ip = #{optIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.baiwang.banktax.beans.UserLog" >
+    update bt_user_log
+    set userid = #{userid,jdbcType=BIGINT},
+      info = #{info,jdbcType=VARCHAR},
+      createdtime = #{createdtime,jdbcType=TIMESTAMP},
+      opt_ip = #{optIp,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
 </mapper>

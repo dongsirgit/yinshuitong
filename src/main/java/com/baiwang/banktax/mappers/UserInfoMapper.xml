@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.baiwang.banktax.dao.CuserInfoMapper" >
-  <resultMap id="BaseResultMap" type="com.baiwang.banktax.beans.CuserInfo" >
+<mapper namespace="com.baiwang.banktax.dao.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.baiwang.banktax.beans.UserInfo" >
     <id column="uid" property="uid" jdbcType="INTEGER" />
     <result column="business_licence" property="businessLicence" jdbcType="VARCHAR" />
     <result column="business_licence_verify" property="businessLicenceVerify" jdbcType="TINYINT" />
@@ -15,23 +15,23 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from bt_cuser_info
+    from bt_user_info
     where uid = #{uid,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from bt_cuser_info
+    delete from bt_user_info
     where uid = #{uid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.baiwang.banktax.beans.CuserInfo" >
-    insert into bt_cuser_info (uid, business_licence, business_licence_verify, 
+  <insert id="insert" parameterType="com.baiwang.banktax.beans.UserInfo" >
+    insert into bt_user_info (uid, business_licence, business_licence_verify, 
       org_code, org_code_verify, updatetime
       )
     values (#{uid,jdbcType=INTEGER}, #{businessLicence,jdbcType=VARCHAR}, #{businessLicenceVerify,jdbcType=TINYINT}, 
       #{orgCode,jdbcType=VARCHAR}, #{orgCodeVerify,jdbcType=TINYINT}, #{updatetime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.baiwang.banktax.beans.CuserInfo" >
-    insert into bt_cuser_info
+  <insert id="insertSelective" parameterType="com.baiwang.banktax.beans.UserInfo" >
+    insert into bt_user_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="uid != null" >
         uid,
@@ -73,8 +73,8 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.baiwang.banktax.beans.CuserInfo" >
-    update bt_cuser_info
+  <update id="updateByPrimaryKeySelective" parameterType="com.baiwang.banktax.beans.UserInfo" >
+    update bt_user_info
     <set >
       <if test="businessLicence != null" >
         business_licence = #{businessLicence,jdbcType=VARCHAR},
@@ -94,8 +94,8 @@
     </set>
     where uid = #{uid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.baiwang.banktax.beans.CuserInfo" >
-    update bt_cuser_info
+  <update id="updateByPrimaryKey" parameterType="com.baiwang.banktax.beans.UserInfo" >
+    update bt_user_info
     set business_licence = #{businessLicence,jdbcType=VARCHAR},
       business_licence_verify = #{businessLicenceVerify,jdbcType=TINYINT},
       org_code = #{orgCode,jdbcType=VARCHAR},

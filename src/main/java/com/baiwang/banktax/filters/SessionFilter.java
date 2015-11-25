@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.baiwang.banktax.utils.ConfigUtil;
 import com.baiwang.banktax.utils.Constant;
 
 /**
@@ -27,6 +28,8 @@ import com.baiwang.banktax.utils.Constant;
  */
 @SuppressWarnings("unused")
 public class SessionFilter implements Filter {
+    
+    private static final String loginedUserStr = ConfigUtil.getLoginedUserStr();
 	private static final Log logger = LogFactory.getLog(SessionFilter.class);
 
 	private List<String> list = new ArrayList<String>();
@@ -58,7 +61,7 @@ public class SessionFilter implements Filter {
 		/*String servletPath = request.getServletPath();
 		String path = request.getRequestURI();*/
 
-		if (null == request.getSession().getAttribute("sessionInfo")) {// session不存在需要拦截
+		if (null == request.getSession().getAttribute(loginedUserStr)) {// session不存在需要拦截
 			if((request.getHeader("x-requested-with")!= null && request.getHeader("x-requested-with").equalsIgnoreCase("XMLHttpRequest"))//ajax异步请求  
 					|| (null!=request.getContentType() && request.getContentType().contains("multipart/form-data"))){//上传-ajax同步请求
 				logger.info("-------url:"+request.getRequestURI()+",session timeout");
@@ -74,7 +77,6 @@ public class SessionFilter implements Filter {
     			request.getSession().setAttribute("path", reqPath);
     			request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
             }
-			
 		} else {
 			chain.doFilter(request, response);
 		}

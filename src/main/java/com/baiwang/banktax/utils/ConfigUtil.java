@@ -17,13 +17,22 @@ public class ConfigUtil {
 	private static final ResourceBundle bundle = java.util.ResourceBundle.getBundle("config");
 
 	/**
-	 * 获得sessionInfo名字
+	 * 获得登录用户的索引
 	 * 
 	 * @return
 	 */
-	public static final String getSessionInfoName() {
-		return bundle.getString("sessionInfoName");
+	public static final String getLoginedUserStr() {
+		return bundle.getString("loginedUserStr");
 	}
+	
+    /**
+     * 获得返回处理结果码的索引
+     * 
+     * @return
+     */
+    public static final String getFlagStr() {
+        return bundle.getString("flagStr");
+    }
 
 	/**
 	 * 通过键获取值

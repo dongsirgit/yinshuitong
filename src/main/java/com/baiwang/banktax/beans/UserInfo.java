@@ -1,18 +1,8 @@
 package com.baiwang.banktax.beans;
 
-import java.io.Serializable;
 import java.util.Date;
-/**
- * 
-  * @ClassName: CuserInfo
-  * @Description: 需要审查或对比的用户个维度信息
-  * @author 张衡
-  * @date 2015年7月31日 下午2:28:53
- */
-public class CuserInfo implements Serializable{
-    
-    private static final long serialVersionUID = 1L;
 
+public class UserInfo {
     private Integer uid;
 
     private String businessLicence;
