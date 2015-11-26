@@ -15,8 +15,8 @@
 	<div class="forget_con find">
     	<h3>找回密码</h3>
         <div class="find_con">
-        	<p>密码已发送至您的邮箱，请查收并妥善保管！</p>
-        	<a href="<%=basePath %>/user/forwardLogin" target="_top">登录网站</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="${mail}" target="_blank">登陆邮箱</a>
+        	<p>密码已经重新找回</p>
+        	<a href="<%=basePath%>/user/forwardLogin">去登录</a>
         </div>
     </div>
 </div>

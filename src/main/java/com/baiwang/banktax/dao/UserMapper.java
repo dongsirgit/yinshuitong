@@ -1,5 +1,7 @@
 package com.baiwang.banktax.dao;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.baiwang.banktax.beans.User;
 
 public interface UserMapper {
@@ -8,6 +10,7 @@ public interface UserMapper {
     int insertSelective(User record);
     
     int updateByIdSelective(User record);
+    void updatePwdByMobilePhone(@Param(value="mobilePhone")String mobilePhone,@Param(value="userPass")String userPass);
     
     User selectById(Long id);
     User selectByMobilePhone(String mobilePhone);

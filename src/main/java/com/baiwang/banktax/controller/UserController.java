@@ -91,6 +91,18 @@ public class UserController {
     }
     
     /**
+     * 跳转至找回密码的成功页面
+     * 
+      * @author liujingui
+      * @return String
+      * @date 2015年11月25日 下午3:27:38
+     */
+    @RequestMapping("/findPwd_success")
+    public String findPwd_success() {
+        return "user/findpwd_success";
+    }
+    
+    /**
      * 执行登录
      * 
       * @author liujingui
@@ -204,7 +216,7 @@ public class UserController {
     }
     
     /**
-     * 检查手机验证码
+     * 检查手机验证码是否输入正确
      * 
       * @author liujingui
       * @param mobilePhone
@@ -237,9 +249,14 @@ public class UserController {
     public int changePwd(String userPass,HttpSession session){
         String mobilePhone = (String)session.getAttribute("mobilePhone");
         if(!StringUtils.hasBlank(userPass,mobilePhone)){
-            
+            try{
+                userService.updatePwdByMobilePhone(mobilePhone, userPass);
+                return Constant.SUCCESS;
+            }catch(Exception e){
+                e.printStackTrace();
+            }
         }
-        return 0;
+        return Constant.USER_PARAMETER_MISS;
     }
     
 }

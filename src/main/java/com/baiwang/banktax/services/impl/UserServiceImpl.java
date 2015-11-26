@@ -14,6 +14,14 @@ public class UserServiceImpl implements IUserService{
     @Resource
     private UserMapper userDao;
 
+    /**
+     * 
+      * <p>Title: selectByMobilePhone</p>
+      * <p>Description: 检查手机号是否存在</p>
+      * @param mobilePhone
+      * @return
+      * @see com.baiwang.banktax.services.iface.IUserService#selectByMobilePhone(java.lang.String)
+     */
     @Override
     public User selectByMobilePhone(String mobilePhone) {
         
@@ -21,6 +29,14 @@ public class UserServiceImpl implements IUserService{
         
     }
 
+    /**
+     * 
+      * <p>Title: selectByMobilePhoneAndUserPass</p>
+      * <p>Description: 用户登录</p>
+      * @param user
+      * @return
+      * @see com.baiwang.banktax.services.iface.IUserService#selectByMobilePhoneAndUserPass(com.baiwang.banktax.beans.User)
+     */
     @Override
     public User selectByMobilePhoneAndUserPass(User user) {
         
@@ -28,10 +44,32 @@ public class UserServiceImpl implements IUserService{
         
     }
 
+    /**
+     * 
+      * <p>Title: userRegister</p>
+      * <p>Description: 注册用户</p>
+      * @param user
+      * @see com.baiwang.banktax.services.iface.IUserService#userRegister(com.baiwang.banktax.beans.User)
+     */
     @Override
     public void userRegister(User user) {
         
         userDao.userRegister(user);
+        
+    }
+
+    /**
+     * 
+      * <p>Title: updatePwdByMobilePhone</p>
+      * <p>Description: 根据手机号修改密码</p>
+      * @param mobilePhone
+      * @param userPass
+      * @see com.baiwang.banktax.services.iface.IUserService#updatePwdByMobilePhone(java.lang.String, java.lang.String)
+     */
+    @Override
+    public void updatePwdByMobilePhone(String mobilePhone, String userPass) {
+        
+        userDao.updatePwdByMobilePhone(mobilePhone, userPass);
         
     }
 

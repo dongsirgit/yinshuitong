@@ -57,7 +57,11 @@
 	                 data:{"userPass":hex_md5($("#userPwd1_hidden").val())},
 	                 async:true,
 	                 success:function(data){
-	                	 alert(data);
+	                	 if(data == 0){
+	                		 location=basePath+"/user/findPwd_success";
+	                	 }else{
+	                		 $("#userPwd2Msg").text("参数异常！");
+	                	 }
 	                 }
 	            });
 	    	}

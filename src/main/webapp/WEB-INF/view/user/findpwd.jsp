@@ -52,7 +52,7 @@
 	    	return verifier.init(settings).checkPhoneCode();
 	    }
 		function getPhoneCode(){
-	        if(checkMobilePhone() && checkMobilePhoneAgain()){
+	        if(checkMobilePhoneAgain()){
 	           $.ajax({
 	               type:"POST",
 	               url:basePath+"/user/sendPhoneCode", 
@@ -78,7 +78,7 @@
 	        }
 	    }
 		var timer = (function(){
-	        var time = 60;
+	        var time = 120;
 	        return function(){
 	            $(".getPhoneCodeBtn").css("background-color","#ccc").attr("onclick","");
 	            var id = setInterval(function(){
@@ -94,7 +94,7 @@
 	        }
 	    })();
 		function checkPhoneOwner(){
-			if(checkMobilePhone() && checkMobilePhoneAgain() && checkPhoneCode() && verifier.checkPhoneOwner()){
+			if(checkMobilePhoneAgain() && checkPhoneCode() && verifier.checkPhoneOwner()){
 				location = basePath+"/user/findPwd_reset";
 			}
 		}

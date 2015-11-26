@@ -138,7 +138,7 @@ var verifier={
 				if(!userPwd2){
 					userPwd2Msg.text("确认密码不能为空！");
 				}else if(userPwd2 != userPwd1){
-					userPwd2Msg.text("密码输入不一致");
+					userPwd2Msg.text("两次密码输入不一致");
 				}else{
 					userPwd2Msg.text("");
 					result=true;

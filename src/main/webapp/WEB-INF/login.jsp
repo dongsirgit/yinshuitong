@@ -29,7 +29,7 @@
 	    		mobilePhoneMsg.text("手机号不能为空!");
 	    		return false
 	    	}else if(!reg_mobilePhone.test(mobilePhone)){
-	    		mobilePhoneMsg.text("您输入的手机号有误！");
+	    		mobilePhoneMsg.text("请输入合法的手机号");
 	    		return false;
 	    	}
 	    	mobilePhoneMsg.text("");

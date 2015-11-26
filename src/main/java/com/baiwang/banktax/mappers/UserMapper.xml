@@ -299,6 +299,11 @@
       </if>
     </trim>
   </insert>
+  <update id="updatePwdByMobilePhone" parameterType="java.lang.String">
+    update bt_user
+    set user_pass = #{userPass,jdbcType=VARCHAR}
+    where mobilephone = #{mobilePhone,jdbcType=VARCHAR}
+  </update>
   <update id="updateByIdSelective" parameterType="com.baiwang.banktax.beans.User" >
     update bt_user
     <set >
