@@ -15,7 +15,7 @@ import com.baiwang.banktax.beans.User;
 import com.baiwang.banktax.utils.ConfigUtil;
 
 /**
- * 负责用户登录后,跳转页面,修改密码等行为的控制类
+ * 负责管理用户信息,税务信息等的控制类
  * 
   * @ClassName: UserHolderController
   * @author liujingui
@@ -23,44 +23,26 @@ import com.baiwang.banktax.utils.ConfigUtil;
  */
 @Controller
 @RequestMapping("/users")
-public class UserHolderController {
+public class UserInfoController {
 
     private static final String loginedUserStr = ConfigUtil.getLoginedUserStr();
     private static final Log logger = LogFactory.getLog(UserController.class);
     
     /**
-     * 登录成功后,页面跳转至产品列表页或个人信息页
+     * 跳转至用户个人中心相关的各个页面
      * 
       * @author liujingui
+      * @param page
       * @param session
-      * @param request
+      * @param map
       * @return String
-      * @date 2015年11月25日 下午2:33:55
+      * @date 2015年11月25日 下午2:42:49
      */
-    @RequestMapping("/loginSuccess")
-    public String loginSuccess(HttpSession session,HttpServletRequest request){
-        User loginedUser=(User)session.getAttribute(loginedUserStr);
-        byte isVerified=loginedUser.getTaxVerify();
-        if(isVerified == 0){
-            return "../../index";
-        }
-        return null;
+    @RequestMapping("/init/{page}")
+    public String init(@PathVariable String page, HttpSession session, Map<String, Object> map) {
+        
+        logger.info("开始访问页面:  " + page + ".jsp");
+        return "user/" + page;
+        
     }
-    
-    /**
-     * 退出登录
-     * 
-      * @author liujingui
-      * @param session
-      * @param request
-      * @return String
-      * @date 2015年11月25日 下午2:33:55
-     */
-    @RequestMapping("/exit")
-    public String exit(HttpSession session){
-        session.invalidate();
-        return "../../index";
-    }
-    
-
 }

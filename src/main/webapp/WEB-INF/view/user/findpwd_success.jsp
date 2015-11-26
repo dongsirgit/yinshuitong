@@ -5,17 +5,16 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>找回密码</title>
-	<link type="text/css" rel="stylesheet" href="<%=basePath %>/styles/common/base.css" />
-	<link type="text/css" rel="stylesheet" href="<%=basePath %>/styles/login/findpassword.css" />
+	<link type="text/css" rel="stylesheet" href="<%=basePath%>/styles/common/base.css" />
+	<link type="text/css" rel="stylesheet" href="<%=basePath%>/styles/login/findpassword.css" />
 	<script type="text/javascript" src="<%=basePath%>/scripts/common/jquery-1.11.1.min.js"></script>
 </head>
 <body>
 <iframe src="<%=basePath %>/basic/head" width="100%" height="74px" frameborder="0" scrolling="no"></iframe>
 <div class="forget">
 	<div class="forget_con find">
-    	<h3>找回密码</h3>
         <div class="find_con">
-        	<p>密码已经重新找回</p>
+        	<p>密码已经成功找回</p>
         	<a href="<%=basePath%>/user/forwardLogin">去登录</a>
         </div>
     </div>

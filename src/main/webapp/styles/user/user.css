@@ -11,9 +11,11 @@
 	border-radius: 5px;
 	float: right;
 }
+
 .getPhoneCodeBtn:hover {
 	cursor: pointer;
 }
+
 .registerBtn {
 	background-color: #b88c52;
 	height: 56px;
@@ -24,29 +26,70 @@
 	font-size: 24px;
 	width: 390px;
 }
-.pwdLevel{
-	visibility:hidden;
-    font-style:normal;
-	font-weight:bolder;
-    font-size:15px;
-	display:inline-block;
+
+.pwdLevel {
+	visibility: hidden;
+	font-style: normal;
+	font-weight: bolder;
+	font-size: 15px;
+	display: inline-block;
 	border-radius: 3px;
-	text-align:center;
-	width:60px;
-	height:20px;
-	line-height:20px;
-	background-color:#ccc;
-	color:#933;
+	text-align: center;
+	width: 60px;
+	height: 20px;
+	line-height: 20px;
+	background-color: #ccc;
+	color: #933;
 }
-.level1{
-	background-color:#f96;
+
+.level1 {
+	background-color: #f96;
 }
-.level2{
-    background-color:#f60;
+
+.level2 {
+	background-color: #f60;
 }
-.level3{
-    background-color:#f33;
+
+.level3 {
+	background-color: #f33;
 }
-.nolevel{
-	background-color:#ccc;
+
+.nolevel {
+	background-color: #ccc;
+}
+
+.userInfoDiv {
+	font-size: 16px;
+	float: left;
+	width: 250px;
+	height: 25px;
+	margin:25px 50px 25px 0px;
+}
+
+.userInfoSpan {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+.userInfoItemTitle {
+	text-align: left;
+	font-size: 18px;
+	font-weight: normal;
+	width:80px;
+}
+.userInfoTable{
+	 margin: 20px auto;
+}
+.userInfoTable tr{
+	line-height:42px
+}
+.textRight{
+	text-align:right;
+}
+.textLeft{
+	text-align:left;
+}
+.userInfoVerifyState{
+	text-align:left;
+	line-height:30px;
 }
