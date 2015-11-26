@@ -6,101 +6,123 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>忘记密码</title>
 	<link type="text/css" rel="stylesheet" href="<%=basePath%>/styles/common/base.css" />
+	<link type="text/css" rel="stylesheet" href="<%=basePath%>/styles/user/user.css" />
 	<link type="text/css" rel="stylesheet" href="<%=basePath%>/styles/login/findpassword.css" />
 	<script type="text/javascript" src="<%=basePath%>/scripts/common/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript" src="<%=basePath%>/scripts/user/formVerifier.js"></script>
+	<script type="text/javascript" src="<%=basePath%>/scripts/user/formState.js"></script>
 	<script type="text/javascript">
-		$(function(){
-			$('input:eq(0)').focus(function(e) {
-				if( $(this).val()== '用户名' ){
-					$(this).val('')
-				}
-		    });
-			$('input:eq(0)').blur(function(e) {
-				if( $(this).val()=='' ){
-					$(this).val('用户名')
-				}
-		    });
-			$('input:eq(1)').focus(function(e) {
-				if( $(this).val()== '邮箱' ){
-					$(this).val('')
-				}
-		    });
-			$('input:eq(1)').blur(function(e) {
-				if( $(this).val()=='' ){
-					$(this).val('邮箱')
-				}
-		    });
-		})
-		function check_name(){
-			var username=$("#username").val();
-			if(username==""){
-				$("#name_msg").text("× 请输入合法的用户名");
-				return;
-			}else{
-				$("#name_msg").text("");
+	    var basePath = '<%=basePath%>';
+	    function checkMobilePhone(){
+	    	var settings={
+	    			mobilePhone:$("#mobilePhone"),
+	    			mobilePhoneMsg:$("#mobilePhoneMsg"),
+	    			reg_mobilePhone:/^(0|86|17951)?(13[0-9]|15[012356789]|17[0678]|18[0-9]|14[57])[0-9]{8}$/
+	    			},
+	    		    result = verifier.init(settings).checkMobilePhone();
+		    if(result){
+		    	$("#mobilePhoneMsg").text("");
+		    	return true;
+		    }
+		    return false;
+	    }
+       function checkMobilePhoneAgain(){
+            var settings={
+                    mobilePhone:$("#mobilePhone"),
+                    mobilePhoneMsg:$("#mobilePhoneMsg"),
+                    reg_mobilePhone:/^(0|86|17951)?(13[0-9]|15[012356789]|17[0678]|18[0-9]|14[57])[0-9]{8}$/
+                    },
+                    result = verifier.init(settings).checkMobilePhone(),
+                    checkResult = false;
+            if(result == "exist"){
+            	$("#mobilePhoneMsg").text("");
+                checkResult = true;
+            }else if(result == "noexist"){
+                $("#mobilePhoneMsg").text("该手机号不存在！");
+            }
+            return checkResult;
+        }
+	    function checkPhoneCode(){
+	    	var settings={
+	    			phoneCode:$("#phoneCode"),
+	    			phoneCodeMsg:$("#phoneCodeMsg"),
+	    			mobilePhone:$("#mobilePhone"),
+	    			reg_phoneCode:/^\d{6}$/
+	    	}
+	    	return verifier.init(settings).checkPhoneCode();
+	    }
+		function getPhoneCode(){
+	        if(checkMobilePhone() && checkMobilePhoneAgain()){
+	           $.ajax({
+	               type:"POST",
+	               url:basePath+"/user/sendPhoneCode", 
+	               data:{"mobilePhone":$("#mobilePhone").val()},
+	               async:true,
+	               success:function(data){
+	                   if(data == 0){
+	                       //发送成功
+	                       $("#phoneCode").attr("disabled",false);
+	                       timer();
+	                       $("#mobilePhoneMsg").text("");
+	                   }else if(data == 3){
+	                       $("#mobilePhoneMsg").text("该手机号不存在");
+	                   }else if(data == 16){
+	                       //服务异常,如欠费等
+	                       $("#mobilePhoneMsg").text("服务器异常,请刷新后重试！");
+	                   }else{
+	                       //包含参数异常错误码15
+	                       $("#mobilePhoneMsg").text("参数异常！");
+	                   }
+	               }
+	          });
+	        }
+	    }
+		var timer = (function(){
+	        var time = 60;
+	        return function(){
+	            $(".getPhoneCodeBtn").css("background-color","#ccc").attr("onclick","");
+	            var id = setInterval(function(){
+	                if(time >= 0){
+	                    $(".getPhoneCodeBtn").text(time+"秒后重试");
+	                    time--;
+	                }else{
+	                    $(".getPhoneCodeBtn").css("background-color","#c39b66").attr("onclick","getPhoneCode()").text("获取验证码");
+	                    clearInterval(id);
+	                    time = 60;
+	                }
+	            },1000);
+	        }
+	    })();
+		function checkPhoneOwner(){
+			if(checkMobilePhone() && checkMobilePhoneAgain() && checkPhoneCode() && verifier.checkPhoneOwner()){
+				location = basePath+"/user/findPwd_reset";
 			}
-		}
-		function check_mail(){
-			var mail=$("#mail").val();
-			if(mail=="" ||!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(mail)){
-				$("#mail_msg").text("× 请输入合法的邮箱");
-				return;
-			}else{
-				$("#mail_msg").text("");
-			}
-		}
-		function checkall(){
-			var username=$("#username").val();
-			var mail=$("#mail").val();
-			if(username == "用户名") {
-				$("#name_msg").text("请输入用户名");
-				return;
-			}
-			if(mail == "邮箱") {
-				$("#mail_msg").text("请输入邮箱.");
-				return;
-			}
-			$.post(
-				"<%=basePath%>/retrieve/sentMail",
-				$("#myform").serialize(),
-				function(data) {
-					if(data.flag==1) {
-						//没有该账户
-						$("#mail_msg").text("用户名与邮箱不匹配,请重新输入！");
-					} else if(data.flag==10) {
-						//邮箱服务器错误
-						$("#mail_msg").text("邮箱服务器繁忙,请稍后再试！");
-					} else {
-						//成功
-						$("#postMail input").val(mail);
-						$("#postMail").submit();
-					}
-				});
 		}
 	</script>
 </head>
 <body>
 	<iframe src="<%=basePath%>/basic/head" width="100%" height="74px" frameborder="0" scrolling="no"></iframe>
-	<form method="post" action="" id="myform">
+	<form id="myform">
 		<div class="forget">
 			<div class="forget_con">
 				<h3>找回密码</h3>
 				<div class="hg">
-					<input type="text" value="用户名" name="userName" id="username" onblur="check_name();" />
-					<p class="prompt" id="name_msg"></p>
+				    <label style="width:80px;font-size:15px">手机号:</label>
+					<input class="inputState" type="text" value="手机号码" name="mobilePhone" id="mobilePhone" onblur="checkMobilePhone()" style="color:#b0b0b0;" />
+					<span style="display:none">手机号码</span>
+					<p class="prompt" id="mobilePhoneMsg"></p>
 				</div>
+				<div class="getPhoneCodeBtn" onclick="getPhoneCode()">获取验证码</div>
 				<div class="hg">
-					<input type="text" value="邮箱" name="mail" id="mail" onblur="check_mail();" />
-					<p class="prompt" id="mail_msg"></p>
+				    <label style="width:80px;font-size:15px">验证码:</label>
+					<input class="inputState" type="text" value="验证码" name="phoneCode" id="phoneCode" onblur="checkPhoneCode()" style="width:200px;color:#b0b0b0;" disabled="disabled" />
+					<span style="display:none">验证码</span>
+					<p class="prompt" id="phoneCodeMsg"></p>
 				</div>
-				<a onclick="checkall();" class="sub_btn">提交</a>
-				<p class="text">用户名和注册邮箱通过校验一致后,发送新密码到注册邮箱</p>
+				<a onclick="checkPhoneOwner()" class="sub_btn">下一步</a>
+				<p class="text">手机验证码校验成功后,方可修改密码！</p>
 			</div>
 		</div>
-	</form>
-	<form action="<%=basePath%>/retrieve/forwardSentSuccess" id="postMail" method="post" style="display:none" >
-	   <input name="mail"/>
 	</form>
 	<%@include file="../base/footer.html"%>
 </body>

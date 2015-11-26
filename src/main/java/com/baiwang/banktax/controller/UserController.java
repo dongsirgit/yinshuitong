@@ -19,7 +19,7 @@ import com.baiwang.banktax.utils.StringUtils;
 import com.baiwang.banktax.utils.message.SendMsgUtils;
 
 /**
- * 负责用户登录,注册,及表单验证等的控制类
+ * 负责用户登录,注册,找回密码,及表单验证等的控制类
  * 
   * @ClassName: UserController
   * @author liujingui
@@ -64,6 +64,30 @@ public class UserController {
             //return "../../index";
             return "../login";
         }
+    }
+    
+    /**
+     * 跳转至找回密码页
+     * 
+      * @author liujingui
+      * @return String
+      * @date 2015年11月25日 下午3:27:38
+     */
+    @RequestMapping("/findPwd")
+    public String findPwd() {
+        return "user/findpwd";
+    }
+    
+    /**
+     * 跳转至找回密码时的修改密码页
+     * 
+      * @author liujingui
+      * @return String
+      * @date 2015年11月25日 下午3:27:38
+     */
+    @RequestMapping("/findPwd_reset")
+    public String findPwd_reset() {
+        return "user/findpwd_reset";
     }
     
     /**
@@ -164,7 +188,7 @@ public class UserController {
 //            }
             if("0".equals(result)){
                 logger.info("手机验证码发送成功==>"+code);
-                session.setAttribute("phoneCode", code);
+                session.setAttribute(mobilePhone, code);
                 return Constant.SUCCESS;
             }else if("5".equals(result)){
                 //手机号不存在
@@ -187,16 +211,35 @@ public class UserController {
       * @return int
       * @date 2015年11月24日 下午5:03:11
      */
-    @RequestMapping(value = "/checkPhoneCode")
+    @RequestMapping(value = "/checkPhoneOwner")
     @ResponseBody
-    public int checkPhoneCode(String phoneCode,HttpSession session){
-        String realCode = (String)session.getAttribute("phoneCode");
-        if(StringUtils.hasBlank(realCode,phoneCode)){
+    public int checkPhoneOwner(String phoneCode,String mobilePhone,HttpSession session){
+        String realCode = (String)session.getAttribute(mobilePhone);
+        if(StringUtils.hasBlank(realCode,phoneCode) || !realCode.equals(phoneCode)){
             return Constant.USER_PARAMETER_MISS;
-        }else if(!realCode.equals(phoneCode)){
-            return Constant.USER_PHONECODE_ERROR;
         }else{
+            session.setAttribute("mobilePhone", mobilePhone);
             return Constant.SUCCESS;
         }
     }
+    
+    /**
+     * 执行变更密码
+     * 
+      * @author liujingui
+      * @param userPass
+      * @param session
+      * @return int
+      * @date 2015年11月25日 下午6:31:48
+     */
+    @RequestMapping(value = "/changePwd")
+    @ResponseBody
+    public int changePwd(String userPass,HttpSession session){
+        String mobilePhone = (String)session.getAttribute("mobilePhone");
+        if(!StringUtils.hasBlank(userPass,mobilePhone)){
+            
+        }
+        return 0;
+    }
+    
 }

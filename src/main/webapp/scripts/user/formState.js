@@ -2,14 +2,14 @@
         //两个密码框状态转换
         $(".pwdState").on({
             focus:function(){
-                if($(this).attr("type")=="text"){
+                if($(this).attr("type") == "text"){
                     $(this).css("display","none").prev().css("display","").css("color","black").focus();
                 }else{
                     $(this).css("color","black");
                 }
             },
             blur:function(){
-                if($.trim($(this).val())==""){
+                if($.trim($(this).val()) == ""){
                     $(this).val("").css("display","none").next().css("display","");
                 }else{
                     $(this).css("color","#b0b0b0");
@@ -28,14 +28,14 @@
             blur:function(){
                 $(this).css("color","#b0b0b0");
                 var defaultValue = $(this).next().text();
-                if($.trim($(this).val())==""){
+                if($.trim($(this).val()) == ""){
                     $(this).val(defaultValue);
                 }
             }
         });
         //label点击热区设置
         $(document).delegate("#myform label","click",function(){
-            if($(this).next().css("display")!="none"){
+            if($(this).next().css("display") != "none"){
                 $(this).next().focus();
             }else{
                  $(this).next().css("display","").focus().next().css("display","none");

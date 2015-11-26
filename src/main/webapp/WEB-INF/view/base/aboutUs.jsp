@@ -17,13 +17,13 @@
 	<div class="content_l">
         <h3>关于我们</h3>
         <ul>
-        	<li class="current">公司介绍</li>
-        	<li>联系我们</li>
+        	<!-- <li >公司介绍</li> -->
+        	<li class="current" >联系我们</li>
         </ul>
     </div>
 	<div class="content_r">
     	<ul class="helpcenter">
-        	<li class="current">
+        	<!-- <li>
             	<div class="act_con_text">
                 	<p>百望银税通基于企业大数据尤其以纳税信息为代表，通过“互联网+税票”打造互联网银税平台，满足纳税企业发展所需的相关信息和金融服务，为广大纳税企业提供专业、高效、安全和低成本的财税互联网增值服务。</p>
                     <br/>
@@ -46,8 +46,8 @@
                     <p>- 在中欧知名金融机构如中国工商银行、法国Dexia银行、Sungard等世界五百强大型金融机构从事银行金融工作十余年，回国后在外企工作期间作为风险管理专家长驻多个大型银行总行提供风险管理咨询，曾在国资委控大型投资公司任首席风险官多年</p>
                     <p>- 负责金融信贷业务的全面风险管理（ERM）</p>
                 </div>
-            </li>
-            <li>
+            </li> -->
+            <li class="current">
             	<div class="act_con_text">
                 	<p>公司地址：北京市海淀区马连洼北路59号亿城国际中心7层</p><br/>
                     <p>客服电话：4000665858</p><br/>

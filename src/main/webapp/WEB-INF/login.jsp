@@ -13,10 +13,6 @@
 	<script type="text/javascript" src="<%=basePath %>/scripts/common/md5.js"></script>
 	<script type="text/javascript">
 	    if(top != self){
-	    	alert(top);
-	    	alert(self);
-	    	alert(top.location);
-	    	alert(self.location);
 	    	if(top.location != self.location)
 	    		top.location = self.location; 
 		}

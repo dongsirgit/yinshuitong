@@ -79,9 +79,9 @@ var verifier={
 				reg_mobilePhone=this.reg_mobilePhone,
 				result=false;
 			if(!mobilePhone){
-				mobilePhoneMsg.text("手机号不能为空！");
+				mobilePhoneMsg.text("手机号不能为空");
 			}else if(!reg_mobilePhone.test(mobilePhone)){
-				mobilePhoneMsg.text("手机号不符合规则！");
+				mobilePhoneMsg.text("请输入合法的手机号");
 			}else{
 				$.ajax({
 		             type:"POST",
@@ -90,10 +90,9 @@ var verifier={
 		             async:false,
 		             success:function(data){
 		            	 if(data == 0){
-		     				mobilePhoneMsg.text("");
-		     				result=true;
+		     				result = "noexist";
 		            	 }else if(data == 1){
-		            		mobilePhoneMsg.text("该手机号已被使用！");
+		            		result = "exist";
 		            	 }else{
 		            		//未接收到参数异常码为15
 		            		mobilePhoneMsg.text("参数异常！");
@@ -150,33 +149,35 @@ var verifier={
 		checkPhoneCode:function(){
 			var phoneCode=this.phoneCode,
 				phoneCodeMsg=this.phoneCodeMsg,
+				mobilePhone=this.mobilePhone,
 				reg_phoneCode=this.reg_phoneCode,
 				result=false;
 			if(!phoneCode){
-				phoneCodeMsg.text("手机验证码不能为空！");
+				phoneCodeMsg.text("验证码不能为空");
 			}else if(!reg_phoneCode.test(phoneCode)){
-				phoneCodeMsg.text("手机验证码输入错误！");
+				phoneCodeMsg.text("请输入合法的验证码");
 			}else{
 				phoneCodeMsg.text("");
 				result=true;
 			}
 			return result;
 		},
-		checkPhoneCodeByReal:function(){
+		checkPhoneOwner:function(){
 			var phoneCode=this.phoneCode,
 				phoneCodeMsg=this.phoneCodeMsg,
+				mobilePhone=this.mobilePhone,
 				result=false;
 			$.ajax({
 	             type:"POST",
-	             url:basePath+"/user/checkPhoneCode", 
-	             data:{"phoneCode":phoneCode},
+	             url:basePath+"/user/checkPhoneOwner", 
+	             data:{"phoneCode":phoneCode,"mobilePhone":mobilePhone},
 	             async:false,
 	             success:function(data){
 	            	 if(data == 0){
 	            		 phoneCodeMsg.text("");
 	            		 result=true;
-	            	 }else if(data == 2){
-	            		 phoneCodeMsg.text("手机验证码输入错误！");
+	            	 }else if(data == 15){
+	            		 phoneCodeMsg.text("验证码错误");
 	            	 }else{
 	            		 phoneCodeMsg.text("参数异常！");
 	            	 }

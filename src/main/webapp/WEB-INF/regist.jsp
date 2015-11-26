@@ -71,13 +71,22 @@
 				mobilePhone:$("#mobilePhone"),
 				mobilePhoneMsg:$("#mobilePhoneMsg"),
 				reg_mobilePhone:/^(0|86|17951)?(13[0-9]|15[012356789]|17[0678]|18[0-9]|14[57])[0-9]{8}$/
-				};
-		return verifier.init(settings).checkMobilePhone();
+				},
+				result = verifier.init(settings).checkMobilePhone(),
+				checkResult = false;
+		if(result == "exist"){
+			$("#mobilePhoneMsg").text("该手机号已存在");
+		}else if(result == "noexist"){
+			$("#mobilePhoneMsg").text("");
+		    checkResult = true;			
+		}
+		return checkResult;
 	}
 	function checkPhoneCode(){
 		var settings = {
 				phoneCode:$("#phoneCode"),
 				phoneCodeMsg:$("#phoneCodeMsg"),
+				mobilePhone:$("#mobilePhone"),
 				reg_phoneCode:/^\d{6}$/
 				};
 		return verifier.init(settings).checkPhoneCode();
@@ -144,12 +153,12 @@
 		}
 	}
 	var timer = (function(){
-		var time = 60;
+		var time = 120;
 		return function(){
 			$(".getPhoneCodeBtn").css("background-color","#ccc").attr("onclick","");
 			var id = setInterval(function(){
 				if(time >= 0){
-					$(".getPhoneCodeBtn").text(time+"秒后重试");
+					$(".getPhoneCodeBtn").text(time+"s后重试");
 					time--;
 				}else{
 					$(".getPhoneCodeBtn").css("background-color","#c39b66").attr("onclick","getPhoneCode()").text("获取验证码");
@@ -161,7 +170,7 @@
 	})();
 	function register(){
 		if(checkMobilePhone() && checkPwd1() && checkPwd2() 
-				&& checkPhoneCode() && verifier.checkPhoneCodeByReal()){
+				&& checkPhoneCode() && verifier.checkPhoneOwner()){
 			var userPwd=hex_md5($("#userPwd1_hidden").val());
 			$("#userPwd_md5").val(userPwd);
 			return true;
