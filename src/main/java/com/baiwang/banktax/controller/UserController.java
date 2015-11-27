@@ -236,7 +236,7 @@ public class UserController {
     }
     
     /**
-     * 执行变更密码
+     * 执行找回密码时的修改密码
      * 
       * @author liujingui
       * @param userPass

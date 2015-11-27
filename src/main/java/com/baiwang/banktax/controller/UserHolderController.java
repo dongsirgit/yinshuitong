@@ -2,6 +2,7 @@ package com.baiwang.banktax.controller;
 
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.druid.support.logging.Log;
 import com.alibaba.druid.support.logging.LogFactory;
 import com.baiwang.banktax.beans.User;
+import com.baiwang.banktax.services.iface.IUserService;
 import com.baiwang.banktax.utils.ConfigUtil;
 import com.baiwang.banktax.utils.Constant;
 import com.baiwang.banktax.utils.StringUtils;
@@ -31,8 +33,14 @@ public class UserHolderController {
     private static final String loginedUserStr = ConfigUtil.getLoginedUserStr();
     private static final Log logger = LogFactory.getLog(UserController.class);
     
+    @Resource
+    private IUserService userService;
+    
     /**
-     * 登录成功后,页面跳转至产品列表页或个人信息页
+     * <p>登录成功后,根据认证状态和贷款申请状态,选择跳转页面:</p>
+     * <li>未认证,跳转到首页;</li>
+     * <li>已认证(未贷款，或贷款申请处于完成状态),跳转到贷款产品列表;</li>
+     * <li>已认证(有贷款申请正在进行中),跳转到‘个人中心’;</li>
      * 
       * @author liujingui
       * @param session
@@ -90,11 +98,40 @@ public class UserHolderController {
     public int checkOldPwd(String userPwd,HttpSession session){
         User user=(User)session.getAttribute(loginedUserStr);
         if(null == user || StringUtils.hasBlank(user.getUserPass(),userPwd)){
+            logger.error("修改密码前的检查旧密码时,参数异常！");
             return Constant.USER_PARAMETER_MISS;
         }else if(userPwd.equals(user.getUserPass())){
             return Constant.SUCCESS;
         }else{
             return Constant.USER_OLDPWD_ERROR;
         }
+    }
+    
+    /**
+     * 执行登录状态下的修改密码
+     * 
+      * @author liujingui
+      * @param userPwd 新密码
+      * @param session
+      * @return int  
+      * @date 2015年11月27日 下午2:23:48
+     */
+    @RequestMapping("/changePwdOnline")
+    @ResponseBody
+    public int changePwdOnline(String userPwd,HttpSession session){
+        User loginedUser = (User)session.getAttribute(loginedUserStr);
+        if(null != loginedUser && !StringUtils.hasBlank(loginedUser.getMobilePhone(),userPwd)){
+            try{
+                userService.updatePwdByMobilePhone(loginedUser.getMobilePhone(), userPwd);
+                //更新session
+                loginedUser.setUserPass(userPwd);
+                session.setAttribute(loginedUserStr, loginedUser);
+                return Constant.SUCCESS;
+            }catch(Exception e){
+                logger.error("修改密码时,发生异常");
+                e.printStackTrace();
+            }
+        }
+        return Constant.USER_PARAMETER_MISS;
     }
 }

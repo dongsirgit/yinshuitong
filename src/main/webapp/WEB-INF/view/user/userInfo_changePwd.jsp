@@ -20,11 +20,7 @@
 		     if(window.self == window.top){
 		         window.top.location = "<%=basePath%>/users/init/userInfo";
 		     }
-		})()
-		function sureForward(){
-			//location.href = "<%=basePath%>/users/forwardLogin";
-			window.parent.location.href = "<%=basePath%>/users/forwardLogin";
-		}
+		})();
 		var settings = {
 				reg_userPwd:/^\S{8,16}$/,
                 reg_userPwd_weak:/^(\S)\1+$|^\d{8}$|^[A-Za-z_]{8}$|^\W{8}?$/,
@@ -94,6 +90,7 @@
 				}
 				return checkResult;
 		    }
+		    return false;
 		}
 		function checkPwd2(){
 		    if(checkPwd1()){
@@ -105,10 +102,25 @@
 	                    };
 		    	return verifier.init(settings).checkPwd2();
 		    }
+		    return false;
 		}
 		function changePwd(){
 			if(checkOldPwd() && checkPwd1() && checkPwd2() && checkOldPwdAjax()){
-				alert("++");
+				  $.ajax({
+	                     type:"POST",
+	                     url:"<%=basePath%>/users/changePwdOnline", 
+	                     data:{"userPwd":hex_md5($("#userPwd1_hidden").val())},
+	                     async:false,
+	                     success:function(data){
+	                         if(data == 0){
+	                             $("#userPwd2Msg").text("");
+	                             $(".tc_password").show();
+	                         }else{
+	                             //包含参数异常错误码15
+	                             $("#userPwd2Msg").text("密码修改失败,请刷新后重试！");
+	                         }
+	                     }
+	              });
 			}
 		}
 	</script>
@@ -150,7 +162,7 @@
 	<div class="mask_alpha" style="display:none;"></div>
 	<div class="tc tc_password" style="display:none;">
 	    <p>密码修改成功，请牢记新密码！</p>
-	    <a class="sure" onclick="sureForward();" target="_top">确定</a>
+	    <a class="sure" href="<%=basePath%>/users/changePwd" target="_self">确定</a>
 	</div>
 </body>
 </html>

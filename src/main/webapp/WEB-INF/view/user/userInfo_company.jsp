@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"  
-import="com.baiwang.banktax.beans.Puser,com.baiwang.banktax.beans.Cuser,com.baiwang.banktax.utils.ConfigUtil "%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
 	String basePath = request.getContextPath();
 	String typeUser = (String)session.getAttribute("typeUser");
@@ -17,13 +16,13 @@ import="com.baiwang.banktax.beans.Puser,com.baiwang.banktax.beans.Cuser,com.baiw
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>完善企业信息</title>
-	<link href="<%=basePath %>/styles/common/base.css" rel="stylesheet" type="text/css">
-	<link href="<%=basePath %>/styles/help/help.css" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" href="<%=basePath %>/styles/index/index.css" type="text/css">
-	<link rel="stylesheet" href="<%=basePath %>/styles/login/login.css">
-	<link href="<%=basePath %>/styles/order/order.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" language="javascript" src="<%=basePath%>/scripts/common/jquery-1.11.1.js"></script>
-	<script language="javascript" type="text/javascript">
+	<link type="text/css" rel="stylesheet" href="<%=basePath%>/styles/common/base.css" />
+	<link type="text/css" rel="stylesheet" href="<%=basePath%>/styles/help/help.css" />
+	<link type="text/css" rel="stylesheet" href="<%=basePath%>/styles/index/index.css" />
+	<link type="text/css" rel="stylesheet" href="<%=basePath%>/styles/login/login.css" />
+	<link type="text/css" rel="stylesheet" href="<%=basePath%>/styles/order/order.css" />
+	<script type="text/javascript" src="<%=basePath%>/scripts/common/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript">
 	    if (window.self == window.top) {
 	        window.top.location ="<%=basePath %>/users/init/userInfo";
 	    }
