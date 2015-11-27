@@ -59,6 +59,8 @@
 	                 success:function(data){
 	                	 if(data == 0){
 	                		 location=basePath+"/user/findPwd_success";
+	                	 }else if(data == 3){
+	                		 $("#userPwd2Msg").text("请先返回验证手机验证码");
 	                	 }else{
 	                		 $("#userPwd2Msg").text("参数异常！");
 	                	 }

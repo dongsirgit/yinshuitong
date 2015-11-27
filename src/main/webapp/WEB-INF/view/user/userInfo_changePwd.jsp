@@ -78,12 +78,12 @@
 				        checkResult = true;
 				if(result){
 				    $(".pwdLevel").css("visibility","visible");
-				    if(result == "weak"){
-				        $(".pwdLevel:lt(1)").removeClass("nolevel");
+				    if(result == "strong"){
+				        $(".pwdLevel:lt(3)").removeClass("nolevel");
 				    }else if(result == "normal"){
 				        $(".pwdLevel:lt(2)").removeClass("nolevel");
 				    }else{
-				        $(".pwdLevel:lt(3)").removeClass("nolevel");
+				        $(".pwdLevel:lt(1)").removeClass("nolevel");
 				    }
 				}else{
 				    checkResult = false;

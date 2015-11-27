@@ -247,17 +247,21 @@ public class UserController {
     @RequestMapping(value = "/changePwd")
     @ResponseBody
     public int changePwd(String userPass,HttpSession session){
-        String mobilePhone = (String)session.getAttribute("mobilePhone");
-        if(!StringUtils.hasBlank(userPass,mobilePhone)){
-            try{
-                userService.updatePwdByMobilePhone(mobilePhone, userPass);
-                return Constant.SUCCESS;
-            }catch(Exception e){
-                logger.error("变更密码时,发生异常");
-                e.printStackTrace();
-            }
+        if(StringUtils.isBlank(userPass)){
+            return Constant.USER_PARAMETER_MISS;
         }
-        return Constant.USER_PARAMETER_MISS;
+        String mobilePhone = (String)session.getAttribute("mobilePhone");
+        if(StringUtils.isBlank(mobilePhone)){
+            //未通过第一步手机验证码验证
+            return Constant.USER_PHONENUM_ERROR;
+        }
+        try{
+            userService.updatePwdByMobilePhone(mobilePhone, userPass);
+            return Constant.SUCCESS;
+        }catch(Exception e){
+            logger.error("变更密码时,发生异常");
+            e.printStackTrace();
+        }
+        return Constant.UNKNOWN_ERROR;
     }
-    
 }
