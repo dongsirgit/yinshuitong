@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" import="com.baiwang.banktax.beans.Cuser,com.baiwang.banktax.utils.ConfigUtil "
+<%@ page language="java" contentType="text/html; charset=UTF-8" import="com.baiwang.banktax.beans.User,com.baiwang.banktax.utils.ConfigUtil "
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
     String basePath = request.getContextPath();
-    Cuser cuser = (Cuser) session.getAttribute(ConfigUtil.getSessionInfoName());
+    User cuser = (User) session.getAttribute(ConfigUtil.getLoginedUserStr());
 %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -12,7 +12,7 @@
 <title>产品详情</title>
     <link href="<%=basePath %>/styles/common/base.css" rel="stylesheet" type="text/css">
     <link href="<%=basePath %>/styles/order/order.css" rel="stylesheet" type="text/css">
-    <script src="<%=basePath %>/scripts/common/jquery.min.js"></script>
+    <script src="<%=basePath %>/scripts/common/jquery-1.11.1.min.js"></script>
     
     <style type="text/css">
    		.mainn{ width: 1000px;height:auto!important; height:600px; min-height:590px; margin: 10px auto; background:#FFF; padding: 0px 0 0 0;}
