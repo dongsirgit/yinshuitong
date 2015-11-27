@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baiwang.banktax.dao.ProductMapper" >
+  <resultMap id="BaseResultMap" type="com.baiwang.banktax.beans.Product" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="prod_type" property="prodType" jdbcType="INTEGER" />
+    <result column="pname" property="pname" jdbcType="VARCHAR" />
+    <result column="logo_url" property="logoUrl" jdbcType="VARCHAR" />
+    <result column="ico_url" property="icoUrl" jdbcType="VARCHAR" />
+    <result column="rela_bank" property="relaBank" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="title_info" property="titleInfo" jdbcType="VARCHAR" />
+    <result column="loan_rate_high" property="loanRateHigh" jdbcType="VARCHAR" />
+    <result column="loan_rate_low" property="loanRateLow" jdbcType="VARCHAR" />
+    <result column="loan_rate" property="loanRate" jdbcType="VARCHAR" />
+    <result column="muserid" property="muserid" jdbcType="INTEGER" />
+    <result column="verify_muserid" property="verifyMuserid" jdbcType="INTEGER" />
+    <result column="verify_time" property="verifyTime" jdbcType="TIMESTAMP" />
+    <result column="contact" property="contact" jdbcType="VARCHAR" />
+    <result column="loan_limit_low" property="loanLimitLow" jdbcType="INTEGER" />
+    <result column="loan_limit_top" property="loanLimitTop" jdbcType="INTEGER" />
+    <result column="client_sum" property="clientSum" jdbcType="INTEGER" />
+    <result column="sort_value" property="sortValue" jdbcType="INTEGER" />
+    <result column="needguaranty" property="needguaranty" jdbcType="TINYINT" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="createdtime" property="createdtime" jdbcType="TIMESTAMP" />
+    <result column="descript" property="descript" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, prod_type, pname, logo_url, ico_url, rela_bank, status, title_info, loan_rate_high, 
+    loan_rate_low, loan_rate, muserid, verify_muserid, verify_time, contact, loan_limit_low, 
+    loan_limit_top, client_sum, sort_value, needguaranty, modify_time, createdtime, descript
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from bt_product
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bt_product
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.baiwang.banktax.beans.Product" >
+    insert into bt_product (id, prod_type, pname, 
+      logo_url, ico_url, rela_bank, 
+      status, title_info, loan_rate_high, 
+      loan_rate_low, loan_rate, muserid, 
+      verify_muserid, verify_time, contact, 
+      loan_limit_low, loan_limit_top, client_sum, 
+      sort_value, needguaranty, modify_time, 
+      createdtime, descript)
+    values (#{id,jdbcType=INTEGER}, #{prodType,jdbcType=INTEGER}, #{pname,jdbcType=VARCHAR}, 
+      #{logoUrl,jdbcType=VARCHAR}, #{icoUrl,jdbcType=VARCHAR}, #{relaBank,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT}, #{titleInfo,jdbcType=VARCHAR}, #{loanRateHigh,jdbcType=VARCHAR}, 
+      #{loanRateLow,jdbcType=VARCHAR}, #{loanRate,jdbcType=VARCHAR}, #{muserid,jdbcType=INTEGER}, 
+      #{verifyMuserid,jdbcType=INTEGER}, #{verifyTime,jdbcType=TIMESTAMP}, #{contact,jdbcType=VARCHAR}, 
+      #{loanLimitLow,jdbcType=INTEGER}, #{loanLimitTop,jdbcType=INTEGER}, #{clientSum,jdbcType=INTEGER}, 
+      #{sortValue,jdbcType=INTEGER}, #{needguaranty,jdbcType=TINYINT}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{createdtime,jdbcType=TIMESTAMP}, #{descript,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.baiwang.banktax.beans.Product" >
+    insert into bt_product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="prodType != null" >
+        prod_type,
+      </if>
+      <if test="pname != null" >
+        pname,
+      </if>
+      <if test="logoUrl != null" >
+        logo_url,
+      </if>
+      <if test="icoUrl != null" >
+        ico_url,
+      </if>
+      <if test="relaBank != null" >
+        rela_bank,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="titleInfo != null" >
+        title_info,
+      </if>
+      <if test="loanRateHigh != null" >
+        loan_rate_high,
+      </if>
+      <if test="loanRateLow != null" >
+        loan_rate_low,
+      </if>
+      <if test="loanRate != null" >
+        loan_rate,
+      </if>
+      <if test="muserid != null" >
+        muserid,
+      </if>
+      <if test="verifyMuserid != null" >
+        verify_muserid,
+      </if>
+      <if test="verifyTime != null" >
+        verify_time,
+      </if>
+      <if test="contact != null" >
+        contact,
+      </if>
+      <if test="loanLimitLow != null" >
+        loan_limit_low,
+      </if>
+      <if test="loanLimitTop != null" >
+        loan_limit_top,
+      </if>
+      <if test="clientSum != null" >
+        client_sum,
+      </if>
+      <if test="sortValue != null" >
+        sort_value,
+      </if>
+      <if test="needguaranty != null" >
+        needguaranty,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="createdtime != null" >
+        createdtime,
+      </if>
+      <if test="descript != null" >
+        descript,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="prodType != null" >
+        #{prodType,jdbcType=INTEGER},
+      </if>
+      <if test="pname != null" >
+        #{pname,jdbcType=VARCHAR},
+      </if>
+      <if test="logoUrl != null" >
+        #{logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="icoUrl != null" >
+        #{icoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="relaBank != null" >
+        #{relaBank,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="titleInfo != null" >
+        #{titleInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="loanRateHigh != null" >
+        #{loanRateHigh,jdbcType=VARCHAR},
+      </if>
+      <if test="loanRateLow != null" >
+        #{loanRateLow,jdbcType=VARCHAR},
+      </if>
+      <if test="loanRate != null" >
+        #{loanRate,jdbcType=VARCHAR},
+      </if>
+      <if test="muserid != null" >
+        #{muserid,jdbcType=INTEGER},
+      </if>
+      <if test="verifyMuserid != null" >
+        #{verifyMuserid,jdbcType=INTEGER},
+      </if>
+      <if test="verifyTime != null" >
+        #{verifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contact != null" >
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="loanLimitLow != null" >
+        #{loanLimitLow,jdbcType=INTEGER},
+      </if>
+      <if test="loanLimitTop != null" >
+        #{loanLimitTop,jdbcType=INTEGER},
+      </if>
+      <if test="clientSum != null" >
+        #{clientSum,jdbcType=INTEGER},
+      </if>
+      <if test="sortValue != null" >
+        #{sortValue,jdbcType=INTEGER},
+      </if>
+      <if test="needguaranty != null" >
+        #{needguaranty,jdbcType=TINYINT},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdtime != null" >
+        #{createdtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="descript != null" >
+        #{descript,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.baiwang.banktax.beans.Product" >
+    update bt_product
+    <set >
+      <if test="prodType != null" >
+        prod_type = #{prodType,jdbcType=INTEGER},
+      </if>
+      <if test="pname != null" >
+        pname = #{pname,jdbcType=VARCHAR},
+      </if>
+      <if test="logoUrl != null" >
+        logo_url = #{logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="icoUrl != null" >
+        ico_url = #{icoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="relaBank != null" >
+        rela_bank = #{relaBank,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="titleInfo != null" >
+        title_info = #{titleInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="loanRateHigh != null" >
+        loan_rate_high = #{loanRateHigh,jdbcType=VARCHAR},
+      </if>
+      <if test="loanRateLow != null" >
+        loan_rate_low = #{loanRateLow,jdbcType=VARCHAR},
+      </if>
+      <if test="loanRate != null" >
+        loan_rate = #{loanRate,jdbcType=VARCHAR},
+      </if>
+      <if test="muserid != null" >
+        muserid = #{muserid,jdbcType=INTEGER},
+      </if>
+      <if test="verifyMuserid != null" >
+        verify_muserid = #{verifyMuserid,jdbcType=INTEGER},
+      </if>
+      <if test="verifyTime != null" >
+        verify_time = #{verifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contact != null" >
+        contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="loanLimitLow != null" >
+        loan_limit_low = #{loanLimitLow,jdbcType=INTEGER},
+      </if>
+      <if test="loanLimitTop != null" >
+        loan_limit_top = #{loanLimitTop,jdbcType=INTEGER},
+      </if>
+      <if test="clientSum != null" >
+        client_sum = #{clientSum,jdbcType=INTEGER},
+      </if>
+      <if test="sortValue != null" >
+        sort_value = #{sortValue,jdbcType=INTEGER},
+      </if>
+      <if test="needguaranty != null" >
+        needguaranty = #{needguaranty,jdbcType=TINYINT},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdtime != null" >
+        createdtime = #{createdtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="descript != null" >
+        descript = #{descript,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.baiwang.banktax.beans.Product" >
+    update bt_product
+    set prod_type = #{prodType,jdbcType=INTEGER},
+      pname = #{pname,jdbcType=VARCHAR},
+      logo_url = #{logoUrl,jdbcType=VARCHAR},
+      ico_url = #{icoUrl,jdbcType=VARCHAR},
+      rela_bank = #{relaBank,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      title_info = #{titleInfo,jdbcType=VARCHAR},
+      loan_rate_high = #{loanRateHigh,jdbcType=VARCHAR},
+      loan_rate_low = #{loanRateLow,jdbcType=VARCHAR},
+      loan_rate = #{loanRate,jdbcType=VARCHAR},
+      muserid = #{muserid,jdbcType=INTEGER},
+      verify_muserid = #{verifyMuserid,jdbcType=INTEGER},
+      verify_time = #{verifyTime,jdbcType=TIMESTAMP},
+      contact = #{contact,jdbcType=VARCHAR},
+      loan_limit_low = #{loanLimitLow,jdbcType=INTEGER},
+      loan_limit_top = #{loanLimitTop,jdbcType=INTEGER},
+      client_sum = #{clientSum,jdbcType=INTEGER},
+      sort_value = #{sortValue,jdbcType=INTEGER},
+      needguaranty = #{needguaranty,jdbcType=TINYINT},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      createdtime = #{createdtime,jdbcType=TIMESTAMP},
+      descript = #{descript,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 查询产品列表 -->
+  <select id="getproList" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List" /> 
+  	from bt_product where 1=1 
+  </select>
+  
+  
+  <update id="save" parameterType="string">
+  update bt_product set descript = #{ss} where id = 1;
+  </update>
+  
+  
+  
+</mapper>

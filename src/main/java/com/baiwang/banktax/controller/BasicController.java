@@ -28,14 +28,7 @@ public class BasicController {
 		return "base/head";
 	}
 
-	/**
-	 * 
-	 * @Description: 产品列表页 @param @return @return String @throws
-	 */
-	@RequestMapping("/productList")
-	public String loanList() {
-		return "order/productList";
-	}
+	
 
 	/**
 	 * 
