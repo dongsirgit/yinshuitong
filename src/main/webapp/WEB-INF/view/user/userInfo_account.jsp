@@ -25,10 +25,10 @@
 		
 	</script>
 </head>
-<body style="background-color: #fefefe; height:auto!important;height:500px;min-height:500px;"><!-- margin:0px auto; -->
+<body style="background-color: #fefefe; background-image:none;height:auto!important;height:500px;min-height:500px;">
 	    <img src="<%=basePath%>/images/common/headPic.png" style="width:60px;height:60px;float:left"/>
 	    <div class="userInfoDiv">
-	       <span class="userInfoSpan">登录状态:</span>${loginedUser.mobilePhone}
+	       <span class="userInfoSpan">登录账号:</span>${loginedUser.mobilePhone}
 	    </div>
 	    <div class="userInfoDiv">
 	       <span class="userInfoSpan">登录密码:</span>
