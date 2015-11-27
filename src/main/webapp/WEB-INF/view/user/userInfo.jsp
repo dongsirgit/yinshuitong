@@ -18,13 +18,13 @@
 <head>   
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>贷款列表</title>
-	<link type="text/css" rel="stylesheet" href="<%=basePath %>/styles/common/base.css" />
-	<link type="text/css" rel="stylesheet" href="<%=basePath %>/styles/help/help.css" />
-	<link type="text/css" rel="stylesheet" href="<%=basePath %>/styles/index/index.css" />
-	<link type="text/css" rel="stylesheet" href="<%=basePath %>/styles/login/login.css" />
-	<link type="text/css" rel="stylesheet" href="<%=basePath %>/styles/order/order.css" />
+	<link type="text/css" rel="stylesheet" href="<%=basePath%>/styles/common/base.css" />
+	<link type="text/css" rel="stylesheet" href="<%=basePath%>/styles/help/help.css" />
+	<link type="text/css" rel="stylesheet" href="<%=basePath%>/styles/index/index.css" />
+	<link type="text/css" rel="stylesheet" href="<%=basePath%>/styles/login/login.css" />
+	<link type="text/css" rel="stylesheet" href="<%=basePath%>/styles/order/order.css" />
 	<script type="text/javascript" language="javascript" src="<%=basePath%>/scripts/common/jquery-1.11.1.min.js"></script>
-	<script type="text/javascript" language="javascript" src="<%=basePath %>/scripts/common/md5.js"></script>
+	<script type="text/javascript" language="javascript" src="<%=basePath%>/scripts/common/md5.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		openLi(0);

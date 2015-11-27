@@ -16,6 +16,7 @@ public class Constant {
 	public final static int USER_PHONECODE_ERROR = 2;//手机验证码输入错误
 	public final static int USER_PHONENUM_ERROR = 3;//发送手机验证码时,手机号不存在
 	public final static int USER_LOGIN_ERROR = 4;//登录失败
+	public final static int USER_OLDPWD_ERROR =5;//用户修改密码时,旧密码输入错误
 	
 	public final static int USER_PARAMETER_MISS =15;//前台参数未接收到
 	//0~15预留给登录与注册模块

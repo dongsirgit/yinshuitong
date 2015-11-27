@@ -19,8 +19,7 @@
     <div class="register">
         <div class="wrap_629">
             <div class="content">
-                <img src="<%=basePath%>/images/login/logintopbg.jpg" width="629"
-                    height="26" />
+                <img src="<%=basePath%>/images/login/logintopbg.jpg" width="629" height="26" />
                 <div class="regist_info">今后您可以通过注册的用户名和密码登录百望融资服务平台，办理贷款申请、查询审批进度 </div>
                 <br />
                 <form action="<%=basePath%>/user/register" method="post" id="myform" onsubmit="return register()">

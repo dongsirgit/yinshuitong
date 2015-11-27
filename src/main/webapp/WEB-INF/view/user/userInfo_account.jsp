@@ -21,101 +21,7 @@
 	    }
 	</script>
 	<script type="text/javascript">
-		$(document).ready(function(){
-			//确认提交
-			$("#btn_submit_confirm").click(function(){
-				var id = $("#save_id4apl").val();
-				var params = {"id":id};
-				$.ajax({
-					type:"POST",
-			        url: "<%=basePath %>/users/applyLoan/submit?id="+id,
-			        data:params,
-			        success: function (data) {
-			            if (data.status == "0") {
-			               alert("请登陆...");
-			            }else if (data.status == "1"){
-			            	if(data.success=="1"){
-			            		//location.href='<%=basePath %>/users/applyLoan/up';
-			            		window.parent.location.href='<%=basePath %>/users/applyLoan/up';
-			            	}else{
-			            		alert("提交失败,请重新提交!");
-			            	}
-			            }
-			        },
-			        error:function(e) {
-			        	alert("提交失败,请重新提交!");
-			        }
-			    })
-			})
-			//确认删除
-			$("#btn_del_confirm").click(function(){
-				var id = $("#save_id4apl").val();
-				var params = {"id":id};
-				$.ajax({
-					type:"POST",
-			        url: "<%=basePath %>/users/applyLoan/deleteApplyLoan?id="+id,
-			        data:params,
-			        success: function (data) {
-			            if (data.status == "0") {
-			               alert("请登陆...");
-			            }else if (data.status == "1"){
-			            	if(data.success=="1"){
-			            		// location.href='<%=basePath %>/users/init/userInfo';
-			            		window.parent.openLi('0')
-			            	}else{
-			            		alert("删除失败,请重新操作!");
-			            	}
-			            }
-			        },
-			        error:function(e) {
-			        	alert("删除失败,请重新操作!");
-			        }
-			    })
-			});
-			//表格隔行有背景色
-			$('.loan_list table tr:odd').css('background','#fffceb');
-			
-			/* $(".tc a").click(function(){
-				$(".mask_alpha,.tc").hide(200);
-			}); */
-			$(".fdivbtn2").click(function(){
-				$(".mask_alpha,.fdiv").hide(200);
-			});
-			$("#btn_upCheck_confirm").click(function(){
-				$("#upCheckdiv").hide();
-				$(".mask_alpha").hide();
-			})
-		})
-		//为提交操作准备id值
-		function smt_applyLoan(id){
-			var params = {"id":id};
-			$.ajax({
-				type:"POST",
-		        url: "<%=basePath %>/users/applyLoan/checkAtt",
-		        data:params,
-		        success: function (data) {
-		            	if(data.success=="1"){
-		            		$("#save_id4apl").val(id);
-		        			$("#submit_check").show(200);
-		        			$(".mask_alpha").show();
-		            	}else{
-		            		$("#upCheckdiv").show();
-		            		$(".mask_alpha").show();
-// 		            		$("#submit_check").hide();
-		            	}
-		        },
-		        error:function(e) {
-		        	alert("提交失败,请重新提交!");
-		        }
-		    })
-			
-		}
-		//为删除操作准备id值
-		function del_applyLoan(id){
-			$("#save_id4apl").val(id);
-			$("#del_check").show(200);
-			$(".mask_alpha").show();
-		}
+		
 		
 	</script>
 </head>
@@ -127,7 +33,7 @@
 	    <div class="userInfoDiv">
 	       <span class="userInfoSpan">登录密码:</span>
 	       <span class="userInfoSpan">已设置</span>
-	       <a href="javascript;" style="text-decoration:underline">修改密码</a>
+	       <a href="<%=basePath%>/users/changePwd" style="text-decoration:underline" target="_self">修改密码</a>
 	    </div>
 	    <div style="clear:both;border-bottom:2px solid #dcc09a"></div>
 	       <h4 class="userInfoItemTitle">企业信息</h4>

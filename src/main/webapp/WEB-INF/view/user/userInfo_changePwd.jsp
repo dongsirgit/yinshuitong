@@ -1,4 +1,4 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"  import="com.baiwang.banktax.beans.Cuser,com.baiwang.banktax.utils.ConfigUtil "%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%String basePath = request.getContextPath();%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -9,161 +9,108 @@
 	<link type="text/css" rel="stylesheet" href="<%=basePath%>/styles/help/help.css" />
 	<link type="text/css" rel="stylesheet" href="<%=basePath%>/styles/index/index.css" />
 	<link type="text/css" rel="stylesheet" href="<%=basePath%>/styles/login/login.css" />
+	<link type="text/css" rel="stylesheet" href="<%=basePath%>/styles/user/user.css" />
 	<link type="text/css" rel="stylesheet" href="<%=basePath%>/styles/order/order.css" />
 	<script type="text/javascript" src="<%=basePath%>/scripts/common/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript" src="<%=basePath%>/scripts/user/formVerifier.js"></script>
+	<script type="text/javascript" src="<%=basePath%>/scripts/user/formState.js"></script>
 	<script type="text/javascript" src="<%=basePath%>/scripts/common/md5.js"></script>
 	<script type="text/javascript">
-	    if (window.self == window.top) {
-	        window.top.location ="<%=basePath%>/users/init/userInfo";
-	    }
-	</script>
-	<script type="text/javascript">
-    $(document).ready(function(){
-    	$(".pwd").on({
-    		//密码框状态转换
-            focus:function(){
-                if($(this).attr("type")=="text"){
-                    $(this).css("display","none");
-                    $(this).prev().css("display","");
-                    $(this).prev().css("color","black");
-                    $(this).prev().focus();
-                }else{
-                    $(this).css("color","black");
-                }
-            },
-            blur:function(){
-                if($.trim($(this).val())==""){
-                    $(this).val("");
-                    $(this).css("display","none");
-                    $(this).next().css("display","");
-                }else{
-                    $(this).css("color","#b0b0b0");
-                }
-            }
-    	});
-        //label热区点击设置
-        $(document).delegate("#myform label","click",function(){
-            if($(this).next().css("display")!="none"){
-                $(this).next().focus();
-            }else{
-                 $(this).next().next().css("display","none");
-                 $(this).next().css("display","");
-                 $(this).next().focus();
-            }
-        });
-    });
-	function check_UserPass(){
-		var userPass=$("#userPass").val();
-		var reg_pass=/^[A-Za-z0-9]{6,21}$/;
-		if(""==userPass){
-			$("#userPass_info").text("请输入原密码");
-		}else if(!reg_pass.test(userPass)){
-			$("#userPass_info").text("请输入合法的密码(6-20位的字母数字混合组成)");
-		}else{
-			$("#userPass_info").text("");
+		(function(){ 
+		     if(window.self == window.top){
+		         window.top.location = "<%=basePath%>/users/init/userInfo";
+		     }
+		})()
+		function sureForward(){
+			//location.href = "<%=basePath%>/users/forwardLogin";
+			window.parent.location.href = "<%=basePath%>/users/forwardLogin";
 		}
-	}
-	function check_PassAgain(){
-		var userPassOld=$("#userPass").val();
-		var pass=$("#pass").val();//确认密码
-		var userPass=$("#passWord").val();//新密码
-		if(""==pass){
-			$("#pass_info").text("请再次输入新密码");
-		}else if(pass!=userPass){
-			$("#pass_info").text("两次密码不一样，请重新输入");
-		}else if(pass==userPassOld){
-            $("#pass_info").text("原密码与新密码一致，请重新输入新密码");
-        }else{
-			$("#pass_info").text("");
-		}
-	}
-	function check_PassWord(){
-		var userPassOld=$("#userPass").val();
-		var userPass=$("#passWord").val();
-		var regpassnum=/^\d{6,}$/;
-		var regpasschar=/^[A-Za-z]{6,}$/;
-		var reg_pass=/^[A-Za-z0-9]{6,21}$/;
-		if(!reg_pass.test(userPass)){
-			$("#passWord_info").text("请输入合法的新密码(6-20位的字母数字混合组成)");
-		}else if("(6-20位的字母数字混合组成)"==userPass){
-			$("#passWord_info").text("密码不能为空");
-		}else if(regpassnum.test(userPass)){
-			$("#passWord_info").text("请输入合法的新密码(6-20位的字母数字混合组成)");
+		var settings = {
+				reg_userPwd:/^\S{8,16}$/,
+                reg_userPwd_weak:/^(\S)\1+$|^\d{8}$|^[A-Za-z_]{8}$|^\W{8}?$/,
+                reg_userPwd_normal:/^[\d|(A-Za-z_)]{8,}$|^[\d|\W]{8,}$|^[(A-Za-z_)|\W]{8,}$/,       
+                reg_userPwd_strong:/^[\d|(A-Za-z_)|\W]{8,}$/
+		};
+		verifier.init(settings);
+		function checkOldPwd(){
+			var settings = {
+					userPwd1:$("#oldUserPwd"),
+					userPwd1Msg:$("#oldUserPwdMsg")
+					},
+					result = verifier.init(settings).checkPwd1();
+			if(result){
+				$("#oldUserPwdMsg").text("");
+				return true;
+			}
 			return false;
-		}else if(regpasschar.test(userPass)){
-			$("#passWord_info").text("请输入合法的新密码(6-20位的字母数字混合组成)");
-			return false;
-		}else if(userPass==userPassOld){
-            $("#passWord_info").text("原密码与新密码一致，请重新输入新密码");
-        }else {
-			$("#passWord_info").text("");
 		}
-	}
-	function check_all(){
-		var userPass=$("#userPass").val();
-		var reg_pass=/^[A-Za-z0-9]{6,21}$/;
-		var passWord=$("#passWord").val();
-		var regpassnum=/^\d{6,}$/;
-		var regpasschar=/^[A-Za-z]{6,}$/;
-		var pass=$("#pass").val();
-		if(!reg_pass.test(userPass)){
-			$("#userPass_info").text("请输入合法的密码(6-20位的字母数字混合组成)");
-		}else if(""==userPass){
-			$("#userPass_info").text("请输入原密码");
-		}else if(!reg_pass.test(passWord)){
-			$("#passWord_info").text("请输入合法的新密码(6-20位的字母数字混合组成)");
-		}else if(regpassnum.test(passWord)){
-			$("#passWord_info").text("请输入合法的新密码(6-20位的字母数字混合组成)");
-		}else if(regpasschar.test(passWord)){
-			$("#passWord_info").text("请输入合法的新密码(6-20位的字母数字混合组成)");
-		}else if("(6-20位的字母数字混合组成)"==passWord){
-			$("#passWord_info").text("请输入新密码");
-		}else if(pass!=passWord){
-			$("#pass_info").text("×两次输入的密码不一致，请重新输入");
-		}else if(userPass==passWord){
-            $("#pass_info").text("原密码与新密码一致，请重新输入新密码");
-        }else{
-			var userPass=$("#userPass").val();
-			var hash = hex_md5(userPass);
-			$("#userPassHidden").val(hash);
-			var password=$("#passWord").val();
-			var hashs = hex_md5(password);
-			$("#passWordHidden").val(hashs);
-			$.ajax({
-	     	        type:"POST",
-	     	        url:"<%=basePath %>/users/modifyPass",
-	     	        data:{userPass:$("#userPassHidden").val(),passWord:$("#passWordHidden").val()},
-	     	        dataType:"json",
-	     	        async:false,//是否异步请求，如果是异步，那么不会等服务器返回，我们这个函数就向下运行了。
-	     			cache:false,
-	     	        success: function(data){
-	     	        	if(data.flag==2) {
-	       					$("#userPass_info").text("原密码输入错误，请确认后重新输入");
-	       					$("#userPass").val(userPass);
-	       					$("#passWord").val(password);
-	       				} else {
-	       					$("#userPass").val("");
-	       					//$("#passWord").attr("type","text");
-	       					$("#passWord").val("");
-	       					$("#pass").val("");
-	       					//alert("成功");
-	       					$(".tc_password").show(200);
-	       					$(".mask_alpha").show();
-	       				}
-	     	         }
-	     	 	});	
+		function checkOldPwdAjax(){
+			var result = false;
+			if(checkOldPwd()){
+	            $.ajax({
+	                 type:"POST",
+	                 url:"<%=basePath%>/users/checkOldPwd", 
+	                 data:{"userPwd":hex_md5($("#oldUserPwd").val())},
+	                 async:false,
+	                 success:function(data){
+	                     if(data == 0){
+	                    	 $("#userPwd2Msg").text("");
+	                         result=true;
+	                     }else if(data == 5){
+	                    	 $("#userPwd2Msg").text("原密码输入错误");
+	                     }else{
+	                    	 //包含参数异常错误码15
+	                         $("#userPwd2Msg").text("参数异常！");
+	                     }
+	                 }
+	            });
+			}
+			return result;
+		}
+		function checkPwd1(){
+		    if(checkOldPwd()){
+		    	$(".pwdLevel").css("visibility","hidden").addClass("nolevel");
+		    	if($("#userPwd1_hidden").val() == $("#oldUserPwd").val()){
+		    		$("#userPwd1Msg").text("不能与原密码一致,请重新输入");
+		    		return false;
+		        }
+				var settings = {
+						userPwd1:$("#userPwd1_hidden"),
+						userPwd1Msg:$("#userPwd1Msg")
+						},
+						result = verifier.init(settings).checkPwd1(),
+				        checkResult = true;
+				if(result){
+				    $(".pwdLevel").css("visibility","visible");
+				    if(result == "weak"){
+				        $(".pwdLevel:lt(1)").removeClass("nolevel");
+				    }else if(result == "normal"){
+				        $(".pwdLevel:lt(2)").removeClass("nolevel");
+				    }else{
+				        $(".pwdLevel:lt(3)").removeClass("nolevel");
+				    }
+				}else{
+				    checkResult = false;
+				}
+				return checkResult;
+		    }
+		}
+		function checkPwd2(){
+		    if(checkPwd1()){
+		    	var settings = {
+		    			userPwd1:$("#userPwd1_hidden"),
+		    			userPwd2:$("#userPwd2_hidden"),
+	                    userPwd1Msg:$("#userPwd1Msg"),
+	                    userPwd2Msg:$("#userPwd2Msg")
+	                    };
+		    	return verifier.init(settings).checkPwd2();
+		    }
+		}
+		function changePwd(){
+			if(checkOldPwd() && checkPwd1() && checkPwd2() && checkOldPwdAjax()){
+				alert("++");
 			}
 		}
-	function sureForward(){
-		//location.href="<%=basePath%>/users/forwardLogin";
-		window.parent.location.href="<%=basePath%>/users/forwardLogin";
-	}
-	$(document).ready(function(){
-		$("form label").click(function(){
-			$(this).next().focus();
-		});
-	});
 	</script>
 </head>
 <body class="listh4">
@@ -176,27 +123,26 @@
 						<input type="hidden" id="passWordHidden" name="passWord" />
 						<div class="userPass form-item ">
 							<label>原密码</label> 
-							<input type="password" id="userPass" style="color: #b0b0b0;" onblur="check_UserPass()" />
+							<input type="password" id="oldUserPwd" style="color: #b0b0b0;" onblur="checkOldPwd()" />
 						</div>
-						<div class="info">
-							<span id="userPass_info"></span>
-						</div>
+						<div class="info"><span id="oldUserPwdMsg"></span></div>
 						<div class="passWord form-item">
 							<label>新密码</label>
-							<input type="password" id="passWord" style="color: #b0b0b0;display:none" value="" class="pwd" onblur="check_PassWord()" /> 
-							<input type="text" id="passWord_text" style="color: #b0b0b0;" value="(6-20位的字母数字混合组成)" class="pwd" />
+							<input type="password" class="pwdState" id="userPwd1_hidden" style="color: #b0b0b0;display:none" value="" onblur="checkPwd1()" /> 
+							<input type="text" class="pwdState" id="userPwd1_text" style="color: #b0b0b0;" value="6-20位的字母数字混合组成" />
 						</div>
 						<div class="info">
-							<span id="passWord_info"></span>
+						  <span id="userPwd1Msg" style="margin-right:130px"></span>
+						  <i class="pwdLevel level1 nolevel">弱</i>
+                          <i class="pwdLevel level2 nolevel">中</i>
+                          <i class="pwdLevel level3 nolevel">强</i>
 						</div>
 						<div class="pass form-item">
-							<label>确认密码</label> 
-							<input type="password" style="color: #b0b0b0;" id="pass" onblur="check_PassAgain()" />
+							<label>确认密码</label>
+							<input type="password" style="color: #b0b0b0;" id="userPwd2_hidden" onblur="checkPwd2()" />
 						</div>
-						<div class="info">
-							<span id="pass_info"></span>
-						</div>
-						<a onclick="check_all();return null;">提交</a>
+						<div class="info"><span id="userPwd2Msg"></span></div>
+						<a onclick="changePwd();">提交</a>
 					</div>
 				</form>
 			</li>

@@ -148,8 +148,8 @@ public class UserController {
                 logger.info("注册成功,手机号: "+user.getMobilePhone());
                 return "user/registsuc";
             }catch(Exception e){
-                e.printStackTrace();
                 logger.error("注册时发生异常！");
+                e.printStackTrace();
             }
         }
         return "../regist";
@@ -253,6 +253,7 @@ public class UserController {
                 userService.updatePwdByMobilePhone(mobilePhone, userPass);
                 return Constant.SUCCESS;
             }catch(Exception e){
+                logger.error("变更密码时,发生异常");
                 e.printStackTrace();
             }
         }
