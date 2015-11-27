@@ -9,8 +9,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>产品列表</title>
     <link href="<%=basePath %>/styles/common/base.css" rel="stylesheet" type="text/css">
-    <script src="<%=basePath %>/scripts/common/jquery.min.js"></script>
-    <script src="<%=basePath %>/scripts/common/jquery.base64.js"></script>
+    <script src="<%=basePath %>/scripts/common/jquery-1.11.1.min.js"></script>
+    <%-- <script src="<%=basePath %>/scripts/common/jquery.base64.js"></script> --%>
     <style type="text/css">
    		.mainn{ width: 1000px;height:600px; margin: 10px auto; background:#FFF; padding: 0px 0 0 0;}
     </style>
@@ -53,7 +53,7 @@
     		</tbody>
     		<tfoot  align="center">
     			<tr height="50px;">
-    				<td style="empty-cells:show;" colspan="7">&nbsp;</td>
+    				<td colspan="7"></td>
     			</tr>
     		</tfoot>
     	</table>
@@ -71,7 +71,7 @@
     	});
     	
     	//页面初始化
-    	<%-- $.ajax({
+    	$.ajax({
     		type:"POST",
     		url:"<%=basePath %>/getproList",
     		asysn:false,
@@ -98,7 +98,7 @@
     		error:function(XMLHttpRequest, textStatus, errorThrown) {
 	        	alert("加载失败!");
 	        }
-    	}); --%>
+    	});
     	
     	function productDetail(id){
     		//alert($.base64.btoa(id))
