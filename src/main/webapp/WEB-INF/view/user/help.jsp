@@ -1,20 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-<%
-	String basePath = request.getContextPath();
-%>
+<%String basePath = request.getContextPath();%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>帮助中心</title>
-<link href="<%=basePath %>/styles/common/base.css" rel="stylesheet" type="text/css">
-<link href="<%=basePath %>/styles/help/help.css" rel="stylesheet" type="text/css">
-<script src="<%=basePath %>/scripts/common/jquery.min.js"></script>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<title>帮助中心</title>
+	<link type="text/css" rel="stylesheet" href="<%=basePath%>/styles/common/base.css" />
+	<link type="text/css" rel="stylesheet" href="<%=basePath%>/styles/help/help.css" />
+	<script src="<%=basePath%>/scripts/common/jquery-1.11.1.min.js"></script>
 </head>
 <body>
-<iframe src="<%=basePath %>/basic/head" width="100%" height="74px" frameborder="0" scrolling="no"></iframe>
+<iframe src="<%=basePath%>/basic/head" width="100%" height="74px" frameborder="0" scrolling="no"></iframe>
 <div class="content center clearfix">
 	<div class="content_l">
         <h3>帮助中心</h3>

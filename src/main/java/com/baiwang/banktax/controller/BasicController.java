@@ -74,4 +74,16 @@ public class BasicController {
 	public String newsMore() {
 		return "news/newsMore";
 	}
+	
+	/**
+	 * 跳转至帮助页面
+	 * 
+	  * @author liujingui
+	  * @return String
+	  * @date 2015年11月30日 上午10:09:41
+	 */
+    @RequestMapping("/forwardHelp")
+    public String forwardHelp() {
+        return "user/help";
+    }
 }

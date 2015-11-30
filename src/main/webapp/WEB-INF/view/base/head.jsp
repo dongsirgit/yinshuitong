@@ -21,7 +21,8 @@
 		            </div>
 		            <div class="header_right_left">
 		                <a href="<%=basePath%>/" class="help" target="_top">首页</a>
-		                <a href="<%=basePath%>/retrieve/forwardHelp" class="help" target="_blank">帮助中心</a>
+		                <a href="#" class="help" target="_blank">贷款产品</a>
+		                <a href="<%=basePath%>/basic/forwardHelp" class="help" target="_blank">帮助中心</a>
 		                <a href="<%=basePath%>/basic/aboutUs" class="help" target="_blank">关于我们</a>
 		            </div>
 		        </div>
@@ -35,7 +36,8 @@
 		            </div>
 		            <div class="header_right_left">
 		                <a href="<%=basePath%>/" class="help" target="_top">首页</a>
-		                <a href="<%=basePath%>/retrieve/forwardHelp" class="help" target="_blank">帮助中心</a>
+		                <a href="#" class="help" target="_blank">贷款产品</a>
+		                <a href="<%=basePath%>/basic/forwardHelp" class="help" target="_blank">帮助中心</a>
 		                <a href="<%=basePath%>/basic/aboutUs" class="help" target="_blank">关于我们</a>
 		            </div>
 		        </div>
