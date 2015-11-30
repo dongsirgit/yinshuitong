@@ -70,8 +70,7 @@
 						$("#div_iden").show();
 					}else{//认证成功
 						if(data.areaflag=='success'){//产品 地区
-							//跳转申请页面a
-							alert('跳转申请页面')
+							location.href='<%=basePath %>/users/applyloan/toLoan';
 						}else{
 							$(".area").attr("disabled","disabled")
 						}
