@@ -46,7 +46,7 @@
 		function apply(id){
 			if(loginflag==1){//登陆成功
 				//if(){}
-				identify();
+				identify(id);
 			}else{//登陆失败
 				$(".mask_alpha").show();
 				$("#div_login").show();
@@ -54,22 +54,35 @@
 				//location.href = '';
 			}
 		}
-		function identify(){
+		function identify(id){
+			
 			$.ajax({
 				type:"POST",
 				url:"<%=basePath %>/users/identify/identflag",
 				dataType:"JSON",
+				//data: params,
+				data: {'id':id},
 				asysn:false,
 				success:function(data){
-					if(!data){//认证失败
+					//alert(JSON.stringify(data));
+					if(!data.idcardStatus){//认证失败
 						$(".mask_alpha").show();
 						$("#div_iden").show();
 					}else{//认证成功
-						//TODO 判断地区......
+						if(data.areaflag=='success'){//产品 地区
+							//跳转申请页面a
+							alert('跳转申请页面')
+						}else{
+							$(".area").attr("disabled","disabled")
+						}
 					}
 				},
 				error:function(XMLHttpRequest, textStatus, errorThrown) {
-		        	alert("加载失败!");
+					if(XMLHttpRequest.responseText=="timeOut"){
+		        		location.reload();
+		        	}else{
+		        		alert("Error");
+		        	}
 		        }
 			});
 		}
@@ -102,7 +115,7 @@
 		    			<span style="font-size:16px; font-style: inherit;">&nbsp;&nbsp;&nbsp;&nbsp;${detail.pname}</span>
 		    			<div style="float: right;">
 		    				<br/>
-			    			<button onclick="apply(${detail.id})">立即申请</button>
+			    			<button class="area" onclick="apply(${detail.id})">立即申请</button>
 		    			</div>
 	    			</div>
 	    		</td></tr>
@@ -159,7 +172,7 @@
 	    			<hr/>
 	    			<div style="width: 950px; height:100px; text-align:center;" >
 	    				<br/><br/>
-	    				<button onclick="apply(${detail.id})">立即申请</button>
+	    				<button class="area" onclick="apply(${detail.id})">立即申请</button>
 	    			</div>
 	    		</td></tr>
 	    	</table>

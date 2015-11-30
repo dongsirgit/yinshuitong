@@ -13,7 +13,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>实名认证-税局端</title>
+<title>实名认证-平台1</title>
     <link href="<%=basePath %>/styles/common/base.css" rel="stylesheet" type="text/css">
     <link href="<%=basePath %>/styles/order/order.css" rel="stylesheet" type="text/css">
     <script src="<%=basePath %>/scripts/common/jquery-1.11.1.min.js"></script>
@@ -27,12 +27,6 @@
 		
 		$(document).ready(function(){
 			
-			
-			$(document).delegate('.city',"click",function(){
-				$(this).addClass("procurrent").siblings().removeClass("procurrent");
-				$('#sp_city').text($(this).text());
-			});
-			
 			//服务协议已阅读状态
 			$(".readdiv span").click(function(){
 				$(this).children("em").toggleClass("colorf")
@@ -44,36 +38,81 @@
 			
 		})
 		
-		function getCity(){
-			var id = $('#id').val();
+		
+		
+		function nextIdentify(){
+			if($('#corpName').val()=='请填写公司全称'){
+				$('#corpName').val('')
+			}
+			if($('#taxSn').val()=='请填写公司纳税识别号'){
+				$('#taxSn').val('')
+			}
+			if($('#idcard').val()=='请填写法定代表人身份证号码'){
+				$('#idcard').val('')
+			}
+			var data = $('#form').serialize();
 			 $.ajax({
 					type:"POST",
-					url:"<%=basePath %>/users/identify/getCity",
-					data:{id:id},
+					url:"<%=basePath %>/users/identify/plat2",
+					data:data,
 					dataType:"JSON",
 					//dataType:"text",
 					success:function(data){
 						//alert(JSON.stringify(data));
-						$(".city").remove();
-						$.each( data.list, function(i, n){
-							$("<span class='city'>&nbsp;&nbsp;"+n.aname+"&nbsp;&nbsp;</span>$").insertAfter("#city");
-						});
+						if(data.suc=='1'){
+							location.href='<%=basePath %>/users/identify/success';
+						}else{
+							$('#sp_fail').show();
+						}
 						
 					},
 					error:function(XMLHttpRequest, textStatus, errorThrown) {
-			        	alert("加载失败!");
+						if(XMLHttpRequest.responseText=="timeOut"){
+			        		location.reload();
+			        	}else{
+			        		alert("Error");
+			        	}
 			        }
 			});
-		}
-		
-		function nextIdentify(){
-			//到国税网站认证
-			window.open('http://www.baidu.com');
-			$('#div_iden').show();
 		}
 		function goback(){
 			location.href = '<%=basePath %>/users/identify/';
 		}
+		
+		
+		function corfocus(obj){
+			if(obj.value =='请填写公司全称'){
+				obj.value ='';
+			}
+		}
+		function corblur(obj){
+			if(obj.value == ''){
+				obj.value ='请填写公司全称';
+			}
+		}
+		
+		function taxfocus(obj){
+			if(obj.value =='请填写公司纳税识别号'){
+				obj.value ='';
+			}
+		}
+		function taxblur(obj){
+			if(obj.value == ''){
+				obj.value ='请填写公司纳税识别号';
+			}
+		}
+		
+		function idcardfocus(obj){
+			if(obj.value =='请填写法定代表人身份证号码'){
+				obj.value ='';
+			}
+		}
+		function idcardblur(obj){
+			if(obj.value == ''){
+				obj.value ='请填写法定代表人身份证号码';
+			}
+		}
+		
 		
     </script>
     
@@ -82,12 +121,23 @@
     <iframe src="<%=basePath %>/basic/head" width="100%" height="74px" frameborder="0" scrolling="no"></iframe>
 	
    	<div class="mainn" align="center">
-   		<div style="width: 80%; height: 100%; padding-top: 20px; padding-bottom: 50px;"><!--  border:1px solid #AFAEAC; -->
+   		<div style="width: 80%; height: 100%; padding-top: 20px; padding-bottom: 20px;"><!--  border:1px solid #AFAEAC; -->
    			<span style=" font-size: 36px;">实名认证<br/></span>
    		</div>
-   		<div style="width: 80%; height:auto!important; height:60px; min-height:60px; line-height: 30px;">
-	   		<span style="font-size: 16px;">系统将引导您到${province}国税局网站进行实名认证并查询数据<br/></span>
+   		
+   		<div style="width: 80%; height:auto!important; height:20px; min-height:20px; line-height: 20px;">
+	   		<span style="font-size: 16px;">请正确填写贵公司在国税系统中留存的信息<br/></span>
    		</div>
+   		
+   		<div style="width: 80%; height:auto!important; height:60px; min-height:60px;">
+   			<form id = 'form'>
+		   		<p style="margin:20px"><input id="corpName" style="width: 300px;" name="corpName" type="text" value="请填写公司全称" onfocus="corfocus(this)" onblur="corblur(this)"><br/></p>
+		   		<p style="margin:20px"><input id="taxSn" name="taxSn" style="width: 300px;" type="text" value="请填写公司纳税识别号"  onfocus="taxfocus(this)" onblur="taxblur(this)"><br/></p>
+		   		<p style="margin:20px"><input id="idcard" name="idcard" type="text" style="width: 300px;" value="请填写法定代表人身份证号码"  onfocus="idcardfocus(this)" onblur="idcardblur(this)"><br/></p>
+	   		</form>
+   		</div>
+   		
+   		
    		
    		<div style="width: 80%; height:auto!important; height:60px; min-height:60px; line-height: 30px;">
 	   		<div class="readdiv"><span><em>√</em></span>
@@ -111,12 +161,7 @@
         <div><button class="fdivbtn2">确定</button>
         </div>
     </div>
-    <div id='div_iden' class="fdiv"  style="display: none;">
-        <p>系统已经引导您到${province}国税局网站调取涉税数据</p>
-        <div><button style="width: 160px;" class="fdivbtn2">遇到问题,认证失败</button>
-        <button class="fdivbtn1" onclick="javascript:location.href='<%=basePath %>/users/identify/success';">认证成功</button></div>
-        <br/><span>操作过程中有任何疑问可咨询客服热线 400000000</span>
-    </div>
+    
     
     <%@include file="../base/footer.html" %>
     

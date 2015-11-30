@@ -13,7 +13,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>认证-选择地区</title>
+<title>实名认证-税局端</title>
     <link href="<%=basePath %>/styles/common/base.css" rel="stylesheet" type="text/css">
     <link href="<%=basePath %>/styles/order/order.css" rel="stylesheet" type="text/css">
     <script src="<%=basePath %>/scripts/common/jquery-1.11.1.min.js"></script>
@@ -31,6 +31,7 @@
 				$(this).addClass("procurrent").siblings().removeClass("procurrent");
 				$('#sp_province').text($(this).text());
 				$('#id').val($(this).attr('value'));
+				$('#div_select').hide();
 				getCity();
 				$('#sp_city').text('');
 			});
@@ -38,6 +39,7 @@
 			$(document).delegate('.city',"click",function(){
 				$(this).addClass("procurrent").siblings().removeClass("procurrent");
 				$('#sp_city').text($(this).text());
+				$('#div_select').hide();
 			});
 		})
 		
@@ -64,7 +66,12 @@
 		}
 		
 		function nextIdentify(){
-			
+			//location.href='<%=basePath %>/users/identify/next';
+			if($('#sp_province').text() == '' || $('#sp_city').text() == ''){
+				$('#div_select').show();
+				return;
+			}
+			$("form").submit();
 		}
 		
     </script>
@@ -100,10 +107,10 @@
    			<br/><br/>
    			<button onclick="nextIdentify()" style="width: 100px;">下一步</button>
    			<br/>
-    		<span style=" font-size: 13px; color: red; display: none;">请选择省份!</span>
+    		<span id='div_select' style=" font-size: 13px; color: red; display: none;">请选择省份!</span>
    		</div>
-   		<form action="users/identify/next" method="post">
-    		<input type="hidden" id='id'>
+   		<form id='form' action="<%=basePath %>/users/identify/next" method="post">
+    		<input type="hidden" id='id' name='id'>
    		</form>
        
    	</div>

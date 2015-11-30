@@ -9,7 +9,7 @@ public class AreaBean {
 
     private String aname;
 
-    private Short verifyType;
+    private String verifyType;
 
     private String remark;
 
@@ -43,11 +43,11 @@ public class AreaBean {
         this.aname = aname == null ? null : aname.trim();
     }
 
-    public Short getVerifyType() {
+    public String getVerifyType() {
         return verifyType;
     }
 
-    public void setVerifyType(Short verifyType) {
+    public void setVerifyType(String verifyType) {
         this.verifyType = verifyType;
     }
 

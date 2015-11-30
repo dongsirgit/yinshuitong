@@ -136,15 +136,39 @@
 	where a.isdel = 0  
 	ORDER BY a.id 
   </select>
-  
+  <!-- 查询城市 -->
   <select id="getCity" parameterType="int" resultMap="BaseResultMap">
   	select a.id as id,a.aname as aname,a.verify_type as verify_type  
 	from bt_area a 
 	where a.parentid = #{id} and a.isdel = 0 
   </select>
   
+  <!-- 实名认证 选择省份 下一步 查询认证方式verify_type -->
+  <select id="getVerifyType" parameterType="int" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List" /> 
+  	from bt_area where id = #{id} 
+  </select>
   
+  <update id="updateArea">
+  	update bt_user set vrf_areaid = #{vrfAreaid} ,update_time = now() where id = #{id} 
+  </update>
   
+  <update id="updateUser">
+  	update bt_user 
+  	set corp_name = #{corpName}, 
+  	tax_sn = #{taxSn}, 
+  	idcard = #{idcard}, 
+  	ap_name = '普京', 
+  	address = '北京市海淀区', 
+  	license_regnum = '888888', 
+  	idcard_status = '1', 
+  	update_time = now() where id = #{id} 
+  </update>
+  
+  <select id="getAreaFlag" resultType="int">
+  	select count(id) from bt_area_product where product_id = #{id} and area_id = #{vrfAreaid}
+  </select>
   
   
 </mapper>
