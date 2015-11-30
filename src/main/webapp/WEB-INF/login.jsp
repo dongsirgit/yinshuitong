@@ -82,13 +82,13 @@
       <form id="myform" >
         <div class="username form-item">
           <label>手机号</label>
-            <input type="text" class="inputState" style="color:#b0b0b0;" name="mobilePhone" id="mobilePhone" value="13588888888" onblur="checkMobilePhone()" />
+            <input type="text" class="inputState" style="color:#b0b0b0;" name="mobilePhone" id="mobilePhone" value="请输入手机号码" onblur="checkMobilePhone()" />
             <span style="display: none;">请输入手机号码</span>
         </div>
         <span id="mobilePhoneMsg" style="color:red;height:28px;display:inline-block"></span>
         <div class="password form-item">
             <label>密码</label>
-            <input type="password" class="pwdState" id="userPwd_hidden" style="color:#000;display:none" value="1234qwer" onblur="checkUserPwd()" />
+            <input type="password" class="pwdState" id="userPwd_hidden" style="color:#000;display:none" value="" onblur="checkUserPwd()" />
             <input type="text" class="pwdState" id="userPwd_text" style="color:#b0b0b0;" value="请输入密码" />
             <input name="userPass" id="userPwd_md5" type="hidden" ></input>
         </div>
