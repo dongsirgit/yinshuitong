@@ -63,12 +63,19 @@
     
     <script type="text/javascript">
     	//$('#protectList tbody').empty();
-    	$('#protectList tbody tr').mouseover(function(){
+    	/* $('#protectList tbody tr').mouseover(function(){
     		$(this).css('background','#fffceb');
     	});
     	$('#protectList tbody tr').mouseout(function(){
     		$(this).css('background','#fff');
     	});
+    	 */
+    	$('#protectList').delegate('tbody tr','mouseover',function(){
+    		$(this).css('background','#fffceb');
+    	})
+    	$('#protectList').delegate('tbody tr','mouseout',function(){
+    		$(this).css('background','#fff');
+    	})
     	
     	//页面初始化
     	$.ajax({

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baiwang.banktax.dao.AreaBeanMapper" >
+  <resultMap id="BaseResultMap" type="com.baiwang.banktax.beans.AreaBean" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="parentid" property="parentid" jdbcType="INTEGER" />
+    <result column="aname" property="aname" jdbcType="VARCHAR" />
+    <result column="verify_type" property="verifyType" jdbcType="SMALLINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="muserid" property="muserid" jdbcType="INTEGER" />
+    <result column="createdtime" property="createdtime" jdbcType="TIMESTAMP" />
+    <result column="isdel" property="isdel" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, parentid, aname, verify_type, remark, muserid, createdtime, isdel
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from bt_area
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bt_area
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.baiwang.banktax.beans.AreaBean" >
+    insert into bt_area (id, parentid, aname, 
+      verify_type, remark, muserid, 
+      createdtime, isdel)
+    values (#{id,jdbcType=INTEGER}, #{parentid,jdbcType=INTEGER}, #{aname,jdbcType=VARCHAR}, 
+      #{verifyType,jdbcType=SMALLINT}, #{remark,jdbcType=VARCHAR}, #{muserid,jdbcType=INTEGER}, 
+      #{createdtime,jdbcType=TIMESTAMP}, #{isdel,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.baiwang.banktax.beans.AreaBean" >
+    insert into bt_area
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="parentid != null" >
+        parentid,
+      </if>
+      <if test="aname != null" >
+        aname,
+      </if>
+      <if test="verifyType != null" >
+        verify_type,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="muserid != null" >
+        muserid,
+      </if>
+      <if test="createdtime != null" >
+        createdtime,
+      </if>
+      <if test="isdel != null" >
+        isdel,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="aname != null" >
+        #{aname,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyType != null" >
+        #{verifyType,jdbcType=SMALLINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="muserid != null" >
+        #{muserid,jdbcType=INTEGER},
+      </if>
+      <if test="createdtime != null" >
+        #{createdtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdel != null" >
+        #{isdel,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.baiwang.banktax.beans.AreaBean" >
+    update bt_area
+    <set >
+      <if test="parentid != null" >
+        parentid = #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="aname != null" >
+        aname = #{aname,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyType != null" >
+        verify_type = #{verifyType,jdbcType=SMALLINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="muserid != null" >
+        muserid = #{muserid,jdbcType=INTEGER},
+      </if>
+      <if test="createdtime != null" >
+        createdtime = #{createdtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdel != null" >
+        isdel = #{isdel,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.baiwang.banktax.beans.AreaBean" >
+    update bt_area
+    set parentid = #{parentid,jdbcType=INTEGER},
+      aname = #{aname,jdbcType=VARCHAR},
+      verify_type = #{verifyType,jdbcType=SMALLINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      muserid = #{muserid,jdbcType=INTEGER},
+      createdtime = #{createdtime,jdbcType=TIMESTAMP},
+      isdel = #{isdel,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  <!-- 查询省份 -->
+  <select id="getProvince" resultMap="BaseResultMap">
+  	select a.id id,a.aname aname,a.verify_type verify_type  
+	from bt_area a
+	RIGHT JOIN bt_area_product b ON a.id = b.area_id 
+	where a.isdel = 0  
+	ORDER BY a.id 
+  </select>
+  
+  <select id="getCity" parameterType="int" resultMap="BaseResultMap">
+  	select a.id as id,a.aname as aname,a.verify_type as verify_type  
+	from bt_area a 
+	where a.parentid = #{id} and a.isdel = 0 
+  </select>
+  
+  
+  
+  
+  
+</mapper>
