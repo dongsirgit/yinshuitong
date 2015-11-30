@@ -81,6 +81,8 @@ public class User {
 
     private String remark;
 
+    private int vrfAreaid;
+    
     public Long getId() {
         return id;
     }
@@ -393,5 +395,15 @@ public class User {
 
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
+    }
+
+    public int getVrfAreaid() {
+    
+        return vrfAreaid;
+    }
+
+    public void setVrfAreaid(int vrfAreaid) {
+    
+        this.vrfAreaid = vrfAreaid;
     }
 }

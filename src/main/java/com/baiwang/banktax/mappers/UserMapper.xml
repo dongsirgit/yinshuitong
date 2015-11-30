@@ -41,13 +41,14 @@
     <result column="tax_class" property="taxClass" jdbcType="TINYINT" />
     <result column="invite_uid" property="inviteUid" jdbcType="BIGINT" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="vrf_areaid" property="vrfAreaid" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, mobilephone, user_name, user_pass, user_type, corp_name, tax_sn, logopath, ap_name, 
     mail, mail_status, mail_link, isvip, islock, lock_mess, lock_muserid, idcard, idcard_front, 
     idcard_back, phone_status, idcard_status, qq_relation, address, video_status, scene_statuse, 
     tax_verify, tax_username, tax_pass, last_log_time, update_time, reg_time, last_log_ip, 
-    reg_ip, update_ip, area_class, industry_class, tax_class, invite_uid, remark
+    reg_ip, update_ip, area_class, industry_class, tax_class, invite_uid, remark,vrf_areaid
   </sql>
   <insert id="userRegister" parameterType="com.baiwang.banktax.beans.User">
     insert into
@@ -178,6 +179,9 @@
       <if test="remark != null" >
         remark,
       </if>
+      <if test="vrfAreaid != null" >
+        vrf_areaid,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -296,6 +300,9 @@
       </if>
       <if test="remark != null" >
         #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="vrfAreaid != null" >
+        #{vrfAreaid,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -420,6 +427,9 @@
       </if>
       <if test="remark != null" >
         remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="vrfAreaid != null" >
+        vrf_areaid = #{vrfAreaid,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
