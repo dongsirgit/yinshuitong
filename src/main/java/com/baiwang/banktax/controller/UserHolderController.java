@@ -1,13 +1,10 @@
 package com.baiwang.banktax.controller;
 
-import java.util.Map;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -88,7 +85,7 @@ public class UserHolderController {
     /**
      * 修改密码时,先检查旧密码
      * 
-      * @author Administrator
+      * @author liujingui
       * @param userPwd
       * @return int  
       * @date 2015年11月26日 下午6:26:22

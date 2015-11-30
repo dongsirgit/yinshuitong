@@ -86,7 +86,12 @@ public class UserController {
       * @date 2015年11月25日 下午3:27:38
      */
     @RequestMapping("/findPwd_reset")
-    public String findPwd_reset() {
+    public String findPwd_reset(HttpSession session) {
+        String mobilePhone = (String)session.getAttribute("mobilePhone");
+        if(StringUtils.isBlank(mobilePhone)){
+            //手机号未验证时,让其返回
+            return "user/findpwd";
+        }
         return "user/findpwd_reset";
     }
     
@@ -98,7 +103,13 @@ public class UserController {
       * @date 2015年11月25日 下午3:27:38
      */
     @RequestMapping("/findPwd_success")
-    public String findPwd_success() {
+    public String findPwd_success(HttpSession session) {
+        String mobilePhone = (String)session.getAttribute("mobilePhone");
+        if(StringUtils.isBlank(mobilePhone)){
+            //手机号未验证时,让其返回
+            return "user/findpwd";
+        }
+        session.removeAttribute("mobilePhone");
         return "user/findpwd_success";
     }
     
@@ -106,8 +117,7 @@ public class UserController {
      * 执行登录
      * 
       * @author liujingui
-      * @param mobilePhone 手机号
-      * @param userPass 加密后的密码
+      * @param user 包含手机号和加密后密码的用户对象
       * @param session
       * @return int 
       * @date 2015年11月25日 下午2:07:13
