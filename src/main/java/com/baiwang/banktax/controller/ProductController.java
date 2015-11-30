@@ -134,7 +134,7 @@ public class ProductController {
 		
 	}
 	
-	@RequestMapping("/product/getDetail")
+	/*@RequestMapping("/product/getDetail")
 	@ResponseBody
 	public Map getDetail(Integer id) {
 		Map<String,Object> map = new HashMap<String,Object>();
@@ -149,15 +149,15 @@ public class ProductController {
 			
 		}
 		return map;
-	}
+	}*/
 	
 	
 	
-	//@RequestMapping("/users/identify")
-	@RequestMapping("/identify")
+	/*//@RequestMapping("/users/identify")
+	@RequestMapping("users/identify")
 	public String identify() {
 		return "order/identification";
-	}
+	}*/
 	
 	
 	

@@ -15,7 +15,7 @@
 <!--headeer结束-->
 <div class="banner_wrap">
     <div class="banner">
-        <a href="<%=basePath %>/basic/productList" class="btn"><img src="<%=basePath %>/images/index/banner_btn.png" alt=""></a>
+        <a href="<%=basePath %>/product/list" class="btn"><img src="<%=basePath %>/images/index/banner_btn.png" alt=""></a>
         <div class="calculatorbox">
             <h3 class="ft20 ac">额度预估</h3>
             <div class="calculatecon cur">

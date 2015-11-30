@@ -46,17 +46,37 @@
 		function apply(id){
 			if(loginflag==1){//登陆成功
 				//if(){}
-				
-			}else{
+				identify();
+			}else{//登陆失败
 				$(".mask_alpha").show();
 				$("#div_login").show();
 				//alert("登陆...")
 				//location.href = '';
 			}
 		}
+		function identify(){
+			$.ajax({
+				type:"POST",
+				url:"<%=basePath %>/users/identify/identflag",
+				dataType:"JSON",
+				asysn:false,
+				success:function(data){
+					if(!data){//认证失败
+						$(".mask_alpha").show();
+						$("#div_iden").show();
+					}else{//认证成功
+						//TODO 判断地区......
+					}
+				},
+				error:function(XMLHttpRequest, textStatus, errorThrown) {
+		        	alert("加载失败!");
+		        }
+			});
+		}
+		
 		$(document).ready(function(){
 			$(".fdivbtn2").click(function(){
-				$(".mask_alpha,#div_login").hide(200);
+				$(".mask_alpha,.fdiv").hide(200);
 			});
 		})
         
@@ -153,6 +173,11 @@
         <p>您还未登录，请先登录！</p>
         <div><button class="fdivbtn2">取消</button>
         <button class="fdivbtn1" onclick="javascript:location.href='<%=basePath %>/user/forwardLogin';">确定</button></div>
+    </div>
+    <div id='div_iden' class="fdiv"  style="display: none;">
+        <p>您还未进行实名认证，请先实名认证！</p>
+        <div><button class="fdivbtn2">取消</button>
+        <button class="fdivbtn1" onclick="javascript:location.href='<%=basePath %>/users/identify';">确定</button></div>
     </div>
     <%@include file="../base/footer.html" %>
     
