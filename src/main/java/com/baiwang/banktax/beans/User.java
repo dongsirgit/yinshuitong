@@ -16,8 +16,10 @@ public class User {
     private String corpName;
 
     private String taxSn;
+    
+    private String licenseRegnum;
 
-    private String logopath;
+	private String logopath;
 
     private String apName;
 
@@ -136,6 +138,16 @@ public class User {
     public String getTaxSn() {
         return taxSn;
     }
+
+    public String getLicenseRegnum() {
+	
+		return licenseRegnum;
+	}
+
+	public void setLicenseRegnum(String licenseRegnum) {
+	
+		this.licenseRegnum = licenseRegnum;
+	}
 
     public void setTaxSn(String taxSn) {
         this.taxSn = taxSn == null ? null : taxSn.trim();

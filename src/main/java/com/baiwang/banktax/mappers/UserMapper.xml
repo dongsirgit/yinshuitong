@@ -9,6 +9,7 @@
     <result column="user_type" property="userType" jdbcType="TINYINT" />
     <result column="corp_name" property="corpName" jdbcType="VARCHAR" />
     <result column="tax_sn" property="taxSn" jdbcType="VARCHAR" />
+    <result column="license_regnum" property="licenseRegnum" jdbcType="VARCHAR" />
     <result column="logopath" property="logopath" jdbcType="VARCHAR" />
     <result column="ap_name" property="apName" jdbcType="VARCHAR" />
     <result column="mail" property="mail" jdbcType="VARCHAR" />
@@ -44,7 +45,7 @@
     <result column="vrf_areaid" property="vrfAreaid" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, mobilephone, user_name, user_pass, user_type, corp_name, tax_sn, logopath, ap_name, 
+    id, mobilephone, user_name, user_pass, user_type, corp_name, tax_sn, license_regnum, logopath, ap_name, 
     mail, mail_status, mail_link, isvip, islock, lock_mess, lock_muserid, idcard, idcard_front, 
     idcard_back, phone_status, idcard_status, qq_relation, address, video_status, scene_statuse, 
     tax_verify, tax_username, tax_pass, last_log_time, update_time, reg_time, last_log_ip, 

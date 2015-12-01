@@ -39,7 +39,7 @@
 	       <h4 class="userInfoItemTitle">企业信息</h4>
 	       <span class="userInfoVerifyState">
 	           <c:choose>
-	               <c:when test="${loginedUser.taxVerify == 1 ||loginedUser.taxVerify == 2}">
+	               <c:when test="${loginedUser.taxVerify == 4}">
 	                                             已经通过实名认证√                          
 			       </c:when>
 			       <c:when test="${loginedUser.taxVerify == 3}">
@@ -53,21 +53,21 @@
 			</span>
 			<table class="userInfoTable">
 				<tr>
-				<td class="textRight">企业名称:</td>
+				<td class="textRight">企业名称:${loginedUser.corpName}</td>
 				<td style="width:200px"></td>
-				<td class="textRight">企业办公地址:</td>
+				<td class="textRight">企业办公地址:${loginedUser.address}</td>
 				<td style="width:200px"></td>
 				</tr>
 	            <tr>
-	            <td class="textRight">企业纳税号:</td>
+	            <td class="textRight">企业纳税号:${loginedUser.taxSn}</td>
 	            <td style="width:200px"></td>
-	            <td class="textRight">企业办公地址:</td>
+	            <td class="textRight">营业执照注册号:${loginedUser.licenseRegnum}</td>
 	            <td style="width:200px"></td>
 	            </tr>
 	            <tr>
-	            <td class="textRight">法人代表姓名:</td>
+	            <td class="textRight">法人代表姓名:${loginedUser.apName}</td>
 	            <td style="width:200px"></td>
-	            <td class="textRight">法人代表身份证号:</td>
+	            <td class="textRight">法人代表身份证号:${loginedUser.idcard}</td>
 	            <td style="width:200px"></td>
 	            </tr>
 			</table> 
