@@ -413,11 +413,12 @@
   </update>
   
   
-  <select id="queryLoanList" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
-    <include refid="Base_Column_List" />
-    from bt_apply_loan
-    where uid = #{id,jdbcType=BIGINT}
+  <select id="queryLoanList" resultType="com.baiwang.banktax.model.ApplyListBean" parameterType="java.lang.Long" >
+    select a.id id, a.apply_quota applyQuota, a.apply_time applyTime, a.prod_id prodId, b.pname pname, b.rela_bank relaBank, 
+    a.apply_status applyStatus, a.pre_quota preQuota, a.approve_quota approveQuota 
+	from bt_apply_loan a 
+	LEFT JOIN bt_product b ON a.prod_id = b.id
+    where a.uid = #{id,jdbcType=BIGINT}
   </select>
   
   

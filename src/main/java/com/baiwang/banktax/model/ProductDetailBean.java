@@ -2,7 +2,7 @@
  *Copyright (c) 1997, 2015,BEST WONDER CO.,LTD. All rights reserved.
  */
 
-package com.baiwang.banktax.beans;
+package com.baiwang.banktax.model;
 
 import java.io.Serializable;
 

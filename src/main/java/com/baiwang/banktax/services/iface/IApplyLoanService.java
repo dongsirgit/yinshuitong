@@ -7,6 +7,7 @@ package com.baiwang.banktax.services.iface;
 import java.util.List;
 
 import com.baiwang.banktax.beans.ApplyLoan;
+import com.baiwang.banktax.model.ApplyListBean;
 
 /**
   * @ClassName: IApplyLoanService
@@ -37,6 +38,6 @@ public interface IApplyLoanService {
 	  * @throws
 	  * @date 2015年12月1日 下午4:10:59
 	  */
-	public List<ApplyLoan> queryLoanList(Long id);
+	public List<ApplyListBean> queryLoanList(Long id);
 
 }

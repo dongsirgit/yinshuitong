@@ -49,7 +49,7 @@
 			}
 			
 			//到国税网站认证
-			window.open('http://www.baidu.com');
+			window.open('http://www.bjsat.gov.cn/bjsat/');
 			$('#div_iden').show();
 			$('#mask_alpha').show();
 			

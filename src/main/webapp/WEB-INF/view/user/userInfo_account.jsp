@@ -95,11 +95,11 @@
 							<td>
 								<fmt:formatDate value="${loan_temp.applyTime}" pattern="yyyy-MM-dd" />
 							</td>
-							<td></td>
+							<td>${loan_temp.relaBank}${loan_temp.pname}</td>
 							<td>
 								<c:if test="${loan_temp.applyStatus=='100'}">审核中</c:if>
 							</td>
-							<td>预授信额度</td>
+							<td>${loan_temp.preQuota}</td>
 							<td>${loan_temp.approveQuota}</td>
 							<td class="handle">
 									<a href="javascript:quxiao(${loan_temp.id});">取消</a>

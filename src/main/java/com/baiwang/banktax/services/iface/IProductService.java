@@ -6,8 +6,8 @@ package com.baiwang.banktax.services.iface;
 
 import java.util.List;
 
-import com.baiwang.banktax.beans.ProductDetailBean;
-import com.baiwang.banktax.beans.ProductSynopsisBean;
+import com.baiwang.banktax.model.ProductDetailBean;
+import com.baiwang.banktax.model.ProductSynopsisBean;
 
 /**
   * @ClassName: IProductService

@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
-import com.baiwang.banktax.beans.ProductDetailBean;
-import com.baiwang.banktax.beans.ProductSynopsisBean;
+import com.baiwang.banktax.model.ProductDetailBean;
+import com.baiwang.banktax.model.ProductSynopsisBean;
 import com.baiwang.banktax.services.iface.IProductService;
 import com.baiwang.banktax.utils.StringUtils;
 import com.sun.org.apache.xml.internal.security.exceptions.Base64DecodingException;

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.baiwang.banktax.beans.ApplyLoan;
 import com.baiwang.banktax.dao.ApplyLoanMapper;
+import com.baiwang.banktax.model.ApplyListBean;
 import com.baiwang.banktax.services.iface.IApplyLoanService;
 
 /**
@@ -123,7 +124,7 @@ public class IApplyLoanServiceImpl implements IApplyLoanService {
 	  * @throws
 	  * @date 2015年12月1日 下午4:10:59
 	  */
-	public List<ApplyLoan> queryLoanList(Long id){
+	public List<ApplyListBean> queryLoanList(Long id){
 		return dao.queryLoanList(id);
 	}
 	

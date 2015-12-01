@@ -269,7 +269,17 @@ public class ApplyLoan {
         this.warningEarly = warningEarly;
     }
 
-    public Integer getApproveQuota() {
+    public Integer getPreQuota() {
+	
+		return preQuota;
+	}
+
+	public void setPreQuota(Integer preQuota) {
+	
+		this.preQuota = preQuota;
+	}
+
+	public Integer getApproveQuota() {
         return approveQuota;
     }
 

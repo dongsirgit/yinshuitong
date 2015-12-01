@@ -3,6 +3,7 @@ package com.baiwang.banktax.dao;
 import java.util.List;
 
 import com.baiwang.banktax.beans.ApplyLoan;
+import com.baiwang.banktax.model.ApplyListBean;
 
 public interface ApplyLoanMapper {
     int deleteByPrimaryKey(Long id);
@@ -26,5 +27,5 @@ public interface ApplyLoanMapper {
 	  * @throws
 	  * @date 2015年12月1日 下午4:13:24
 	  */
-	List<ApplyLoan> queryLoanList(Long id);
+	List<ApplyListBean> queryLoanList(Long id);
 }

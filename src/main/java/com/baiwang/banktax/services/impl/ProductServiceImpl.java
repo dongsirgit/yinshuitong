@@ -15,9 +15,9 @@ import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
 import com.baiwang.banktax.beans.Product;
-import com.baiwang.banktax.beans.ProductDetailBean;
-import com.baiwang.banktax.beans.ProductSynopsisBean;
 import com.baiwang.banktax.dao.ProductMapper;
+import com.baiwang.banktax.model.ProductDetailBean;
+import com.baiwang.banktax.model.ProductSynopsisBean;
 import com.baiwang.banktax.services.iface.IProductService;
 
 /**

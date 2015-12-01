@@ -15,6 +15,7 @@ import com.alibaba.druid.support.logging.Log;
 import com.alibaba.druid.support.logging.LogFactory;
 import com.baiwang.banktax.beans.ApplyLoan;
 import com.baiwang.banktax.beans.User;
+import com.baiwang.banktax.model.ApplyListBean;
 import com.baiwang.banktax.services.iface.IApplyLoanService;
 import com.baiwang.banktax.utils.ConfigUtil;
 
@@ -50,7 +51,7 @@ public class UserInfoController {
     	User user = (User) session.getAttribute(ConfigUtil.getLoginedUserStr());
     	logger.info("-----UserInfoController.init-------用户:"+user.getId()+",访问页面:"+page);
     	
-    	List<ApplyLoan> list = service.queryLoanList(user.getId());
+    	List<ApplyListBean> list = service.queryLoanList(user.getId());
 		map.put("list", list);
     	
         logger.info("开始访问页面:  " + page + ".jsp");
