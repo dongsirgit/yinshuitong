@@ -162,12 +162,16 @@
   	ap_name = '普京', 
   	address = '北京市海淀区', 
   	license_regnum = '888888', 
-  	idcard_status = '1', 
+  	tax_verify = #{taxVerify}, 
   	update_time = now() where id = #{id} 
   </update>
   
   <select id="getAreaFlag" resultType="int">
   	select count(id) from bt_area_product where product_id = #{id} and area_id = #{vrfAreaid}
+  </select>
+  
+  <select id="selectUserByTaxSn" resultType="int">
+  	select count(id) from bt_user where tax_sn = #{taxSn} 
   </select>
   
   

@@ -65,15 +65,18 @@
 				asysn:false,
 				success:function(data){
 					//alert(JSON.stringify(data));
-					if(!data.idcardStatus){//认证失败
+					if(data.TaxVerify>0 && data.TaxVerify <4){
 						$(".mask_alpha").show();
-						$("#div_iden").show();
-					}else{//认证成功
+						$("#div_iden2").show();
+					}else if(data.TaxVerify == 4){//认证成功
 						if(data.areaflag=='success'){//产品 地区
 							location.href='<%=basePath %>/users/applyloan/toLoan';
 						}else{
 							$(".area").attr("disabled","disabled")
 						}
+					}else{//认证失败
+						$(".mask_alpha").show();
+						$("#div_iden").show();
 					}
 				},
 				error:function(XMLHttpRequest, textStatus, errorThrown) {
@@ -186,11 +189,20 @@
         <div><button class="fdivbtn2">取消</button>
         <button class="fdivbtn1" onclick="javascript:location.href='<%=basePath %>/user/forwardLogin';">确定</button></div>
     </div>
+    
     <div id='div_iden' class="fdiv"  style="display: none;">
         <p>您还未进行实名认证，请先实名认证！</p>
         <div><button class="fdivbtn2">取消</button>
         <button class="fdivbtn1" onclick="javascript:location.href='<%=basePath %>/users/identify';">确定</button></div>
     </div>
+    
+    <div id='div_iden2' class="fdiv"  style="display: none;">
+        <p>管理员正在审核信息，请耐心等待。</p>
+        <div><button class="fdivbtn2">确定</button>
+        </div>
+    </div>
+    
+    
     <%@include file="../base/footer.html" %>
     
 </body>

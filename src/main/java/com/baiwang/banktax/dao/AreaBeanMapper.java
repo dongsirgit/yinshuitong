@@ -75,7 +75,7 @@ public interface AreaBeanMapper {
 	  * @date 2015年11月30日 下午3:46:04
 	  */
 	int updateUser(@Param("corpName")String corpName, @Param("taxSn")String taxSn, 
-			@Param("idcard")String idcard, @Param("id")Long id);
+			@Param("idcard")String idcard, @Param("id")Long id, @Param("taxVerify")String taxVerify);
 
 	/**
 	  * @author gkm
@@ -88,6 +88,17 @@ public interface AreaBeanMapper {
 	  * @date 2015年11月30日 下午7:14:17
 	  */
 	int getAreaFlag(@Param("id")Integer id, @Param("vrfAreaid")int vrfAreaid);
+
+	/**
+	  * @author gkm
+	  * @Description: 查询纳税号的认证次数
+	  * @param @param taxSn
+	  * @param @return  
+	  * @return int  
+	  * @throws
+	  * @date 2015年12月1日 上午10:27:33
+	  */
+	int selectUserByTaxSn(@Param("taxSn")String taxSn);
 	
 	
 	
