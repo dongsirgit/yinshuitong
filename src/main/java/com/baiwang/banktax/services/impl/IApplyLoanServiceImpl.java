@@ -128,5 +128,19 @@ public class IApplyLoanServiceImpl implements IApplyLoanService {
 		return dao.queryLoanList(id);
 	}
 	
+	/**
+	  * @author gkm
+	  * @Description: 取消申请
+	  * @param @param id
+	  * @param @return  
+	  * @return int  
+	  * @throws
+	  * @date 2015年12月1日 下午6:33:30
+	  */
+	public int quxiao(Integer id, Long user){
+		return dao.quxiao(id, user);
+	}
+
+	
 
 }

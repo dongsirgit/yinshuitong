@@ -57,7 +57,9 @@
     			</tr>
     		</tfoot>
     	</table>
-        
+        <form id='form' action="<%=basePath %>/product/detail" method="post">
+       		<input type="hidden" id="id" name='id'>
+       	</form>
     </div>
     
     
@@ -111,7 +113,9 @@
     		//alert($.base64.btoa(id))
     		//alert(id)
     		//location.href='<%=basePath %>/product/detail?id=' + $.base64.btoa(id);
-    		location.href='<%=basePath %>/product/detail?id='+id;
+    		//location.href='<%=basePath %>/product/detail?id='+id;
+    		$('#id').val(id);
+    		$('#form').submit();
     	}
     	
     </script>

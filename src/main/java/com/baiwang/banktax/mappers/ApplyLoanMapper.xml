@@ -421,5 +421,9 @@
     where a.uid = #{id,jdbcType=BIGINT}
   </select>
   
+  <update id="quxiao">
+  	update bt_apply_loan set apply_status = 200 where id = #{id} and uid = #{userId}
+  </update>
+  
   
 </mapper>

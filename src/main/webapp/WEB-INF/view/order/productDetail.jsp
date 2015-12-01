@@ -26,22 +26,6 @@
     
     <script type="text/javascript">
     	var loginflag = <%=loginflag%>;
-	    <%-- $.ajax({
-			type:"POST",
-			url:"<%=basePath %>/product/getDetail",
-			data:{id:1},
-			//asysn:true,
-			dataType:"JSON",
-			//dataType:"text",
-			success:function(data){
-				/* alert(JSON.stringify(data))
-				alert(data.detail.sbtj) */
-				$('#sbtj').text(data.detail.sbtj)
-			},
-			error:function(XMLHttpRequest, textStatus, errorThrown) {
-	        	alert("加载失败!");
-	        }
-		}); --%>
 	
 		function apply(id){
 			if(loginflag==1){//登陆成功
@@ -74,7 +58,8 @@
 								$(".mask_alpha").show();
 								$("#div_unfinish").show();
 							}else{
-								location.href='<%=basePath %>/users/applyloan/toLoan';
+								//location.href='<%=basePath %>/users/applyloan/toLoan';
+								$('#form').submit();
 							}
 						}else{
 							$(".area").attr("disabled","disabled")
@@ -183,7 +168,9 @@
 	    			</div>
 	    		</td></tr>
 	    	</table>
-        
+        	<form id='form' action="<%=basePath %>/users/applyloan/toLoan" method="post">
+        		<input type="hidden" id="id" name='id' value='${detail.id}'>
+        	</form>
     	</div>
 	</c:if>
     

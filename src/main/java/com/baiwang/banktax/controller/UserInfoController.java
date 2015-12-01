@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.druid.support.logging.Log;
 import com.alibaba.druid.support.logging.LogFactory;
@@ -56,6 +57,17 @@ public class UserInfoController {
     	
         logger.info("开始访问页面:  " + page + ".jsp");
         return "user/" + page;
-        
     }
+    
+    
+    @RequestMapping("/loan/quxiao")
+    @ResponseBody
+    public int quxiao(Integer id, HttpSession session){
+    	User user = (User) session.getAttribute(ConfigUtil.getLoginedUserStr());
+    	int success = service.quxiao(id, user.getId());
+    	return success;
+    }
+    
+    
+    
 }

@@ -21,7 +21,47 @@
 	    }
 	</script>
 	<script type="text/javascript">
-		
+		$(document).ready(function(){
+			
+			
+			$(".fdivbtn2").click(function(){
+				$('#idid').val('');
+				$(".mask_alpha,.fdiv").hide(200);
+			});
+			$("#btn_quxiao").click(function(){
+				var id = $('#idid').val();
+				$.ajax({
+					type:"POST",
+					url:"<%=basePath %>/users/loan/quxiao",
+					data:{id:id},
+					//asysn:true,
+					dataType:"JSON",
+					//dataType:"text",
+					success:function(data){
+						//alert(JSON.stringify(data))
+						if(data==1){
+							$('.mask_alpha').hide();
+							$('#div_quxiao').hide();
+							$('#quxiao'+id).remove();
+						}
+					},
+					error:function(XMLHttpRequest, textStatus, errorThrown) {
+						if(XMLHttpRequest.responseText=="timeOut"){
+			        		top.location.reload();
+			        	}else{
+			        		alert("Error_plat1");
+			        	}
+			        }
+				});
+			});
+			
+		})
+	
+		function quxiao(id){
+			$('.mask_alpha').show();
+			$('#div_quxiao').show();
+			$('#idid').val(id);
+		}
 		
 	</script>
 </head>
@@ -47,7 +87,7 @@
                    </c:when>
 			       <c:otherwise>
 			                         您还未进行认证,认证后才可以办理业务.
-                     <a href="javascript;" style="text-decoration:underline;color:red">立即验证</a>
+                     <a href="<%=basePath%>/users/identify" target="top" style="text-decoration:underline;color:red">立即验证</a>
 			       </c:otherwise> 
 			    </c:choose>
 			</span>
@@ -97,12 +137,19 @@
 							</td>
 							<td>${loan_temp.relaBank}${loan_temp.pname}</td>
 							<td>
-								<c:if test="${loan_temp.applyStatus=='100'}">审核中</c:if>
+								<c:if test="${loan_temp.applyStatus==100}">审核中</c:if>
+								<c:if test="${loan_temp.applyStatus>=200 && loan_temp.applyStatus<300}">已取消</c:if>
+								<c:if test="${loan_temp.applyStatus>=300 && loan_temp.applyStatus<400}">已确认</c:if>
+								<c:if test="${loan_temp.applyStatus>=500 && loan_temp.applyStatus<600}">审批中</c:if>
+								<c:if test="${loan_temp.applyStatus>=600 && loan_temp.applyStatus<700}">失败</c:if>
+								<c:if test="${loan_temp.applyStatus>=700}">完成</c:if>
 							</td>
 							<td>${loan_temp.preQuota}</td>
 							<td>${loan_temp.approveQuota}</td>
 							<td class="handle">
-									<a href="javascript:quxiao(${loan_temp.id});">取消</a>
+								<c:if test="${loan_temp.applyStatus==100}">
+									<a id='quxiao${loan_temp.id}' href="javascript:quxiao(${loan_temp.id});">取消</a>
+								</c:if>
 									<a href="javascript:chakan(${loan_temp.id});"
 										onclick="chakan(${loan_temp.id})">查看详情</a>
 								</td>
@@ -113,19 +160,17 @@
 		</ul>
 	<!-- </div> -->	
 	<div class="mask_alpha" style="display:none;"></div>
-	<div class="fdiv" id="submit_check" style="display:none;">
-		<p>您确定正式提交申请贷款吗？</p>
-	    <div><a class="fdivbtn1" id="btn_submit_confirm" name="btn_submit_confirm">确定</a><a class="fdivbtn2">取消</a></div>
-	</div>
+	
 	<div class="fdiv" id="del_check" style="display:none;">
 		<p>您确定删除这条贷款申请吗？</p>
 	    <div><a class="fdivbtn1" id="btn_del_confirm" name="btn_del_confirm">确定</a><a class="fdivbtn2">取消</a></div>
 	</div>
-	<div id="upCheckdiv" class="fdiv" style="display: none;">
-	<p>证件资料不齐全,上传完整后才可提交！</p>
-    <div><a class="fdivbtn1" id="btn_upCheck_confirm">确定</a></div>
+	
+	<div id="div_quxiao" class="fdiv" style="display: none;">
+		<p>您确定进行这个操作吗?</p>
+    	<div><a class="fdivbtn1" id="btn_quxiao" name="btn_quxiao">确定</a><a class="fdivbtn2">取消</a></div>
 	</div>
-	<input id="save_id4apl" type="hidden" value=""/>
+	<input id="idid" type="hidden" value=""/>
 	
 </body>
 </html>
