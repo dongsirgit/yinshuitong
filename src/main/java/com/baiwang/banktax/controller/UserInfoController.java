@@ -1,15 +1,21 @@
 package com.baiwang.banktax.controller;
 
+import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alibaba.druid.support.logging.Log;
 import com.alibaba.druid.support.logging.LogFactory;
+import com.baiwang.banktax.beans.ApplyLoan;
+import com.baiwang.banktax.beans.User;
+import com.baiwang.banktax.services.iface.IApplyLoanService;
 import com.baiwang.banktax.utils.ConfigUtil;
 
 /**
@@ -26,6 +32,9 @@ public class UserInfoController {
     private static final String loginedUserStr = ConfigUtil.getLoginedUserStr();
     private static final Log logger = LogFactory.getLog(UserController.class);
     
+    @Resource
+    private IApplyLoanService service;
+    
     /**
      * 跳转至用户个人中心相关的各个页面
      * 
@@ -38,7 +47,12 @@ public class UserInfoController {
      */
     @RequestMapping("/init/{page}")
     public String init(@PathVariable String page, HttpSession session, Map<String, Object> map) {
-        
+    	User user = (User) session.getAttribute(ConfigUtil.getLoginedUserStr());
+    	logger.info("-----UserInfoController.init-------用户:"+user.getId()+",访问页面:"+page);
+    	
+    	List<ApplyLoan> list = service.queryLoanList(user.getId());
+		map.put("list", list);
+    	
         logger.info("开始访问页面:  " + page + ".jsp");
         return "user/" + page;
         

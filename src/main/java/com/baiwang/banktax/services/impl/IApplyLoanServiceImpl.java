@@ -4,6 +4,8 @@
 
 package com.baiwang.banktax.services.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -110,5 +112,20 @@ public class IApplyLoanServiceImpl implements IApplyLoanService {
 		return 0;
 
 	}
+	
+	
+	/**
+	  * @author gkm
+	  * @Description: 查询申请列表
+	  * @param @param id
+	  * @param @return  
+	  * @return List<ApplyLoan>  
+	  * @throws
+	  * @date 2015年12月1日 下午4:10:59
+	  */
+	public List<ApplyLoan> queryLoanList(Long id){
+		return dao.queryLoanList(id);
+	}
+	
 
 }

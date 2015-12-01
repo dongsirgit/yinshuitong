@@ -53,22 +53,22 @@
 			</span>
 			<table class="userInfoTable">
 				<tr>
-				<td class="textRight">企业名称:${loginedUser.corpName}</td>
-				<td style="width:200px"></td>
-				<td class="textRight">企业办公地址:${loginedUser.address}</td>
-				<td style="width:200px"></td>
+				<td class="textRight">企业名称:</td>
+				<td class="textLeft" style="width:200px">${loginedUser.corpName}</td>
+				<td class="textRight">企业办公地址:</td>
+				<td class="textLeft" style="width:200px">${loginedUser.address}</td>
 				</tr>
 	            <tr>
-	            <td class="textRight">企业纳税号:${loginedUser.taxSn}</td>
-	            <td style="width:200px"></td>
-	            <td class="textRight">营业执照注册号:${loginedUser.licenseRegnum}</td>
-	            <td style="width:200px"></td>
+	            <td class="textRight">企业纳税号:</td>
+	            <td class="textLeft" style="width:200px">${loginedUser.taxSn}</td>
+	            <td class="textRight">营业执照注册号:</td>
+	            <td class="textLeft" style="width:200px">${loginedUser.licenseRegnum}</td>
 	            </tr>
 	            <tr>
-	            <td class="textRight">法人代表姓名:${loginedUser.apName}</td>
-	            <td style="width:200px"></td>
-	            <td class="textRight">法人代表身份证号:${loginedUser.idcard}</td>
-	            <td style="width:200px"></td>
+	            <td class="textRight">法人代表姓名:</td>
+	            <td class="textLeft" style="width:200px">${loginedUser.apName}</td>
+	            <td class="textRight">法人代表身份证号:</td>
+	            <td class="textLeft" style="width:200px">${loginedUser.idcard}</td>
 	            </tr>
 			</table> 
 	    <div style="clear:both;border-bottom:2px solid #dcc09a"></div>
@@ -77,55 +77,33 @@
 				<h4 class="listh4">贷款列表</h4>
 				<table id="loan_List">
 					<tr class="th">
-						<td>贷款金额</td>
-						<td>贷款期限</td>
-						<td>贷款种类</td>
-						<td>状态</td>
-						<td>提交时间</td>
+						<td>申请金额</td>
+						<td>申请时间</td>
+						<td>申请产品</td>
+						<td>订单状态</td>
+						<td>预授信额度</td>
 						<td>操作</td>
 					</tr>
 					<c:forEach items="${list}" var="loan_temp">
 						<tr>
 							<td>
-							<c:if test="${loan_temp.approveStatus=='-3'}">
+							
 	                        	<a href="<%=basePath %>/users/loanList/reviseInfo?id=${loan_temp.id}" target="_top" class="money">
-	                        		<fmt:formatNumber pattern="#,##0.00"><c:out value="${loan_temp.applyQuota}"/></fmt:formatNumber>元
+	                        		<c:out value="${loan_temp.applyQuota}"/>万元
 	                        	</a>
-                        	</c:if>
-                        	<c:if test="${loan_temp.approveStatus!='-3'}">
-		                    	<a href="<%=basePath %>/users/loanList/showInfo?id=${loan_temp.id}" target="_top" class="money">
-		                    		<fmt:formatNumber pattern="#,##0.00"><c:out value="${loan_temp.applyQuota}"/></fmt:formatNumber>元
-		                    	</a>
-                        	</c:if>
+                        	
 							</td>
-							<td><c:out value="${loan_temp.applyTermNum }" /> <c:if
-									test="${loan_temp.applyTermType=='2'}">个月</c:if> <c:if
-									test="${loan_temp.applyTermType=='1'}">天</c:if> <c:if
-									test="${loan_temp.applyTermType=='3'}">年</c:if></td>
-							<td><c:if test="${loan_temp.applyType=='1' }">企业经营贷</c:if> <c:if
-									test="${loan_temp.applyType=='2' }">个人消费贷</c:if> <c:if
-									test="${loan_temp.applyType=='3' }">企业法人贷</c:if></td>
-							<td><c:if test="${loan_temp.approveStatus=='-3' }">已保存</c:if> <c:if
-									test="${loan_temp.approveStatus=='-2' }">初审中</c:if> <c:if
-									test="${loan_temp.approveStatus=='-1' }">审核未通过</c:if> <c:if
-									test="${loan_temp.approveStatus=='0' }">终审中</c:if> <c:if
-									test="${loan_temp.approveStatus=='1' }">通过审核</c:if> <c:if
-									test="${loan_temp.approveStatus=='2' }">审核未通过</c:if></td>
-							<td><c:if test="${loan_temp.approveStatus!='-3' }">
-									<fmt:formatDate value="${loan_temp.modifyTime }"
-										pattern="yyyy-MM-dd" />
-								</c:if> <c:if test="${loan_temp.approveStatus=='-3' }">--</c:if></td>
-							<td class="handle"><c:if test="${loan_temp.approveStatus!='-3'}">
-									<a style="color: #bebebe; cursor: default; text-decoration: none;">修改</a>
-									<a style="color: #bebebe; cursor: default; text-decoration: none;">删除</a>
-									<a style="color: #bebebe; cursor: default; text-decoration: none;">提交</a>
-								</c:if> <c:if test="${loan_temp.approveStatus=='-3'}">
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td class="handle">
 									<a href="<%=basePath %>/users/loanList/reviseInfo?id=${loan_temp.id}" target="_top">修改</a>
 									<a href="javascript:void(0);"
 										onclick="del_applyLoan(${loan_temp.id})">删除</a>
 									<a href = "javascript:void(0);"
 										onclick="smt_applyLoan(${loan_temp.id})">提交</a>
-								</c:if></td>
+								</td>
 						</tr>
 					</c:forEach>
 				</table>

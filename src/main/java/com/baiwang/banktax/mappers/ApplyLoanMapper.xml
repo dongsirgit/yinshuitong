@@ -409,4 +409,14 @@
       is_pub = #{isPub,jdbcType=BIT}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  
+  
+  <select id="queryLoanList" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from bt_apply_loan
+    where uid = #{id,jdbcType=BIGINT}
+  </select>
+  
+  
 </mapper>
