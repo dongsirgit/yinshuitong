@@ -52,8 +52,8 @@
     delete from bt_apply_loan
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.baiwang.banktax.beans.ApplyLoan" >
-    insert into bt_apply_loan (id, uid, apply_type, 
+  <insert id="insert" parameterType="com.baiwang.banktax.beans.ApplyLoan" useGeneratedKeys="true">
+    insert into bt_apply_loan (uid, apply_type, 
       prod_id, apply_term, apply_term_type, 
       apply_quota, apply_note, apply_time, 
       apply_status, status_note, contact_name, 
@@ -64,7 +64,7 @@
       warning_early, approve_quota, loan_date, 
       loan_date_end, modify_time, isdel, 
       createdtime, is_pub)
-    values (#{id,jdbcType=BIGINT}, #{uid,jdbcType=BIGINT}, #{applyType,jdbcType=TINYINT}, 
+    values (#{uid,jdbcType=BIGINT}, #{applyType,jdbcType=TINYINT}, 
       #{prodId,jdbcType=INTEGER}, #{applyTerm,jdbcType=INTEGER}, #{applyTermType,jdbcType=TINYINT}, 
       #{applyQuota,jdbcType=INTEGER}, #{applyNote,jdbcType=VARCHAR}, #{applyTime,jdbcType=TIMESTAMP}, 
       #{applyStatus,jdbcType=SMALLINT}, #{statusNote,jdbcType=VARCHAR}, #{contactName,jdbcType=VARCHAR}, 

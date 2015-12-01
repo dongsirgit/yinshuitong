@@ -52,7 +52,7 @@ public class UserHolderController {
         if(isVerified == 0){
             return "../../index";
         }
-        return null;
+        return "user/userInfo";
     }
     
     /**

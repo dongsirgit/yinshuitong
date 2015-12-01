@@ -59,7 +59,7 @@
 	        <h3>我的银税通</h3>
 	        <ul>
 	        	<li class="current" id="list_loans">我的账户</li>
-	        	<li>我要贷款</li>
+	        	<li ><a href="<%=basePath %>/product/list">我要贷款</a></li>
 	        </ul>
 	    </div>
 		<div class="content_r">
