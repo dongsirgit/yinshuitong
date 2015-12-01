@@ -1,9 +1,11 @@
 package com.baiwang.banktax.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.baiwang.banktax.beans.ApplyLoan;
 import com.baiwang.banktax.beans.AreaBean;
 
 public interface AreaBeanMapper {
@@ -99,6 +101,17 @@ public interface AreaBeanMapper {
 	  * @date 2015年12月1日 上午10:27:33
 	  */
 	int selectUserByTaxSn(@Param("taxSn")String taxSn);
+
+	/**
+	  * @author gkm
+	  * @Description: 判断用户有无申请
+	  * @param @param id
+	  * @param @return  
+	  * @return List<ApplyLoan>  
+	  * @throws
+	  * @date 2015年12月1日 下午2:48:23
+	  */
+	List<Integer> queryLoan(@Param("id")Long id);
 	
 	
 	

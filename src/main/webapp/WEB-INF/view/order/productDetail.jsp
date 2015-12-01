@@ -70,7 +70,12 @@
 						$("#div_iden2").show();
 					}else if(data.TaxVerify == 4){//认证成功
 						if(data.areaflag=='success'){//产品 地区
-							location.href='<%=basePath %>/users/applyloan/toLoan';
+							if(data.appflag > 0){
+								$(".mask_alpha").show();
+								$("#div_unfinish").show();
+							}else{
+								location.href='<%=basePath %>/users/applyloan/toLoan';
+							}
 						}else{
 							$(".area").attr("disabled","disabled")
 						}
@@ -198,6 +203,12 @@
     
     <div id='div_iden2' class="fdiv"  style="display: none;">
         <p>管理员正在审核信息，请耐心等待。</p>
+        <div><button class="fdivbtn2">确定</button>
+        </div>
+    </div>
+    
+    <div id='div_unfinish' class="fdiv"  style="display: none;">
+        <p>您当前有一条贷款申请未完成,不能重复申请。</p>
         <div><button class="fdivbtn2">确定</button>
         </div>
     </div>

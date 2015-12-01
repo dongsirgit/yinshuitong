@@ -174,5 +174,12 @@
   	select count(id) from bt_user where tax_sn = #{taxSn} 
   </select>
   
+  <select id="queryLoan" resultType="int">
+  	select apply_status applyStatus 
+  	from bt_apply_loan 
+  	where uid = #{id}
+  
+  </select>
+  
   
 </mapper>

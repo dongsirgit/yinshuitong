@@ -101,6 +101,17 @@ public interface IidentifyService {
 	  */
 	String getAreaFlag(Integer id, int vrfAreaid);
 
+	/**
+	  * @author gkm
+	  * @Description: 判断有无申请
+	  * @param @param id
+	  * @param @return  
+	  * @return int  
+	  * @throws
+	  * @date 2015年12月1日 下午2:44:38
+	  */
+	int queryApplyFlag(Long id);
+
 	
 	
 	

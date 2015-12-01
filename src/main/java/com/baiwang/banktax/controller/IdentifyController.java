@@ -63,6 +63,11 @@ public class IdentifyController {
 			//判断产品地区和认证开通地区
 			String area = service.getAreaFlag(id, user.getVrfAreaid());
 			map.put("areaflag", area);
+			
+			//判断有无申请
+			int appflag = service.queryApplyFlag(user.getId());
+			map.put("appflag", appflag);
+			
 		}
 		
 		return map;
