@@ -27,6 +27,7 @@
     <result column="warning_sum" property="warningSum" jdbcType="INTEGER" />
     <result column="warning_later" property="warningLater" jdbcType="TINYINT" />
     <result column="warning_early" property="warningEarly" jdbcType="TINYINT" />
+    <result column="pre_quota" property="preQuota" jdbcType="INTEGER" />
     <result column="approve_quota" property="approveQuota" jdbcType="INTEGER" />
     <result column="loan_date" property="loanDate" jdbcType="DATE" />
     <result column="loan_date_end" property="loanDateEnd" jdbcType="DATE" />
@@ -39,7 +40,7 @@
     id, uid, apply_type, prod_id, apply_term, apply_term_type, apply_quota, apply_note, 
     apply_time, apply_status, status_note, contact_name, telephone, is_realcharge, ap_chargeterm, 
     ap_marry, bank, ap_education, bankname, bank_account, approve_muserid, loancard, 
-    warning_sum, warning_later, warning_early, approve_quota, loan_date, loan_date_end, 
+    warning_sum, warning_later, warning_early, pre_quota, approve_quota, loan_date, loan_date_end, 
     modify_time, isdel, createdtime, is_pub
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
@@ -400,6 +401,7 @@
       warning_sum = #{warningSum,jdbcType=INTEGER},
       warning_later = #{warningLater,jdbcType=TINYINT},
       warning_early = #{warningEarly,jdbcType=TINYINT},
+      pre_quota = #{preQuota,jdbcType=INTEGER},
       approve_quota = #{approveQuota,jdbcType=INTEGER},
       loan_date = #{loanDate,jdbcType=DATE},
       loan_date_end = #{loanDateEnd,jdbcType=DATE},

@@ -53,6 +53,8 @@ public class ApplyLoan {
 
     private Byte warningEarly;
 
+    private Integer preQuota;
+    
     private Integer approveQuota;
 
     private Date loanDate;

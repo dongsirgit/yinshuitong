@@ -82,27 +82,29 @@
 						<td>申请产品</td>
 						<td>订单状态</td>
 						<td>预授信额度</td>
+						<td>银行审批额度</td>
 						<td>操作</td>
 					</tr>
 					<c:forEach items="${list}" var="loan_temp">
 						<tr>
 							<td>
-							
 	                        	<a href="<%=basePath %>/users/loanList/reviseInfo?id=${loan_temp.id}" target="_top" class="money">
 	                        		<c:out value="${loan_temp.applyQuota}"/>万元
 	                        	</a>
-                        	
+							</td>
+							<td>
+								<fmt:formatDate value="${loan_temp.applyTime}" pattern="yyyy-MM-dd" />
 							</td>
 							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>
+								<c:if test="${loan_temp.applyStatus=='100'}">审核中</c:if>
+							</td>
+							<td>预授信额度</td>
+							<td>${loan_temp.approveQuota}</td>
 							<td class="handle">
-									<a href="<%=basePath %>/users/loanList/reviseInfo?id=${loan_temp.id}" target="_top">修改</a>
-									<a href="javascript:void(0);"
-										onclick="del_applyLoan(${loan_temp.id})">删除</a>
-									<a href = "javascript:void(0);"
-										onclick="smt_applyLoan(${loan_temp.id})">提交</a>
+									<a href="javascript:quxiao(${loan_temp.id});">取消</a>
+									<a href="javascript:chakan(${loan_temp.id});"
+										onclick="chakan(${loan_temp.id})">查看详情</a>
 								</td>
 						</tr>
 					</c:forEach>
