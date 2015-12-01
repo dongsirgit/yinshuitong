@@ -312,7 +312,7 @@
     set user_pass = #{userPass,jdbcType=VARCHAR}
     where mobilephone = #{mobilePhone,jdbcType=VARCHAR}
   </update>
-  <update id="updateByIdSelective" parameterType="com.baiwang.banktax.beans.User" >
+  <update id="updateByPhoneSelective" parameterType="com.baiwang.banktax.beans.User" >
     update bt_user
     <set >
       <if test="mobilePhone != null" >
@@ -433,7 +433,7 @@
         vrf_areaid = #{vrfAreaid,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=BIGINT}
+    where  mobilephone = #{mobilePhone,jdbcType=VARCHAR}
   </update>
   <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 

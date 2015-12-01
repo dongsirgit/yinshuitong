@@ -73,4 +73,11 @@ public class UserServiceImpl implements IUserService{
         
     }
 
+    @Override
+    public void updateByPhoneSelective(User user) {
+        
+        userDao.updateByPhoneSelective(user);
+        
+    }
+
 }

@@ -9,7 +9,7 @@ public interface UserMapper {
     void userRegister(User user);
     int insertSelective(User record);
     
-    int updateByIdSelective(User record);
+    void updateByPhoneSelective(User user);
     void updatePwdByMobilePhone(@Param(value="mobilePhone")String mobilePhone,@Param(value="userPass")String userPass);
     
     User selectById(Long id);

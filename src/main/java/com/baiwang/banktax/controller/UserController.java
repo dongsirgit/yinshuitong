@@ -1,5 +1,7 @@
 package com.baiwang.banktax.controller;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -124,12 +126,17 @@ public class UserController {
      */
     @RequestMapping(value = "/login")
     @ResponseBody
-    public int login(User user, HttpSession session){
+    public int login(User user, HttpServletRequest request,HttpSession session){
         if(user != null && !StringUtils.hasBlank(user.getMobilePhone(),user.getUserPass())){
             User loginedUser = userService.selectByMobilePhoneAndUserPass(user);
             if(null == loginedUser){
                 return Constant.USER_LOGIN_ERROR;
             }else{
+                //更新登录时间及IP
+                loginedUser.setLastLogIp(IPUtil.getIpAddr(request));
+                loginedUser.setLastLogTime(new Date(System.currentTimeMillis()));
+                userService.updateByPhoneSelective(loginedUser);
+                loginedUser = userService.selectByMobilePhone(loginedUser.getMobilePhone());
                 session.setAttribute(loginedUserStr, loginedUser);
                 logger.info("登录成功: "+user.getMobilePhone());
                 return Constant.SUCCESS;
