@@ -24,12 +24,13 @@
     </style>
     
     <script type="text/javascript">
-		
+    	var id_sub = 0;
 		$(document).ready(function(){
 			
 			//服务协议已阅读状态
 			$(".readdiv span").click(function(){
-				$(this).children("em").toggleClass("colorf")
+				id_sub +=1;
+				$(this).children("em").toggleClass("colorf");
 			});
 			
 			$(".fdivbtn2").click(function(){
@@ -40,6 +41,13 @@
 		
 		
 		function nextIdentify(){//点击去认证
+			if(id_sub%2==0){
+				$("#xieyidiv").hide();//阅读协议
+			}else{
+				$("#xieyidiv").show();//阅读协议
+				return;
+			}
+			
 			//到国税网站认证
 			window.open('http://www.baidu.com');
 			$('#div_iden').show();
@@ -115,7 +123,7 @@
    	</div>
     
     <div class="mask_alpha" style="display: none;"></div>
-    <div id='div_login' class="fdiv"  style="display: none;">
+    <div id='xieyidiv' class="fdiv"  style="display: none;">
         <p>请阅读协议并同意！</p>
         <div><button class="fdivbtn2">确定</button>
         </div>

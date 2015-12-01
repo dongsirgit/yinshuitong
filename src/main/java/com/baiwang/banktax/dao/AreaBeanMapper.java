@@ -75,7 +75,7 @@ public interface AreaBeanMapper {
 	  * @date 2015年11月30日 下午3:46:04
 	  */
 	int updateUser(@Param("corpName")String corpName, @Param("taxSn")String taxSn, 
-			@Param("idcard")String idcard, @Param("id")Long id);
+			@Param("idcard")String idcard, @Param("id")Long id, @Param("taxVerify")String taxVerify);
 
 	/**
 	  * @author gkm

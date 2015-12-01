@@ -70,8 +70,7 @@ public class IidentifyServiceImpl implements IidentifyService{
 	public AreaBean getVerifyType(User user,Integer id){
 		
 		if(user.getTaxVerify() != 4){//没有认证通过,可以更改认证地区
-			int su = dao.updateArea(user.getId(), id);//没有认证,更新user表的字段
-			System.out.println("实名认证选择地区下一部 更新user表vrf_areaid字段,结果:"+su);
+			dao.updateArea(user.getId(), id);//没有认证,更新user表的字段
 		}
 		
 		return dao.getVerifyType(id);
@@ -101,7 +100,7 @@ public class IidentifyServiceImpl implements IidentifyService{
 			return -2;
 		}
 		
-		return dao.updateUser(corpName, taxSn, idcard, id);
+		return dao.updateUser(corpName, taxSn, idcard, id, "4");
 	}
 	
 	/**
@@ -122,10 +121,10 @@ public class IidentifyServiceImpl implements IidentifyService{
 		int tax = dao.selectUserByTaxSn(taxSn);
 		System.out.println("纳税号名认证次数:"+tax);
 		if(tax>0){
-			return -2;
+			return -22;
 		}
 		
-		return dao.updateUser(corpName, taxSn, idcard, id);
+		return dao.updateUser(corpName, taxSn, idcard, id, "3");
 	}
 	
 	/**

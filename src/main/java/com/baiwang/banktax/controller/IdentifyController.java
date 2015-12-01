@@ -238,15 +238,14 @@ public class IdentifyController {
         			success = -3;
         		}else
         			success = service.plat3(corpName, taxSn, "", user.getId());
-        		
+	        		session.setAttribute(ConfigUtil.getLoginedUserStr(), service.selectById(user.getId()));
         	}else{
-        		success = -2;
+        		success = -2;//验证码错误
         	}
         }else{
         	success = -1;
         }
         logger.info("实名认证 平台3 去认证----用户id:" + user.getId()+",认证结果:"+success);
-		session.setAttribute(ConfigUtil.getLoginedUserStr(), service.selectById(user.getId()));
 		map.put("success", success);
 		return map;
 	}

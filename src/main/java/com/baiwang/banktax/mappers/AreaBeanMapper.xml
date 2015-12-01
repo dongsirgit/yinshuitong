@@ -162,7 +162,7 @@
   	ap_name = '普京', 
   	address = '北京市海淀区', 
   	license_regnum = '888888', 
-  	tax_verify = '4', 
+  	tax_verify = #{taxVerify}, 
   	update_time = now() where id = #{id} 
   </update>
   

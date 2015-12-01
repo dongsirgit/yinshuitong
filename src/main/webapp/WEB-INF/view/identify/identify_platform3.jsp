@@ -19,11 +19,12 @@
     </style>
     
     <script type="text/javascript">
-		
+		var id_sub = 0;
 		$(document).ready(function(){
 			
 			//服务协议已阅读状态
 			$(".readdiv span").click(function(){
+				id_sub +=1;
 				$(this).children("em").toggleClass("colorf")
 			});
 			
@@ -36,14 +37,34 @@
 		
 		
 		function nextIdentify(){
-			if($('#corpName').val()=='请填写公司全称'){
-				$('#corpName').val('')
+			if($('#corpName').val()=='请填写公司全称' || $('#corpName').val()==''){
+				$('#corpName').val('');
+				$('#sp_fail_cor').show();
+				return false;
 			}
-			if($('#taxSn').val()=='请填写公司纳税识别号'){
-				$('#taxSn').val('')
+			if(!/^[\u4e00-\u9fa50-9a-zA-Z]{1,20}$/.test($("#corpName").val())){
+				$('#sp_fail_cor').show();
+				return ;
 			}
+			if($('#taxSn').val()=='请填写公司纳税识别号' || $('#taxSn').val()==''){
+				$('#taxSn').val('');
+				$('#sp_fail_tax').show();
+				return false;
+			}
+			if(!/^[\u4e00-\u9fa50-9a-zA-Z]{1,20}$/.test($("#taxSn").val())){
+				$('#sp_fail_tax').show();
+				return ;
+			}
+			
 			if($('#code').val()=='请输入验证码'){
 				$('#code').val('')
+			}
+			
+			if(id_sub%2==0){
+				$("#xieyidiv").hide();//阅读协议
+			}else{
+				$("#xieyidiv").show();//阅读协议
+				return;
 			}
 			var data = $('#form').serialize();
 			 $.ajax({
@@ -57,10 +78,18 @@
 						if(data.success=='1'){
 							$('.fdiv').hide();
 							location.href='<%=basePath %>/users/identify/succes';
-						}else if(data.success == -2){
+						}
+						else if(data.success == -2){//验证码错误
+							$('#sp_fail_code').show();
+						}
+						else if(data.success == -1){//验证码错误
+							$('#sp_fail_code_null').show();
+						}
+						else if(data.success == -22){//重复认证
 							$('#div_reiden').show();
 							$('#mask_alpha').show();
-						}else if(data.success == -2){
+						}
+						else if(data.success == -3){
 							$('#div_iniden').show();
 							$('#mask_alpha').show();
 						}else{
@@ -84,6 +113,7 @@
 		
 		
 		function corfocus(obj){
+			$('#sp_fail_cor').hide();
 			if(obj.value =='请填写公司全称'){
 				obj.value ='';
 			}
@@ -91,10 +121,15 @@
 		function corblur(obj){
 			if(obj.value == ''){
 				obj.value ='请填写公司全称';
-			}
+				$('#sp_fail_cor').show();
+			}else 
+				if(!/^[\u4e00-\u9fa50-9a-zA-Z]{1,20}$/.test($("#corpName").val())){
+					$('#sp_fail_cor').show();
+				}
 		}
 		
 		function taxfocus(obj){
+			$('#sp_fail_tax').hide();
 			if(obj.value =='请填写公司纳税识别号'){
 				obj.value ='';
 			}
@@ -102,10 +137,18 @@
 		function taxblur(obj){
 			if(obj.value == ''){
 				obj.value ='请填写公司纳税识别号';
-			}
+				$('#sp_fail_tax').show();
+			}else 
+				if(!/^[\u4e00-\u9fa50-9a-zA-Z]{1,20}$/.test($("#taxSn").val())){
+					$('#sp_fail_tax').show();
+				}
 		}
 		
+		
 		function codefocus(obj){
+			$('#sp_fail_code').hide();
+			$('#sp_fail_code_null').hide();
+			
 			if(obj.value =='请输入验证码'){
 				obj.value ='';
 			}
@@ -113,6 +156,7 @@
 		function codeblur(obj){
 			if(obj.value == ''){
 				obj.value ='请输入验证码';
+				$('#sp_fail_code_null').hide();
 			}
 		}
 		
@@ -138,17 +182,21 @@
    		<div style="width: 50%; height:auto!important; height:60px; min-height:60px;">
    			<form id = 'form' enctype="multipart/form-data">
 		   		<p style="margin:20px">
-		   			<input id="corpName" style="width: 300px;" name="corpName" type="text" value="请填写公司全称" onfocus="corfocus(this)" onblur="corblur(this)">
+		   			<input id="corpName" style="width: 300px;" name="corpName" type="text" value="请填写公司全称" onfocus="corfocus(this)" onblur="corblur(this)" maxlength="20">
 		   			<br/>
+		   			<span id='sp_fail_cor' style=" font-size: 13px; color: red; display: none;">请输入正确公司名称</span>
 		   		</p>
 		   		<p style="margin:20px">
-		   			<input id="taxSn" name="taxSn" style="width: 300px;" type="text" value="请填写公司纳税识别号"  onfocus="taxfocus(this)" onblur="taxblur(this)">
+		   			<input id="taxSn" name="taxSn" style="width: 300px;" type="text" value="请填写公司纳税识别号"  onfocus="taxfocus(this)" onblur="taxblur(this)" maxlength="20">
 		   			<br/>
+		   			<span id='sp_fail_tax' style=" font-size: 13px; color: red; display: none;">请输入正确纳税识别号</span>
 		   		</p>
 		   		<div class="yzm form-item">
                 	<input type="text" class="changeState" name="code" id="code" style="width: 235px;" 
-                		value="请输入验证码" onfocus="codefocus(this)" onblur="codeblur(this)"/><!-- onblur="check_code();"  -->
+                		value="请输入验证码" onfocus="codefocus(this)" onblur="codeblur(this)" maxlength="4"/><!-- onblur="check_code();"  -->
                     <img id='img_code' src="<%=basePath%>/imageServlet" alt="验证码" title="点击更换" id="code_image" onclick="changeCode()"/>
+                    <span id='sp_fail_code' style=" font-size: 13px; color: red; display:none;"><br>验证码输入错误</span>
+                    <span id='sp_fail_code_null' style=" text-align:right; font-size: 13px; color: red; display:none;"><br>请输入验证码</span>
                	</div>
                	
 		   		<p style="margin:20px">税务登记证复印件加盖公章: <input type="file" > <br/></p>
@@ -175,7 +223,7 @@
    	</div>
     
     <div class="mask_alpha" style="display: none;"></div>
-    <div id='div_login' class="fdiv"  style="display: none;">
+    <div id='xieyidiv' class="fdiv"  style="display: none;">
         <p>请阅读协议并同意！</p>
         <div><button class="fdivbtn2">确定</button>
         </div>
