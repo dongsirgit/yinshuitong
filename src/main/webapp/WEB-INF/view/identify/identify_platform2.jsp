@@ -59,8 +59,12 @@
 					//dataType:"text",
 					success:function(data){
 						//alert(JSON.stringify(data));
-						if(data.suc=='1'){
+						if(data.success=='1'){
+							$('.fdiv').hide();
 							location.href='<%=basePath %>/users/identify/success';
+						}else if(data.success == '-2'){
+							$('#div_reiden').show();
+							$('#mask_alpha').show();
 						}else{
 							$('#sp_fail').show();
 						}
@@ -158,6 +162,12 @@
     <div class="mask_alpha" style="display: none;"></div>
     <div id='div_login' class="fdiv"  style="display: none;">
         <p>请阅读协议并同意！</p>
+        <div><button class="fdivbtn2">确定</button>
+        </div>
+    </div>
+    
+    <div id='div_reiden' class="fdiv"  style="display: none;">
+        <p>该企业已经通过实名认证，不能重复认证!</p>
         <div><button class="fdivbtn2">确定</button>
         </div>
     </div>

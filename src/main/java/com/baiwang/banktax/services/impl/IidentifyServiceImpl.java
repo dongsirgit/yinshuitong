@@ -69,7 +69,7 @@ public class IidentifyServiceImpl implements IidentifyService{
 	@Transactional
 	public AreaBean getVerifyType(User user,Integer id){
 		
-		if(!user.getIdcardStatus()){
+		if(user.getTaxVerify() != 4){//没有认证通过,可以更改认证地区
 			int su = dao.updateArea(user.getId(), id);//没有认证,更新user表的字段
 			System.out.println("实名认证选择地区下一部 更新user表vrf_areaid字段,结果:"+su);
 		}
@@ -93,6 +93,37 @@ public class IidentifyServiceImpl implements IidentifyService{
 	public int plat2(String corpName, String taxSn, String idcard, Long id){
 		
 		//TODO 接口认证
+		
+		//一个纳税号只能实名认证一次
+		int tax = dao.selectUserByTaxSn(taxSn);
+		System.out.println("纳税号名认证次数:"+tax);
+		if(tax>0){
+			return -2;
+		}
+		
+		return dao.updateUser(corpName, taxSn, idcard, id);
+	}
+	
+	/**
+	  * @author gkm
+	  * @Description: 平台3的认证
+	  * @param @param corpName
+	  * @param @param taxSn
+	  * @param @param idcard
+	  * @param @param id
+	  * @param @return  
+	  * @return int  
+	  * @throws
+	  * @date 2015年11月30日 下午3:43:47
+	  */
+	public int plat3(String corpName, String taxSn, String idcard, Long id){
+		
+		//一个纳税号只能实名认证一次
+		int tax = dao.selectUserByTaxSn(taxSn);
+		System.out.println("纳税号名认证次数:"+tax);
+		if(tax>0){
+			return -2;
+		}
 		
 		return dao.updateUser(corpName, taxSn, idcard, id);
 	}

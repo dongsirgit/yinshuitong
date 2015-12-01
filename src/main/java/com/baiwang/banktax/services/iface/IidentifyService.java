@@ -63,6 +63,20 @@ public interface IidentifyService {
 	  * @date 2015年11月30日 下午3:43:47
 	  */
 	int plat2(String corpName, String taxSn, String idcard, Long id);
+	
+	/**
+	  * @author gkm
+	  * @Description: 平台3的认证
+	  * @param @param corpName
+	  * @param @param taxSn
+	  * @param @param idcard
+	  * @param @param id
+	  * @param @return  
+	  * @return int  
+	  * @throws
+	  * @date 2015年11月30日 下午3:43:47
+	  */
+	int plat3(String corpName, String taxSn, String idcard, Long id);
 
 	/**
 	  * @author gkm

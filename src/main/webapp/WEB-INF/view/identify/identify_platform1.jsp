@@ -27,12 +27,6 @@
 		
 		$(document).ready(function(){
 			
-			
-			$(document).delegate('.city',"click",function(){
-				$(this).addClass("procurrent").siblings().removeClass("procurrent");
-				$('#sp_city').text($(this).text());
-			});
-			
 			//服务协议已阅读状态
 			$(".readdiv span").click(function(){
 				$(this).children("em").toggleClass("colorf")
@@ -44,35 +38,50 @@
 			
 		})
 		
-		function getCity(){
-			var id = $('#id').val();
-			 $.ajax({
-					type:"POST",
-					url:"<%=basePath %>/users/identify/getCity",
-					data:{id:id},
-					dataType:"JSON",
-					//dataType:"text",
-					success:function(data){
-						//alert(JSON.stringify(data));
-						$(".city").remove();
-						$.each( data.list, function(i, n){
-							$("<span class='city'>&nbsp;&nbsp;"+n.aname+"&nbsp;&nbsp;</span>$").insertAfter("#city");
-						});
-						
-					},
-					error:function(XMLHttpRequest, textStatus, errorThrown) {
-			        	alert("加载失败!");
-			        }
-			});
-		}
 		
-		function nextIdentify(){
+		function nextIdentify(){//点击去认证
 			//到国税网站认证
 			window.open('http://www.baidu.com');
 			$('#div_iden').show();
+			$('#mask_alpha').show();
+			
 		}
-		function goback(){
+		function goback(){//点击返回
 			location.href = '<%=basePath %>/users/identify/';
+		}
+		
+		
+		function identSuc(){//点击认证成功
+			$.ajax({
+				type:"POST",
+				url:"<%=basePath %>/users/identify/taxResult",
+				dataType:"JSON",
+				success:function(data){
+					//alert(JSON.stringify(data));
+					/* if(data.result == '-1'){
+						//认证过
+					}else  */
+					if(data.result=="5588" && data.success == 1){
+						$('.fdiv').hide();
+						location.href='<%=basePath %>/users/identify/success'
+					}else if(data.success == -2){
+						$('#div_reiden').show();
+						$('#mask_alpha').show();
+					}else{
+						$('#div_iden').hide();
+						$('#mask_alpha').hide();
+						$('#sp_fail').show();
+					}
+					
+				},
+				error:function(XMLHttpRequest, textStatus, errorThrown) {
+					if(XMLHttpRequest.responseText=="timeOut"){
+		        		location.reload();
+		        	}else{
+		        		alert("Error_plat1");
+		        	}
+		        }
+		});
 		}
 		
     </script>
@@ -101,7 +110,7 @@
    			<br/>
     		<span id='sp_fail' style=" font-size: 13px; color: red; display:none;">认证失败，如有问题请联系客服！</span>
    		</div>
-    	<input type="hidden" id='id'>
+    	
        
    	</div>
     
@@ -114,9 +123,16 @@
     <div id='div_iden' class="fdiv"  style="display: none;">
         <p>系统已经引导您到${province}国税局网站调取涉税数据</p>
         <div><button style="width: 160px;" class="fdivbtn2">遇到问题,认证失败</button>
-        <button class="fdivbtn1" onclick="javascript:location.href='<%=basePath %>/users/identify/success';">认证成功</button></div>
+        <button class="fdivbtn1" onclick="javascript:identSuc();">认证成功</button></div>
         <br/><span>操作过程中有任何疑问可咨询客服热线 400000000</span>
     </div>
+    
+    <div id='div_reiden' class="fdiv"  style="display: none;">
+        <p>该企业已经通过实名认证，不能重复认证!</p>
+        <div><button class="fdivbtn2">确定</button>
+        </div>
+    </div>
+    
     
     <%@include file="../base/footer.html" %>
     

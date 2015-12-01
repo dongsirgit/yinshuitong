@@ -54,12 +54,12 @@ public class IdentifyController {
 	public Map<String, Object> identflag(Integer id, HttpSession session){
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		System.out.println("id---------"+id);
+		logger.info("产品申请--------申请产品id:"+id);
 		User user = (User) session.getAttribute(ConfigUtil.getLoginedUserStr());
 		//TODO  判断认证产品地区
-		Boolean idcardStatus = user.getIdcardStatus();
-		map.put("idcardStatus", idcardStatus);//是否认证
-		if(idcardStatus){
+		Byte TaxVerify = user.getTaxVerify();
+		map.put("TaxVerify", TaxVerify);//是否认证
+		if(TaxVerify == 4){//认证通过
 			//判断产品地区和认证开通地区
 			String area = service.getAreaFlag(id, user.getVrfAreaid());
 			map.put("areaflag", area);
@@ -119,8 +119,9 @@ public class IdentifyController {
 	public ModelAndView identifyNext(Integer id, HttpSession session){
 		User user = (User) session.getAttribute(ConfigUtil.getLoginedUserStr());
 		logger.info("实名认证 选择省份 下一步----用户id:" + user.getId()+"------选择的省份id:"+id);
-		//ArrayList<AreaBean> list = service.getProvince();
+		
 		AreaBean area = service.getVerifyType(user, id);
+		logger.info("实名认证 选择省份 下一步----用户id:" + user.getId()+"------认证类型:"+area.getVerifyType());
 		if("0".equals(area.getVerifyType())){
 			return new ModelAndView("identify/identify_platform1").addObject("province", area.getAname());
 		}else if("1".equals(area.getVerifyType())){
@@ -130,6 +131,40 @@ public class IdentifyController {
 		}
 		
 		return new ModelAndView("identify/identify_platform1");
+	}
+	
+	
+	
+	/**
+	 * 
+	 * @author gkm
+	 * @Description: 税局认证 成功跳转
+	 * @param @return  
+	 * @return String  
+	 * @throws
+	 * @date 2015年11月30日 下午3:33:51
+	 */
+	@RequestMapping("/taxResult")
+	@ResponseBody
+	public Map taxResult(HttpSession session){
+		User user = (User) session.getAttribute(ConfigUtil.getLoginedUserStr());
+		logger.info("---税局认证结果----用户id为:"+user.getId());
+		Map<String, Object> map = new HashMap<String, Object>();
+		String result = "-1";
+		/*if(4 == user.getTaxVerify()){//认证过
+			map.put("result", result);
+			return map;
+		}*/
+		//TODO 接收税局数据,放入session
+		result = "5588";
+		
+		map.put("result", result);//税局返回结果
+		int success = service.plat2("税局公司", "9999991111111", "11111196969111111", user.getId());//更新企业信息
+		map.put("success", success);
+		
+		session.setAttribute(ConfigUtil.getLoginedUserStr(), service.selectById(user.getId()));
+		logger.info("---税局认证结果--用户id为:"+user.getId()+"---结果:"+result+",更新用户数据结果:"+success);
+		return map;
 	}
 	
 	/**
@@ -161,12 +196,16 @@ public class IdentifyController {
 	 */
 	@RequestMapping("plat2")
 	@ResponseBody
-	public Map plat2(String corpName, String taxSn, String idcard, HttpSession session){
+	public Map<String, Object> plat2(String corpName, String taxSn, String idcard, HttpSession session){
 		User user = (User) session.getAttribute(ConfigUtil.getLoginedUserStr());
 		logger.info("实名认证 平台2 去认证----用户id:" + user.getId()+"--企业名称:"+corpName+",纳税号:"+taxSn+",法人身份证号:"+idcard);
+		//TODO　平台2去认证
+		
 		Map<String, Object> map = new HashMap<String, Object>();
-		int su = service.plat2(corpName, taxSn, idcard, user.getId());
-		map.put("suc", su);
+		int success = service.plat2(corpName, taxSn, idcard, user.getId());
+		
+		map.put("success", success);
+		logger.info("实名认证 平台2去认证----用户id:" + user.getId()+",认证结果:"+success);
 		session.setAttribute(ConfigUtil.getLoginedUserStr(), service.selectById(user.getId()));
 		return map;
 	}
@@ -194,10 +233,11 @@ public class IdentifyController {
 		int success = 0;
         if (!"".equals(StringUtils.getString(imageCode))) {//校验验证码
         	if(StringUtils.getString(code).equals(imageCode)){//校验验证码
-        		//TODO 平台2接口
-        		
-        		int su = service.plat2(corpName, taxSn, "33339696969696969", user.getId());
-        		success = 1;
+        		//TODO 平台3 认证
+        		if(null != user.getTaxVerify() && user.getTaxVerify()>0 && user.getTaxVerify()<4){//认证中
+        			success = -3;
+        		}else
+        			success = service.plat3(corpName, taxSn, "", user.getId());
         		
         	}else{
         		success = -2;
@@ -205,9 +245,7 @@ public class IdentifyController {
         }else{
         	success = -1;
         }
-		
-		
-		
+        logger.info("实名认证 平台3 去认证----用户id:" + user.getId()+",认证结果:"+success);
 		session.setAttribute(ConfigUtil.getLoginedUserStr(), service.selectById(user.getId()));
 		map.put("success", success);
 		return map;
