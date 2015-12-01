@@ -14,7 +14,10 @@
 <script src="<%=basePath %>/scripts/common/jquery-1.11.1.min.js"></script>
 <script type="text/javascript">
 var a = '${err_msg}';
-if(a)alert(a);
+if(a){
+	alert(a);
+	location.href='<%=basePath %>/users/applyloan/toLoan';
+}
 $(function(){
 	$('#loansub').click(function(){
 		$('#loan_form').attr("action","<%=basePath %>/users/applyloan/loansub");
@@ -27,7 +30,7 @@ $(function(){
 	<iframe src="<%=basePath %>/basic/head" width="100%" height="74px"
 		frameborder="0" scrolling="no"></iframe>
 	<div>
-		<h1 align="center">填写申请</h1>
+		<h1 align="center" >填写申请</h1>
 	</div>
 
 	<div class="main">
@@ -73,26 +76,30 @@ $(function(){
 							请输入正确的手机号</span>
 					</div>
 					<div class="item">
-						<div class="item">
-							<span class="label"><b>*</b>贷款用途：</span>
-							<textarea id="applyNote" name="applyNote"
-								style="width: 320px; height: 80px;" onkeydown="textCounter();"
-								maxlength="250" class="text w264"></textarea>
-						</div>
+						<span class="label"><b>*</b>贷款用途：</span>
+						<textarea id="applyNote" name="applyNote"
+							style="width: 320px; height: 80px;" onkeydown="textCounter();"
+							maxlength="250" class="text w264"></textarea>
 						<span id="e_applyNote" class="erro colorred"
 							style="display: none;">× 至少输入10个字</span>
 					</div>
 					<div class="item">
-						<span class="label"><b>*</b>营业执照：</span> <input type="button"
-							value="上传" style="width: 80px"> <span
-							id="e_applyTermNum" class="erro colorred" style="display: none;">×
-							请上传附件</span>
+						<span class="label"><b>*</b>营业执照：</span>
+						<div>
+							<input type="button" id="browse1" value="上传附件">
+							<div id="filelist1">
+								<a class="erropro" href="javascript:;" style="display: none">* 请上传附件</a>
+							</div>
+						</div>
 					</div>
 					<div class="item">
-						<span class="label"><b>*</b>贷款申请书：</span> <input type="button"
-							value="上传" style="width: 80px"> <a href="#"
-							onclick="alert('下载成功！')">下载申请书模板</a> <span id="e_applyTermNum"
-							class="erro colorred" style="display: none;">× 请上传附件</span>
+						<span class="label"><b>*</b>贷款申请书：</span> 
+						<div>
+							<input type="button" id="browse2" value="上传附件">
+							<div id="filelist2">
+								<a class="erropro" href="javascript:;" style="display: none">* 请上传附件</a>
+							</div>
+						</div>
 					</div>
 					<div class="btnbox">
 						<input id="loansub" class="btn-yellow" type="button" value="提交">
@@ -102,6 +109,114 @@ $(function(){
 			</div>
 		</div>
 	</div>
-	<%@include file="../base/footer.html"%>
+<%@include file="../base/footer.html"%>
+<script type="text/javascript" src="<%=basePath%>/plupload/plupload.full.min.js"></script>
+<script type="text/javascript" src="<%=basePath%>/plupload/jquery.plupload.queue.js"></script>
+<script type="text/javascript" src="<%=basePath%>/plupload/zh_CN.js"></script>
+<script type="text/javascript">
+//营业执照上传
+var uploader = new plupload.Uploader({
+    browse_button : 'browse1', 
+    url : '<%=basePath%>/users/fileUpload/upload?upfiletype=0&applyId='+id, 
+    flash_swf_url : '<%=basePath%>/plupload/Moxie.swf', 
+    silverlight_xap_url : '<%=basePath%>/plupload/Moxie.xap', 
+	filters: {
+		  mime_types : [ 
+		    { title : "Image files", extensions : "jpg,jpeg,png" }
+		  ],
+		  max_file_size : '1mb'
+		},
+	multi_selection:false
+});    
+uploader.init();
+//绑定各种事件，并在事件监听函数中做你想做的事
+uploader.bind('FilesAdded',function(uploader,files){
+	if(!che_fileNamelen(files[0].name)){
+		alert("文件名过长，请修改后重新操作！\n提示：文件名不能超过35个中文或70个英文字符。");
+		uploader.removeFile(files[0]);
+		return;
+	}
+	plupload.each(files, function(file) {
+		document.getElementById('filelist1').innerHTML = '<div id="' + file.id + '">' + file.name + ' (' + plupload.formatSize(file.size) + ') <b></b></div>';
+	});
+	$("#browse1").attr('disabled',true);
+	uploader.start();
+});
+uploader.bind('UploadProgress',function(uploader,file){
+	var percent;
+	file.percent==100?percent=99:percent=file.percent
+	document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span name="uploading" style="color:red;">' + percent + "%</span>";
+});
+uploader.bind('Error',function(uploader,err){
+	if("linkTimeOut"==err.response){
+		uploader.stop();
+    	$("#browse1").attr('disabled',false);
+    	document.getElementById('filelist1').innerHTML = '<a class="erropro" href="javascript:;">* 请上传附件</a>';
+    	alert("图片类附件"+err.file.name+'  :  网络异常，上传失败，请重新上传！');
+	}else if("timeOut"==err.response){
+		uploader.stop();
+		alert("您还没有登录或登录已超时，请重新登录！");
+		location.reload();
+	}else{
+		alert(err.message);
+	}
+});
+uploader.bind('UploadComplete',function(uploader,files){
+	$("#browse1").attr('disabled',false);
+});
+
+//贷款申请书上传
+var uploader = new plupload.Uploader({
+    browse_button : 'browse2', 
+    url : '<%=basePath%>/users/fileUpload/upload?upfiletype=1&applyId='+id, 
+    flash_swf_url : '<%=basePath%>/plupload/Moxie.swf', 
+    silverlight_xap_url : '<%=basePath%>/plupload/Moxie.xap', 
+	filters: {
+		  mime_types : [ 
+		    { title : "Image files", extensions : "jpg,jpeg,png" }
+		  ],
+		  max_file_size : '1mb'
+		},
+	multi_selection:false
+});    
+uploader.init();
+//绑定各种事件，并在事件监听函数中做你想做的事
+uploader.bind('FilesAdded',function(uploader,files){
+	if(!che_fileNamelen(files[0].name)){
+		alert("文件名过长，请修改后重新操作！\n提示：文件名不能超过35个中文或70个英文字符。");
+		uploader.removeFile(files[0]);
+		return;
+	}
+	plupload.each(files, function(file) {
+		document.getElementById('filelist2').innerHTML = '<div id="' + file.id + '">' + file.name + ' (' + plupload.formatSize(file.size) + ') <b></b></div>';
+	});
+	$("#browse2").attr('disabled',true);
+	uploader.start();
+});
+uploader.bind('UploadProgress',function(uploader,file){
+	var percent;
+	file.percent==100?percent=99:percent=file.percent
+	document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span name="uploading" style="color:red;">' + percent + "%</span>";
+});
+uploader.bind('Error',function(uploader,err){
+	if("linkTimeOut"==err.response){
+		uploader.stop();
+    	$("#browse2").attr('disabled',false);
+    	document.getElementById('filelist2').innerHTML = '<a class="erropro" href="javascript:;">* 请上传附件</a>';
+    	alert("图片类附件"+err.file.name+'  :  网络异常，上传失败，请重新上传！');
+	}else if("timeOut"==err.response){
+		uploader.stop();
+		alert("您还没有登录或登录已超时，请重新登录！");
+		location.reload();
+	}else{
+		alert(err.message);
+	}
+});
+uploader.bind('UploadComplete',function(uploader,files){
+	$("#browse2").attr('disabled',false);
+});
+
+
+</script>
 </body>
 </html>

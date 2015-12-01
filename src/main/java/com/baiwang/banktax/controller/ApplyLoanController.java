@@ -30,7 +30,6 @@ public class ApplyLoanController {
 	
 	private static final Log logger = LogFactory.getLog(UserController.class);
 	
-	
 	@Resource
 	IApplyLoanService applyloanService;
 	
@@ -41,16 +40,17 @@ public class ApplyLoanController {
 	
 	@RequestMapping("loansub")
 	public String submitLoan(ApplyLoan applyLoan,HttpServletRequest requset){
-		User user = (User) requset.getSession().getAttribute(ConfigUtil.getLoginedUserStr());
-		applyLoan.setUid(user.getId());
-		applyLoan.setApplyStatus((short)100);
-		int result = applyloanService.insertSelective(applyLoan);
-		if(result==1){
-			logger.info("操作用户："+user.getMobilePhone()+";申请信息："+applyLoan.toString());
+		try{
+			User user = (User) requset.getSession().getAttribute(ConfigUtil.getLoginedUserStr());
+			applyLoan.setUid(user.getId());
+			applyLoan.setApplyStatus((short)100);
+			applyloanService.insertSelective(applyLoan);
+			logger.info("贷款申请提交成功！操作用户："+user.getMobilePhone()+";贷款信息："+applyLoan.toString());
 			return "order/submitSucess";
-		}else{
-			requset.setAttribute("err_msg", "提交失败！");
-			return "redirect:order/loan_apply";
+		}catch(Exception e){
+			requset.setAttribute("err_msg", "提交失败！请重新操作！");
+			logger.error(e);
+			return "order/loan_apply";
 		}
 	}
 
