@@ -105,6 +105,8 @@ $(function(){
 						<input id="loansub" class="btn-yellow" type="button" value="提交">
 					</div>
 					<span class="clr"></span>
+					<input type="hidden" id="yyzz_atid" name="yyzz_atid">
+					<input type="hidden" id="sqs_atid" name="sqs_atid">
 				</form>
 			</div>
 		</div>
@@ -114,10 +116,24 @@ $(function(){
 <script type="text/javascript" src="<%=basePath%>/plupload/jquery.plupload.queue.js"></script>
 <script type="text/javascript" src="<%=basePath%>/plupload/zh_CN.js"></script>
 <script type="text/javascript">
+//检验上传文件的文件名长度
+function che_fileNamelen(fileName){
+	var max_len = 75;
+	var flag=false;
+	var realLength = 0,len = fileName.length,charCode = -1;
+	for(var i=0;i<len;i++){
+		charCode = fileName.charCodeAt(i);
+		if(charCode>0 && charCode<=128) realLength +=1;
+		else realLength += 2;
+	}
+	if(realLength<=max_len) flag=true;
+	return flag;
+}
+
 //营业执照上传
 var uploader = new plupload.Uploader({
     browse_button : 'browse1', 
-    url : '<%=basePath%>/users/fileUpload/upload?upfiletype=0&applyId='+id, 
+    url : '<%=basePath%>/users/fileUpload/upload?upfiletype=0', 
     flash_swf_url : '<%=basePath%>/plupload/Moxie.swf', 
     silverlight_xap_url : '<%=basePath%>/plupload/Moxie.xap', 
 	filters: {
@@ -143,9 +159,10 @@ uploader.bind('FilesAdded',function(uploader,files){
 	uploader.start();
 });
 uploader.bind('UploadProgress',function(uploader,file){
-	var percent;
-	file.percent==100?percent=99:percent=file.percent
-	document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span name="uploading" style="color:red;">' + percent + "%</span>";
+	document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span name="uploading" style="color:red;">' + file.percent + "%</span>";
+});
+uploader.bind('FileUploaded',function(uploader,file,result){
+	$('#yyzz_atid').val(eval("("+result.response+")").atId);
 });
 uploader.bind('Error',function(uploader,err){
 	if("linkTimeOut"==err.response){
@@ -166,9 +183,9 @@ uploader.bind('UploadComplete',function(uploader,files){
 });
 
 //贷款申请书上传
-var uploader = new plupload.Uploader({
+var uploader_sqs = new plupload.Uploader({
     browse_button : 'browse2', 
-    url : '<%=basePath%>/users/fileUpload/upload?upfiletype=1&applyId='+id, 
+    url : '<%=basePath%>/users/fileUpload/upload?upfiletype=1', 
     flash_swf_url : '<%=basePath%>/plupload/Moxie.swf', 
     silverlight_xap_url : '<%=basePath%>/plupload/Moxie.xap', 
 	filters: {
@@ -179,40 +196,41 @@ var uploader = new plupload.Uploader({
 		},
 	multi_selection:false
 });    
-uploader.init();
+uploader_sqs.init();
 //绑定各种事件，并在事件监听函数中做你想做的事
-uploader.bind('FilesAdded',function(uploader,files){
+uploader_sqs.bind('FilesAdded',function(uploader_sqs,files){
 	if(!che_fileNamelen(files[0].name)){
 		alert("文件名过长，请修改后重新操作！\n提示：文件名不能超过35个中文或70个英文字符。");
-		uploader.removeFile(files[0]);
+		uploader_sqs.removeFile(files[0]);
 		return;
 	}
 	plupload.each(files, function(file) {
 		document.getElementById('filelist2').innerHTML = '<div id="' + file.id + '">' + file.name + ' (' + plupload.formatSize(file.size) + ') <b></b></div>';
 	});
 	$("#browse2").attr('disabled',true);
-	uploader.start();
+	uploader_sqs.start();
 });
-uploader.bind('UploadProgress',function(uploader,file){
-	var percent;
-	file.percent==100?percent=99:percent=file.percent
-	document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span name="uploading" style="color:red;">' + percent + "%</span>";
+uploader_sqs.bind('UploadProgress',function(uploader_sqs,file){
+	document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span name="uploading" style="color:red;">' + file.percent + "%</span>";
 });
-uploader.bind('Error',function(uploader,err){
+uploader_sqs.bind('FileUploaded',function(uploader_sqs,file,result){
+	$('#sqs_atid').val(eval("("+result.response+")").atId);
+});
+uploader_sqs.bind('Error',function(uploader_sqs,err){
 	if("linkTimeOut"==err.response){
-		uploader.stop();
+		uploader_sqs.stop();
     	$("#browse2").attr('disabled',false);
     	document.getElementById('filelist2').innerHTML = '<a class="erropro" href="javascript:;">* 请上传附件</a>';
     	alert("图片类附件"+err.file.name+'  :  网络异常，上传失败，请重新上传！');
 	}else if("timeOut"==err.response){
-		uploader.stop();
+		uploader_sqs.stop();
 		alert("您还没有登录或登录已超时，请重新登录！");
 		location.reload();
 	}else{
 		alert(err.message);
 	}
 });
-uploader.bind('UploadComplete',function(uploader,files){
+uploader_sqs.bind('UploadComplete',function(uploader_sqs,files){
 	$("#browse2").attr('disabled',false);
 });
 

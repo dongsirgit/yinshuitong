@@ -78,6 +78,9 @@
       #{createdtime,jdbcType=TIMESTAMP}, #{isPub,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.baiwang.banktax.beans.ApplyLoan" >
+  	<selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">
+		SELECT LAST_INSERT_ID() AS id
+	</selectKey>
     insert into bt_apply_loan
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -424,6 +427,70 @@
   <update id="quxiao">
   	update bt_apply_loan set apply_status = 200 where id = #{id} and uid = #{userId}
   </update>
+  
+  
+  
+  
+  <resultMap id="DetailResultMap" type="com.baiwang.banktax.model.ApplyDetailBean" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="applyStatus" property="applyStatus" jdbcType="SMALLINT" />
+    <result column="applyTime" property="applyTime" jdbcType="TIMESTAMP" />
+    <result column="preQuota" property="preQuota" jdbcType="INTEGER" />
+    <result column="approveQuota" property="approveQuota" jdbcType="INTEGER" />
+    <result column="statusNote" property="statusNote" jdbcType="VARCHAR" />
+    <result column="prodId" property="prodId" jdbcType="INTEGER" />
+    <result column="relaBank" property="relaBank" jdbcType="VARCHAR" />
+    <result column="pname" property="pname" jdbcType="VARCHAR" />
+    <result column="corpName" property="corpName" jdbcType="VARCHAR" />
+    <result column="taxSn" property="taxSn" jdbcType="VARCHAR" />
+    <result column="applyQuota" property="applyQuota" jdbcType="INTEGER" />
+    <result column="applyTerm" property="applyTerm" jdbcType="INTEGER" />
+    <result column="contactName" property="contactName" jdbcType="VARCHAR" />
+    <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+    <result column="applyNote" property="applyNote" jdbcType="VARCHAR" />
+    
+    <collection property="attaList" ofType="com.baiwang.banktax.beans.UserAttacht">
+    	<id column="d_id" property="id" jdbcType="BIGINT" />
+	    <result column="userid" property="userid" jdbcType="BIGINT" />
+	    <result column="apply_id" property="applyId" jdbcType="BIGINT" />
+	    <result column="batch_id" property="batchId" jdbcType="BIGINT" />
+	    <result column="createdtime" property="createdtime" jdbcType="TIMESTAMP" />
+	    <result column="attachNote" property="attachNote" jdbcType="VARCHAR" />
+	    <result column="attachType" property="attachType" jdbcType="TINYINT" />
+	    <result column="attachment" property="attachment" jdbcType="VARCHAR" />
+	    <result column="attachurl" property="attachurl" jdbcType="VARCHAR" />
+    </collection>
+  </resultMap>
+  
+  <select id="queryLoanDeatil" resultMap="DetailResultMap">
+  	SELECT a.id id, a.apply_status applyStatus, a.apply_time applyTime, a.pre_quota preQuota, a.approve_quota approveQuota, 
+	a.status_note statusNote, a.prod_id, b.rela_bank relaBank, b.pname pname, c.corp_name corpName, c.tax_sn taxSn, 
+	a.apply_quota applyQuota, a.apply_term applyTerm, a.contact_name contactName, a.telephone telephone, 
+	a.apply_note applyNote, d.id d_id, d.attach_note attachNote, d.attach_type attachType, d.attachment attachment, d.attachurl attachurl  
+	from bt_apply_loan a
+	LEFT JOIN bt_product b ON a.prod_id = b.id 
+	LEFT JOIN bt_user c ON a.uid = c.id 
+	LEFT JOIN bt_user_attacht d ON a.id = d.apply_id 
+	where a.id = #{id} and a.uid = #{uid} 
+	ORDER BY d.attach_type
+  </select>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
 </mapper>

@@ -176,7 +176,7 @@ public class IidentifyServiceImpl implements IidentifyService{
 		List<Integer> list = dao.queryLoan(id);
 		if(null != list && list.size()>0){
 			for(Integer l :list){
-				if(null != l && l < 600){
+				if(null != l && l < 600 && 200 != l){
 					i += 1;
 				}
 			}

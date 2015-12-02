@@ -105,6 +105,18 @@ public class IAttachServiceImpl implements IAttachService {
 		return userAttachDao.selectTypesById(applyId);
 		
 	}
+
+	/**
+	  * <p>Title: updateApplyIdByPK</p>
+	  * <p>Description: </p>
+	  * @param record
+	  * @return
+	  * @see com.baiwang.banktax.services.iface.IAttachService#updateApplyIdByPK(com.baiwang.banktax.beans.UserAttacht)
+	  */
+	@Override
+	public int updateApplyIdByPK(UserAttacht record) {
+		return userAttachDao.updateApplyIdByPK(record);
+	}
 	
 
 }

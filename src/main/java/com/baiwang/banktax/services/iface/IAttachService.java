@@ -23,8 +23,13 @@ public interface IAttachService {
     int updateByPrimaryKeySelective(UserAttacht record);
 
     int updateByPrimaryKey(UserAttacht record);
+    
+    int updateApplyIdByPK(UserAttacht record);
+    
     UserAttacht selectByType(Long applyid, Byte attachType);
+    
     List<UserAttacht> selectByIdType(Long applyid, Byte attachType,Long uid);
+    
     UserAttacht selectById(Long id,Long uid);
     
     Integer selectTypesById(Long applyId);

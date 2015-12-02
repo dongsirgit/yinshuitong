@@ -21,6 +21,8 @@ public interface UserAttachtMapper {
 
     int updateByPrimaryKey(UserAttacht record);
     
+    int updateApplyIdByPK(UserAttacht record);
+    
     UserAttacht selectByCondition(UserAttacht ua);
     
     UserAttacht selectByType(@Param("applyid")Long applyid,@Param("attachType")Byte attachType);

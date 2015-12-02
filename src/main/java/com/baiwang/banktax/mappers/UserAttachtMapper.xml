@@ -84,7 +84,10 @@
       #{attachType,jdbcType=TINYINT}, #{attachment,jdbcType=VARCHAR}, #{attachurl,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.baiwang.banktax.beans.UserAttacht" >
+  <insert id="insertSelective" parameterType="com.baiwang.banktax.beans.UserAttacht" useGeneratedKeys="true" keyProperty="id" >
+    <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="id">
+		SELECT LAST_INSERT_ID() AS id
+	</selectKey>
     insert into bt_user_attacht
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -186,5 +189,8 @@
       attachment = #{attachment,jdbcType=VARCHAR},
       attachurl = #{attachurl,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateApplyIdByPK" parameterType="com.baiwang.banktax.beans.UserAttacht" >
+    update bt_user_attacht set apply_id = #{applyId,jdbcType=BIGINT} where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

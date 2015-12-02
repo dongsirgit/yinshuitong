@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.net.SocketTimeoutException;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +16,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baiwang.banktax.beans.Plupload;
 import com.baiwang.banktax.beans.User;
@@ -57,7 +60,8 @@ public class FileUploadController {
 	 *             
 	 */
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
-	public void upload(Plupload plupload, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@ResponseBody
+	public Map<String, Object> upload(Plupload plupload, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// ------------------------测试用：上传开始时间
 		User user = (User)request.getSession().getAttribute(ConfigUtil.getLoginedUserStr());
 		Long uid = 0l;
@@ -66,6 +70,7 @@ public class FileUploadController {
 			uid = user.getId();
 			account = user.getMobilePhone();
 		}
+		Map<String, Object> map = new HashMap<>();
 		try {
 			plupload.setRequest(request);
 			String name4save = FileUtil.getUpFileName(uid, FileUtil.getFileExtension(plupload.getName()));
@@ -94,6 +99,11 @@ public class FileUploadController {
 			attachService.insert(uaSingle);
 			logger.info("操作用户：" + account + ",文件上传绝对路径：" + dstFilePathAbs);
 			logger.info("操作用户：" + account + ",文件上传相对路径：" + dstFilePathRel);
+			
+			if(null != uaSingle && uaSingle.getId()>0){
+				map.put("atId", uaSingle.getId());
+			}
+			return map;
 
 		} catch (SocketTimeoutException e) {
 			response.setStatus(500);
@@ -103,10 +113,9 @@ public class FileUploadController {
 			out.flush();
 			out.close();
 			logger.error(e);
-			return ;
 		} catch (Exception e) {
 			logger.error(e);
 		}
-
+		return map;
 	}
 }
