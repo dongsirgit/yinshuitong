@@ -199,8 +199,16 @@
                     <span id='sp_fail_code_null' style=" text-align:right; font-size: 13px; color: red; display:none;"><br>请输入验证码</span>
                	</div>
                	
-		   		<p style="margin:20px">税务登记证复印件加盖公章: <input type="file" > <br/></p>
-		   		<p style="margin:20px"><input type="button" value="获取办卡人信息"> <br/></p>
+		   		<p style="margin:20px">税务登记证复印件加盖公章: 
+						<input type="button" id="browse1" value="上传附件">
+						<div id="filelist1">
+							<a class="erropro" href="javascript:;" style="display: none">* 请上传附件</a>
+						</div>
+		   			<div >
+					</div>
+		   		<br/>
+		   		</p>
+<!-- 		   		<p style="margin:20px"><input type="button" value="获取办卡人信息"> <br/></p> -->
 		   		<p> 注: 图片格式为jps、jpeg、png，单个文件不大于1M;扫描件或相片皆可,图片上的文字必须清晰;请将图片选择摆正后上传,方便工作人员审核,避免审核不通过</p>
 	   		</form>
    		</div>
@@ -242,6 +250,81 @@
     
     
     <%@include file="../base/footer.html" %>
-    
+<script type="text/javascript" src="<%=basePath%>/plupload/plupload.full.min.js"></script>
+<script type="text/javascript" src="<%=basePath%>/plupload/jquery.plupload.queue.js"></script>
+<script type="text/javascript" src="<%=basePath%>/plupload/zh_CN.js"></script>
+<script type="text/javascript">
+$(function(){
+	//检验上传文件的文件名长度
+	function che_fileNamelen(fileName){
+		var max_len = 75;
+		var flag=false;
+		var realLength = 0,len = fileName.length,charCode = -1;
+		for(var i=0;i<len;i++){
+			charCode = fileName.charCodeAt(i);
+			if(charCode>0 && charCode<=128) realLength +=1;
+			else realLength += 2;
+		}
+		if(realLength<=max_len) flag=true;
+		return flag;
+	}
+
+	//税务登记证上传
+	var uploader = new plupload.Uploader({
+	    browse_button : 'browse1', 
+	    url : '<%=basePath%>/users/fileUpload/upload?upfiletype=2', 
+	    flash_swf_url : '<%=basePath%>/plupload/Moxie.swf', 
+	    silverlight_xap_url : '<%=basePath%>/plupload/Moxie.xap', 
+		filters: {
+			  mime_types : [ 
+			    { title : "Image files", extensions : "jpg,jpeg,png" }
+			  ],
+			  max_file_size : '1mb'
+			},
+		multi_selection:false
+	});    
+	uploader.init();
+	//绑定各种事件，并在事件监听函数中做你想做的事
+	uploader.bind('FilesAdded',function(uploader,files){
+		if(!che_fileNamelen(files[0].name)){
+			alert("文件名过长，请修改后重新操作！\n提示：文件名不能超过35个中文或70个英文字符。");
+			uploader.removeFile(files[0]);
+			return;
+		}
+		plupload.each(files, function(file) {
+			document.getElementById('filelist1').innerHTML = '<div id="' + file.id + '">' + file.name + ' (' + plupload.formatSize(file.size) + ') <b></b></div>';
+		});
+		$("#browse1").attr('disabled',true);
+		uploader.start();
+	});
+	uploader.bind('UploadProgress',function(uploader,file){
+		document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span name="uploading" style="color:red;">' + file.percent + "%</span>";
+	});
+	uploader.bind('FileUploaded',function(uploader,file,result){
+		$('#yyzz_atid').val(eval("("+result.response+")").atId);
+	});
+	uploader.bind('Error',function(uploader,err){
+		if("linkTimeOut"==err.response){
+			uploader.stop();
+	    	$("#browse1").attr('disabled',false);
+	    	document.getElementById('filelist1').innerHTML = '<a class="erropro" href="javascript:;">* 请上传附件</a>';
+	    	alert("图片类附件"+err.file.name+'  :  网络异常，上传失败，请重新上传！');
+		}else if("timeOut"==err.response){
+			uploader.stop();
+			alert("您还没有登录或登录已超时，请重新登录！");
+			location.reload();
+		}else{
+			alert(err.message);
+		}
+	});
+	uploader.bind('UploadComplete',function(uploader,files){
+		$("#browse1").attr('disabled',false);
+	});
+	
+	
+	
+})
+
+</script>    
 </body>
 </html>
