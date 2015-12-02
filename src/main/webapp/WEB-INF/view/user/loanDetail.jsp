@@ -29,10 +29,10 @@
 				<td width="120" align="right" style=" padding: 5px;">订单状态：</td>
 				<td width="180" align="left">
 					<c:if test="${detail.applyStatus==100}">审核中</c:if>
-					<c:if test="${detail.applyStatus>=200 && loan_temp.applyStatus<300}">已取消</c:if>
-					<c:if test="${detail.applyStatus>=300 && loan_temp.applyStatus<400}">已确认</c:if>
-					<c:if test="${detail.applyStatus>=500 && loan_temp.applyStatus<600}">审批中</c:if>
-					<c:if test="${detail.applyStatus>=600 && loan_temp.applyStatus<700}">失败</c:if>
+					<c:if test="${detail.applyStatus>=200 && detail.applyStatus<300}">已取消</c:if>
+					<c:if test="${detail.applyStatus>=300 && detail.applyStatus<400}">已确认</c:if>
+					<c:if test="${detail.applyStatus>=500 && detail.applyStatus<600}">审批中</c:if>
+					<c:if test="${detail.applyStatus>=600 && detail.applyStatus<700}">失败</c:if>
 					<c:if test="${detail.applyStatus>=700}">完成</c:if>
 				</td>
 				<td width="120" align="right">申请时间：</td>
