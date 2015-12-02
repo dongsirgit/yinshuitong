@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.baiwang.banktax.beans.ApplyLoan;
 import com.baiwang.banktax.dao.ApplyLoanMapper;
+import com.baiwang.banktax.model.ApplyDetailBean;
 import com.baiwang.banktax.model.ApplyListBean;
 import com.baiwang.banktax.services.iface.IApplyLoanService;
 
@@ -141,6 +142,21 @@ public class IApplyLoanServiceImpl implements IApplyLoanService {
 		return dao.quxiao(id, user);
 	}
 
+	/**
+	  * @author gkm
+	  * @Description: 申请列表 查看详情
+	  * @param @param id 申请id
+	  * @param @param uid 用户id
+	  * @param @return  
+	  * @return ApplyDetailBean  
+	  * @throws
+	  * @date 2015年12月2日 下午2:44:27
+	  */
+	public ApplyDetailBean queryLoanDeatil(Integer id, Long uid){
+		
+		ApplyDetailBean bean = dao.queryLoanDeatil(id, uid);
 	
+		return bean;
+	}
 
 }
