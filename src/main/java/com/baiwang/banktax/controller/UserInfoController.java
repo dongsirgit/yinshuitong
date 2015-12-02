@@ -16,6 +16,7 @@ import com.alibaba.druid.support.logging.Log;
 import com.alibaba.druid.support.logging.LogFactory;
 import com.baiwang.banktax.beans.ApplyLoan;
 import com.baiwang.banktax.beans.User;
+import com.baiwang.banktax.model.ApplyDetailBean;
 import com.baiwang.banktax.model.ApplyListBean;
 import com.baiwang.banktax.services.iface.IApplyLoanService;
 import com.baiwang.banktax.utils.ConfigUtil;
@@ -31,7 +32,7 @@ import com.baiwang.banktax.utils.ConfigUtil;
 @RequestMapping("/users")
 public class UserInfoController {
 
-    private static final String loginedUserStr = ConfigUtil.getLoginedUserStr();
+    //private static final String loginedUserStr = ConfigUtil.getLoginedUserStr();
     private static final Log logger = LogFactory.getLog(UserController.class);
     
     @Resource
@@ -51,21 +52,50 @@ public class UserInfoController {
     public String init(@PathVariable String page, HttpSession session, Map<String, Object> map) {
     	User user = (User) session.getAttribute(ConfigUtil.getLoginedUserStr());
     	logger.info("-----UserInfoController.init-------用户:"+user.getId()+",访问页面:"+page);
-    	
-    	List<ApplyListBean> list = service.queryLoanList(user.getId());
-		map.put("list", list);
+    	if("userInfo_account".equals(page)){
+    		List<ApplyListBean> list = service.queryLoanList(user.getId());
+    		map.put("list", list);
+    	}
     	
         logger.info("开始访问页面:  " + page + ".jsp");
         return "user/" + page;
     }
     
-    
+    /**
+     * 
+      * @author gkm
+      * @Description: 贷款列表 取消操作
+      * @param @param id
+      * @param @param session
+      * @param @return  
+      * @return int  
+      * @throws
+      * @date 2015年12月2日 下午1:29:19
+     */
     @RequestMapping("/loan/quxiao")
     @ResponseBody
     public int quxiao(Integer id, HttpSession session){
     	User user = (User) session.getAttribute(ConfigUtil.getLoginedUserStr());
     	int success = service.quxiao(id, user.getId());
     	return success;
+    }
+    
+    @RequestMapping("/loan/detail")
+    public String loanDetail(Integer id, HttpSession session, Map<String, Object> map){
+    	if(null == id){
+    		return "redirect:users/init/userInfo_account";
+    	}
+    	User user = (User) session.getAttribute(ConfigUtil.getLoginedUserStr());
+    	logger.info("-----UserInfoController.loanDetail-------用户:"+user.getId()+",获取订单id:"+id);
+    	
+    	
+		ApplyDetailBean detail = service.queryLoanDeatil(id,user.getId());
+		if(null == detail){
+			return "redirect:users/init/userInfo_account";
+		}
+		map.put("detail", detail);
+    	
+    	return "user/loanDetail";
     }
     
     

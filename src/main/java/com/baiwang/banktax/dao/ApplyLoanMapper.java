@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.baiwang.banktax.beans.ApplyLoan;
+import com.baiwang.banktax.model.ApplyDetailBean;
 import com.baiwang.banktax.model.ApplyListBean;
 
 public interface ApplyLoanMapper {
@@ -42,4 +43,16 @@ public interface ApplyLoanMapper {
 	  * @date 2015年12月1日 下午6:34:15
 	  */
 	int quxiao(@Param("id")Integer id, @Param("userId")Long user);
+
+	/**
+	  * @author gkm
+	  * @Description: 申请列表 查看详情
+	  * @param @param id
+	  * @param @param uid
+	  * @param @return  
+	  * @return ApplyDetailBean  
+	  * @throws
+	  * @date 2015年12月2日 下午2:46:09
+	  */
+	ApplyDetailBean queryLoanDeatil(@Param("id")Integer id, @Param("uid")Long uid);
 }

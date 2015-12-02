@@ -63,6 +63,10 @@
 			$('#idid').val(id);
 		}
 		
+		function chakan(id){
+			
+		}
+		
 	</script>
 </head>
 <body style="background-color: #fefefe; background-image:none;height:auto!important;height:500px;min-height:500px;">
@@ -150,7 +154,7 @@
 								<c:if test="${loan_temp.applyStatus==100}">
 									<a id='quxiao${loan_temp.id}' href="javascript:quxiao(${loan_temp.id});">取消</a>
 								</c:if>
-									<a href="javascript:chakan(${loan_temp.id});"
+									<a href="<%=basePath%>/users/loan/detail?id=${loan_temp.id}"
 										onclick="chakan(${loan_temp.id})">查看详情</a>
 								</td>
 						</tr>

@@ -7,6 +7,7 @@ package com.baiwang.banktax.services.iface;
 import java.util.List;
 
 import com.baiwang.banktax.beans.ApplyLoan;
+import com.baiwang.banktax.model.ApplyDetailBean;
 import com.baiwang.banktax.model.ApplyListBean;
 
 /**
@@ -51,5 +52,17 @@ public interface IApplyLoanService {
 	  * @date 2015年12月1日 下午6:33:30
 	  */
 	public int quxiao(Integer id, Long use);
+
+	/**
+	  * @author gkm
+	  * @Description: 申请列表 查看详情
+	  * @param @param id 申请id
+	  * @param @param uid 用户id
+	  * @param @return  
+	  * @return ApplyDetailBean  
+	  * @throws
+	  * @date 2015年12月2日 下午2:44:27
+	  */
+	public ApplyDetailBean queryLoanDeatil(Integer id, Long uid);
 
 }
