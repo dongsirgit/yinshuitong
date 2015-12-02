@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import com.baiwang.banktax.beans.ApplyLoan;
 import com.baiwang.banktax.dao.ApplyLoanMapper;
-import com.baiwang.banktax.dao.UserAttachtMapper;
 import com.baiwang.banktax.model.ApplyDetailBean;
 import com.baiwang.banktax.model.ApplyListBean;
 import com.baiwang.banktax.services.iface.IApplyLoanService;
@@ -27,7 +26,6 @@ import com.baiwang.banktax.services.iface.IApplyLoanService;
 public class IApplyLoanServiceImpl implements IApplyLoanService {
 	@Resource
 	ApplyLoanMapper dao;
-	UserAttachtMapper atdao;
 
 	/**
 	  * <p>Title: deleteByPrimaryKey</p>
