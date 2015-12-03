@@ -4,6 +4,7 @@
 
 package com.baiwang.banktax.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -22,6 +23,7 @@ import com.baiwang.banktax.services.iface.IApplyLoanService;
 import com.baiwang.banktax.services.iface.IAttachService;
 import com.baiwang.banktax.services.iface.IProductService;
 import com.baiwang.banktax.utils.ConfigUtil;
+import com.baiwang.banktax.utils.DateUtils;
 import com.baiwang.banktax.utils.StringUtils;
 
 /**
@@ -60,6 +62,7 @@ public class ApplyLoanController {
 			User user = (User) requset.getSession().getAttribute(ConfigUtil.getLoginedUserStr());
 			applyLoan.setUid(user.getId());
 			applyLoan.setApplyStatus((short)100);
+			applyLoan.setStatusNote(DateUtils.dateToStr(new Date(),"yyyy-MM-dd HH:mm:ss")+"          您的贷款申请已提交，系统正在审核中");
 			applyloanService.insertSelective(applyLoan);
 			UserAttacht ua = new UserAttacht();
 			ua.setApplyId(applyLoan.getId());

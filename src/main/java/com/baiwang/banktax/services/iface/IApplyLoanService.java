@@ -6,6 +6,8 @@ package com.baiwang.banktax.services.iface;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.baiwang.banktax.beans.ApplyLoan;
 import com.baiwang.banktax.model.ApplyDetailBean;
 import com.baiwang.banktax.model.ApplyListBean;
@@ -64,5 +66,16 @@ public interface IApplyLoanService {
 	  * @date 2015年12月2日 下午2:44:27
 	  */
 	public ApplyDetailBean queryLoanDeatil(Integer id, Long uid);
+	/**
+	  * @author Administrator
+	  * @Description: 订单跟踪
+	  * @param @param id
+	  * @param @param notes
+	  * @param @return  
+	  * @return int  
+	  * @throws
+	  * @date 2015年12月3日 下午7:48:18
+	  */
+	public int updateApplyStatus(Long id,String notes);
 
 }

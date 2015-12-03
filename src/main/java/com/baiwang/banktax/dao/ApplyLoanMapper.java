@@ -43,6 +43,17 @@ public interface ApplyLoanMapper {
 	  * @date 2015年12月1日 下午6:34:15
 	  */
 	int quxiao(@Param("id")Integer id, @Param("userId")Long user);
+	/**
+	  * @author Administrator
+	  * @Description: 更新订单状态（跟踪）
+	  * @param @param id
+	  * @param @param notes
+	  * @param @return  
+	  * @return int  
+	  * @throws
+	  * @date 2015年12月3日 下午7:47:19
+	  */
+	int updateApplyStatus(@Param("id")Long id, @Param("notes")String notes);
 
 	/**
 	  * @author gkm

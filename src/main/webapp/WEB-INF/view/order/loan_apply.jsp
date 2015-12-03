@@ -55,7 +55,9 @@ $(function(){
 					<div class="item">
 						<span class="label"><b>*</b>期望贷款金额：</span> <input
 							name="applyQuota" id="applyQuota" type="text" maxlength="9"
-							class="text w264" onblur=""><em>万元</em> <span
+							class="text w264" onblur="" onkeyup="change();"><em>万元</em>
+							<em><span id="quotaCny" style="font-size: 20px"></span></em>
+							 <span
 							id="e_applyQuota" class="erro colorred" style="display: none;">×
 							请输入正确贷款金额</span>
 					</div>
@@ -79,9 +81,8 @@ $(function(){
 					</div>
 					<div class="item">
 						<span class="label"><b>*</b>贷款用途：</span>
-						<textarea id="applyNote" name="applyNote"
-							style="width: 320px; height: 80px;" onkeydown="textCounter();"
-							maxlength="250" class="text w264"></textarea>
+						<input type="text"
+							name="applyNote" id="applyNote" class="text w264">
 						<span id="e_applyNote" class="erro colorred"
 							style="display: none;">× 至少输入10个字</span>
 					</div>
@@ -93,7 +94,7 @@ $(function(){
 								<a class="erropro" href="javascript:;" style="display: none">* 请上传附件</a>
 							</div>
 						</div>
-					</div>
+					</div><br/>
 					<div class="item">
 						<span class="label"><b>*</b>贷款申请书：</span> 
 						<div>
@@ -119,6 +120,37 @@ $(function(){
 <script type="text/javascript" src="<%=basePath%>/plupload/jquery.plupload.queue.js"></script>
 <script type="text/javascript" src="<%=basePath%>/plupload/zh_CN.js"></script>
 <script type="text/javascript">
+
+function change(){
+	var a =$('#applyQuota').val();
+	var cny = numToCny(a);
+	$('#quotaCny').html(cny==''?'':cny+"万圆整");
+}
+
+function numToCny(num){     
+    var capUnit = ['万','亿','万',''];     
+    var capDigit = { 2:['角','分',''], 4:['仟','佰','拾','']};     
+    var capNum=['零','壹','贰','叁','肆','伍','陆','柒','捌','玖'];     
+    if (((num.toString()).indexOf('.') > 16)||(isNaN(num)))      
+        return '';     
+    num = (Math.round(num*100)/100).toString();     
+    num =((Math.pow(10,16-num.length)).toString()).substring(1)+num;     
+    var i,ret,j,nodeNum,k,subret,len,subChr,CurChr=[];     
+    for (i=0,ret='';i<5;i++,j=i*4+Math.floor(i/4)){     
+        nodeNum=num.substring(j,j+4);     
+        for(k=0,subret='',len=nodeNum.length;((k<len) && (parseInt(nodeNum.substring(k))!=0));k++){     
+            CurChr[k%2] = capNum[nodeNum.charAt(k)]+((nodeNum.charAt(k)==0)?'':capDigit[len][k]);     
+            if (!((CurChr[0]==CurChr[1]) && (CurChr[0]==capNum[0])))     
+                if(!((CurChr[k%2] == capNum[0]) && (subret=='') && (ret=='')))     
+                    subret += CurChr[k%2];     
+        }     
+        subChr = subret + ((subret=='')?'':capUnit[i]);     
+        if(!((subChr == capNum[0]) && (ret=='')))     
+            ret += subChr;     
+    }     
+    return ret;     
+}   
+
 //检验上传文件的文件名长度
 function che_fileNamelen(fileName){
 	var max_len = 75;

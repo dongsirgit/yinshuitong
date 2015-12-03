@@ -157,4 +157,26 @@ public class IApplyLoanServiceImpl implements IApplyLoanService {
 		return bean;
 	}
 
+	/**
+	  * <p>Title: updateApplyStatus</p>
+	  * <p>Description: </p>
+	  * @param id
+	  * @param notes
+	  * @return
+	  * @see com.baiwang.banktax.services.iface.IApplyLoanService#updateApplyStatus(java.lang.Integer, java.lang.String)
+	  */
+	@Override
+	public int updateApplyStatus(Long id, String notes) {
+		String str4up="";
+		ApplyLoan app = dao.selectByPrimaryKey(id);
+		if(null != app ){
+			if(null != app.getStatusNote()){
+				str4up = app.getStatusNote()+"</br>"+notes;
+			}else{
+				str4up = notes;
+			}
+		}
+		return dao.updateApplyStatus(id, str4up);
+	}
+
 }
