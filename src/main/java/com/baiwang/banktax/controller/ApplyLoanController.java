@@ -63,7 +63,7 @@ public class ApplyLoanController {
 			applyLoan.setUid(user.getId());
 			applyLoan.setApplyStatus((short)100);
 			applyLoan.setStatusNote(DateUtils.dateToStr(new Date(),"yyyy-MM-dd HH:mm:ss")+"          您的贷款申请已提交，系统正在审核中");
-			applyloanService.insertSelective(applyLoan);
+			applyloanService.insertSelective(applyLoan); 
 			UserAttacht ua = new UserAttacht();
 			ua.setApplyId(applyLoan.getId());
 			ua.setId(StringUtils.s2l(requset.getParameter("yyzz_atid")));
