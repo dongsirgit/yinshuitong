@@ -42,9 +42,11 @@ public class IdentifyController {
 	/**
 	 * 
 	  * @author gkm
-	  * @Description: 判断是否验证
+	  * @Description: 产品申请   判断是否验证
+	  * @param @param id 产品id
+	  * @param @param session
 	  * @param @return  
-	  * @return ModelAndView  
+	  * @return Map<String,Object>  
 	  * @throws
 	  * @date 2015年11月30日 上午10:59:21
 	 */
@@ -122,7 +124,7 @@ public class IdentifyController {
 	@RequestMapping("/next")
 	public ModelAndView identifyNext(Integer id, HttpSession session){
 		User user = (User) session.getAttribute(ConfigUtil.getLoginedUserStr());
-		logger.info("实名认证 选择省份 下一步----用户id:" + user.getId()+"------选择的省份id:"+id);
+		logger.info("实名认证 选择省份 下一步----用户id:" + user.getId()+"------选择的城市id:"+id);
 		
 		AreaBean area = service.getVerifyType(user, id);
 		logger.info("实名认证 选择省份 下一步----用户id:" + user.getId()+"------认证类型:"+area.getVerifyType());
@@ -241,7 +243,7 @@ public class IdentifyController {
         		if(null != user.getTaxVerify() && user.getTaxVerify()>0 && user.getTaxVerify()<4){//认证中
         			success = -3;
         		}else
-        			success = service.plat3(corpName, taxSn, "", user.getId());
+        			success = service.plat3(corpName, taxSn, "333333000000", user.getId());
 	        		session.setAttribute(ConfigUtil.getLoginedUserStr(), service.selectById(user.getId()));
         	}else{
         		success = -2;//验证码错误

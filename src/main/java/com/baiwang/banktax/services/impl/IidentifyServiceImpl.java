@@ -55,11 +55,11 @@ public class IidentifyServiceImpl implements IidentifyService{
 	  * @date 2015年11月27日 下午5:52:37
 	  */
 	public ArrayList<AreaBean> getCity(Integer id){
-		//先判断产品地区是否为省
+		/*//先判断产品地区是否为省
 		int count = dao.getIfProvince(id);
 		if(count>0){//产品省份
 			return dao.getCityFromArea(id);
-		}
+		}*/
 		return dao.getCity(id);
 	}
 	

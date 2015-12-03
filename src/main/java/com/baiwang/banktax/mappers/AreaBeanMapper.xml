@@ -158,11 +158,18 @@
 	from bt_area a 
 	where a.parentid = #{id} and a.isdel = 0  -->
 	
-	SELECT a.id id, a.aname aname, a.verify_type verify_type  
+	<!-- SELECT a.id id, a.aname aname, a.verify_type verify_type  
 	from bt_area a 
 	RIGHT JOIN bt_area_product b ON b.area_id = a.id
-	where a.parentid = #{id} and a.isdel = 0 order by a.id
-	
+	where a.parentid = #{id} and a.isdel = 0 order by a.id -->
+	SELECT * 
+	from bt_area d ,
+	(
+	SELECT IFNULL(a.id,b.area_id) idd ##, a.*,b.*
+	from bt_area a
+	RIGHT JOIN bt_area_product b ON a.parentid = b.area_id  
+	) e 
+	where e.idd = d.id  and d.parentid = #{id} order by d.id 
 	
   </select>
   
@@ -190,7 +197,17 @@
   </update>
   
   <select id="getAreaFlag" resultType="int">
-  	select count(id) from bt_area_product where product_id = #{id} and area_id = #{vrfAreaid}
+  	<!-- select count(id) from bt_area_product where product_id = #{id} and area_id = #{vrfAreaid} -->
+  	SELECT count(idd)
+	from 
+	(
+	SELECT IFNULL(a.id,b.area_id) idd 
+	from bt_area a
+	RIGHT JOIN bt_area_product b ON a.parentid = b.area_id  
+	where b.product_id = ${id} 
+	) e 
+	where e.idd = #{vrfAreaid}
+  	
   </select>
   
   <select id="selectUserByTaxSn" resultType="int">
