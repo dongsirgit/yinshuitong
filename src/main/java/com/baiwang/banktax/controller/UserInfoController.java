@@ -7,14 +7,12 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.druid.support.logging.Log;
 import com.alibaba.druid.support.logging.LogFactory;
-import com.baiwang.banktax.beans.ApplyLoan;
 import com.baiwang.banktax.beans.User;
 import com.baiwang.banktax.model.ApplyDetailBean;
 import com.baiwang.banktax.model.ApplyListBean;

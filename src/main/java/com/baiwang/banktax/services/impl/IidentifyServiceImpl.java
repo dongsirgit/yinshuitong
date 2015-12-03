@@ -12,7 +12,6 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.baiwang.banktax.beans.ApplyLoan;
 import com.baiwang.banktax.beans.AreaBean;
 import com.baiwang.banktax.beans.User;
 import com.baiwang.banktax.dao.AreaBeanMapper;

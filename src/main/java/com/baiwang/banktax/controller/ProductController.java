@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.alibaba.fastjson.JSON;
 import com.baiwang.banktax.model.ProductDetailBean;
 import com.baiwang.banktax.model.ProductSynopsisBean;
 import com.baiwang.banktax.services.iface.IProductService;
