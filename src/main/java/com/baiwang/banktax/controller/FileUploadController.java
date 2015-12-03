@@ -23,7 +23,6 @@ import com.baiwang.banktax.beans.User;
 import com.baiwang.banktax.beans.UserAttacht;
 import com.baiwang.banktax.services.iface.IAttachService;
 import com.baiwang.banktax.utils.ConfigUtil;
-import com.baiwang.banktax.utils.Constant;
 import com.baiwang.banktax.utils.StringUtils;
 import com.baiwang.banktax.utils.file.FileUtil;
 import com.baiwang.banktax.utils.file.PluploadUtil;

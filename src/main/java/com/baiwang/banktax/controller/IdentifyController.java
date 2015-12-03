@@ -20,7 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.baiwang.banktax.beans.AreaBean;
 import com.baiwang.banktax.beans.User;
-import com.baiwang.banktax.services.iface.IUserService;
 import com.baiwang.banktax.services.iface.IidentifyService;
 import com.baiwang.banktax.utils.ConfigUtil;
 import com.baiwang.banktax.utils.StringUtils;
@@ -151,7 +150,7 @@ public class IdentifyController {
 	 */
 	@RequestMapping("/taxResult")
 	@ResponseBody
-	public Map taxResult(HttpSession session){
+	public Map<String, Object> taxResult(HttpSession session){
 		User user = (User) session.getAttribute(ConfigUtil.getLoginedUserStr());
 		logger.info("---税局认证结果----用户id为:"+user.getId());
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -230,7 +229,7 @@ public class IdentifyController {
 	 */
 	@RequestMapping("plat3")
 	@ResponseBody
-	public Map plat3(String corpName, String taxSn, String code, HttpSession session){
+	public Map<String, Object> plat3(String corpName, String taxSn, String code, HttpSession session){
 		Map<String, Object> map = new HashMap<String, Object>();
 		User user = (User) session.getAttribute(ConfigUtil.getLoginedUserStr());
 		String imageCode = (String) session.getAttribute("imageCode");

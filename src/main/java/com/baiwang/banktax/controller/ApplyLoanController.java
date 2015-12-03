@@ -17,11 +17,8 @@ import com.baiwang.banktax.beans.User;
 import com.baiwang.banktax.beans.UserAttacht;
 import com.baiwang.banktax.services.iface.IApplyLoanService;
 import com.baiwang.banktax.services.iface.IAttachService;
-import com.baiwang.banktax.services.iface.IUserService;
 import com.baiwang.banktax.utils.ConfigUtil;
 import com.baiwang.banktax.utils.StringUtils;
-
-import sun.swing.StringUIClientPropertyKey;
 
 /**
   * @ClassName: ApplyLoanController
