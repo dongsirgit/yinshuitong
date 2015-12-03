@@ -8,6 +8,9 @@
     <link type="text/css" rel="stylesheet" href="<%=basePath%>/styles/common/base.css" />
     <link type="text/css" rel="stylesheet" href="<%=basePath%>/styles/index/index.css" />
     <script type="text/javascript" src="<%=basePath%>/scripts/common/jquery-1.11.1.min.js"></script>
+    <style type="text/css">
+   		.mainn{ width: 1000px;height:600px; margin: 10px auto; background:#FFF; padding: 0px 0 0 0;}
+    </style>
 </head>
 <body>
 <!--headeer开始-->
@@ -16,22 +19,6 @@
 <div class="banner_wrap">
     <div class="banner">
         <a href="<%=basePath %>/product/list" class="btn"><img src="<%=basePath %>/images/index/banner_btn.png" alt=""></a>
-        <div class="calculatorbox">
-            <h3 class="ft20 ac">额度预估</h3>
-            <div class="calculatecon cur">
-                <div class="calculatecon_choose pt23">贷款产品：<span class="cur">企业经营税务贷</span><span>企业法人税务贷</span></div>
-                <div class="banfill cur">
-                    <div class="banfillinfor"><span>增值税纳税税额：</span><input type="text" id="tax1" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" maxlength="3" size="14"/><i>万元</i></div>
-                    <div class="banfillinfor"><span>营业税纳税税额：</span><input type="text" id="tax2" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" maxlength="3" size="14"/><i>万元</i></div>
-                    <div class="banfillinfor"><span>所得税纳税税额：</span><input type="text" id="tax3" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" maxlength="3" size="14"/><i>万元</i></div>
-                </div>
-                <div class="banfill">
-                    <div class="banfillinfor"><span>增值税纳税税额：</span><input type="text" id="tax4" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" maxlength="3" size="14"/><i>万元</i></div>
-                </div>
-                <p class="bannerror"><span id="errMsg"></span></p>
-            </div>
-            <div class="banresult clearfix ac"><p class="fl resultmnum"><span><em class="mr5">额度:</em></span><span><i id="result" class="red mr10"></i>万元</span></p><a href="javascript:;" class="fr ft22" onclick="calc()">预估一下</a></div>
-        </div>
     </div>
 </div>
 <div class="index_icon center">
@@ -70,32 +57,25 @@
 </div>
 
 <div class="indextable">
-    <table class="ac ft14">
-        <tr class="ft12">
-            <th>贷款产品名称</th>
-            <th>放款时间</th>
-            <th>贷款利率</th>
-            <th>贷款额度</th>
-            <th>客户定位</th>
-            <th>&nbsp;</th>
-        </tr>
-        <tr>
-            <td><i class="ftb">企业经营税务贷</i></td>
-            <td>最快<i class="ft24 red">3天放款</i></td>
-            <td><i class="ft24 red">5%</i>起</td>
-            <td><i class="ft24 red">上不封顶</i></td>
-            <td>经国家工商行政管理机关核准登记的小微企业</td>
-            <td><a href="<%=basePath%>/basic/productList">查看详情</a></td>
-        </tr>
-        <tr>
-            <td><i class="ftb">企业法人税务贷</i></td>
-            <td>最快<i class="ft24 red">当天放款</i></td>
-            <td><i class="ft24 red">8%</i>起</td>
-            <td>最高<i class="ft24 red">200万元</i></td>
-            <td>公司股东和企业法人代表;个人独资企业的负责人</td>
-            <td><a href="<%=basePath%>/basic/productList">查看详情</a></td>
-        </tr>
-    </table>
+	<table style="border-collapse:collapse;" rules="rows" bordercolor="#afaeac" width="1000px;"><!--  -->
+    		<thead height="40px;">
+    			<tr><th colspan="2">贷款名称</th>
+    			<th width="180">授信额度</th>
+    			<th width="180">参考利率</th>
+    			<th>产品特点</th>
+    			<th width="10"></th>
+    			<th width="150px;"></th>
+    		</tr></thead>
+    		<tbody id="list" align="center">
+    			
+    		<tr style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;" height="80px;"><td align="right" width="80"><img src="<%=basePath%>/images/product/bank_jh_ico.png"></td><td align="left" width="100">建设银行<br>税e贷</td><td>最高50万元</td><td>年化利率8.8%</td><td>无抵押，无担保，纯信用贷款，随借随还</td><td><img src="<%=basePath%>/images/product/u74_line.png"></td><td><button onclick="javascript:productDetail(1)">查看详情</button></td></tr><tr style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;" height="80px;"><td align="right" width="80"><img src="<%=basePath%>/images/product/bank_pa_ico.png"></td><td align="left" width="100">平安银行<br>税金贷</td><td>最高100万元</td><td>日利率0.3‰-0.4‰/天</td><td>纯信用，免担保，资料简单，线上操作，随借随还，最快2天放款，便捷高效。</td><td><img src="<%=basePath%>/images/product/u74_line.png"></td><td><button onclick="javascript:productDetail(2)">查看详情</button></td></tr></tbody>
+    		<tfoot align="center">
+    			<tr height="50px;">
+    				<td colspan="7"></td>
+    			</tr>
+    		</tfoot>
+    	</table>
+   
 </div>
 <%-- <div class="partner center">
     <h3>合作伙伴</h3>
@@ -123,6 +103,12 @@ $(function(){
 })
 </script>
 <script type="text/javascript">
+
+function productDetail(id){
+	location.href='<%=basePath %>/product/detail?id='+id;
+// 	$('#id').val(id);
+// 	$('#form').submit();
+}
     function calc(){
         var loanType = $(".calculatecon_choose.pt23 .cur").text();
         if(loanType == "企业经营税务贷"){
