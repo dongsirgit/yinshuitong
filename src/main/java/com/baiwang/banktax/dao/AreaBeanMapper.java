@@ -111,6 +111,28 @@ public interface AreaBeanMapper {
 	  * @date 2015年12月1日 下午2:48:23
 	  */
 	List<Integer> queryLoan(@Param("id")Long id);
+
+	/**
+	  * @author gkm
+	  * @Description: 认证 查询城市,先判断是否为产品省
+	  * @param @param id
+	  * @param @return  
+	  * @return int  
+	  * @throws
+	  * @date 2015年12月3日 下午1:49:28
+	  */
+	int getIfProvince(Integer id);
+
+	/**
+	  * @author gkm
+	  * @Description: 认证  产品地区 为省份 查询城市
+	  * @param @param id
+	  * @param @return  
+	  * @return ArrayList<AreaBean>  
+	  * @throws
+	  * @date 2015年12月3日 下午1:55:57
+	  */
+	ArrayList<AreaBean> getCityFromArea(Integer id);
 	
 	
 	

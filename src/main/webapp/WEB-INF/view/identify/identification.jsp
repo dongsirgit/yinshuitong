@@ -31,7 +31,8 @@
 				$(this).addClass("procurrent").siblings().removeClass("procurrent");
 				$('#sp_province').text($(this).text());
 // 				$('#id').val($(this).attr('value'));
-				$('#div_select').hide();
+				$('#div_select_province').hide();
+				$('#div_select_city').hide();
 				getCity($(this).attr('value'));
 				$('#sp_city').text('');
 			});
@@ -39,7 +40,8 @@
 			$(document).delegate('.city',"click",function(){
 				$(this).addClass("procurrent").siblings().removeClass("procurrent");
 				$('#sp_city').text($(this).text());
-				$('#div_select').hide();
+				$('#div_select_province').hide();
+				$('#div_select_city').hide();
 				$('#id').val($(this).attr('value'));
 			});
 		})
@@ -61,15 +63,23 @@
 						
 					},
 					error:function(XMLHttpRequest, textStatus, errorThrown) {
-			        	alert("加载失败!");
+						if(XMLHttpRequest.responseText=="timeOut"){
+			        		location.reload();
+			        	}else{
+			        		alert("Error");
+			        	}
 			        }
 			});
 		}
 		
 		function nextIdentify(){
 			//location.href='<%=basePath %>/users/identify/next';
-			if($('#sp_province').text() == '' || $('#sp_city').text() == ''){
-				$('#div_select').show();
+			if($('#sp_province').text() == ''){
+				$('#div_select_province').show();
+				return;
+			}
+			if($('#sp_city').text() == ''){
+				$('#div_select_city').show();
 				return;
 			}
 			$("form").submit();
@@ -108,7 +118,8 @@
    			<br/><br/>
    			<button onclick="nextIdentify()" style="width: 100px;">下一步</button>
    			<br/>
-    		<span id='div_select' style=" font-size: 13px; color: red; display: none;">请选择省份!</span>
+    		<span id='div_select_province' style=" font-size: 13px; color: red; display: none;">请选择省份!</span>
+    		<span id='div_select_city' style=" font-size: 13px; color: red; display: none;">请选择城市!</span>
    		</div>
    		<form id='form' action="<%=basePath %>/users/identify/next" method="post">
     		<input type="hidden" id='id' name='id'>

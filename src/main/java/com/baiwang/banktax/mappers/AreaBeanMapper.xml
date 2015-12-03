@@ -130,17 +130,40 @@
   
   <!-- 查询省份 -->
   <select id="getProvince" resultMap="BaseResultMap">
-  	select a.id id,a.aname aname,a.verify_type verify_type  
+  	<!-- select a.id id,a.aname aname,a.verify_type verify_type  
 	from bt_area a
 	RIGHT JOIN bt_area_product b ON a.id = b.area_id 
 	where a.isdel = 0  
-	ORDER BY a.id 
+	ORDER BY a.id --> 
+	
+	SELECT IFNULL(d.id,c.id) id, c.verify_type verify_type , IFNULL(d.aname,c.aname) aname 
+	from (SELECT a.id id, a.parentid parentid, a.aname aname,a.verify_type verify_type  
+	from bt_area_product b, bt_area a
+	where b.area_id = a.id) c 
+	LEFT JOIN bt_area d ON c.parentid = d.id order by id
   </select>
+  
+  <select id="getIfProvince" parameterType="int" resultType="int">
+  	select count(id) from bt_area_product where area_id = #{id} order by id
+  </select>
+  <select id="getCityFromArea" parameterType="int" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List" /> 
+  	from bt_area where parentid = #{id} order by id
+  </select>
+  
   <!-- 查询城市 -->
   <select id="getCity" parameterType="int" resultMap="BaseResultMap">
-  	select a.id as id,a.aname as aname,a.verify_type as verify_type  
+  	<!-- select a.id as id,a.aname as aname,a.verify_type as verify_type  
 	from bt_area a 
-	where a.parentid = #{id} and a.isdel = 0 
+	where a.parentid = #{id} and a.isdel = 0  -->
+	
+	SELECT a.id id, a.aname aname, a.verify_type verify_type  
+	from bt_area a 
+	RIGHT JOIN bt_area_product b ON b.area_id = a.id
+	where a.parentid = #{id} and a.isdel = 0 order by a.id
+	
+	
   </select>
   
   <!-- 实名认证 选择省份 下一步 查询认证方式verify_type -->
