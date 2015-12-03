@@ -32,7 +32,7 @@
     select 
     <include refid="Base_Column_List" /> 
     from bt_user_attacht
-    where apply_id = #{applyId,jdbcType=BIGINT} and attach_type=#{attachType,jdbcType=TINYINT}
+    where apply_id = #{applyId,jdbcType=BIGINT} and attach_type=#{attachType,jdbcType=TINYINT} and userid=#{userid,jdbcType=TINYINT}
   </select>
   <select id="selectByBatchId" resultType="com.baiwang.banktax.beans.UserAttacht" >
     select 

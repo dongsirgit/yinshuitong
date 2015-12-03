@@ -30,9 +30,9 @@
 			$(".province").click(function(){
 				$(this).addClass("procurrent").siblings().removeClass("procurrent");
 				$('#sp_province').text($(this).text());
-				$('#id').val($(this).attr('value'));
+// 				$('#id').val($(this).attr('value'));
 				$('#div_select').hide();
-				getCity();
+				getCity($(this).attr('value'));
 				$('#sp_city').text('');
 			});
 			
@@ -40,11 +40,12 @@
 				$(this).addClass("procurrent").siblings().removeClass("procurrent");
 				$('#sp_city').text($(this).text());
 				$('#div_select').hide();
+				$('#id').val($(this).attr('value'));
 			});
 		})
 		
-		function getCity(){
-			var id = $('#id').val();
+		function getCity(proId){
+			var id = proId;
 			 $.ajax({
 					type:"POST",
 					url:"<%=basePath %>/users/identify/getCity",
@@ -55,7 +56,7 @@
 						//alert(JSON.stringify(data));
 						$(".city").remove();
 						$.each( data.list, function(i, n){
-							$("<span class='city'>&nbsp;&nbsp;"+n.aname+"&nbsp;&nbsp;</span>$").insertAfter("#city");
+							$("<span class='city' value='"+n.id+"'>&nbsp;&nbsp;"+n.aname+"&nbsp;&nbsp;</span>$").insertAfter("#city");
 						});
 						
 					},

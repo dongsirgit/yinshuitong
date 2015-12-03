@@ -17,11 +17,8 @@ import com.baiwang.banktax.beans.User;
 import com.baiwang.banktax.beans.UserAttacht;
 import com.baiwang.banktax.services.iface.IApplyLoanService;
 import com.baiwang.banktax.services.iface.IAttachService;
-import com.baiwang.banktax.services.iface.IUserService;
 import com.baiwang.banktax.utils.ConfigUtil;
 import com.baiwang.banktax.utils.StringUtils;
-
-import sun.swing.StringUIClientPropertyKey;
 
 /**
   * @ClassName: ApplyLoanController
@@ -53,15 +50,12 @@ public class ApplyLoanController {
 			applyLoan.setUid(user.getId());
 			applyLoan.setApplyStatus((short)100);
 			applyloanService.insertSelective(applyLoan);
-			System.out.println("本次生成贷款ID："+applyLoan.getId());
 			UserAttacht ua = new UserAttacht();
 			ua.setApplyId(applyLoan.getId());
 			ua.setId(StringUtils.s2l(requset.getParameter("yyzz_atid")));
 			attachService.updateApplyIdByPK(ua);
-			System.out.println("更新附件ID："+ua.getId());
 			ua.setId(StringUtils.s2l(requset.getParameter("sqs_atid")));
 			attachService.updateApplyIdByPK(ua);
-			System.out.println("更新附件ID："+ua.getId());
 			logger.info("贷款申请提交成功！操作用户："+user.getMobilePhone()+";贷款信息："+applyLoan.toString());
 			return "order/submitSucess";
 		}catch(Exception e){
