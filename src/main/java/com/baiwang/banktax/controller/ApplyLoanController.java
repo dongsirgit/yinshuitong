@@ -4,6 +4,8 @@
 
 package com.baiwang.banktax.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.baiwang.banktax.beans.ApplyLoan;
 import com.baiwang.banktax.beans.User;
 import com.baiwang.banktax.beans.UserAttacht;
+import com.baiwang.banktax.model.ProductSynopsisBean;
 import com.baiwang.banktax.services.iface.IApplyLoanService;
 import com.baiwang.banktax.services.iface.IAttachService;
+import com.baiwang.banktax.services.iface.IProductService;
 import com.baiwang.banktax.utils.ConfigUtil;
 import com.baiwang.banktax.utils.StringUtils;
 
@@ -37,9 +41,16 @@ public class ApplyLoanController {
 	IApplyLoanService applyloanService;
 	@Resource
 	IAttachService attachService;
+	@Resource
+	IProductService productService;
 	
 	@RequestMapping("toLoan")
-	public String toLoan(){
+	public String toLoan(Integer id,HttpServletRequest request){
+		List<ProductSynopsisBean> list = productService.getproList(id);
+		if(null != list && list.size()==1){
+			request.setAttribute("prosyn", list.get(0));
+		}
+		request.setAttribute("proid",id);
 		return "order/loan_apply";
 	}
 	

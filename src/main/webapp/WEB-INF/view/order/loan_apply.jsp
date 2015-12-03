@@ -36,9 +36,11 @@ $(function(){
 	<div class="main">
 		<div class="mainpb">
 			<div>
-				&nbsp;&nbsp;&nbsp;选择的贷款产品：<br />
-				<br />
-				&nbsp;&nbsp;&nbsp;建设银行-税e贷&nbsp;&nbsp;&nbsp;授信额度：最高50万元&nbsp;&nbsp;&nbsp;参考利率：年化利率8%
+				&nbsp;&nbsp;&nbsp;选择的贷款产品：<br/>
+				&nbsp;&nbsp;&nbsp;
+				<img src="<%=basePath %>/images/product/${prosyn.icoUrl}"/><c:out value="${prosyn.relaBank}"/>-<c:out value="${prosyn.pname}"/>
+				&nbsp;&nbsp;&nbsp;
+				授信额度：<c:out value="${prosyn.sxed}"/>&nbsp;&nbsp;&nbsp;参考利率：<c:out value="${prosyn.ckll}"/>
 			</div>
 			<div class="orderform">
 				<div class="item">
@@ -107,6 +109,7 @@ $(function(){
 					<span class="clr"></span>
 					<input type="hidden" id="yyzz_atid" name="yyzz_atid">
 					<input type="hidden" id="sqs_atid" name="sqs_atid">
+					<input type="hidden" id="proid" name="prodId" value="${proid}">
 				</form>
 			</div>
 		</div>

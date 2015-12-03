@@ -40,8 +40,8 @@ public class ProductServiceImpl implements IProductService {
 	  * @throws
 	  * @date 2015年11月25日 上午11:47:52
 	  */
-	public List<ProductSynopsisBean> getproList(){
-		return transf(dao.getproList());
+	public List<ProductSynopsisBean> getproList(Integer id){
+		return transf(dao.getproList(id));
 	}
 	/**
 	 * 
@@ -106,6 +106,4 @@ public class ProductServiceImpl implements IProductService {
 		System.out.println("JSONtoString:"+det);
 		return dao.save(det);
 	}
-	
-	
 }

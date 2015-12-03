@@ -304,10 +304,13 @@
   </update>
   
   <!-- 查询产品列表 -->
-  <select id="getproList" resultMap="BaseResultMap">
+  <select id="getproList" resultMap="BaseResultMap" >
   	select 
   	<include refid="Base_Column_List" /> 
   	from bt_product where 1=1 
+  	<if test="id != null" >
+     and id = #{id,jdbcType=INTEGER}
+    </if>
   </select>
   
   

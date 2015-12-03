@@ -52,7 +52,7 @@ public class UserInfoController {
     	logger.info("-----UserInfoController.init-------用户:"+user.getId()+",访问页面:"+page);
     	if("userInfo_account".equals(page)){
     		List<ApplyListBean> list = service.queryLoanList(user.getId());
-    		map.put("list", list);
+z    		map.put("list", list);
     	}
     	
         logger.info("开始访问页面:  " + page + ".jsp");

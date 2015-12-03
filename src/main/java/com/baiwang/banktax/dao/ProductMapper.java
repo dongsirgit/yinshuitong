@@ -2,6 +2,8 @@ package com.baiwang.banktax.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.baiwang.banktax.beans.Product;
 
 public interface ProductMapper {
@@ -25,7 +27,7 @@ public interface ProductMapper {
 	  * @throws
 	  * @date 2015年11月25日 下午1:09:44
 	  */
-	List<Product> getproList();
+	List<Product> getproList(@Param("id")Integer id);
 
 	
 	

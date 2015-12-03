@@ -25,7 +25,7 @@ public interface IProductService {
 	  * @throws
 	  * @date 2015年11月25日 上午11:47:52
 	  */
-	List<ProductSynopsisBean> getproList();
+	List<ProductSynopsisBean> getproList(Integer id);
 
 	/**
 	  * @author gkm

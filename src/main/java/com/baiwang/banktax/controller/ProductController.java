@@ -66,7 +66,7 @@ public class ProductController {
 	@ResponseBody
 	public Map<String,Object> getproList(){
 		Map<String,Object> map = new HashMap<String,Object>();
-		List<ProductSynopsisBean> list = service.getproList();
+		List<ProductSynopsisBean> list = service.getproList(null);
 		map.put("list", list);
 		return map;
 	}
