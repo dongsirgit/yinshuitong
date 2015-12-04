@@ -29,7 +29,7 @@
 		        </div>
 		    </c:when>
 		    <c:otherwise>
-		    	<div class="header_right clearfix">
+		    	<div class="header_right clearfix"> 
 		            <!--未登录-->
 		            <div class="not_logoin">
 		                <a href="<%=basePath%>/user/forwardRegist" class="regist head_btn" target="_top">快速注册</a>

@@ -20,10 +20,82 @@ if(a){
 }
 $(function(){
 	$('#loansub').click(function(){
-		$('#loan_form').attr("action","<%=basePath %>/users/applyloan/loansub");
-		$('#loan_form').submit();
+		if(checkApplyQuota() && checkApplyTerm() && checkConName() && che_telephone() && che_applyNote()){
+			$('#loan_form').attr("action","<%=basePath %>/users/applyloan/loansub");
+			$('#loan_form').submit();
+		}
+		
 	});
 })
+
+function checkApplyQuota(){
+	$("#applyQuota").val($("#applyQuota").val().replace(" ",''))
+	change();
+	if(!/^([1-9][\d]{0,2})$/.test($("#applyQuota").val())){
+		$("#e_applyQuota").show();
+		return false;
+	}else{
+		$("#e_applyQuota").hide();
+		return true;
+	}
+}
+function fo_quota(){
+	$("#e_applyQuota").hide();
+}
+
+function checkApplyTerm(){
+	if(!/^([1-9][\d]{0,1})$/.test($("#applyTerm").val())){
+		$("#e_applyTerm").show();
+		return false;
+	}else{
+		$("#e_applyTerm").hide();
+		return true;
+	}
+}
+function fo_term(){
+	$("#e_applyTerm").hide();
+}
+
+function checkConName(){
+	$("#contactName").val($("#contactName").val().replace(" ",''));
+	if(!/^[\u4e00-\u9fa5]{2,10}$/.test($("#contactName").val())){
+		$("#e_contactName").show();
+		return false;
+	}else{
+		$("#e_contactName").hide();
+		return true;
+	}
+}
+function fo_conName(){
+	$("#e_contactName").hide();
+}
+
+function che_telephone(){
+	if(!/^1(([3|4|5|8][0-9]{9})|[7](0[0-9]{8}|8[0-9]{8}))$/.test($("#telephone").val())){
+		$("#e_telephone").show();
+		return false;
+	}else{
+		$("#e_telephone").hide();
+		return true;
+	}
+}
+function fo_tel(){
+	$("#e_telephone").hide();
+}
+
+function che_applyNote(){
+	$("#applyNote").val($("#applyNote").val().replace(" ",''));
+	if(!/^[\u4e00-\u9fa5]{2,10}$/.test($("#applyNote").val())){
+		$("#e_applyNote").show();
+		return false;
+	}else{
+		$("#e_applyNote").hide();
+		return true;
+	}
+}
+function fo_applyNote(){
+	$("#e_applyNote").hide();
+}
 </script>
 </head>
 <body>
@@ -54,8 +126,8 @@ $(function(){
 				<form id="loan_form" method="post">
 					<div class="item">
 						<span class="label"><b>*</b>期望贷款金额：</span> <input
-							name="applyQuota" id="applyQuota" type="text" maxlength="9"
-							class="text w264" onblur="" onkeyup="change();"><em>万元</em>
+							name="applyQuota" id="applyQuota" type="text" maxlength="3"
+							class="text w264" onblur="checkApplyQuota()" onkeyup="change();" onfocus="fo_quota()"><em>万元</em>
 							<em><span id="quotaCny" style="font-size: 20px"></span></em>
 							 <span
 							id="e_applyQuota" class="erro colorred" style="display: none;">×
@@ -63,26 +135,27 @@ $(function(){
 					</div>
 					<div class="item">
 						<span class="label"><b>*</b>期望贷款期限：</span> <input name="applyTerm"
-							id="applyTerm" type="text" maxlength="3" class="text w264"
-							onblur=""><em>个月</em> <span id="e_applyTerm"
-							class="erro colorred" style="display: none;">× 请输入贷款期限</span>
+							id="applyTerm" type="text" maxlength="2" class="text w264"
+							onblur="checkApplyTerm()" onfocus="fo_term()"><em>个月</em> <span id="e_applyTerm"
+							class="erro colorred" style="display: none;">× 请输入正确贷款期限</span>
 					</div>
 					<div class="item">
-						<span class="label"><b>*</b>联系人姓名：</span> <input type="text"
-							name="contactName" id="contactName" class="text w264"> <span
+						<span class="label"><b>*</b>联系人姓名：</span> <input type="text" maxlength="10"
+							name="contactName" id="contactName" class="text w264" onblur="checkConName()" onfocus="fo_conName()"> <span
 							id="e_contactName" class="erro colorred" style="display: none;">×
 							请输入正确的姓名</span>
 					</div>
 					<div class="item">
-						<span class="label"><b>*</b>联系人手机：</span> <input type="text"
-							name="telephone" id="telephone" class="text w264" value="${loginedUser.mobilePhone}"> <span
+						<span class="label"><b>*</b>联系人手机：</span> <input type="text" maxlength="11"
+							name="telephone" id="telephone" class="text w264" onblur="che_telephone()" onfocus="fo_tel()"> <span
 							id="e_telephone" class="erro colorred" style="display: none;">×
 							请输入正确的手机号</span>
 					</div>
 					<div class="item">
 						<span class="label"><b>*</b>贷款用途：</span>
 						<input type="text"
-							name="applyNote" id="applyNote" class="text w264">
+							name="applyNote" id="applyNote" class="text w264" maxlength="11"
+							 onblur="che_applyNote()" onfocus="fo_applyNote()">
 						<span id="e_applyNote" class="erro colorred"
 							style="display: none;">× 至少输入10个字</span>
 					</div>
