@@ -171,23 +171,23 @@ public class ProductController {
 	
 	
 	
-	//产品详情维护
-	@RequestMapping("/detail")
-	public String detail() {
-		return "order/m_detail";
-	}
-	@RequestMapping("/product/saveDetail")
-	@ResponseBody
-	public String saveDetail(ProductDetailBean bean) {
-		int su = service.save(bean);
-		System.out.println("succ:"+su);
-		return "success";
-	}
-	//维护列表字段
-	@RequestMapping("/prolist")
-	public String manage_list() {
-		return "order/m_list";
-	}
+//	//产品详情维护
+//	@RequestMapping("/detail")
+//	public String detail() {
+//		return "order/m_detail";
+//	}
+//	@RequestMapping("/product/saveDetail")
+//	@ResponseBody
+//	public String saveDetail(ProductDetailBean bean) {
+//		int su = service.save(bean);
+//		System.out.println("succ:"+su);
+//		return "success";
+//	}
+//	//维护列表字段
+//	@RequestMapping("/prolist")
+//	public String manage_list() {
+//		return "order/m_list";
+//	}
 	
 	
 	

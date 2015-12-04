@@ -103,6 +103,7 @@ public interface AreaBeanMapper {
 
 	/**
 	  * @author gkm
+	 * @param id2 
 	  * @Description: 判断用户有无申请
 	  * @param @param id
 	  * @param @return  
@@ -110,7 +111,7 @@ public interface AreaBeanMapper {
 	  * @throws
 	  * @date 2015年12月1日 下午2:48:23
 	  */
-	List<Integer> queryLoan(@Param("id")Long id);
+	Integer queryLoan(@Param("pid")Integer pid, @Param("uid")Long id);
 
 	/**
 	  * @author gkm

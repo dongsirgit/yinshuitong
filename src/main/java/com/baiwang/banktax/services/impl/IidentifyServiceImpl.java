@@ -101,7 +101,6 @@ public class IidentifyServiceImpl implements IidentifyService{
 		
 		//一个纳税号只能实名认证一次
 		int tax = dao.selectUserByTaxSn(taxSn);
-		System.out.println("纳税号名认证次数:"+tax);
 		if(tax>0){
 			return -2;
 		}
@@ -125,7 +124,6 @@ public class IidentifyServiceImpl implements IidentifyService{
 		
 		//一个纳税号只能实名认证一次
 		int tax = dao.selectUserByTaxSn(taxSn);
-		System.out.println("纳税号名认证次数:"+tax);
 		if(tax>0){
 			return -22;
 		}
@@ -175,18 +173,10 @@ public class IidentifyServiceImpl implements IidentifyService{
 	  * @throws
 	  * @date 2015年12月1日 下午2:44:38
 	  */
-	public int queryApplyFlag(Long id){
-		int i = 0;
-		List<Integer> list = dao.queryLoan(id);
-		if(null != list && list.size()>0){
-			for(Integer l :list){
-				if(null != l && l < 600 && 200 != l){
-					i += 1;
-				}
-			}
-		}
+	public int queryApplyFlag(Integer id, Long uid){
+		Integer count = dao.queryLoan(id, uid);
 		
-		return i;
+		return count;
 	}
 	
 	

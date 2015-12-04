@@ -40,7 +40,7 @@
 		})
 		
 		
-		function nextIdentify(){//点击去认证
+		function nextIdentify(id){//点击去认证
 			if(id_sub%2==0){
 				$("#xieyidiv").hide();//阅读协议
 			}else{
@@ -49,7 +49,7 @@
 			}
 			
 			//到国税网站认证
-			window.open('http://www.bjsat.gov.cn/bjsat/');
+			window.open('http://www.bjsat.gov.cn/bjsat/?id='+id);
 			$('#div_iden').show();
 			$('#mask_alpha').show();
 			
@@ -114,7 +114,7 @@
     	<div style="width: 80%; height: 100%; padding-top: 20px; padding-bottom: 8px;"><!--  border:1px solid #AFAEAC; -->
    			<button onclick="goback()" style="width: 100px;">返回</button>
    			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-   			<button onclick="nextIdentify()" style="width: 100px;">去认证</button>
+   			<button onclick="nextIdentify('${id}')" style="width: 100px;">去认证</button>
    			<br/>
     		<span id='sp_fail' style=" font-size: 13px; color: red; display:none;">认证失败，如有问题请联系客服！</span>
    		</div>

@@ -66,7 +66,7 @@ public class IdentifyController {
 			map.put("areaflag", area);
 			
 			//判断有无申请
-			int appflag = service.queryApplyFlag(user.getId());
+			int appflag = service.queryApplyFlag(id, user.getId());
 			map.put("appflag", appflag);
 			
 		}
@@ -129,7 +129,8 @@ public class IdentifyController {
 		AreaBean area = service.getVerifyType(user, id);
 		logger.info("实名认证 选择省份 下一步----用户id:" + user.getId()+"------认证类型:"+area.getVerifyType());
 		if("0".equals(area.getVerifyType())){
-			return new ModelAndView("identify/identify_platform1").addObject("province", area.getAname());
+			return new ModelAndView("identify/identify_platform1").addObject("province", area.getAname())
+					.addObject("id", session.getId());
 		}else if("1".equals(area.getVerifyType())){
 			return new ModelAndView("identify/identify_platform2");
 		}else if("2".equals(area.getVerifyType())){
