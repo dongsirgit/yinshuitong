@@ -6,8 +6,6 @@ package com.baiwang.banktax.services.iface;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-
 import com.baiwang.banktax.beans.ApplyLoan;
 import com.baiwang.banktax.model.ApplyDetailBean;
 import com.baiwang.banktax.model.ApplyListBean;

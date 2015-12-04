@@ -7,6 +7,8 @@ public class ApplyLoan {
 
     private Long uid;
 
+    private String serialNum;
+
     private Byte applyType;
 
     private Integer prodId;
@@ -54,7 +56,7 @@ public class ApplyLoan {
     private Byte warningEarly;
 
     private Integer preQuota;
-    
+
     private Integer approveQuota;
 
     private Date loanDate;
@@ -83,6 +85,14 @@ public class ApplyLoan {
 
     public void setUid(Long uid) {
         this.uid = uid;
+    }
+
+    public String getSerialNum() {
+        return serialNum;
+    }
+
+    public void setSerialNum(String serialNum) {
+        this.serialNum = serialNum == null ? null : serialNum.trim();
     }
 
     public Byte getApplyType() {
@@ -270,16 +280,14 @@ public class ApplyLoan {
     }
 
     public Integer getPreQuota() {
-	
-		return preQuota;
-	}
+        return preQuota;
+    }
 
-	public void setPreQuota(Integer preQuota) {
-	
-		this.preQuota = preQuota;
-	}
+    public void setPreQuota(Integer preQuota) {
+        this.preQuota = preQuota;
+    }
 
-	public Integer getApproveQuota() {
+    public Integer getApproveQuota() {
         return approveQuota;
     }
 
@@ -334,18 +342,4 @@ public class ApplyLoan {
     public void setIsPub(Boolean isPub) {
         this.isPub = isPub;
     }
-
-	@Override
-	public String toString() {
-		return "ApplyLoan [id=" + id + ", uid=" + uid + ", applyType=" + applyType + ", prodId=" + prodId
-				+ ", applyTerm=" + applyTerm + ", applyTermType=" + applyTermType + ", applyQuota=" + applyQuota
-				+ ", applyNote=" + applyNote + ", applyTime=" + applyTime + ", applyStatus=" + applyStatus
-				+ ", statusNote=" + statusNote + ", contactName=" + contactName + ", telephone=" + telephone
-				+ ", isRealcharge=" + isRealcharge + ", apChargeterm=" + apChargeterm + ", apMarry=" + apMarry
-				+ ", bank=" + bank + ", apEducation=" + apEducation + ", bankname=" + bankname + ", bankAccount="
-				+ bankAccount + ", approveMuserid=" + approveMuserid + ", loancard=" + loancard + ", warningSum="
-				+ warningSum + ", warningLater=" + warningLater + ", warningEarly=" + warningEarly + ", approveQuota="
-				+ approveQuota + ", loanDate=" + loanDate + ", loanDateEnd=" + loanDateEnd + ", modifyTime="
-				+ modifyTime + ", isdel=" + isdel + ", createdtime=" + createdtime + ", isPub=" + isPub + "]";
-	}
 }

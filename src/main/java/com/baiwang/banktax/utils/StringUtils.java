@@ -22,6 +22,8 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 import javax.crypto.spec.IvParameterSpec;
 
+import com.baiwang.banktax.utils.message.SendMsgUtils;
+
 /**
  * 常用字符串工具类
  * 
@@ -960,5 +962,17 @@ public class StringUtils {
             sb.append(strings[i]);
         }
         return sb.toString();
+    }
+    
+    /**
+      * @author ldm
+      * @Description: 生成订单流水号：YST+时间戳+6位随机数
+      * @param @return  
+      * @return String  
+      * @throws
+      * @date 2015年12月4日 下午4:10:27
+      */
+    public static String generSerialNum(){
+    	return "YST"+DateUtils.getDate(DateUtils.YMD)+SendMsgUtils.random();
     }
 }

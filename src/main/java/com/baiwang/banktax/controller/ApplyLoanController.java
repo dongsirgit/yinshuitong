@@ -61,6 +61,7 @@ public class ApplyLoanController {
 		try{
 			User user = (User) requset.getSession().getAttribute(ConfigUtil.getLoginedUserStr());
 			applyLoan.setUid(user.getId());
+			applyLoan.setSerialNum(StringUtils.generSerialNum());
 			applyLoan.setApplyStatus((short)100);
 			applyLoan.setStatusNote(DateUtils.dateToStr(new Date(),"yyyy-MM-dd HH:mm:ss")+"          您的贷款申请已提交，系统正在审核中");
 			applyloanService.insertSelective(applyLoan); 

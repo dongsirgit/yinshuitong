@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.baiwang.banktax.beans.ApplyLoan" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="uid" property="uid" jdbcType="BIGINT" />
+    <result column="serial_num" property="serialNum" jdbcType="VARCHAR" />
     <result column="apply_type" property="applyType" jdbcType="TINYINT" />
     <result column="prod_id" property="prodId" jdbcType="INTEGER" />
     <result column="apply_term" property="applyTerm" jdbcType="INTEGER" />
@@ -37,11 +38,11 @@
     <result column="is_pub" property="isPub" jdbcType="BIT" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, uid, apply_type, prod_id, apply_term, apply_term_type, apply_quota, apply_note, 
-    apply_time, apply_status, status_note, contact_name, telephone, is_realcharge, ap_chargeterm, 
-    ap_marry, bank, ap_education, bankname, bank_account, approve_muserid, loancard, 
-    warning_sum, warning_later, warning_early, pre_quota, approve_quota, loan_date, loan_date_end, 
-    modify_time, isdel, createdtime, is_pub
+    id, uid, serial_num, apply_type, prod_id, apply_term, apply_term_type, apply_quota, 
+    apply_note, apply_time, apply_status, status_note, contact_name, telephone, is_realcharge, 
+    ap_chargeterm, ap_marry, bank, ap_education, bankname, bank_account, approve_muserid, 
+    loancard, warning_sum, warning_later, warning_early, pre_quota, approve_quota, loan_date, 
+    loan_date_end, modify_time, isdel, createdtime, is_pub
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -88,6 +89,9 @@
       </if>
       <if test="uid != null" >
         uid,
+      </if>
+      <if test="serialNum != null" >
+        serial_num,
       </if>
       <if test="applyType != null" >
         apply_type,
@@ -158,6 +162,9 @@
       <if test="warningEarly != null" >
         warning_early,
       </if>
+      <if test="preQuota != null" >
+        pre_quota,
+      </if>
       <if test="approveQuota != null" >
         approve_quota,
       </if>
@@ -186,6 +193,9 @@
       </if>
       <if test="uid != null" >
         #{uid,jdbcType=BIGINT},
+      </if>
+      <if test="serialNum != null" >
+        #{serialNum,jdbcType=VARCHAR},
       </if>
       <if test="applyType != null" >
         #{applyType,jdbcType=TINYINT},
@@ -255,6 +265,9 @@
       </if>
       <if test="warningEarly != null" >
         #{warningEarly,jdbcType=TINYINT},
+      </if>
+      <if test="preQuota != null" >
+        #{preQuota,jdbcType=INTEGER},
       </if>
       <if test="approveQuota != null" >
         #{approveQuota,jdbcType=INTEGER},
