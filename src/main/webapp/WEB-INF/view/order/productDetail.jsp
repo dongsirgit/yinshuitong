@@ -194,7 +194,7 @@
     
     <div id='div_unfinish' class="fdiv"  style="display: none;">
         <p>您当前有一条贷款申请未完成,不能重复申请。</p>
-        <div><button class="fdivbtn2">确定</button>
+        <div><button class="fdivbtn2" onclick="javascript:location.href='<%=basePath %>/users/init/userInfo'">确定</button>
         </div>
     </div>
     
