@@ -77,10 +77,10 @@
     	</table>
    
 </div>
-<%-- <div class="partner center">
-    <h3>合作伙伴</h3>
-    <img src="<%=basePath %>/images/index/bank.jpg" alt="">
-</div> --%>
+ <div class="partner center">
+<!--     <h3>合作伙伴</h3> -->
+    <img src="<%=basePath %>/images/index/bank.png" alt="">
+</div> 
 <%@include file="WEB-INF/view/base/footer.html" %>
 <script type="text/javascript">
 $(function(){

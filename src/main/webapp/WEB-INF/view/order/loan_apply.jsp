@@ -75,7 +75,7 @@ $(function(){
 					</div>
 					<div class="item">
 						<span class="label"><b>*</b>联系人手机：</span> <input type="text"
-							name="telephone" id="telephone" class="text w264"> <span
+							name="telephone" id="telephone" class="text w264" value="${loginedUser.mobilePhone}"> <span
 							id="e_telephone" class="erro colorred" style="display: none;">×
 							请输入正确的手机号</span>
 					</div>

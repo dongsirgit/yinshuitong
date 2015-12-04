@@ -91,7 +91,7 @@
                    </c:when>
 			       <c:otherwise>
 			                         您还未进行认证,认证后才可以办理业务.
-                     <a href="<%=basePath%>/users/identify" target="top" style="text-decoration:underline;color:red">立即验证</a>
+                     <a href="<%=basePath%>/users/identify" target="top" style="text-decoration:underline;color:red">立即认证>></a>
 			       </c:otherwise> 
 			    </c:choose>
 			</span>
@@ -126,15 +126,13 @@
 						<td>申请产品</td>
 						<td>订单状态</td>
 						<td>预授信额度</td>
-						<td>银行审批额度</td>
+						<td>银行审批额度</td> 
 						<td>操作</td>
 					</tr>
 					<c:forEach items="${list}" var="loan_temp">
 						<tr>
 							<td>
-	                        	<a href="<%=basePath %>/users/loanList/reviseInfo?id=${loan_temp.id}" target="_top" class="money">
 	                        		<c:out value="${loan_temp.applyQuota}"/>万元
-	                        	</a>
 							</td>
 							<td>
 								<fmt:formatDate value="${loan_temp.applyTime}" pattern="yyyy-MM-dd" />

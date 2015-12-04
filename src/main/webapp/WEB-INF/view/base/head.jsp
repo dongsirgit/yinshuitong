@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
 <link href="<%=basePath%>/styles/common/base.css" rel="stylesheet" type="text/css">
+
 </head>
 <body>
 <div class="header_wrap">
@@ -15,7 +16,7 @@
         <c:choose>
     		<c:when test="${loginedUser != null}">
     			<div class="header_right clearfix">
-		            <div class="header_right_login" style="display:block;">您好，<span>${loginedUser.mobilePhone}</span>!
+		            <div class="header_right_login" style="display:block;">您好，<span id ="mobilePhone"></span>!
 		             	<a href="<%=basePath%>/users/init/userInfo" class="mine" target="_top">我的银税通</a> 
 		       	 		<a href="<%=basePath%>/users/exit"  class="quiet" target="_top">[退出]</a> 
 		            </div>
@@ -45,5 +46,11 @@
         </c:choose>
     </div>
 </div>
+<script type="text/javascript">
+	var all = '${loginedUser.mobilePhone}';
+	var str4rp = all.substring(3, 7);
+	var result = all.replace(str4rp, "****");
+	document.getElementById("mobilePhone").innerHTML = result;
+</script>
 </body>
 </html>
