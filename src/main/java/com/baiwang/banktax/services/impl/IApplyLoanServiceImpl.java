@@ -158,14 +158,15 @@ public class IApplyLoanServiceImpl implements IApplyLoanService {
 	}
 
 	/**
-	  * <p>Title: updateApplyStatus</p>
-	  * <p>Description: </p>
-	  * @param id
-	  * @param notes
-	  * @return
-	  * @see com.baiwang.banktax.services.iface.IApplyLoanService#updateApplyStatus(java.lang.Integer, java.lang.String)
+	  * @author ldm
+	  * @Description: 更新贷款跟踪信息
+	  * @param @param id 贷款id
+	  * @param @param notes 更新文本
+	  * @param @return  
+	  * @return ApplyDetailBean  
+	  * @throws
+	  * @date 2015年12月2日 下午2:44:27
 	  */
-	@Override
 	public int updateApplyStatus(Long id, String notes) {
 		String str4up="";
 		ApplyLoan app = dao.selectByPrimaryKey(id);

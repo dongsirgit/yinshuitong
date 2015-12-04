@@ -28,7 +28,7 @@ import com.baiwang.banktax.utils.StringUtils;
 
 /**
   * @ClassName: ApplyLoanController
-  * @Description: 申请贷款
+  * @Description: 贷款相关控制类
   * @author ldm
   * @date 2015年11月30日 下午4:57:20
   */
@@ -46,6 +46,16 @@ public class ApplyLoanController {
 	@Resource
 	IProductService productService;
 	
+	/**
+	  * @author ldm
+	  * @Description: 跳转贷款申请页面
+	  * @param @param id
+	  * @param @param request
+	  * @param @return  
+	  * @return String  
+	  * @throws
+	  * @date 2015年12月4日 下午6:53:13
+	  */
 	@RequestMapping("toLoan")
 	public String toLoan(Integer id,HttpServletRequest request){
 		List<ProductSynopsisBean> list = productService.getproList(id);
@@ -56,15 +66,26 @@ public class ApplyLoanController {
 		return "order/loan_apply";
 	}
 	
+	/**
+	  * @author ldm
+	  * @Description: 贷款提交
+	  * @param @param applyLoan
+	  * @param @param requset
+	  * @param @return  
+	  * @return String  
+	  * @throws
+	  * @date 2015年12月4日 下午6:53:34
+	  */
 	@RequestMapping("loansub")
 	public String submitLoan(ApplyLoan applyLoan,HttpServletRequest requset){
 		try{
 			User user = (User) requset.getSession().getAttribute(ConfigUtil.getLoginedUserStr());
 			applyLoan.setUid(user.getId());
-			applyLoan.setSerialNum(StringUtils.generSerialNum());
-			applyLoan.setApplyStatus((short)100);
-			applyLoan.setStatusNote(DateUtils.dateToStr(new Date(),"yyyy-MM-dd HH:mm:ss")+"          您的贷款申请已提交，系统正在审核中");
+			applyLoan.setSerialNum(StringUtils.generSerialNum());//订单流水号
+			applyLoan.setApplyStatus((short)100);//更新订单状态为审核中
+			applyLoan.setStatusNote(DateUtils.dateToStr(new Date(),"yyyy-MM-dd HH:mm:ss")+"          您的贷款申请已提交，系统正在审核中");//更新状态文本
 			applyloanService.insertSelective(applyLoan); 
+			//更新用户附件表中已上传的附件对应的贷款ID
 			UserAttacht ua = new UserAttacht();
 			ua.setApplyId(applyLoan.getId());
 			ua.setId(StringUtils.s2l(requset.getParameter("yyzz_atid")));
