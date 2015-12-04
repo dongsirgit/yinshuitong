@@ -44,11 +44,9 @@
 				type:"POST",
 				url:"<%=basePath %>/users/identify/identflag",
 				dataType:"JSON",
-				//data: params,
 				data: {'id':id},
 				asysn:false,
 				success:function(data){
-					//alert(JSON.stringify(data));
 					if(data.TaxVerify>0 && data.TaxVerify <4){
 						$(".mask_alpha").show();
 						$("#div_iden2").show();

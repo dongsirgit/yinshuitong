@@ -29,7 +29,7 @@ import com.baiwang.banktax.services.iface.IProductService;
 @Service
 public class ProductServiceImpl implements IProductService {
 
-	private static final Log log = LogFactory.getLog(ProductServiceImpl.class);
+	//private static final Log log = LogFactory.getLog(ProductServiceImpl.class);
 	@Resource
 	private ProductMapper dao;
 	/**
@@ -55,7 +55,7 @@ public class ProductServiceImpl implements IProductService {
 	 */
 	public List<ProductSynopsisBean> transf(List<Product> listp){
 		
-		log.info("||||||||Product List:"+JSON.toJSONString(listp));
+		//log.info("||||||||Product List:"+JSON.toJSONString(listp));
 		
 		if(null != listp && listp.size()>0){
 			List<ProductSynopsisBean> list = new ArrayList<ProductSynopsisBean>();
@@ -103,7 +103,7 @@ public class ProductServiceImpl implements IProductService {
 	
 	public int save(ProductDetailBean bean){
 		String det = JSON.toJSONString(bean);
-		System.out.println("JSONtoString:"+det);
+		//System.out.println("JSONtoString:"+det);
 		return dao.save(det);
 	}
 }

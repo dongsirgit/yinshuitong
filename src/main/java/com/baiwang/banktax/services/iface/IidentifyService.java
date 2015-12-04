@@ -103,6 +103,7 @@ public interface IidentifyService {
 
 	/**
 	  * @author gkm
+	 * @param id2 
 	  * @Description: 判断有无申请
 	  * @param @param id
 	  * @param @return  
@@ -110,7 +111,7 @@ public interface IidentifyService {
 	  * @throws
 	  * @date 2015年12月1日 下午2:44:38
 	  */
-	int queryApplyFlag(Long id);
+	int queryApplyFlag(Integer id, Long uid);
 
 	
 	

@@ -215,9 +215,9 @@
   </select>
   
   <select id="queryLoan" resultType="int">
-  	select apply_status applyStatus 
+  	select count(id)  
   	from bt_apply_loan 
-  	where uid = #{id}
+  	where uid = #{uid} and prod_id = #{pid} and apply_status &lt; 600 and apply_status != 200
   
   </select>
   
