@@ -43,6 +43,8 @@
 							$('.mask_alpha').hide();
 							$('#div_quxiao').hide();
 							$('#quxiao'+id).remove();
+							$('#status'+id).text('已取消');
+							
 						}
 					},
 					error:function(XMLHttpRequest, textStatus, errorThrown) {
@@ -138,7 +140,7 @@
 								<fmt:formatDate value="${loan_temp.applyTime}" pattern="yyyy-MM-dd" />
 							</td>
 							<td>${loan_temp.relaBank}${loan_temp.pname}</td>
-							<td>
+							<td id='status${loan_temp.id}'>
 								<c:if test="${loan_temp.applyStatus==100}">审核中</c:if>
 								<c:if test="${loan_temp.applyStatus>=200 && loan_temp.applyStatus<300}">已取消</c:if>
 								<c:if test="${loan_temp.applyStatus>=300 && loan_temp.applyStatus<400}">已确认</c:if>

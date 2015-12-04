@@ -29,7 +29,7 @@ $(function(){
 })
 
 function checkApplyQuota(){
-	$("#applyQuota").val($("#applyQuota").val().replace(" ",''))
+	$("#applyQuota").val($("#applyQuota").val().replace(/\s+/g,''))
 	change();
 	if(!/^([1-9][\d]{0,2})$/.test($("#applyQuota").val())){
 		$("#e_applyQuota").show();
@@ -44,7 +44,7 @@ function fo_quota(){
 }
 
 function checkApplyTerm(){
-	if(!/^([1-9][\d]{0,1})$/.test($("#applyTerm").val())){
+	if(!/^([1-9]|([12][0-9])|([3][0-6]))$/.test($("#applyTerm").val())){
 		$("#e_applyTerm").show();
 		return false;
 	}else{
@@ -57,7 +57,7 @@ function fo_term(){
 }
 
 function checkConName(){
-	$("#contactName").val($("#contactName").val().replace(" ",''));
+	$("#contactName").val($("#contactName").val().replace(/\s+/g,''));
 	if(!/^[\u4e00-\u9fa5]{2,10}$/.test($("#contactName").val())){
 		$("#e_contactName").show();
 		return false;
@@ -84,8 +84,8 @@ function fo_tel(){
 }
 
 function che_applyNote(){
-	$("#applyNote").val($("#applyNote").val().replace(" ",''));
-	if(!/^[\u4e00-\u9fa5]{2,10}$/.test($("#applyNote").val())){
+	$("#applyNote").val($("#applyNote").val().replace(/\s+/g,""));
+	if(!/^[\u4e00-\u9fa5]{10,200}$/.test($("#applyNote").val())){
 		$("#e_applyNote").show();
 		return false;
 	}else{
@@ -154,7 +154,7 @@ function fo_applyNote(){
 					<div class="item">
 						<span class="label"><b>*</b>贷款用途：</span>
 						<input type="text"
-							name="applyNote" id="applyNote" class="text w264" maxlength="11"
+							name="applyNote" id="applyNote" class="text w264" maxlength="200"
 							 onblur="che_applyNote()" onfocus="fo_applyNote()">
 						<span id="e_applyNote" class="erro colorred"
 							style="display: none;">× 至少输入10个字</span>
