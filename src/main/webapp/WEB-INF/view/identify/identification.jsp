@@ -13,13 +13,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>实名认证-税局端</title>
+<title>实名认证</title>
     <link href="<%=basePath %>/styles/common/base.css" rel="stylesheet" type="text/css">
     <link href="<%=basePath %>/styles/order/order.css" rel="stylesheet" type="text/css">
     <script src="<%=basePath %>/scripts/common/jquery-1.11.1.min.js"></script>
     
     <style type="text/css">
-   		.mainn{ width: 1000px;height:auto!important; height:600px; min-height:590px; border:1px solid #AFAEAC; margin: 10px auto; background:#FFF; padding: 0px 0 0 0;}
+   		.mainn{ width: 1000px;height:auto!important; height:600px; min-height:590px; 
+   		border:1px solid #AFAEAC; margin: 10px auto; background:#FFF; padding: 0px 0 0 0;}
    		.procurrent{background-color: blue;color: white;}
     </style>
     
@@ -43,6 +44,7 @@
 				$('#div_select_province').hide();
 				$('#div_select_city').hide();
 				$('#id').val($(this).attr('value'));
+				$('#verifyUrl').val($(this).attr('idenUri'));
 			});
 		})
 		
@@ -58,7 +60,7 @@
 						//alert(JSON.stringify(data));
 						$(".city").remove();
 						$.each( data.list, function(i, n){
-							$("<span class='city' value='"+n.id+"'>&nbsp;&nbsp;"+n.aname+"&nbsp;&nbsp;</span>$").insertAfter("#city");
+							$("<span class='city' value='"+n.id+"' idenUri='"+n.verifyUrl+"'>&nbsp;&nbsp;"+n.aname+"&nbsp;&nbsp;</span>$").insertAfter("#city");
 						});
 						
 					},
@@ -123,6 +125,7 @@
    		</div>
    		<form id='form' action="<%=basePath %>/users/identify/next" method="post">
     		<input type="hidden" id='id' name='id'>
+    		<input type="hidden" id='verifyUrl' name='verifyUrl'>
    		</form>
        
    	</div>

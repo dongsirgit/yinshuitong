@@ -122,7 +122,7 @@ public class IdentifyController {
 	  * @date 2015年11月30日 上午11:03:35
 	 */
 	@RequestMapping("/next")
-	public ModelAndView identifyNext(Integer id, HttpSession session){
+	public ModelAndView identifyNext(Integer id, String verifyUrl, HttpSession session){
 		User user = (User) session.getAttribute(ConfigUtil.getLoginedUserStr());
 		logger.info("实名认证 选择省份 下一步----用户id:" + user.getId()+"------选择的城市id:"+id);
 		
@@ -130,7 +130,7 @@ public class IdentifyController {
 		logger.info("实名认证 选择省份 下一步----用户id:" + user.getId()+"------认证类型:"+area.getVerifyType());
 		if("0".equals(area.getVerifyType())){
 			return new ModelAndView("identify/identify_platform1").addObject("province", area.getAname())
-					.addObject("id", session.getId());
+					.addObject("id", session.getId()).addObject("verifyUrl", verifyUrl);
 		}else if("1".equals(area.getVerifyType())){
 			return new ModelAndView("identify/identify_platform2");
 		}else if("2".equals(area.getVerifyType())){

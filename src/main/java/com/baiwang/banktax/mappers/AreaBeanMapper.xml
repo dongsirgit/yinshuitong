@@ -6,13 +6,14 @@
     <result column="parentid" property="parentid" jdbcType="INTEGER" />
     <result column="aname" property="aname" jdbcType="VARCHAR" />
     <result column="verify_type" property="verifyType" jdbcType="SMALLINT" />
+    <result column="verify_url" property="verifyUrl" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="muserid" property="muserid" jdbcType="INTEGER" />
     <result column="createdtime" property="createdtime" jdbcType="TIMESTAMP" />
     <result column="isdel" property="isdel" jdbcType="BIT" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, parentid, aname, verify_type, remark, muserid, createdtime, isdel
+    id, parentid, aname, verify_type, verify_url, remark, muserid, createdtime, isdel
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 

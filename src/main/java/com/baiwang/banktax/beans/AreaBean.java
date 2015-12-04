@@ -10,8 +10,10 @@ public class AreaBean {
     private String aname;
 
     private String verifyType;
+    
+    private String verifyUrl;
 
-    private String remark;
+	private String remark;
 
     private Integer muserid;
 
@@ -51,6 +53,16 @@ public class AreaBean {
         this.verifyType = verifyType;
     }
 
+    public String getVerifyUrl() {
+	
+		return verifyUrl;
+	}
+
+	public void setVerifyUrl(String verifyUrl) {
+	
+		this.verifyUrl = verifyUrl;
+	}
+	
     public String getRemark() {
         return remark;
     }
