@@ -14,10 +14,10 @@
 	<div class="upload">
     	<h3>恭喜你，注册成功！</h3>
         <div class="uploadbtn clearfix">
-        	<a href="<%=basePath%>/users/init/userInfo?showPage=1" class="download perfect">实名认证</a>
-        	<a href="<%=basePath%>/" class="think return">暂不完善，返回首页</a>
+        	<a href="<%=basePath%>/users/identify" class="download perfect">实名认证</a>
+        	<a href="<%=basePath%>/" class="think return">暂不认证，返回首页</a>
         </div>
-        <p class="cue">温馨提示：完善账户信息后才可以申请贷款</p>
+        <p class="cue">温馨提示：认证后才可以申请贷款</p>
     </div>
 </div>
 <%@include file="../base/footer.html"%>
