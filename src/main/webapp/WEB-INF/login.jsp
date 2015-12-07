@@ -82,7 +82,6 @@
       <form id="myform" >
         <div class="username form-item">
           <label>手机号</label>
-            <input type="text" class="inputState" style="color:#b0b0b0;" name="mobilePhone" id="mobilePhone" value="15612341234" onblur="checkMobilePhone()" />
             <input type="text" class="inputState" style="color:#b0b0b0;IME-MODE: disabled;" name="mobilePhone" id="mobilePhone" value="请输入手机号码" 
                 onblur="checkMobilePhone()" onkeyup="this.value=this.value.replace(/\D/g,'');if(this.value.length>11){this.value=this.value.substr(0,11)};"  
                 onafterpaste="this.value=this.value.replace(/\D/g,'')" />
@@ -91,7 +90,6 @@
         <span id="mobilePhoneMsg" style="color:red;height:28px;display:inline-block"></span>
         <div class="password form-item">
             <label>密码</label>
-            <input type="password" class="pwdState" id="userPwd_hidden" style="color:#000;display:none" value="a123456" onblur="checkUserPwd()" />
             <input type="password" class="pwdState" id="userPwd_hidden" style="color:#000;display:none" value="" 
                 onblur="checkUserPwd();" onkeyup="if(this.value.length>16){this.value=this.value.substr(0,16)};" />
             <input type="text" class="pwdState" id="userPwd_text" style="color:#b0b0b0;" value="请输入密码" />
