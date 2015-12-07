@@ -137,7 +137,7 @@ public class ApplyDetailBean {
 	
 		this.applyQuota = applyQuota;
 		
-		BigDecimal numberOfMoney = new BigDecimal(applyQuota);
+		BigDecimal numberOfMoney = new BigDecimal(applyQuota*10000);
 		String applyQuotaDX = NumberToCN.number2CNMontrayUnit(numberOfMoney);
 		this.applyQuotaDX = applyQuotaDX;
 	}
