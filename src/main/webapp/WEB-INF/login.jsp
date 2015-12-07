@@ -25,9 +25,9 @@
 	    	var mobilePhone=getRealValue($("#mobilePhone")),
 	    	    mobilePhoneMsg=$("#mobilePhoneMsg"),
 	    	    reg_mobilePhone=/^(0|86|17951)?(13[0-9]|15[012356789]|17[0678]|18[0-9]|14[57])[0-9]{8}$/;
-	    	if(!mobilePhone){
+	    	if(!mobilePhone || mobilePhone == "请输入手机号码"){
 	    		mobilePhoneMsg.text("手机号不能为空!");
-	    		return false
+	    		return false;
 	    	}else if(!reg_mobilePhone.test(mobilePhone)){
 	    		mobilePhoneMsg.text("请输入合法的手机号");
 	    		return false;
@@ -55,7 +55,7 @@
 		        	    function(data) {
 		        	        if(data == 4) {
 	                            //账号错误
-	                            $("#userPwdMsg").text("用户名或密码输入错误!");
+	                            $("#userPwdMsg").text("手机号或密码输入错误!");
 	                        }else if(data == 0){
 	                            location.href="<%=basePath%>/users/loginSuccess";
 	                        }else{
@@ -82,13 +82,18 @@
       <form id="myform" >
         <div class="username form-item">
           <label>手机号</label>
-            <input type="text" class="inputState" style="color:#b0b0b0;" name="mobilePhone" id="mobilePhone" value="请输入手机号码" onblur="checkMobilePhone()" />
+            <input type="text" class="inputState" style="color:#b0b0b0;" name="mobilePhone" id="mobilePhone" value="15612341234" onblur="checkMobilePhone()" />
+            <input type="text" class="inputState" style="color:#b0b0b0;IME-MODE: disabled;" name="mobilePhone" id="mobilePhone" value="请输入手机号码" 
+                onblur="checkMobilePhone()" onkeyup="this.value=this.value.replace(/\D/g,'');if(this.value.length>11){this.value=this.value.substr(0,11)};"  
+                onafterpaste="this.value=this.value.replace(/\D/g,'')" />
             <span style="display: none;">请输入手机号码</span>
         </div>
         <span id="mobilePhoneMsg" style="color:red;height:28px;display:inline-block"></span>
         <div class="password form-item">
             <label>密码</label>
-            <input type="password" class="pwdState" id="userPwd_hidden" style="color:#000;display:none" value="" onblur="checkUserPwd()" />
+            <input type="password" class="pwdState" id="userPwd_hidden" style="color:#000;display:none" value="a123456" onblur="checkUserPwd()" />
+            <input type="password" class="pwdState" id="userPwd_hidden" style="color:#000;display:none" value="" 
+                onblur="checkUserPwd();" onkeyup="if(this.value.length>16){this.value=this.value.substr(0,16)};" />
             <input type="text" class="pwdState" id="userPwd_text" style="color:#b0b0b0;" value="请输入密码" />
             <input name="userPass" id="userPwd_md5" type="hidden" ></input>
         </div>
