@@ -218,7 +218,8 @@ public class UserController {
             if("0".equals(result)){
                 logger.info("手机验证码发送成功==>"+code);
                 session.setAttribute(mobilePhone, code);
-                return Constant.SUCCESS;
+            //    return Constant.SUCCESS;
+                return Integer.parseInt(code);
             }else if("5".equals(result)){
                 //手机号不存在
                 return Constant.USER_PHONENUM_ERROR;

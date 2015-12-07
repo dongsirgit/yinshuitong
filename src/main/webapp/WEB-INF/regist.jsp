@@ -133,12 +133,13 @@
                data:{"mobilePhone":$("#mobilePhone").val()},
                async:true,
                success:function(data){
-            	   if(data == 0){
+             	   /* if(data == 0){ */
             		   //发送成功
 			           $("#phoneCode").attr("disabled",false);
 			           timer();
             		   $("#mobilePhoneMsg").text("");
-            	   }else if(data == 3){
+            		   alert(data);
+/*              	   }else if(data == 3){
             		   $("#mobilePhoneMsg").text("该手机号不存在");
             	   }else if(data == 16){
             		   //服务异常,如欠费等
@@ -146,8 +147,8 @@
             	   }else{
             		   //包含参数异常错误码15
             		   $("#mobilePhoneMsg").text("参数异常！");
-            	   }
-               }
+            	   } */
+               } 
           });
 		}
 	}
