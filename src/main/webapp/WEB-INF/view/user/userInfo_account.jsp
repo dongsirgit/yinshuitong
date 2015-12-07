@@ -74,7 +74,7 @@
 <body style="background-color: #fefefe; background-image:none;height:auto!important;height:500px;min-height:500px;">
 	    <img src="<%=basePath%>/images/common/headPic.png" style="width:60px;height:60px;float:left"/>
 	    <div class="userInfoDiv">
-	       <span class="userInfoSpan">登录账号:</span>${loginedUser.mobilePhone}
+	       <span class="userInfoSpan">登录账号:</span><span id ="mobilePhone"></span>
 	    </div>
 	    <div class="userInfoDiv">
 	       <span class="userInfoSpan">登录密码:</span>
@@ -175,6 +175,11 @@
     	<div><a class="fdivbtn1" id="btn_quxiao" name="btn_quxiao">确定</a><a class="fdivbtn2">取消</a></div>
 	</div>
 	<input id="idid" type="hidden" value=""/>
-	
+<script type="text/javascript">
+	var all = '${loginedUser.mobilePhone}';
+	var str4rp = all.substring(3, 7);
+	var result = all.replace(str4rp, "****");
+	document.getElementById("mobilePhone").innerHTML = result;
+</script>
 </body>
 </html>

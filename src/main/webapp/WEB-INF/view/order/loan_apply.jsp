@@ -30,11 +30,12 @@ $(function(){
 
 function checkApplyQuota(){
 	$("#applyQuota").val($("#applyQuota").val().replace(/\s+/g,''))
-	change();
 	if(!/^([1-9][\d]{0,2})$/.test($("#applyQuota").val())){
 		$("#e_applyQuota").show();
+		$("#quotaCny").html("");
 		return false;
 	}else{
+		change();
 		$("#e_applyQuota").hide();
 		return true;
 	}
@@ -108,11 +109,10 @@ function fo_applyNote(){
 	<div class="main">
 		<div class="mainpb">
 			<div>
-				&nbsp;&nbsp;&nbsp;选择的贷款产品：<br/>
-				&nbsp;&nbsp;&nbsp;
+				选择的贷款产品：<br/>
 				<img src="<%=basePath %>/images/product/${prosyn.icoUrl}"/><c:out value="${prosyn.relaBank}"/>-<c:out value="${prosyn.pname}"/>
-				&nbsp;&nbsp;&nbsp;
-				授信额度：<c:out value="${prosyn.sxed}"/>&nbsp;&nbsp;&nbsp;参考利率：<c:out value="${prosyn.ckll}"/>
+				&nbsp;&nbsp;&nbsp;<span style="height:50px; vertical-align: middle;">
+				授信额度：<c:out value="${prosyn.sxed}"/>&nbsp;&nbsp;&nbsp;参考利率：<c:out value="${prosyn.ckll}"/></span>
 			</div>
 			<div class="orderform">
 				<div class="item">
@@ -127,7 +127,7 @@ function fo_applyNote(){
 					<div class="item">
 						<span class="label"><b>*</b>期望贷款金额：</span> <input
 							name="applyQuota" id="applyQuota" type="text" maxlength="3"
-							class="text w264" onblur="checkApplyQuota()" onkeyup="change();" onfocus="fo_quota()"><em>万元</em>
+							class="text w264" onblur="checkApplyQuota()" onkeyup="checkApplyQuota();" onfocus="fo_quota()"><em>万元</em>
 							<em><span id="quotaCny" style="font-size: 20px"></span></em>
 							 <span
 							id="e_applyQuota" class="erro colorred" style="display: none;">×
@@ -141,7 +141,7 @@ function fo_applyNote(){
 					</div>
 					<div class="item">
 						<span class="label"><b>*</b>联系人姓名：</span> <input type="text" maxlength="10"
-							name="contactName" id="contactName" class="text w264" onblur="checkConName()" onfocus="fo_conName()"> <span
+							name="contactName" id="contactName" class="text w264" onblur="checkConName()" onfocus="fo_conName()" > <span
 							id="e_contactName" class="erro colorred" style="display: none;">×
 							请输入正确的姓名</span>
 					</div>
