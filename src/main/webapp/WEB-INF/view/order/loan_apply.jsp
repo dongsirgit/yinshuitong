@@ -151,11 +151,10 @@ function fo_applyNote(){
 							id="e_telephone" class="erro colorred" style="display: none;">×
 							请输入正确的手机号</span>
 					</div>
-					<div class="item">
+					<div class="item4">
 						<span class="label"><b>*</b>贷款用途：</span>
-						<input type="text"
-							name="applyNote" id="applyNote" class="text w264" maxlength="200"
-							 onblur="che_applyNote()" onfocus="fo_applyNote()">
+						<textarea rows="" cols="" name="applyNote" id="applyNote" class="itemarea" style="width: 600px" maxlength="200"
+							 onblur="che_applyNote()" onfocus="fo_applyNote()"></textarea>
 						<span id="e_applyNote" class="erro colorred"
 							style="display: none;">× 至少输入10个字</span>
 					</div>
