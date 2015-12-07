@@ -199,7 +199,7 @@ function change(){
 	$('#quotaCny').html(cny==''?'':cny+"万圆整");
 }
 
-function numToCny(num){     
+function numToCny(num){
     var capUnit = ['万','亿','万',''];     
     var capDigit = { 2:['角','分',''], 4:['仟','佰','拾','']};     
     var capNum=['零','壹','贰','叁','肆','伍','陆','柒','捌','玖'];     
