@@ -59,12 +59,13 @@
 	               data:{"mobilePhone":$("#mobilePhone").val()},
 	               async:true,
 	               success:function(data){
-	                   if(data == 0){
+/* 	                   if(data == 0){ */
 	                       //发送成功
 	                       $("#phoneCode").attr("disabled",false);
 	                       timer();
 	                       $("#mobilePhoneMsg").text("");
-	                   }else if(data == 3){
+	                       alert(data);
+/* 	                   }else if(data == 3){
 	                       $("#mobilePhoneMsg").text("该手机号不存在");
 	                   }else if(data == 16){
 	                       //服务异常,如欠费等
@@ -72,7 +73,7 @@
 	                   }else{
 	                       //包含参数异常错误码15
 	                       $("#mobilePhoneMsg").text("参数异常！");
-	                   }
+	                   } */
 	               }
 	          });
 	        }
@@ -108,7 +109,9 @@
 				<h3>找回密码</h3>
 				<div class="hg">
 				    <label style="width:80px;font-size:15px">手机号:</label>
-					<input class="inputState" type="text" value="手机号码" name="mobilePhone" id="mobilePhone" onblur="checkMobilePhone()" style="color:#b0b0b0;" />
+					<input class="inputState" type="text" value="手机号码" name="mobilePhone" id="mobilePhone" onblur="checkMobilePhone()" style="color:#b0b0b0;IME-MODE: disabled;" 
+                        onkeyup="this.value=this.value.replace(/\D/g,'');if(this.value.length>11){this.value=this.value.substr(0,11)};"  
+                        onafterpaste="this.value=this.value.replace(/\D/g,'')"/>
 					<span style="display:none">手机号码</span>
 					<p class="prompt" id="mobilePhoneMsg"></p>
 				</div>

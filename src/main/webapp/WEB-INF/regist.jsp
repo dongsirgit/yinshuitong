@@ -25,7 +25,10 @@
                 <form action="<%=basePath%>/user/register" method="post" id="myform" onsubmit="return register()">
                     <div class="form-item ">
                         <label>手机号</label>
-                        <input type="text" class="inputState" id="mobilePhone" style="color:#b0b0b0;" name="mobilePhone" value="请输入手机号" onblur="checkMobilePhone()" />
+                        <input type="text" class="inputState" id="mobilePhone" style="color:#b0b0b0;IME-MODE: disabled;" name="mobilePhone" value="请输入手机号" 
+                            onblur="checkMobilePhone()" 
+                            onkeyup="this.value=this.value.replace(/\D/g,'');if(this.value.length>11){this.value=this.value.substr(0,11)};"  
+                            onafterpaste="this.value=this.value.replace(/\D/g,'')"/>
                         <span style="display: none">请输入手机号</span>
                     </div>
                     <div class="info"><span id="mobilePhoneMsg"></span></div>
@@ -38,7 +41,8 @@
                     <div class="info"><span id="phoneCodeMsg"></span></div>
                     <div class="form-item">
                         <label>登录密码</label>
-                        <input type="password" class="pwdState" id="userPwd1_hidden" style="color:#000; display:none" value="" onblur="checkPwd1()" />
+                        <input type="password" class="pwdState" id="userPwd1_hidden" style="color:#000; display:none" value="" 
+                            onblur="checkPwd1()"  onkeyup="if(this.value.length>16){this.value=this.value.substr(0,16)};"/>
                         <input type="text" class="pwdState" id="userPwd1_text" style="color:#b0b0b0;" value="请输入登录密码" />
                     </div>
                     <div class="info">
@@ -49,7 +53,8 @@
                     </div>
                     <div class="form-item pwdState">
                         <label>确认密码</label>
-                        <input type="password" class="pwdState" id="userPwd2_hidden" style="color: #000; display: none" onblur="checkPwd2()" value="" />
+                        <input type="password" class="pwdState" id="userPwd2_hidden" style="color: #000; display: none" value="" 
+                            onblur="checkPwd2()" onkeyup="if(this.value.length>16){this.value=this.value.substr(0,16)};"/>
                         <input type="text" class="pwdState" id="userPwd2_text" style="color:#b0b0b0;" value="请输入确认密码" />
                         <input name="userPass" type="hidden" id="userPwd_md5" />
                     </div>
