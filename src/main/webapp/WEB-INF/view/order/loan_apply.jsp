@@ -18,6 +18,11 @@ if(a){
 	alert(a);
 	location.href='<%=basePath %>/users/applyloan/toLoan';
 }
+
+if(!'${proid}'){
+	location.href = '<%=basePath %>/product/list';
+}
+
 $(function(){
 	$('#loansub').click(function(){
 		if(checkApplyQuota() && checkApplyTerm() && checkConName() && che_telephone() && che_applyNote()){
@@ -85,8 +90,15 @@ function fo_tel(){
 }
 
 function che_applyNote(){
-	$("#applyNote").val($("#applyNote").val().replace(/\s+/g,""));
-	if(!/^[\u4e00-\u9fa5]{10,200}$/.test($("#applyNote").val())){
+// 	$("#applyNote").val($("#applyNote").val().replace(/\s+/g,""));
+// 	if(!/^[\u4e00-\u9fa5a-zA-Z0-9]{10,200}$/.test($("#applyNote").val())){
+// 		$("#e_applyNote").show();
+// 		return false;
+// 	}else{
+// 		$("#e_applyNote").hide();
+// 		return true;
+// 	}
+	if($("#applyNote").val().length<10){
 		$("#e_applyNote").show();
 		return false;
 	}else{
