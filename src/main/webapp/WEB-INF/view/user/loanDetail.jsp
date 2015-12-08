@@ -43,12 +43,12 @@
 			<tr height="25px;">
 				<td width="120" align="right" style=" padding: 5px;">预授信额度：</td>
 				<td width="180" align="left" style="color: red;">
-					<c:if test="${detail.preQuota==null}">0</c:if>
-					${detail.preQuota}万元</td>
+					<c:if test="${detail.preQuota!=null}">${detail.preQuota}万元</c:if>
+					</td>
 				<td width="120" align="right">银行审批额度：</td>
 				<td width="180" align="left" style="color: red;">
-					<c:if test="${detail.approveQuota==null}">0</c:if>
-					${detail.approveQuota}万元</td>
+					<c:if test="${detail.approveQuota!=null}">${detail.approveQuota}万元</c:if>
+				</td>
 			</tr>
 		</table>
 	</div>
