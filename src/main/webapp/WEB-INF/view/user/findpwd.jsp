@@ -118,7 +118,10 @@
 				<div class="getPhoneCodeBtn" onclick="getPhoneCode()">获取验证码</div>
 				<div class="hg">
 				    <label style="width:80px;font-size:15px">验证码:</label>
-					<input class="inputState" type="text" value="验证码" name="phoneCode" id="phoneCode" onblur="checkPhoneCode()" style="width:200px;color:#b0b0b0;" disabled="disabled" />
+					<input class="inputState" type="text" value="验证码" name="phoneCode" id="phoneCode" 
+					   onblur="checkPhoneCode()" style="width:200px;color:#b0b0b0;" disabled="disabled" 
+					   onkeyup="this.value=this.value.replace(/\D/g,'');if(this.value.length>6){this.value=this.value.substr(0,6)};"  
+                       onafterpaste="this.value=this.value.replace(/\D/g,'')"/>
 					<span style="display:none">验证码</span>
 					<p class="prompt" id="phoneCodeMsg"></p>
 				</div>
