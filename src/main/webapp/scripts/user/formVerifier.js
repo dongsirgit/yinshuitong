@@ -113,7 +113,7 @@ var verifier={
 			if(!userPwd1){
 				userPwd1Msg.text("密码不能为空！");
 			}else if(!reg_userPwd.test(userPwd1)){
-				userPwd1Msg.text("请输入8-16的数字,字母,特殊字符的混合密码");
+				userPwd1Msg.text("请输入8-16位的数字,字母,特殊字符");
 			}else{
 				userPwd1Msg.text("");
 				if(reg_userPwd_weak.test(userPwd1)){

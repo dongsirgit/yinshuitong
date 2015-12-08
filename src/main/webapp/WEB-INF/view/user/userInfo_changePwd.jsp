@@ -135,12 +135,18 @@
 						<input type="hidden" id="passWordHidden" name="passWord" />
 						<div class="userPass form-item ">
 							<label>原密码</label> 
-							<input type="password" id="oldUserPwd" style="color: #b0b0b0;" onblur="checkOldPwd()" onkeyup="if(this.value.length>16){this.value=this.value.substr(0,16)};" />
+							<input type="password" id="oldUserPwd" style="color: #b0b0b0;" 
+							onblur="checkOldPwd()" 
+							onkeyup="if(this.value.length>16){this.value=this.value.substr(0,16)};" 
+							onpaste="return false"/>
 						</div>
 						<div class="info"><span id="oldUserPwdMsg"></span></div>
 						<div class="passWord form-item">
 							<label>新密码</label>
-							<input type="password" class="pwdState" id="userPwd1_hidden" style="color: #b0b0b0;display:none" value="" onblur="checkPwd1()" onkeyup="if(this.value.length>16){this.value=this.value.substr(0,16)};" /> 
+							<input type="password" class="pwdState" id="userPwd1_hidden" style="color: #b0b0b0;display:none" value="" 
+							     onblur="checkPwd1()" 
+							     onkeyup="if(this.value.length>16){this.value=this.value.substr(0,16)};"
+							     onpaste="return false"/> 
 							<input type="text" class="pwdState" id="userPwd1_text" style="color: #b0b0b0;" value="6-20位的字母数字混合组成" />
 						</div>
 						<div class="info">
@@ -151,7 +157,10 @@
 						</div>
 						<div class="pass form-item">
 							<label>确认密码</label>
-							<input type="password" style="color: #b0b0b0;" id="userPwd2_hidden" onblur="checkPwd2()" onkeyup="if(this.value.length>16){this.value=this.value.substr(0,16)};" />
+							<input type="password" style="color: #b0b0b0;" id="userPwd2_hidden" 
+							     onblur="checkPwd2()" 
+							     onkeyup="if(this.value.length>16){this.value=this.value.substr(0,16)};" 
+							     onpaste="return false"/>
 						</div>
 						<div class="info"><span id="userPwd2Msg"></span></div>
 						<a onclick="changePwd();">提交</a>
