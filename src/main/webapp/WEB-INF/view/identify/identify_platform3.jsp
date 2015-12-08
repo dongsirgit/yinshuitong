@@ -217,7 +217,7 @@
    		
    		<div style="width: 80%; height:auto!important; height:60px; min-height:60px; line-height: 30px;">
 	   		<div class="readdiv"><span><em>√</em></span>
-	   		<font style="font-size: 16px;">我已经阅读并同意<a href="<%=basePath %>/users/applyLoan/read" target="_blank">《数据授权协议》</a></font></div>
+	   		<font style="font-size: 16px;">我已经阅读并同意<a href="<%=basePath %>/users/identify/toProtocol" target="_blank">《数据授权协议》</a></font></div>
    		</div>
    		
     	<div style="width: 80%; height: 100%; padding-top: 20px; padding-bottom: 8px;"><!--  border:1px solid #AFAEAC; -->

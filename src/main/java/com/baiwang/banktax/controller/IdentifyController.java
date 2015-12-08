@@ -270,6 +270,19 @@ public class IdentifyController {
 	public String success3(){
 		return "identify/identify_success3";
 	}
+	/**
+	 * 
+	  * @author ldm
+	  * @Description: 跳转数据授权协议
+	  * @param @return  
+	  * @return String  
+	  * @throws
+	  * @date 2015年11月30日 下午3:33:51
+	 */
+	@RequestMapping("/toProtocol")
+	public String toProtocol(){
+		return "identify/protocol";
+	}
 	
 	
 	
