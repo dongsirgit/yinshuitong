@@ -89,7 +89,7 @@
 	                }else{
 	                    $(".getPhoneCodeBtn").css("background-color","#c39b66").attr("onclick","getPhoneCode()").text("获取验证码");
 	                    clearInterval(id);
-	                    time = 60;
+	                    time = 120;
 	                }
 	            },1000);
 	        }
