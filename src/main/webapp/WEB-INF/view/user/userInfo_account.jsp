@@ -100,21 +100,40 @@
 			<table class="userInfoTable">
 				<tr>
 				<td class="textRight">企业名称:</td>
-				<td class="textLeft" style="width:200px">${loginedUser.corpName}</td>
+				<td class="textLeft" style="width:200px">
+				<c:if test="${loginedUser.taxVerify == 4}">
+					${loginedUser.corpName}
+				</c:if>
+				</td>
 				<td class="textRight">企业办公地址:</td>
-				<td class="textLeft" style="width:200px">${loginedUser.address}</td>
+				<td class="textLeft" style="width:200px">
+				<c:if test="${loginedUser.taxVerify == 4}">
+				${loginedUser.address}</c:if>
+				</td>
 				</tr>
 	            <tr>
 	            <td class="textRight">企业纳税号:</td>
-	            <td class="textLeft" style="width:200px">${loginedUser.taxSn}</td>
+	            <td class="textLeft" style="width:200px">
+	            <c:if test="${loginedUser.taxVerify == 4}">
+	            ${loginedUser.taxSn}</c:if>
+	            </td>
 	            <td class="textRight">营业执照注册号:</td>
-	            <td class="textLeft" style="width:200px">${loginedUser.licenseRegnum}</td>
+	            <td class="textLeft" style="width:200px">
+	            <c:if test="${loginedUser.taxVerify == 4}">
+	            ${loginedUser.licenseRegnum}</c:if>
+	            </td>
 	            </tr>
 	            <tr>
 	            <td class="textRight">法人代表姓名:</td>
-	            <td class="textLeft" style="width:200px">${loginedUser.apName}</td>
+	            <td class="textLeft" style="width:200px">
+	            <c:if test="${loginedUser.taxVerify == 4}">
+	            ${loginedUser.apName}</c:if>
+	            </td>
 	            <td class="textRight">法人代表身份证号:</td>
-	            <td class="textLeft" style="width:200px">${loginedUser.idcard}</td>
+	            <td class="textLeft" style="width:200px">
+	            <c:if test="${loginedUser.taxVerify == 4}">
+	            ${loginedUser.idcard}</c:if>
+	            </td>
 	            </tr>
 			</table> 
 	    <div style="clear:both;border-bottom:2px solid #dcc09a"></div>
