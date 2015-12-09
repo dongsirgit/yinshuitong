@@ -58,8 +58,12 @@ public class UserController {
       * @date 2015年11月24日 下午4:42:23
      */
     @RequestMapping("/forwardLogin")
-    public String forwardLogin(HttpSession session) {
+    public String forwardLogin(HttpSession session,HttpServletRequest request) {
         User user = (User) session.getAttribute(loginedUserStr);
+        if(null != request.getParameter("proId")){
+        	request.setAttribute("toProd", "yes");
+        	request.setAttribute("proId", request.getParameter("proId"));
+        }
         if (null == user) {
             return "../login";
         } else {

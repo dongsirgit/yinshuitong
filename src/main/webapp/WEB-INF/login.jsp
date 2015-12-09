@@ -57,7 +57,11 @@
 	                            //账号错误
 	                            $("#userPwdMsg").text("手机号或密码输入错误!");
 	                        }else if(data == 0){
-	                            location.href="<%=basePath%>/users/loginSuccess";
+	                        	if('${toProd}'){
+	                        		location.href='<%=basePath%>/product/detail?id='+'${proId}';
+	                        	}else{
+		                            location.href="<%=basePath%>/users/loginSuccess";
+	                        	}
 	                        }else{
 	                        	//包含参数异常码15
 	                        	$("#userPwdMsg").text("参数异常!");

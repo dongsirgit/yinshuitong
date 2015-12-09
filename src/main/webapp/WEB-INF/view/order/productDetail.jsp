@@ -23,20 +23,18 @@
     	.productt{ padding-bottom:90px; margin-bottom:60px;}
     	
     </style>
-    
     <script type="text/javascript">
     	var loginflag = <%=loginflag%>;
-	
 		function apply(id){
 			if(loginflag==1){//登陆成功
-				//if(){}
 				identify(id);
 			}else{//登陆失败
 				$(".mask_alpha").show();
 				$("#div_login").show();
-				//alert("登陆...")
-				//location.href = '';
 			}
+		}
+		function tologin(){
+			$('#tologin').submit();
 		}
 		function identify(id){
 			
@@ -169,6 +167,9 @@
         	<form id='form' action="<%=basePath %>/users/applyloan/toLoan" method="post">
         		<input type="hidden" id="id" name='id' value='${detail.id}'>
         	</form>
+        	<form id="tologin" action="<%=basePath %>/user/forwardLogin" method="post">
+        		<input type="hidden" id="proId" name='proId' value='${detail.id}'>
+        	</form>
     	</div>
 	</c:if>
     
@@ -177,7 +178,7 @@
     <div id='div_login' class="fdiv"  style="display: none;">
         <p>您还未登录，请先登录！</p>
         <div><button class="fdivbtn2">取消</button>
-        <button class="fdivbtn1" onclick="javascript:location.href='<%=basePath %>/user/forwardLogin';">确定</button></div>
+        <button class="fdivbtn1" onclick="javascript:tologin();">确定</button></div>
     </div>
     
     <div id='div_iden' class="fdiv"  style="display: none;">

@@ -166,7 +166,7 @@ public class IdentifyController {
 		result = "5588";
 		
 		map.put("result", result);//税局返回结果
-		int success = service.plat2("税局公司", "9999991111111", "11111196969111111", user.getId());//更新企业信息
+		int success = service.plat2("税局公司", System.currentTimeMillis()+"", "11111196969111111", user.getId());//更新企业信息
 		map.put("success", success);
 		
 		session.setAttribute(ConfigUtil.getLoginedUserStr(), service.selectById(user.getId()));
