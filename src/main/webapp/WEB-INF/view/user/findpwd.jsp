@@ -109,10 +109,10 @@
 				<h3>找回密码</h3>
 				<div class="hg">
 				    <label style="width:80px;font-size:15px">手机号:</label>
-					<input class="inputState" type="text" value="手机号码" name="mobilePhone" id="mobilePhone" onblur="checkMobilePhone()" style="color:#b0b0b0;IME-MODE: disabled;" 
+					<input class="inputState" type="text" value="请输入手机号" name="mobilePhone" id="mobilePhone" onblur="checkMobilePhone()" style="color:#b0b0b0;IME-MODE: disabled;" 
                         onkeyup="this.value=this.value.replace(/\D/g,'');if(this.value.length>11){this.value=this.value.substr(0,11)};"  
                         onafterpaste="this.value=this.value.replace(/\D/g,'')"/>
-					<span style="display:none">手机号码</span>
+					<span style="display:none">请输入手机号</span>
 					<p class="prompt" id="mobilePhoneMsg"></p>
 				</div>
 				<div class="getPhoneCodeBtn" onclick="getPhoneCode()">获取验证码</div>

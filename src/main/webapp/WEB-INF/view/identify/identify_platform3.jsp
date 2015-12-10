@@ -247,7 +247,7 @@
         <div><button class="fdivbtn2">确定</button>
         </div>
     </div>
-    
+    <input type="hidden" id="swdj_atid" name="swdj_atid">
     
     <%@include file="../base/footer.html" %>
 <script type="text/javascript" src="<%=basePath%>/plupload/plupload.full.min.js"></script>
@@ -301,7 +301,7 @@ $(function(){
 		document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = '<span name="uploading" style="color:red;">' + file.percent + "%</span>";
 	});
 	uploader.bind('FileUploaded',function(uploader,file,result){
-		$('#yyzz_atid').val(eval("("+result.response+")").atId);
+		$('#swdj_atid').val(eval("("+result.response+")").atId);
 	});
 	uploader.bind('Error',function(uploader,err){
 		if("linkTimeOut"==err.response){
@@ -318,9 +318,11 @@ $(function(){
 		}
 	});
 	uploader.bind('UploadComplete',function(uploader,files){
+		plupload.each(files, function(file) {
+			document.getElementById('filelist1').innerHTML = '<a class="pt5 tdul" name="flag4check" href="<%=basePath %>/users/file/showPicById?id='+$("#swdj_atid").val()+'" target="_blank">'+file.name+'</a>';
+		});
 		$("#browse1").attr('disabled',false);
-	});
-	
+		});
 	
 	
 })

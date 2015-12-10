@@ -25,14 +25,22 @@ if(!'${proid}'){
 
 $(function(){
 	$('#loansub').click(function(){
-		if(checkApplyQuota() && checkApplyTerm() && checkConName() && che_telephone() && che_applyNote()){
+		
+		if(checkApplyQuota() && checkApplyTerm() && checkConName() && che_telephone() && che_applyNote() && checkUpload()){
 			$('#loan_form').attr("action","<%=basePath %>/users/applyloan/loansub");
 			$('#loan_form').submit();
 		}
 		
 	});
 })
-
+function checkUpload(){
+	if($("a[name='flag4check']").length!=2){
+		$("#upCheckdiv").show();
+		$(".mask_alpha").show();
+		return false;
+	}
+	return true
+}
 function checkApplyQuota(){
 	$("#applyQuota").val($("#applyQuota").val().replace(/\s+/g,''))
 	if(!/^([1-9][\d]{0,2})$/.test($("#applyQuota").val())){
@@ -200,17 +208,26 @@ function fo_applyNote(){
 		</div>
 	</div>
 <%@include file="../base/footer.html"%>
+<div id="upCheckdiv" class="fdiv" style="display: none;">
+	<p>证件资料不齐全 或 文件正在上传中，<br/>上传完整后才可提交！</p>
+    <div><a class="fdivbtn1" id="btn_upCheck_confirm">确定</a></div>
+</div>
+
 <script type="text/javascript" src="<%=basePath%>/plupload/plupload.full.min.js"></script>
 <script type="text/javascript" src="<%=basePath%>/plupload/jquery.plupload.queue.js"></script>
 <script type="text/javascript" src="<%=basePath%>/plupload/zh_CN.js"></script>
 <script type="text/javascript">
+
+$('#btn_upCheck_confirm').click(function(){
+	$('#upCheckdiv').hide();
+	$(".mask_alpha").hide();
+});
 
 function change(){
 	var a =$('#applyQuota').val();
 	var cny = numToCny(a);
 	$('#quotaCny').html(cny==''?'':cny+"万圆整");
 }
-
 function numToCny(num){
     var capUnit = ['万','亿','万',''];     
     var capDigit = { 2:['角','分',''], 4:['仟','佰','拾','']};     
@@ -283,12 +300,13 @@ uploader.bind('UploadProgress',function(uploader,file){
 uploader.bind('FileUploaded',function(uploader,file,result){
 	$('#yyzz_atid').val(eval("("+result.response+")").atId);
 });
+
 uploader.bind('Error',function(uploader,err){
 	if("linkTimeOut"==err.response){
 		uploader.stop();
     	$("#browse1").attr('disabled',false);
     	document.getElementById('filelist1').innerHTML = '<a class="erropro" href="javascript:;">* 请上传附件</a>';
-    	alert("图片类附件"+err.file.name+'  :  网络异常，上传失败，请重新上传！');
+    	alert(err.file.name+'  :  网络异常，上传失败，请重新上传！');
 	}else if("timeOut"==err.response){
 		uploader.stop();
 		alert("您还没有登录或登录已超时，请重新登录！");
@@ -298,9 +316,11 @@ uploader.bind('Error',function(uploader,err){
 	}
 });
 uploader.bind('UploadComplete',function(uploader,files){
-	$("#browse1").attr('disabled',false);
+plupload.each(files, function(file) {
+	document.getElementById('filelist1').innerHTML = '<a class="pt5 tdul" name="flag4check" href="<%=basePath %>/users/file/showPicById?id='+$("#yyzz_atid").val()+'" target="_blank">'+file.name+'</a>';
 });
-
+$("#browse1").attr('disabled',false);
+});
 //贷款申请书上传
 var uploader_sqs = new plupload.Uploader({
     browse_button : 'browse2', 
@@ -340,7 +360,7 @@ uploader_sqs.bind('Error',function(uploader_sqs,err){
 		uploader_sqs.stop();
     	$("#browse2").attr('disabled',false);
     	document.getElementById('filelist2').innerHTML = '<a class="erropro" href="javascript:;">* 请上传附件</a>';
-    	alert("图片类附件"+err.file.name+'  :  网络异常，上传失败，请重新上传！');
+    	alert(err.file.name+'  :  网络异常，上传失败，请重新上传！');
 	}else if("timeOut"==err.response){
 		uploader_sqs.stop();
 		alert("您还没有登录或登录已超时，请重新登录！");
@@ -350,9 +370,11 @@ uploader_sqs.bind('Error',function(uploader_sqs,err){
 	}
 });
 uploader_sqs.bind('UploadComplete',function(uploader_sqs,files){
+	plupload.each(files, function(file) {
+		document.getElementById('filelist2').innerHTML = '<a class="pt5 tdul" name="flag4check" href="<%=basePath %>/users/file/showPicById?id='+$("#sqs_atid").val()+'" target="_blank">'+file.name+'</a>';
+	});
 	$("#browse2").attr('disabled',false);
-});
-
+	});
 
 </script>
 </body>

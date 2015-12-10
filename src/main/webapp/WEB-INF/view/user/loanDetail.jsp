@@ -108,7 +108,7 @@
 				<td width="180" align="left"colspan="3">
 					<c:forEach items="${detail.attaList}" var="loan_jpg">
 						<c:if test="${loan_jpg.attachType==0}">
-							${loan_jpg.attachNote}
+							<a class="pt5 tdul" href="<%=basePath %>/users/file/showPicById?id=${loan_jpg.id}" target="_blank">${loan_jpg.attachNote}</a>
 						</c:if>
 					</c:forEach>
 					<!-- <a href="" target="_blank">营业执照.jpg</a> -->
@@ -119,7 +119,7 @@
 				<td width="180" align="left"colspan="3">
 					<c:forEach items="${detail.attaList}" var="loan_jpg">
 						<c:if test="${loan_jpg.attachType==1}">
-							${loan_jpg.attachNote}
+							<a class="pt5 tdul" href="<%=basePath %>/users/file/showPicById?id=${loan_jpg.id}" target="_blank">${loan_jpg.attachNote}</a>
 						</c:if>
 					</c:forEach>
 					<!-- <a href="" target="_blank">贷款申请书.jpg</a> -->
