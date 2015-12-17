@@ -126,8 +126,13 @@ public class IidentifyServiceImpl implements IidentifyService{
 		if(tax>0){
 			return -22;
 		}
-		
-		return dao.updateUser(corpName, taxSn, idcard, id, "3");
+		User user = new User();
+		user.setCorpName(corpName);
+		user.setTaxSn(taxSn);
+		user.setIdcard(idcard);
+		user.setId(id);
+		user.setTaxVerify((byte)3);
+		return dao.updateUser(user);
 	}
 	
 	/**
