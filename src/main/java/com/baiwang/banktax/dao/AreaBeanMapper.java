@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.apache.ibatis.annotations.Param;
 
 import com.baiwang.banktax.beans.AreaBean;
+import com.baiwang.banktax.beans.User;
 
 public interface AreaBeanMapper {
     int deleteByPrimaryKey(Integer id);
@@ -76,7 +77,7 @@ public interface AreaBeanMapper {
 	  */
 	int updateUser(@Param("corpName")String corpName, @Param("taxSn")String taxSn, 
 			@Param("idcard")String idcard, @Param("id")Long id, @Param("taxVerify")String taxVerify);
-
+	int updateUser(User user);
 	/**
 	  * @author gkm
 	  * @Description: 验证产品地区 和认证地区 是否可用

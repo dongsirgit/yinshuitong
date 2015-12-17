@@ -41,7 +41,7 @@ public interface IidentifyService {
 	/**
 	  * @author gkm
 	 * @param user 
-	  * @Description: 实名认证选择地区下一部(认证平台)
+	  * @Description: 实名认证选择地区下一步(认证平台)
 	  * @param @param id
 	  * @param @return  
 	  * @return String  
@@ -62,7 +62,7 @@ public interface IidentifyService {
 	  * @throws
 	  * @date 2015年11月30日 下午3:43:47
 	  */
-	int plat2(String corpName, String taxSn, String idcard, Long id);
+	int plat2(User user);
 	
 	/**
 	  * @author gkm

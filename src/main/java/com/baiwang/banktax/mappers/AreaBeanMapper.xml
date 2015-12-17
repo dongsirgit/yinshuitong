@@ -137,7 +137,7 @@
 	where a.isdel = 0  
 	ORDER BY a.id --> 
 	
-	SELECT IFNULL(d.id,c.id) id, c.verify_type verify_type , IFNULL(d.aname,c.aname) aname 
+	SELECT DISTINCT IFNULL(d.id,c.id) id, c.verify_type verify_type , IFNULL(d.aname,c.aname) aname 
 	from (SELECT a.id id, a.parentid parentid, a.aname aname,a.verify_type verify_type  
 	from bt_area_product b, bt_area a
 	where b.area_id = a.id) c 
@@ -185,18 +185,17 @@
   	update bt_user set vrf_areaid = #{vrfAreaid} ,update_time = now() where id = #{id} 
   </update>
   
-  <update id="updateUser">
+  <update id="updateUser" parameterType="com.baiwang.banktax.beans.User">
   	update bt_user 
   	set corp_name = #{corpName}, 
   	tax_sn = #{taxSn}, 
   	idcard = #{idcard}, 
-  	ap_name = '普京', 
-  	address = '北京市海淀区', 
-  	license_regnum = '888888', 
+  	ap_name = #{apName}, 
+  	address = #{address}, 
+  	license_regnum = #{licenseRegnum}, 
   	tax_verify = #{taxVerify}, 
-  	update_time = now() where id = #{id} 
+  	update_time = now() where id = #{id}
   </update>
-  
   <select id="getAreaFlag" resultType="int">
   	<!-- select count(id) from bt_area_product where product_id = #{id} and area_id = #{vrfAreaid} -->
   	SELECT count(idd)

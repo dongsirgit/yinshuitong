@@ -177,6 +177,15 @@ public class IidentifyServiceImpl implements IidentifyService{
 		
 		return count;
 	}
+
+	public int plat2(User user) {
+		//一个纳税号只能实名认证一次
+		int tax = dao.selectUserByTaxSn(user.getTaxSn());
+		if(tax>0){
+			return -2;
+		}
+		return dao.updateUser(user);
+	}
 	
 	
 	

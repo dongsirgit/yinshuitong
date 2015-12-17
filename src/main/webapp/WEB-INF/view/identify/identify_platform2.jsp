@@ -13,7 +13,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>实名认证-平台1</title>
+<title>实名认证-平台托管</title>
     <link href="<%=basePath %>/styles/common/base.css" rel="stylesheet" type="text/css">
     <link href="<%=basePath %>/styles/order/order.css" rel="stylesheet" type="text/css">
     <script src="<%=basePath %>/scripts/common/jquery-1.11.1.min.js"></script>

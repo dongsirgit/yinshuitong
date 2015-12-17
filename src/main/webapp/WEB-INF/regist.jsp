@@ -150,7 +150,7 @@
 			           $("#phoneCode").attr("disabled",false);
 			           timer();
             		   $("#mobilePhoneMsg").text("");
-            		   alert(data);
+            		   alert('验证码：'+data);
 /*              	   }else if(data == 3){
             		   $("#mobilePhoneMsg").text("该手机号不存在");
             	   }else if(data == 16){

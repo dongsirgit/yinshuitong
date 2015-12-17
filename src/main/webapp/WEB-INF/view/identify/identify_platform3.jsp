@@ -8,163 +8,172 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>实名认证-平台人工</title>
-    <link href="<%=basePath %>/styles/common/base.css" rel="stylesheet" type="text/css">
-    <link href="<%=basePath %>/styles/order/order.css" rel="stylesheet" type="text/css">
-    <script src="<%=basePath %>/scripts/common/jquery-1.11.1.min.js"></script>
-    
-    <style type="text/css">
-   		.mainn{ width: 1000px;height:auto!important; height:600px; min-height:590px; border:1px solid #AFAEAC; margin: 10px auto; background:#FFF; padding: 0px 0 0 0;}
-   		.procurrent{background-color: blue;color: white;}
-    </style>
-    
-    <script type="text/javascript">
-		var id_sub = 0;
-		$(document).ready(function(){
-			
-			//服务协议已阅读状态
-			$(".readdiv span").click(function(){
-				id_sub +=1;
-				$(this).children("em").toggleClass("colorf")
-			});
-			
-			$(".fdivbtn2").click(function(){
-				$(".mask_alpha,.fdiv").hide(200);
-			});
-			
-		})
+<title>实名认证-人工审核</title>
+<link href="<%=basePath %>/styles/common/base.css" rel="stylesheet" type="text/css">
+<link href="<%=basePath %>/styles/order/order.css" rel="stylesheet" type="text/css">
+<script src="<%=basePath %>/scripts/common/jquery-1.11.1.min.js"></script>
+
+<style type="text/css">
+	.mainn{ width: 1000px;height:auto!important; height:600px; min-height:590px; border:1px solid #AFAEAC; margin: 10px auto; background:#FFF; padding: 0px 0 0 0;}
+	.procurrent{background-color: blue;color: white;}
+</style>
+
+<script type="text/javascript">
+	var id_sub = 0;
+	$(document).ready(function(){
 		
+		//服务协议已阅读状态
+		$(".readdiv span").click(function(){
+			id_sub +=1;
+			$(this).children("em").toggleClass("colorf")
+		});
 		
+		$(".fdivbtn2").click(function(){
+			$(".mask_alpha,.fdiv").hide(200);
+		});
 		
-		function nextIdentify(){
-			if($('#corpName').val()=='请填写公司全称' || $('#corpName').val()==''){
-				$('#corpName').val('');
-				$('#sp_fail_cor').show();
-				return false;
-			}
+	})
+	
+	function nextIdentify(){
+		if($('#corpName').val()=='请填写公司全称' || $('#corpName').val()==''){
+			$('#corpName').val('');
+			$('#sp_fail_cor').show();
+			return;
+		}
+		if(!/^[\u4e00-\u9fa50-9a-zA-Z]{1,20}$/.test($("#corpName").val())){
+			$('#sp_fail_cor').show();
+			return;
+		}
+		if($('#taxSn').val()=='请填写公司纳税识别号' || $('#taxSn').val()==''){
+			$('#taxSn').val('');
+			$('#sp_fail_tax').show();
+			return;
+		}
+		if(!/^[\u4e00-\u9fa50-9a-zA-Z]{1,20}$/.test($("#taxSn").val())){
+			$('#sp_fail_tax').show();
+			return ;
+		}
+		
+		if($('#code').val()=='请输入验证码' || $('#code').val()==''){
+			$('#code').val('');
+			$('#sp_fail_code_null').show();
+			return;
+		}
+		
+		if(id_sub%2==0){
+			$("#xieyidiv").hide();//阅读协议
+		}else{
+			$("#xieyidiv").show();//阅读协议
+			return;
+		}
+		if(!checkUpload()){
+			return;
+		}
+		var data = $('#form').serialize();
+		 $.ajax({
+				type:"POST",
+				url:"<%=basePath %>/users/identify/plat3",
+		data:data,
+		dataType:"JSON",
+		//dataType:"text",
+		success:function(data){
+			//alert(JSON.stringify(data));
+			if(data.success=='1'){
+				$('.fdiv').hide();
+				location.href='<%=basePath %>/users/identify/succes';
+					}
+					else if(data.success == -2){//验证码错误
+						$('#sp_fail_code').show();
+					}
+					else if(data.success == -1){//验证码错误
+						$('#sp_fail_code_null').show();
+					}
+					else if(data.success == -22){//重复认证
+						$('#div_reiden').show();
+						$('#mask_alpha').show();
+					}
+					else if(data.success == -3){
+						$('#div_iniden').show();
+						$('#mask_alpha').show();
+					}else{
+						$('.fdiv').hide();
+						$('#sp_fail').show();
+					}
+					
+				},
+				error:function(XMLHttpRequest, textStatus, errorThrown) {
+					if(XMLHttpRequest.responseText=="timeOut"){
+		        		location.reload();
+		        	}else{
+		        		alert("Error");
+		        	}
+		        }
+		});
+	}
+	function goback(){
+		location.href = '<%=basePath %>/users/identify/';
+	}
+	
+	
+	function corfocus(obj){
+		$('#sp_fail_cor').hide();
+		if(obj.value =='请填写公司全称'){
+			obj.value ='';
+		}
+	}
+	function corblur(obj){
+		if(obj.value == ''){
+			obj.value ='请填写公司全称';
+			$('#sp_fail_cor').show();
+		}else 
 			if(!/^[\u4e00-\u9fa50-9a-zA-Z]{1,20}$/.test($("#corpName").val())){
 				$('#sp_fail_cor').show();
-				return ;
 			}
-			if($('#taxSn').val()=='请填写公司纳税识别号' || $('#taxSn').val()==''){
-				$('#taxSn').val('');
-				$('#sp_fail_tax').show();
-				return false;
-			}
+	}
+	
+	function taxfocus(obj){
+		$('#sp_fail_tax').hide();
+		if(obj.value =='请填写公司纳税识别号'){
+			obj.value ='';
+		}
+	}
+	function taxblur(obj){
+		if(obj.value == ''){
+			obj.value ='请填写公司纳税识别号';
+			$('#sp_fail_tax').show();
+		}else 
 			if(!/^[\u4e00-\u9fa50-9a-zA-Z]{1,20}$/.test($("#taxSn").val())){
 				$('#sp_fail_tax').show();
-				return ;
 			}
-			
-			if($('#code').val()=='请输入验证码'){
-				$('#code').val('')
-			}
-			
-			if(id_sub%2==0){
-				$("#xieyidiv").hide();//阅读协议
-			}else{
-				$("#xieyidiv").show();//阅读协议
-				return;
-			}
-			var data = $('#form').serialize();
-			 $.ajax({
-					type:"POST",
-					url:"<%=basePath %>/users/identify/plat3",
-					data:data,
-					dataType:"JSON",
-					//dataType:"text",
-					success:function(data){
-						//alert(JSON.stringify(data));
-						if(data.success=='1'){
-							$('.fdiv').hide();
-							location.href='<%=basePath %>/users/identify/succes';
-						}
-						else if(data.success == -2){//验证码错误
-							$('#sp_fail_code').show();
-						}
-						else if(data.success == -1){//验证码错误
-							$('#sp_fail_code_null').show();
-						}
-						else if(data.success == -22){//重复认证
-							$('#div_reiden').show();
-							$('#mask_alpha').show();
-						}
-						else if(data.success == -3){
-							$('#div_iniden').show();
-							$('#mask_alpha').show();
-						}else{
-							$('.fdiv').hide();
-							$('#sp_fail').show();
-						}
-						
-					},
-					error:function(XMLHttpRequest, textStatus, errorThrown) {
-						if(XMLHttpRequest.responseText=="timeOut"){
-			        		location.reload();
-			        	}else{
-			        		alert("Error");
-			        	}
-			        }
-			});
+	}
+	function checkUpload(){
+		if($("a[name='flag4check']").length!=1){
+			$("#upCheckdiv").show();
+			$(".mask_alpha").show();
+			return false;
 		}
-		function goback(){
-			location.href = '<%=basePath %>/users/identify/';
-		}
+		return true
+	}
+	function codefocus(obj){
+		$('#sp_fail_code').hide();
+		$('#sp_fail_code_null').hide();
 		
-		
-		function corfocus(obj){
-			$('#sp_fail_cor').hide();
-			if(obj.value =='请填写公司全称'){
-				obj.value ='';
-			}
+		if(obj.value =='请输入验证码'){
+			obj.value ='';
 		}
-		function corblur(obj){
-			if(obj.value == ''){
-				obj.value ='请填写公司全称';
-				$('#sp_fail_cor').show();
-			}else 
-				if(!/^[\u4e00-\u9fa50-9a-zA-Z]{1,20}$/.test($("#corpName").val())){
-					$('#sp_fail_cor').show();
-				}
-		}
-		
-		function taxfocus(obj){
-			$('#sp_fail_tax').hide();
-			if(obj.value =='请填写公司纳税识别号'){
-				obj.value ='';
-			}
-		}
-		function taxblur(obj){
-			if(obj.value == ''){
-				obj.value ='请填写公司纳税识别号';
-				$('#sp_fail_tax').show();
-			}else 
-				if(!/^[\u4e00-\u9fa50-9a-zA-Z]{1,20}$/.test($("#taxSn").val())){
-					$('#sp_fail_tax').show();
-				}
-		}
-		
-		
-		function codefocus(obj){
-			$('#sp_fail_code').hide();
+	}
+	function codeblur(obj){
+		if(obj.value == ''){
+			obj.value ='请输入验证码';
 			$('#sp_fail_code_null').hide();
-			
-			if(obj.value =='请输入验证码'){
-				obj.value ='';
-			}
 		}
-		function codeblur(obj){
-			if(obj.value == ''){
-				obj.value ='请输入验证码';
-				$('#sp_fail_code_null').hide();
-			}
-		}
-		
-		function changeCode(){
-			$('#img_code').attr('src',"<%=basePath%>/imageServlet?temp="+new Date().getTime().toString(36));
-		}
-		
-    </script>
+	}
+	
+	function changeCode(){
+		$('#img_code').attr('src',"<%=basePath%>/imageServlet?temp="+new Date().getTime().toString(36));
+	}
+
+</script>
     
 </head>
 <body>
@@ -247,14 +256,21 @@
         <div><button class="fdivbtn2">确定</button>
         </div>
     </div>
+	<div id="upCheckdiv" class="fdiv" style="display: none;">
+		<p>证件资料不齐全 或 文件正在上传中，<br/>上传完整后才可提交！</p>
+	    <div><a class="fdivbtn1" id="btn_upCheck_confirm">确定</a></div>
+	</div>    
     <input type="hidden" id="swdj_atid" name="swdj_atid">
-    
     <%@include file="../base/footer.html" %>
 <script type="text/javascript" src="<%=basePath%>/plupload/plupload.full.min.js"></script>
 <script type="text/javascript" src="<%=basePath%>/plupload/jquery.plupload.queue.js"></script>
 <script type="text/javascript" src="<%=basePath%>/plupload/zh_CN.js"></script>
 <script type="text/javascript">
 $(function(){
+	$('#btn_upCheck_confirm').click(function(){
+		$('#upCheckdiv').hide();
+		$(".mask_alpha").hide();
+	});
 	//检验上传文件的文件名长度
 	function che_fileNamelen(fileName){
 		var max_len = 75;

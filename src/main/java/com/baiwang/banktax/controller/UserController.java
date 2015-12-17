@@ -209,7 +209,7 @@ public class UserController {
      */
     @RequestMapping(value = "/sendPhoneCode")
     @ResponseBody
-    public int sendPhoneCode(String mobilePhone,HttpSession session){
+    public String sendPhoneCode(String mobilePhone,HttpSession session){
         if(StringUtils.isNotBlank(mobilePhone)){
             String code=SendMsgUtils.random();
             String result="";
@@ -223,18 +223,18 @@ public class UserController {
                 logger.info("手机验证码发送成功==>"+code);
                 session.setAttribute(mobilePhone, code);
             //    return Constant.SUCCESS;
-                return Integer.parseInt(code);
+                return code;
             }else if("5".equals(result)){
                 //手机号不存在
-                return Constant.USER_PHONENUM_ERROR;
+                return String.valueOf(Constant.USER_PHONENUM_ERROR);
             }else{
                 //服务异常,如欠费等
                 logger.error("发送手机验证码时,服务异常");
-                return Constant.UNKNOWN_ERROR;
+                return String.valueOf(Constant.UNKNOWN_ERROR);
             }
         }
         logger.error("发送手机验证码时,参数异常");
-        return Constant.USER_PARAMETER_MISS;
+        return String.valueOf(Constant.USER_PARAMETER_MISS);
     }
     
     /**

@@ -42,7 +42,7 @@ public class IdentifyController {
 	/**
 	 * 
 	  * @author gkm
-	  * @Description: 产品申请   判断是否验证
+	  * @Description: 产品申请   判断是否认证通过
 	  * @param @param id 产品id
 	  * @param @param session
 	  * @param @return  
@@ -114,7 +114,7 @@ public class IdentifyController {
 	/**
 	 * 
 	  * @author gkm
-	  * @Description: 实名认证选择地区下一部(认证平台)
+	  * @Description: 实名认证-选择地区-下一步(跳转认证平台)
 	  * @param @param id
 	  * @param @return  
 	  * @return ModelAndView  
@@ -128,15 +128,16 @@ public class IdentifyController {
 		
 		AreaBean area = service.getVerifyType(user, id);
 		logger.info("实名认证 选择省份 下一步----用户id:" + user.getId()+"------认证类型:"+area.getVerifyType());
-		if("0".equals(area.getVerifyType())){
-			return new ModelAndView("identify/identify_platform1").addObject("province", area.getAname())
-					.addObject("id", session.getId()).addObject("verifyUrl", verifyUrl);
-		}else if("1".equals(area.getVerifyType())){
-			return new ModelAndView("identify/identify_platform2");
-		}else if("2".equals(area.getVerifyType())){
-			return new ModelAndView("identify/identify_platform3");
+		if(null != area){
+			if("0".equals(area.getVerifyType())){
+				return new ModelAndView("identify/identify_platform1").addObject("province", area.getAname())
+						.addObject("id", session.getId()).addObject("verifyUrl", verifyUrl);
+			}else if("1".equals(area.getVerifyType())){
+				return new ModelAndView("identify/identify_platform2");
+			}else if("2".equals(area.getVerifyType())){
+				return new ModelAndView("identify/identify_platform3");
+			}
 		}
-		
 		return new ModelAndView("identify/identify_platform1");
 	}
 	
@@ -166,7 +167,16 @@ public class IdentifyController {
 		result = "5588";
 		
 		map.put("result", result);//税局返回结果
-		int success = service.plat2("税局公司", System.currentTimeMillis()+"", "11111196969111111", user.getId());//更新企业信息
+//		int success = service.plat2("百望股份", System.currentTimeMillis()+"", "110108197508230318", user.getId());//更新企业信息
+		user.setCorpName("百望股份有限公司");
+		user.setIdcard("110108197508230318");
+		user.setTaxSn(System.currentTimeMillis()+"");
+		user.setApName("陈杰");
+		user.setAddress("北京市海淀区");
+		user.setLicenseRegnum("88888888");
+		user.setTaxVerify((byte)4);
+		int success = service.plat2(user);//更新企业信息
+		
 		map.put("success", success);
 		
 		session.setAttribute(ConfigUtil.getLoginedUserStr(), service.selectById(user.getId()));
@@ -206,10 +216,15 @@ public class IdentifyController {
 	public Map<String, Object> plat2(String corpName, String taxSn, String idcard, HttpSession session){
 		User user = (User) session.getAttribute(ConfigUtil.getLoginedUserStr());
 		logger.info("实名认证 平台2 去认证----用户id:" + user.getId()+"--企业名称:"+corpName+",纳税号:"+taxSn+",法人身份证号:"+idcard);
-		//TODO　平台2去认证
-		
 		Map<String, Object> map = new HashMap<String, Object>();
-		int success = service.plat2(corpName, taxSn, idcard, user.getId());
+		user.setCorpName(corpName);
+		user.setIdcard(idcard);
+		user.setTaxSn(taxSn);
+		user.setApName("陈杰");
+		user.setAddress("北京市海淀区");
+		user.setLicenseRegnum("88888888");
+		user.setTaxVerify((byte)4);
+		int success = service.plat2(user);
 		
 		map.put("success", success);
 		logger.info("实名认证 平台2去认证----用户id:" + user.getId()+",认证结果:"+success);
@@ -220,7 +235,7 @@ public class IdentifyController {
 	/**
 	 * 
 	  * @author gkm
-	  * @Description: 平台2的认证
+	  * @Description: 平台3的认证
 	  * @param @param corpName
 	  * @param @param taxSn
 	  * @param @param idcard

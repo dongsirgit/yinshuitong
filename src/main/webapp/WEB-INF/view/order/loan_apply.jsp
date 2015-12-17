@@ -212,7 +212,7 @@ function fo_applyNote(){
 	<p>证件资料不齐全 或 文件正在上传中，<br/>上传完整后才可提交！</p>
     <div><a class="fdivbtn1" id="btn_upCheck_confirm">确定</a></div>
 </div>
-
+<div class="mask_alpha" style="display: none;"></div>
 <script type="text/javascript" src="<%=basePath%>/plupload/plupload.full.min.js"></script>
 <script type="text/javascript" src="<%=basePath%>/plupload/jquery.plupload.queue.js"></script>
 <script type="text/javascript" src="<%=basePath%>/plupload/zh_CN.js"></script>

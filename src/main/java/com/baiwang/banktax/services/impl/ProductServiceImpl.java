@@ -83,19 +83,18 @@ public class ProductServiceImpl implements IProductService {
 	  */
 	public ProductDetailBean getDetail(Integer id) throws Exception{
 		Product product = dao.selectByPrimaryKey(id);
-		
 		//ProductDetailBean bean =trafDetail(product);
+		ProductDetailBean bean = null;
 		if(null != product){
-			System.out.println("=="+product.getDescript());
-			ProductDetailBean bean = JSON.parseObject(product.getDescript() , ProductDetailBean.class);
+			if(null != product.getDescript()){
+				bean = JSON.parseObject(product.getDescript() , ProductDetailBean.class);
+			}
 			bean.setId(id);
 			bean.setRelaBank(product.getRelaBank());
 			bean.setLogoUrl(product.getLogoUrl());
 			bean.setPname(product.getPname());
-			return bean;
 		}
-		
-		return null;
+		return bean;
 	}
 	
 	
