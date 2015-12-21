@@ -110,10 +110,8 @@
     	});
     	
     	function productDetail(id){
-    		//alert($.base64.btoa(id))
-    		//alert(id)
-    		//location.href='<%=basePath %>/product/detail?id=' + $.base64.btoa(id);
-    		//location.href='<%=basePath %>/product/detail?id='+id;
+<%--     		location.href='<%=basePath %>/product/detail?id=' + $.base64.btoa(id); --%>
+<%--     		location.href='<%=basePath %>/product/detail?id='+id; --%>
     		$('#id').val(id);
     		$('#form').submit();
     	}

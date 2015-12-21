@@ -74,6 +74,6 @@ public interface IApplyLoanService {
 	  * @throws
 	  * @date 2015年12月3日 下午7:48:18
 	  */
-	public int updateApplyStatus(Long id,String notes);
+	public int updateApplyStatus(Long id, String notes,Short status);
 
 }

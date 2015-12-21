@@ -49,8 +49,9 @@
 <script type="text/javascript">
 	if('${loginedUser.mobilePhone}'){
 		var all = '${loginedUser.mobilePhone}';
-		var str4rp = all.substring(3, 7);
-		var result = all.replace(str4rp, "****");
+		var pre = all.substring(0, 3);
+		var suf = all.substring(all.length-4);
+		var result = pre+"****"+suf;
 		document.getElementById("mobilePhone").innerHTML = result;
 	}
 </script>

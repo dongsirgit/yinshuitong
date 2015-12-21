@@ -53,7 +53,7 @@ public interface ApplyLoanMapper {
 	  * @throws
 	  * @date 2015年12月3日 下午7:47:19
 	  */
-	int updateApplyStatus(@Param("id")Long id, @Param("notes")String notes);
+	int updateApplyStatus(@Param("id")Long id, @Param("notes")String notes,@Param("status")Short status);
 
 	/**
 	  * @author gkm

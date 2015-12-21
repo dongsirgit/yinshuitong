@@ -29,9 +29,9 @@
 	$(document).ready(function(){
 		openLi(0);
 		$('.content_l ul li').click(function(e) {
-	        var index=$(this).index();
-            $("#goToPageForm input").val(index);
-            $("#goToPageForm").submit();
+// 	        var index=$(this).index();
+//             $("#goToPageForm input").val(index);
+//             $("#goToPageForm").submit();
 			$(this).addClass('current').siblings().removeClass('current');
 	    });
 	});

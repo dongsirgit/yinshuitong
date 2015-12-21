@@ -72,9 +72,8 @@ public class UserInfoController {
      */
     @RequestMapping("/loan/quxiao")
     @ResponseBody
-    public int quxiao(Integer id, HttpSession session){
-    	User user = (User) session.getAttribute(ConfigUtil.getLoginedUserStr());
-    	int success = service.quxiao(id, user.getId());
+    public int quxiao(Long id, HttpSession session){
+    	int success = service.updateApplyStatus(id, ConfigUtil.getLoanStatusNotes(200), (short)200);
     	return success;
     }
     

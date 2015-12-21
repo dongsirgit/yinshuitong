@@ -1,5 +1,6 @@
 package com.baiwang.banktax.utils;
 
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import org.apache.commons.logging.Log;
@@ -23,6 +24,15 @@ public class ConfigUtil {
 	 */
 	public static final String getLoginedUserStr() {
 		return bundle.getString("loginedUserStr");
+	}
+	
+	/**
+	 * 获得贷款申请状态码对应的跟踪信息-文字说明
+	 * 
+	 * @return
+	 */
+	public static final String getLoanStatusNotes(int status) {
+		return DateUtils.dateToStr(new Date(),"yyyy-MM-dd HH:mm:ss          ")+bundle.getString("note_"+status)+"<br/>";
 	}
 	
     /**

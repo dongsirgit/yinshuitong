@@ -4,7 +4,6 @@
 
 package com.baiwang.banktax.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -23,7 +22,6 @@ import com.baiwang.banktax.services.iface.IApplyLoanService;
 import com.baiwang.banktax.services.iface.IAttachService;
 import com.baiwang.banktax.services.iface.IProductService;
 import com.baiwang.banktax.utils.ConfigUtil;
-import com.baiwang.banktax.utils.DateUtils;
 import com.baiwang.banktax.utils.StringUtils;
 
 /**
@@ -83,7 +81,7 @@ public class ApplyLoanController {
 			applyLoan.setUid(user.getId());
 			applyLoan.setSerialNum(StringUtils.generSerialNum());//订单流水号
 			applyLoan.setApplyStatus((short)100);//更新订单状态为审核中
-			applyLoan.setStatusNote(DateUtils.dateToStr(new Date(),"yyyy-MM-dd HH:mm:ss")+"          您的贷款申请已提交，系统正在审核中");//更新状态文本
+			applyLoan.setStatusNote(ConfigUtil.getLoanStatusNotes(100));//更新状态文本
 			applyloanService.insertSelective(applyLoan); 
 			//更新用户附件表中已上传的附件对应的贷款ID
 			UserAttacht ua = new UserAttacht();
@@ -93,6 +91,8 @@ public class ApplyLoanController {
 			ua.setId(StringUtils.s2l(requset.getParameter("sqs_atid")));
 			attachService.updateApplyIdByPK(ua);
 			logger.info("贷款申请提交成功！操作用户："+user.getMobilePhone()+";贷款信息："+applyLoan.toString());
+			//平台系统预审
+			applyfilter(applyLoan);
 			return "order/submitSucess";
 		}catch(Exception e){
 			requset.setAttribute("err_msg", "提交失败！请重新操作！");
@@ -100,5 +100,35 @@ public class ApplyLoanController {
 			return "order/loan_apply";
 		}
 	}
+	
+	/**
+	  * @author ldm
+	  * @Description: 贷款申请-系统自动筛选
+	  * @param   
+	  * @return void  
+	  * @throws
+	  * @date 2015年12月21日 下午2:13:30
+	  */
+	public void applyfilter(ApplyLoan applyLoan){
+		if(null!=applyLoan.getApplyQuota() && applyLoan.getApplyQuota()>20){
+			updateApplyStatus(applyLoan.getId(),601);
+		}else{
+			updateApplyStatus(applyLoan.getId(),301);
+		}
+	}
+	/**
+	  * @author ldm
+	  * @Description: 贷款申请状态变更
+	  * @param @param id 贷款ID
+	  * @param @param status  更新的状态码
+	  * @return void  
+	  * @throws
+	  * @date 2015年12月21日 下午5:10:32
+	  */
+	public void updateApplyStatus(long id,int status){
+		applyloanService.updateApplyStatus(id, ConfigUtil.getLoanStatusNotes(status), (short)status);
+		logger.info("贷款申请ID号:"+id+"；修改状态为："+status);
+	}
+	
 
 }

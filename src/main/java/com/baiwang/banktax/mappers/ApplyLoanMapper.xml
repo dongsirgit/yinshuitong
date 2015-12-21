@@ -488,8 +488,8 @@
 	ORDER BY d.attach_type
   </select>
   
-  <update id="updateApplyStatus" parameterType="java.lang.String">
-  	update bt_apply_loan set status_note=#{notes} where id=#{id}
+  <update id="updateApplyStatus">
+  	update bt_apply_loan set apply_status = #{status,jdbcType=SMALLINT}, status_note=concat(status_note,#{notes}) where id=#{id}
   </update>
   
   

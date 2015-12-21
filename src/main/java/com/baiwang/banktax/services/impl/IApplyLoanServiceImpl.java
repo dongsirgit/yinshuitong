@@ -159,7 +159,7 @@ public class IApplyLoanServiceImpl implements IApplyLoanService {
 
 	/**
 	  * @author ldm
-	  * @Description: 更新贷款跟踪信息
+	  * @Description: 更新贷款状态
 	  * @param @param id 贷款id
 	  * @param @param notes 更新文本
 	  * @param @return  
@@ -167,17 +167,8 @@ public class IApplyLoanServiceImpl implements IApplyLoanService {
 	  * @throws
 	  * @date 2015年12月2日 下午2:44:27
 	  */
-	public int updateApplyStatus(Long id, String notes) {
-		String str4up="";
-		ApplyLoan app = dao.selectByPrimaryKey(id);
-		if(null != app ){
-			if(null != app.getStatusNote()){
-				str4up = app.getStatusNote()+"</br>"+notes;
-			}else{
-				str4up = notes;
-			}
-		}
-		return dao.updateApplyStatus(id, str4up);
+	public int updateApplyStatus(Long id, String notes,Short status) {
+		return dao.updateApplyStatus(id, notes,status);
 	}
 
 }

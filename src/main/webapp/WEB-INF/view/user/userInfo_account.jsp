@@ -195,10 +195,13 @@
 	</div>
 	<input id="idid" type="hidden" value=""/>
 <script type="text/javascript">
-	var all = '${loginedUser.mobilePhone}';
-	var str4rp = all.substring(3, 7);
-	var result = all.replace(str4rp, "****");
-	document.getElementById("mobilePhone").innerHTML = result;
+	if('${loginedUser.mobilePhone}'){
+		var all = '${loginedUser.mobilePhone}';
+		var pre = all.substring(0, 3);
+		var suf = all.substring(all.length-4);
+		var result = pre+"****"+suf;
+		document.getElementById("mobilePhone").innerHTML = result;
+	}
 </script>
 </body>
 </html>
