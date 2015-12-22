@@ -84,7 +84,7 @@
 					if(XMLHttpRequest.responseText=="timeOut"){
 		        		top.location.reload();
 		        	}else{
-		        		alert("Error_plat1");
+		        		alert("生成失败！");
 		        	}
 		        }
 			});
