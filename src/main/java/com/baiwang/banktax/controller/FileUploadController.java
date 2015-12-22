@@ -61,7 +61,6 @@ public class FileUploadController {
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> upload(Plupload plupload, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// ------------------------测试用：上传开始时间
 		User user = (User)request.getSession().getAttribute(ConfigUtil.getLoginedUserStr());
 		Long uid = 0l;
 		String account = null;
@@ -115,6 +114,6 @@ public class FileUploadController {
 		} catch (Exception e) {
 			logger.error(e);
 		}
-		return map;
+		return null;
 	}
 }

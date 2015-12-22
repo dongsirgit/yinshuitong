@@ -57,10 +57,12 @@ public class FileController {
 	@RequestMapping("/showPicById")
 	public String showPicByid(String id, HttpServletRequest request) {
 		Long uid = getUid(request);
-		UserAttacht attach = attachService.selectById(Long.parseLong(id),uid);
-		List<UserAttacht> attachList = new ArrayList<UserAttacht>();
-		attachList.add(attach);
-		request.setAttribute("attachList", attachList);
+		if(null != id && id.trim().length()>0){
+			UserAttacht attach = attachService.selectById(Long.parseLong(id),uid);
+			List<UserAttacht> attachList = new ArrayList<UserAttacht>();
+			attachList.add(attach);
+			request.setAttribute("attachList", attachList);
+		}
 		return "/order/showPics";
 	}
 

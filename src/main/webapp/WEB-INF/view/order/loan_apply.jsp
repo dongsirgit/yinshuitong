@@ -196,6 +196,9 @@ function fo_applyNote(){
 							</div>
 						</div>
 					</div>
+					<div class="item">
+						<a href="<%=basePath %>/files/apply_template.docx">下载申请书模板</a>
+					</div>
 					<div class="btnbox">
 						<input id="loansub" class="btn-yellow" type="button" value="提交">
 					</div>
