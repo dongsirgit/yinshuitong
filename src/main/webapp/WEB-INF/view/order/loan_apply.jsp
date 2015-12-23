@@ -197,7 +197,10 @@ function fo_applyNote(){
 						</div>
 					</div>
 					<div class="item">
-						<a href="<%=basePath %>/files/apply_template.docx">下载申请书模板</a>
+						<a href="<%=basePath %>/tmplt/apply_template.docx">下载申请书模板</a>
+					</div>
+					<div class="item">
+						<h2 style="color: red">注：下载申请书，填写后扫描成图片上传。上传图片支持jpg，jpeg和png格式，大小不超过1M。</h2>
 					</div>
 					<div class="btnbox">
 						<input id="loansub" class="btn-yellow" type="button" value="提交">
@@ -272,7 +275,7 @@ function che_fileNamelen(fileName){
 //营业执照上传
 var uploader = new plupload.Uploader({
     browse_button : 'browse1', 
-    url : '<%=basePath%>/users/fileUpload/upload?upfiletype=0', 
+    url : '<%=basePath%>/users/fileUpload/upload.json?upfiletype=0', 
     flash_swf_url : '<%=basePath%>/plupload/Moxie.swf', 
     silverlight_xap_url : '<%=basePath%>/plupload/Moxie.xap', 
 	filters: {
@@ -327,7 +330,7 @@ $("#browse1").attr('disabled',false);
 //贷款申请书上传
 var uploader_sqs = new plupload.Uploader({
     browse_button : 'browse2', 
-    url : '<%=basePath%>/users/fileUpload/upload?upfiletype=1', 
+    url : '<%=basePath%>/users/fileUpload/upload.json?upfiletype=1', 
     flash_swf_url : '<%=basePath%>/plupload/Moxie.swf', 
     silverlight_xap_url : '<%=basePath%>/plupload/Moxie.xap', 
 	filters: {

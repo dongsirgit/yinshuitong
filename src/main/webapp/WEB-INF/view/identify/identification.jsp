@@ -108,7 +108,7 @@
 	    		
    		</div>
    		<div style="width: 80%; height:auto!important; height:60px; min-height:60px; border:1px solid #AFAEAC; padding: 10px; text-align: left; line-height: 30px;margin-top: 10px;">
-   			<span id='city' style="font-weight: bold; margin-bottom: 50px;">选择城市:<br/></span>
+   			<span id='city' style="font-weight: bold; margin-bottom: 50px;">选择地区:<br/></span>
     		<!-- <span onclick=""  style="background-color: blue;color: white;">&nbsp;海淀区&nbsp;</span> -->
    		</div>
     	<div style="width: 80%; height: 100%; border:1px solid #AFAEAC; padding: 10px; text-align:center; line-height: 30px;margin-top: 20px;">
@@ -121,7 +121,7 @@
    			<button onclick="nextIdentify()" style="width: 100px;">下一步</button>
    			<br/>
     		<span id='div_select_province' style=" font-size: 13px; color: red; display: none;">请选择省份!</span>
-    		<span id='div_select_city' style=" font-size: 13px; color: red; display: none;">请选择城市!</span>
+    		<span id='div_select_city' style=" font-size: 13px; color: red; display: none;">请选择地区!</span>
    		</div>
    		<form id='form' action="<%=basePath %>/users/identify/next" method="post">
     		<input type="hidden" id='id' name='id'>

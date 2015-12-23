@@ -116,8 +116,10 @@
                      <a href="<%=basePath%>/users/identify" target="top" style="text-decoration:underline;color:red">立即认证>></a>
 			       </c:otherwise> 
 			    </c:choose>
-			    <a href="javascript:void(0)" style="text-decoration:underline" onclick="generPDF();">生成征信报告</a>
-	      		<a href="" id="downloadPDF" style="text-decoration:underline;display: none;" >下载</a>
+			    <c:if test="${loginedUser.taxVerify == 4}">
+				    <a href="javascript:void(0)" style="text-decoration:underline" onclick="generPDF();">生成征信报告</a>
+		      		<a href="" id="downloadPDF" style="text-decoration:underline;display: none;" >下载</a>
+			    </c:if>
 			</span>
 			<table class="userInfoTable">
 				<tr>

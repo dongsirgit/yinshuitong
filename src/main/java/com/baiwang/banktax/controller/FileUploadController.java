@@ -58,7 +58,7 @@ public class FileUploadController {
 	 * @throws @date
 	 *             
 	 */
-	@RequestMapping(value = "/upload", method = RequestMethod.POST)
+	@RequestMapping(value = "/upload.json", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> upload(Plupload plupload, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		User user = (User)request.getSession().getAttribute(ConfigUtil.getLoginedUserStr());

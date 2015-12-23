@@ -288,7 +288,7 @@ $(function(){
 	//税务登记证上传
 	var uploader = new plupload.Uploader({
 	    browse_button : 'browse1', 
-	    url : '<%=basePath%>/users/fileUpload/upload?upfiletype=2', 
+	    url : '<%=basePath%>/users/fileUpload/upload.json?upfiletype=2', 
 	    flash_swf_url : '<%=basePath%>/plupload/Moxie.swf', 
 	    silverlight_xap_url : '<%=basePath%>/plupload/Moxie.xap', 
 		filters: {
