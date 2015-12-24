@@ -1,19 +1,10 @@
 package com.baiwang.banktax.controller;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -23,11 +14,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.druid.support.logging.Log;
 import com.alibaba.druid.support.logging.LogFactory;
+import com.baiwang.banktax.beans.TaxReportWithBLOBs;
 import com.baiwang.banktax.beans.User;
-import com.baiwang.banktax.beans.UserAttacht;
 import com.baiwang.banktax.model.ApplyDetailBean;
 import com.baiwang.banktax.model.ApplyListBean;
 import com.baiwang.banktax.services.iface.IApplyLoanService;
+import com.baiwang.banktax.services.iface.ITaxReportService;
 import com.baiwang.banktax.utils.ConfigUtil;
 import com.baiwang.banktax.utils.PDFUtil;
 
@@ -47,6 +39,8 @@ public class UserInfoController {
     
     @Resource
     private IApplyLoanService service;
+    @Resource
+    private ITaxReportService taxService;
     
     /**
      * 跳转至用户个人中心相关的各个页面
@@ -113,13 +107,16 @@ public class UserInfoController {
     	User user = (User) session.getAttribute(ConfigUtil.getLoginedUserStr());
     	Long uid = user.getId();
     	Map<String, Object> map = new HashMap<>();
-    	try {
-			String path = PDFUtil.generatePDF(uid);
-			logger.info("生成PDF路径："+path);
-			map.put("PDFpath", path);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+    	TaxReportWithBLOBs report = taxService.selectByUid(25l);
+    	if(null != report){
+    		try {
+    			String path = PDFUtil.generatePDF(uid,report);
+    			logger.info("生成PDF路径："+path);
+    			map.put("PDFpath", path);
+    		} catch (Exception e) {
+    			e.printStackTrace();
+    		}
+    	}
     	return map;
     }
 }

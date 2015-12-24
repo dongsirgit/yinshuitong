@@ -76,9 +76,13 @@
 				asysn:true,
 				dataType:"JSON",
 				success:function(data){
-					alert("操作成功！")
-					$('#downloadPDF').attr('href',data.PDFpath);
-					$('#downloadPDF').show();
+					if(data.PDFpath){
+						alert("操作成功！")
+						$('#downloadPDF').attr('href',data.PDFpath);
+						$('#downloadPDF').show();
+					}else{
+						alert("记录不存在！")
+					}
 				},
 				error:function(XMLHttpRequest, textStatus, errorThrown) {
 					if(XMLHttpRequest.responseText=="timeOut"){

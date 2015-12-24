@@ -1,0 +1,860 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiwang.banktax.dao.TaxReportMapper">
+  <resultMap id="BaseResultMap" type="com.baiwang.banktax.beans.TaxReport">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="applyid" jdbcType="BIGINT" property="applyid" />
+    <result column="userid" jdbcType="BIGINT" property="userid" />
+    <result column="gsmc" jdbcType="VARCHAR" property="gsmc" />
+    <result column="qyfr" jdbcType="VARCHAR" property="qyfr" />
+    <result column="zczb" jdbcType="BIGINT" property="zczb" />
+    <result column="clrq" jdbcType="VARCHAR" property="clrq" />
+    <result column="txdz" jdbcType="VARCHAR" property="txdz" />
+    <result column="lxdh" jdbcType="VARCHAR" property="lxdh" />
+    <result column="jydz" jdbcType="VARCHAR" property="jydz" />
+    <result column="nsrzt" jdbcType="VARCHAR" property="nsrzt" />
+    <result column="xydj_pdsj" jdbcType="VARCHAR" property="xydjPdsj" />
+    <result column="scjysj_q" jdbcType="VARCHAR" property="scjysjQ" />
+    <result column="scjysj_z" jdbcType="VARCHAR" property="scjysjZ" />
+    <result column="tyshxydm" jdbcType="VARCHAR" property="tyshxydm" />
+    <result column="djjg" jdbcType="VARCHAR" property="djjg" />
+    <result column="swdjh" jdbcType="VARCHAR" property="swdjh" />
+    <result column="zzjgdm" jdbcType="VARCHAR" property="zzjgdm" />
+    <result column="qylx" jdbcType="VARCHAR" property="qylx" />
+    <result column="jyfw" jdbcType="VARCHAR" property="jyfw" />
+    <result column="zzs_ssn_lj" jdbcType="BIGINT" property="zzsSsnLj" />
+    <result column="zzs_sn_lj" jdbcType="BIGINT" property="zzsSnLj" />
+    <result column="zzs_snzz" jdbcType="INTEGER" property="zzsSnzz" />
+    <result column="yys_ssn_lj" jdbcType="BIGINT" property="yysSsnLj" />
+    <result column="yys_sn_lj" jdbcType="BIGINT" property="yysSnLj" />
+    <result column="yys_snzz" jdbcType="INTEGER" property="yysSnzz" />
+    <result column="sds_ssn_lj" jdbcType="BIGINT" property="sdsSsnLj" />
+    <result column="sds_sn_lj" jdbcType="BIGINT" property="sdsSnLj" />
+    <result column="sds_snzz" jdbcType="INTEGER" property="sdsSnzz" />
+    <result column="zcfz_ssnnc" jdbcType="BIGINT" property="zcfzSsnnc" />
+    <result column="zcfz_ssnnm" jdbcType="BIGINT" property="zcfzSsnnm" />
+    <result column="zcfz_snnc" jdbcType="BIGINT" property="zcfzSnnc" />
+    <result column="zcfz_snnm" jdbcType="BIGINT" property="zcfzSnnm" />
+    <result column="zcfz_snzz" jdbcType="INTEGER" property="zcfzSnzz" />
+    <result column="lr_ssnnc" jdbcType="BIGINT" property="lrSsnnc" />
+    <result column="lr_ssnnm" jdbcType="BIGINT" property="lrSsnnm" />
+    <result column="lr_snnc" jdbcType="BIGINT" property="lrSnnc" />
+    <result column="lr_snnm" jdbcType="BIGINT" property="lrSnnm" />
+    <result column="lr_snzz" jdbcType="INTEGER" property="lrSnzz" />
+    <result column="xjll_ssnnc" jdbcType="BIGINT" property="xjllSsnnc" />
+    <result column="xjll_ssnnm" jdbcType="BIGINT" property="xjllSsnnm" />
+    <result column="xjll_snnc" jdbcType="BIGINT" property="xjllSnnc" />
+    <result column="xjll_snnm" jdbcType="BIGINT" property="xjllSnnm" />
+    <result column="xjll_snzz" jdbcType="INTEGER" property="xjllSnzz" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.baiwang.banktax.beans.TaxReportWithBLOBs">
+    <result column="gdxx" jdbcType="LONGVARCHAR" property="gdxx" />
+    <result column="zylxr" jdbcType="LONGVARCHAR" property="zylxr" />
+    <result column="jyzk" jdbcType="LONGVARCHAR" property="jyzk" />
+    <result column="fzjg" jdbcType="LONGVARCHAR" property="fzjg" />
+    <result column="bgjl" jdbcType="LONGVARCHAR" property="bgjl" />
+    <result column="jyyc" jdbcType="LONGVARCHAR" property="jyyc" />
+    <result column="xzcf" jdbcType="LONGVARCHAR" property="xzcf" />
+    <result column="yzwf" jdbcType="LONGVARCHAR" property="yzwf" />
+    <result column="ccjc" jdbcType="LONGVARCHAR" property="ccjc" />
+    <result column="sx" jdbcType="LONGVARCHAR" property="sx" />
+    <result column="zc" jdbcType="LONGVARCHAR" property="zc" />
+    <result column="xs" jdbcType="LONGVARCHAR" property="xs" />
+    <result column="ghdw" jdbcType="LONGVARCHAR" property="ghdw" />
+    <result column="wfwz" jdbcType="LONGVARCHAR" property="wfwz" />
+    <result column="jcxx" jdbcType="LONGVARCHAR" property="jcxx" />
+    <result column="zzs_bn_fy" jdbcType="LONGVARCHAR" property="zzsBnFy" />
+    <result column="yys_bn_fy" jdbcType="LONGVARCHAR" property="yysBnFy" />
+    <result column="sds_bn_fy" jdbcType="LONGVARCHAR" property="sdsBnFy" />
+    <result column="zcfz_bn_fy" jdbcType="LONGVARCHAR" property="zcfzBnFy" />
+    <result column="lr_bn_fy" jdbcType="LONGVARCHAR" property="lrBnFy" />
+    <result column="xjll_bn_fy" jdbcType="LONGVARCHAR" property="xjllBnFy" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, applyid, userid, gsmc, qyfr, zczb, clrq, txdz, lxdh, jydz, nsrzt, xydj_pdsj, 
+    scjysj_q, scjysj_z, tyshxydm, djjg, swdjh, zzjgdm, qylx, jyfw, zzs_ssn_lj, zzs_sn_lj, 
+    zzs_snzz, yys_ssn_lj, yys_sn_lj, yys_snzz, sds_ssn_lj, sds_sn_lj, sds_snzz, zcfz_ssnnc, 
+    zcfz_ssnnm, zcfz_snnc, zcfz_snnm, zcfz_snzz, lr_ssnnc, lr_ssnnm, lr_snnc, lr_snnm, 
+    lr_snzz, xjll_ssnnc, xjll_ssnnm, xjll_snnc, xjll_snnm, xjll_snzz
+  </sql>
+  <sql id="Blob_Column_List">
+    gdxx, zylxr, jyzk, fzjg, bgjl, jyyc, xzcf, yzwf, ccjc, sx, zc, xs, ghdw, wfwz, jcxx, 
+    zzs_bn_fy, yys_bn_fy, sds_bn_fy, zcfz_bn_fy, lr_bn_fy, xjll_bn_fy
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from bt_user_tax_report
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectByUid" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from bt_user_tax_report
+    where userid = #{uid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from bt_user_tax_report
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.baiwang.banktax.beans.TaxReportWithBLOBs">
+    insert into bt_user_tax_report (id, applyid, userid, 
+      gsmc, qyfr, zczb, clrq, 
+      txdz, lxdh, jydz, nsrzt, 
+      xydj_pdsj, scjysj_q, scjysj_z, 
+      tyshxydm, djjg, swdjh, 
+      zzjgdm, qylx, jyfw, 
+      zzs_ssn_lj, zzs_sn_lj, zzs_snzz, 
+      yys_ssn_lj, yys_sn_lj, yys_snzz, 
+      sds_ssn_lj, sds_sn_lj, sds_snzz, 
+      zcfz_ssnnc, zcfz_ssnnm, zcfz_snnc, 
+      zcfz_snnm, zcfz_snzz, lr_ssnnc, 
+      lr_ssnnm, lr_snnc, lr_snnm, 
+      lr_snzz, xjll_ssnnc, xjll_ssnnm, 
+      xjll_snnc, xjll_snnm, xjll_snzz, 
+      gdxx, zylxr, jyzk, 
+      fzjg, bgjl, jyyc, 
+      xzcf, yzwf, ccjc, 
+      sx, zc, xs, 
+      ghdw, wfwz, jcxx, 
+      zzs_bn_fy, yys_bn_fy, sds_bn_fy, 
+      zcfz_bn_fy, lr_bn_fy, xjll_bn_fy
+      )
+    values (#{id,jdbcType=BIGINT}, #{applyid,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, 
+      #{gsmc,jdbcType=VARCHAR}, #{qyfr,jdbcType=VARCHAR}, #{zczb,jdbcType=BIGINT}, #{clrq,jdbcType=VARCHAR}, 
+      #{txdz,jdbcType=VARCHAR}, #{lxdh,jdbcType=VARCHAR}, #{jydz,jdbcType=VARCHAR}, #{nsrzt,jdbcType=VARCHAR}, 
+      #{xydjPdsj,jdbcType=VARCHAR}, #{scjysjQ,jdbcType=VARCHAR}, #{scjysjZ,jdbcType=VARCHAR}, 
+      #{tyshxydm,jdbcType=VARCHAR}, #{djjg,jdbcType=VARCHAR}, #{swdjh,jdbcType=VARCHAR}, 
+      #{zzjgdm,jdbcType=VARCHAR}, #{qylx,jdbcType=VARCHAR}, #{jyfw,jdbcType=VARCHAR}, 
+      #{zzsSsnLj,jdbcType=BIGINT}, #{zzsSnLj,jdbcType=BIGINT}, #{zzsSnzz,jdbcType=INTEGER}, 
+      #{yysSsnLj,jdbcType=BIGINT}, #{yysSnLj,jdbcType=BIGINT}, #{yysSnzz,jdbcType=INTEGER}, 
+      #{sdsSsnLj,jdbcType=BIGINT}, #{sdsSnLj,jdbcType=BIGINT}, #{sdsSnzz,jdbcType=INTEGER}, 
+      #{zcfzSsnnc,jdbcType=BIGINT}, #{zcfzSsnnm,jdbcType=BIGINT}, #{zcfzSnnc,jdbcType=BIGINT}, 
+      #{zcfzSnnm,jdbcType=BIGINT}, #{zcfzSnzz,jdbcType=INTEGER}, #{lrSsnnc,jdbcType=BIGINT}, 
+      #{lrSsnnm,jdbcType=BIGINT}, #{lrSnnc,jdbcType=BIGINT}, #{lrSnnm,jdbcType=BIGINT}, 
+      #{lrSnzz,jdbcType=INTEGER}, #{xjllSsnnc,jdbcType=BIGINT}, #{xjllSsnnm,jdbcType=BIGINT}, 
+      #{xjllSnnc,jdbcType=BIGINT}, #{xjllSnnm,jdbcType=BIGINT}, #{xjllSnzz,jdbcType=INTEGER}, 
+      #{gdxx,jdbcType=LONGVARCHAR}, #{zylxr,jdbcType=LONGVARCHAR}, #{jyzk,jdbcType=LONGVARCHAR}, 
+      #{fzjg,jdbcType=LONGVARCHAR}, #{bgjl,jdbcType=LONGVARCHAR}, #{jyyc,jdbcType=LONGVARCHAR}, 
+      #{xzcf,jdbcType=LONGVARCHAR}, #{yzwf,jdbcType=LONGVARCHAR}, #{ccjc,jdbcType=LONGVARCHAR}, 
+      #{sx,jdbcType=LONGVARCHAR}, #{zc,jdbcType=LONGVARCHAR}, #{xs,jdbcType=LONGVARCHAR}, 
+      #{ghdw,jdbcType=LONGVARCHAR}, #{wfwz,jdbcType=LONGVARCHAR}, #{jcxx,jdbcType=LONGVARCHAR}, 
+      #{zzsBnFy,jdbcType=LONGVARCHAR}, #{yysBnFy,jdbcType=LONGVARCHAR}, #{sdsBnFy,jdbcType=LONGVARCHAR}, 
+      #{zcfzBnFy,jdbcType=LONGVARCHAR}, #{lrBnFy,jdbcType=LONGVARCHAR}, #{xjllBnFy,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.baiwang.banktax.beans.TaxReportWithBLOBs">
+    insert into bt_user_tax_report
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="applyid != null">
+        applyid,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="gsmc != null">
+        gsmc,
+      </if>
+      <if test="qyfr != null">
+        qyfr,
+      </if>
+      <if test="zczb != null">
+        zczb,
+      </if>
+      <if test="clrq != null">
+        clrq,
+      </if>
+      <if test="txdz != null">
+        txdz,
+      </if>
+      <if test="lxdh != null">
+        lxdh,
+      </if>
+      <if test="jydz != null">
+        jydz,
+      </if>
+      <if test="nsrzt != null">
+        nsrzt,
+      </if>
+      <if test="xydjPdsj != null">
+        xydj_pdsj,
+      </if>
+      <if test="scjysjQ != null">
+        scjysj_q,
+      </if>
+      <if test="scjysjZ != null">
+        scjysj_z,
+      </if>
+      <if test="tyshxydm != null">
+        tyshxydm,
+      </if>
+      <if test="djjg != null">
+        djjg,
+      </if>
+      <if test="swdjh != null">
+        swdjh,
+      </if>
+      <if test="zzjgdm != null">
+        zzjgdm,
+      </if>
+      <if test="qylx != null">
+        qylx,
+      </if>
+      <if test="jyfw != null">
+        jyfw,
+      </if>
+      <if test="zzsSsnLj != null">
+        zzs_ssn_lj,
+      </if>
+      <if test="zzsSnLj != null">
+        zzs_sn_lj,
+      </if>
+      <if test="zzsSnzz != null">
+        zzs_snzz,
+      </if>
+      <if test="yysSsnLj != null">
+        yys_ssn_lj,
+      </if>
+      <if test="yysSnLj != null">
+        yys_sn_lj,
+      </if>
+      <if test="yysSnzz != null">
+        yys_snzz,
+      </if>
+      <if test="sdsSsnLj != null">
+        sds_ssn_lj,
+      </if>
+      <if test="sdsSnLj != null">
+        sds_sn_lj,
+      </if>
+      <if test="sdsSnzz != null">
+        sds_snzz,
+      </if>
+      <if test="zcfzSsnnc != null">
+        zcfz_ssnnc,
+      </if>
+      <if test="zcfzSsnnm != null">
+        zcfz_ssnnm,
+      </if>
+      <if test="zcfzSnnc != null">
+        zcfz_snnc,
+      </if>
+      <if test="zcfzSnnm != null">
+        zcfz_snnm,
+      </if>
+      <if test="zcfzSnzz != null">
+        zcfz_snzz,
+      </if>
+      <if test="lrSsnnc != null">
+        lr_ssnnc,
+      </if>
+      <if test="lrSsnnm != null">
+        lr_ssnnm,
+      </if>
+      <if test="lrSnnc != null">
+        lr_snnc,
+      </if>
+      <if test="lrSnnm != null">
+        lr_snnm,
+      </if>
+      <if test="lrSnzz != null">
+        lr_snzz,
+      </if>
+      <if test="xjllSsnnc != null">
+        xjll_ssnnc,
+      </if>
+      <if test="xjllSsnnm != null">
+        xjll_ssnnm,
+      </if>
+      <if test="xjllSnnc != null">
+        xjll_snnc,
+      </if>
+      <if test="xjllSnnm != null">
+        xjll_snnm,
+      </if>
+      <if test="xjllSnzz != null">
+        xjll_snzz,
+      </if>
+      <if test="gdxx != null">
+        gdxx,
+      </if>
+      <if test="zylxr != null">
+        zylxr,
+      </if>
+      <if test="jyzk != null">
+        jyzk,
+      </if>
+      <if test="fzjg != null">
+        fzjg,
+      </if>
+      <if test="bgjl != null">
+        bgjl,
+      </if>
+      <if test="jyyc != null">
+        jyyc,
+      </if>
+      <if test="xzcf != null">
+        xzcf,
+      </if>
+      <if test="yzwf != null">
+        yzwf,
+      </if>
+      <if test="ccjc != null">
+        ccjc,
+      </if>
+      <if test="sx != null">
+        sx,
+      </if>
+      <if test="zc != null">
+        zc,
+      </if>
+      <if test="xs != null">
+        xs,
+      </if>
+      <if test="ghdw != null">
+        ghdw,
+      </if>
+      <if test="wfwz != null">
+        wfwz,
+      </if>
+      <if test="jcxx != null">
+        jcxx,
+      </if>
+      <if test="zzsBnFy != null">
+        zzs_bn_fy,
+      </if>
+      <if test="yysBnFy != null">
+        yys_bn_fy,
+      </if>
+      <if test="sdsBnFy != null">
+        sds_bn_fy,
+      </if>
+      <if test="zcfzBnFy != null">
+        zcfz_bn_fy,
+      </if>
+      <if test="lrBnFy != null">
+        lr_bn_fy,
+      </if>
+      <if test="xjllBnFy != null">
+        xjll_bn_fy,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="applyid != null">
+        #{applyid,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="gsmc != null">
+        #{gsmc,jdbcType=VARCHAR},
+      </if>
+      <if test="qyfr != null">
+        #{qyfr,jdbcType=VARCHAR},
+      </if>
+      <if test="zczb != null">
+        #{zczb,jdbcType=BIGINT},
+      </if>
+      <if test="clrq != null">
+        #{clrq,jdbcType=VARCHAR},
+      </if>
+      <if test="txdz != null">
+        #{txdz,jdbcType=VARCHAR},
+      </if>
+      <if test="lxdh != null">
+        #{lxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="jydz != null">
+        #{jydz,jdbcType=VARCHAR},
+      </if>
+      <if test="nsrzt != null">
+        #{nsrzt,jdbcType=VARCHAR},
+      </if>
+      <if test="xydjPdsj != null">
+        #{xydjPdsj,jdbcType=VARCHAR},
+      </if>
+      <if test="scjysjQ != null">
+        #{scjysjQ,jdbcType=VARCHAR},
+      </if>
+      <if test="scjysjZ != null">
+        #{scjysjZ,jdbcType=VARCHAR},
+      </if>
+      <if test="tyshxydm != null">
+        #{tyshxydm,jdbcType=VARCHAR},
+      </if>
+      <if test="djjg != null">
+        #{djjg,jdbcType=VARCHAR},
+      </if>
+      <if test="swdjh != null">
+        #{swdjh,jdbcType=VARCHAR},
+      </if>
+      <if test="zzjgdm != null">
+        #{zzjgdm,jdbcType=VARCHAR},
+      </if>
+      <if test="qylx != null">
+        #{qylx,jdbcType=VARCHAR},
+      </if>
+      <if test="jyfw != null">
+        #{jyfw,jdbcType=VARCHAR},
+      </if>
+      <if test="zzsSsnLj != null">
+        #{zzsSsnLj,jdbcType=BIGINT},
+      </if>
+      <if test="zzsSnLj != null">
+        #{zzsSnLj,jdbcType=BIGINT},
+      </if>
+      <if test="zzsSnzz != null">
+        #{zzsSnzz,jdbcType=INTEGER},
+      </if>
+      <if test="yysSsnLj != null">
+        #{yysSsnLj,jdbcType=BIGINT},
+      </if>
+      <if test="yysSnLj != null">
+        #{yysSnLj,jdbcType=BIGINT},
+      </if>
+      <if test="yysSnzz != null">
+        #{yysSnzz,jdbcType=INTEGER},
+      </if>
+      <if test="sdsSsnLj != null">
+        #{sdsSsnLj,jdbcType=BIGINT},
+      </if>
+      <if test="sdsSnLj != null">
+        #{sdsSnLj,jdbcType=BIGINT},
+      </if>
+      <if test="sdsSnzz != null">
+        #{sdsSnzz,jdbcType=INTEGER},
+      </if>
+      <if test="zcfzSsnnc != null">
+        #{zcfzSsnnc,jdbcType=BIGINT},
+      </if>
+      <if test="zcfzSsnnm != null">
+        #{zcfzSsnnm,jdbcType=BIGINT},
+      </if>
+      <if test="zcfzSnnc != null">
+        #{zcfzSnnc,jdbcType=BIGINT},
+      </if>
+      <if test="zcfzSnnm != null">
+        #{zcfzSnnm,jdbcType=BIGINT},
+      </if>
+      <if test="zcfzSnzz != null">
+        #{zcfzSnzz,jdbcType=INTEGER},
+      </if>
+      <if test="lrSsnnc != null">
+        #{lrSsnnc,jdbcType=BIGINT},
+      </if>
+      <if test="lrSsnnm != null">
+        #{lrSsnnm,jdbcType=BIGINT},
+      </if>
+      <if test="lrSnnc != null">
+        #{lrSnnc,jdbcType=BIGINT},
+      </if>
+      <if test="lrSnnm != null">
+        #{lrSnnm,jdbcType=BIGINT},
+      </if>
+      <if test="lrSnzz != null">
+        #{lrSnzz,jdbcType=INTEGER},
+      </if>
+      <if test="xjllSsnnc != null">
+        #{xjllSsnnc,jdbcType=BIGINT},
+      </if>
+      <if test="xjllSsnnm != null">
+        #{xjllSsnnm,jdbcType=BIGINT},
+      </if>
+      <if test="xjllSnnc != null">
+        #{xjllSnnc,jdbcType=BIGINT},
+      </if>
+      <if test="xjllSnnm != null">
+        #{xjllSnnm,jdbcType=BIGINT},
+      </if>
+      <if test="xjllSnzz != null">
+        #{xjllSnzz,jdbcType=INTEGER},
+      </if>
+      <if test="gdxx != null">
+        #{gdxx,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="zylxr != null">
+        #{zylxr,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="jyzk != null">
+        #{jyzk,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="fzjg != null">
+        #{fzjg,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="bgjl != null">
+        #{bgjl,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="jyyc != null">
+        #{jyyc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="xzcf != null">
+        #{xzcf,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="yzwf != null">
+        #{yzwf,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="ccjc != null">
+        #{ccjc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sx != null">
+        #{sx,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="zc != null">
+        #{zc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="xs != null">
+        #{xs,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="ghdw != null">
+        #{ghdw,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="wfwz != null">
+        #{wfwz,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="jcxx != null">
+        #{jcxx,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="zzsBnFy != null">
+        #{zzsBnFy,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="yysBnFy != null">
+        #{yysBnFy,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sdsBnFy != null">
+        #{sdsBnFy,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="zcfzBnFy != null">
+        #{zcfzBnFy,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="lrBnFy != null">
+        #{lrBnFy,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="xjllBnFy != null">
+        #{xjllBnFy,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.baiwang.banktax.beans.TaxReportWithBLOBs">
+    update bt_user_tax_report
+    <set>
+      <if test="applyid != null">
+        applyid = #{applyid,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="gsmc != null">
+        gsmc = #{gsmc,jdbcType=VARCHAR},
+      </if>
+      <if test="qyfr != null">
+        qyfr = #{qyfr,jdbcType=VARCHAR},
+      </if>
+      <if test="zczb != null">
+        zczb = #{zczb,jdbcType=BIGINT},
+      </if>
+      <if test="clrq != null">
+        clrq = #{clrq,jdbcType=VARCHAR},
+      </if>
+      <if test="txdz != null">
+        txdz = #{txdz,jdbcType=VARCHAR},
+      </if>
+      <if test="lxdh != null">
+        lxdh = #{lxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="jydz != null">
+        jydz = #{jydz,jdbcType=VARCHAR},
+      </if>
+      <if test="nsrzt != null">
+        nsrzt = #{nsrzt,jdbcType=VARCHAR},
+      </if>
+      <if test="xydjPdsj != null">
+        xydj_pdsj = #{xydjPdsj,jdbcType=VARCHAR},
+      </if>
+      <if test="scjysjQ != null">
+        scjysj_q = #{scjysjQ,jdbcType=VARCHAR},
+      </if>
+      <if test="scjysjZ != null">
+        scjysj_z = #{scjysjZ,jdbcType=VARCHAR},
+      </if>
+      <if test="tyshxydm != null">
+        tyshxydm = #{tyshxydm,jdbcType=VARCHAR},
+      </if>
+      <if test="djjg != null">
+        djjg = #{djjg,jdbcType=VARCHAR},
+      </if>
+      <if test="swdjh != null">
+        swdjh = #{swdjh,jdbcType=VARCHAR},
+      </if>
+      <if test="zzjgdm != null">
+        zzjgdm = #{zzjgdm,jdbcType=VARCHAR},
+      </if>
+      <if test="qylx != null">
+        qylx = #{qylx,jdbcType=VARCHAR},
+      </if>
+      <if test="jyfw != null">
+        jyfw = #{jyfw,jdbcType=VARCHAR},
+      </if>
+      <if test="zzsSsnLj != null">
+        zzs_ssn_lj = #{zzsSsnLj,jdbcType=BIGINT},
+      </if>
+      <if test="zzsSnLj != null">
+        zzs_sn_lj = #{zzsSnLj,jdbcType=BIGINT},
+      </if>
+      <if test="zzsSnzz != null">
+        zzs_snzz = #{zzsSnzz,jdbcType=INTEGER},
+      </if>
+      <if test="yysSsnLj != null">
+        yys_ssn_lj = #{yysSsnLj,jdbcType=BIGINT},
+      </if>
+      <if test="yysSnLj != null">
+        yys_sn_lj = #{yysSnLj,jdbcType=BIGINT},
+      </if>
+      <if test="yysSnzz != null">
+        yys_snzz = #{yysSnzz,jdbcType=INTEGER},
+      </if>
+      <if test="sdsSsnLj != null">
+        sds_ssn_lj = #{sdsSsnLj,jdbcType=BIGINT},
+      </if>
+      <if test="sdsSnLj != null">
+        sds_sn_lj = #{sdsSnLj,jdbcType=BIGINT},
+      </if>
+      <if test="sdsSnzz != null">
+        sds_snzz = #{sdsSnzz,jdbcType=INTEGER},
+      </if>
+      <if test="zcfzSsnnc != null">
+        zcfz_ssnnc = #{zcfzSsnnc,jdbcType=BIGINT},
+      </if>
+      <if test="zcfzSsnnm != null">
+        zcfz_ssnnm = #{zcfzSsnnm,jdbcType=BIGINT},
+      </if>
+      <if test="zcfzSnnc != null">
+        zcfz_snnc = #{zcfzSnnc,jdbcType=BIGINT},
+      </if>
+      <if test="zcfzSnnm != null">
+        zcfz_snnm = #{zcfzSnnm,jdbcType=BIGINT},
+      </if>
+      <if test="zcfzSnzz != null">
+        zcfz_snzz = #{zcfzSnzz,jdbcType=INTEGER},
+      </if>
+      <if test="lrSsnnc != null">
+        lr_ssnnc = #{lrSsnnc,jdbcType=BIGINT},
+      </if>
+      <if test="lrSsnnm != null">
+        lr_ssnnm = #{lrSsnnm,jdbcType=BIGINT},
+      </if>
+      <if test="lrSnnc != null">
+        lr_snnc = #{lrSnnc,jdbcType=BIGINT},
+      </if>
+      <if test="lrSnnm != null">
+        lr_snnm = #{lrSnnm,jdbcType=BIGINT},
+      </if>
+      <if test="lrSnzz != null">
+        lr_snzz = #{lrSnzz,jdbcType=INTEGER},
+      </if>
+      <if test="xjllSsnnc != null">
+        xjll_ssnnc = #{xjllSsnnc,jdbcType=BIGINT},
+      </if>
+      <if test="xjllSsnnm != null">
+        xjll_ssnnm = #{xjllSsnnm,jdbcType=BIGINT},
+      </if>
+      <if test="xjllSnnc != null">
+        xjll_snnc = #{xjllSnnc,jdbcType=BIGINT},
+      </if>
+      <if test="xjllSnnm != null">
+        xjll_snnm = #{xjllSnnm,jdbcType=BIGINT},
+      </if>
+      <if test="xjllSnzz != null">
+        xjll_snzz = #{xjllSnzz,jdbcType=INTEGER},
+      </if>
+      <if test="gdxx != null">
+        gdxx = #{gdxx,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="zylxr != null">
+        zylxr = #{zylxr,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="jyzk != null">
+        jyzk = #{jyzk,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="fzjg != null">
+        fzjg = #{fzjg,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="bgjl != null">
+        bgjl = #{bgjl,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="jyyc != null">
+        jyyc = #{jyyc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="xzcf != null">
+        xzcf = #{xzcf,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="yzwf != null">
+        yzwf = #{yzwf,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="ccjc != null">
+        ccjc = #{ccjc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sx != null">
+        sx = #{sx,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="zc != null">
+        zc = #{zc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="xs != null">
+        xs = #{xs,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="ghdw != null">
+        ghdw = #{ghdw,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="wfwz != null">
+        wfwz = #{wfwz,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="jcxx != null">
+        jcxx = #{jcxx,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="zzsBnFy != null">
+        zzs_bn_fy = #{zzsBnFy,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="yysBnFy != null">
+        yys_bn_fy = #{yysBnFy,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sdsBnFy != null">
+        sds_bn_fy = #{sdsBnFy,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="zcfzBnFy != null">
+        zcfz_bn_fy = #{zcfzBnFy,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="lrBnFy != null">
+        lr_bn_fy = #{lrBnFy,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="xjllBnFy != null">
+        xjll_bn_fy = #{xjllBnFy,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.baiwang.banktax.beans.TaxReportWithBLOBs">
+    update bt_user_tax_report
+    set applyid = #{applyid,jdbcType=BIGINT},
+      userid = #{userid,jdbcType=BIGINT},
+      gsmc = #{gsmc,jdbcType=VARCHAR},
+      qyfr = #{qyfr,jdbcType=VARCHAR},
+      zczb = #{zczb,jdbcType=BIGINT},
+      clrq = #{clrq,jdbcType=VARCHAR},
+      txdz = #{txdz,jdbcType=VARCHAR},
+      lxdh = #{lxdh,jdbcType=VARCHAR},
+      jydz = #{jydz,jdbcType=VARCHAR},
+      nsrzt = #{nsrzt,jdbcType=VARCHAR},
+      xydj_pdsj = #{xydjPdsj,jdbcType=VARCHAR},
+      scjysj_q = #{scjysjQ,jdbcType=VARCHAR},
+      scjysj_z = #{scjysjZ,jdbcType=VARCHAR},
+      tyshxydm = #{tyshxydm,jdbcType=VARCHAR},
+      djjg = #{djjg,jdbcType=VARCHAR},
+      swdjh = #{swdjh,jdbcType=VARCHAR},
+      zzjgdm = #{zzjgdm,jdbcType=VARCHAR},
+      qylx = #{qylx,jdbcType=VARCHAR},
+      jyfw = #{jyfw,jdbcType=VARCHAR},
+      zzs_ssn_lj = #{zzsSsnLj,jdbcType=BIGINT},
+      zzs_sn_lj = #{zzsSnLj,jdbcType=BIGINT},
+      zzs_snzz = #{zzsSnzz,jdbcType=INTEGER},
+      yys_ssn_lj = #{yysSsnLj,jdbcType=BIGINT},
+      yys_sn_lj = #{yysSnLj,jdbcType=BIGINT},
+      yys_snzz = #{yysSnzz,jdbcType=INTEGER},
+      sds_ssn_lj = #{sdsSsnLj,jdbcType=BIGINT},
+      sds_sn_lj = #{sdsSnLj,jdbcType=BIGINT},
+      sds_snzz = #{sdsSnzz,jdbcType=INTEGER},
+      zcfz_ssnnc = #{zcfzSsnnc,jdbcType=BIGINT},
+      zcfz_ssnnm = #{zcfzSsnnm,jdbcType=BIGINT},
+      zcfz_snnc = #{zcfzSnnc,jdbcType=BIGINT},
+      zcfz_snnm = #{zcfzSnnm,jdbcType=BIGINT},
+      zcfz_snzz = #{zcfzSnzz,jdbcType=INTEGER},
+      lr_ssnnc = #{lrSsnnc,jdbcType=BIGINT},
+      lr_ssnnm = #{lrSsnnm,jdbcType=BIGINT},
+      lr_snnc = #{lrSnnc,jdbcType=BIGINT},
+      lr_snnm = #{lrSnnm,jdbcType=BIGINT},
+      lr_snzz = #{lrSnzz,jdbcType=INTEGER},
+      xjll_ssnnc = #{xjllSsnnc,jdbcType=BIGINT},
+      xjll_ssnnm = #{xjllSsnnm,jdbcType=BIGINT},
+      xjll_snnc = #{xjllSnnc,jdbcType=BIGINT},
+      xjll_snnm = #{xjllSnnm,jdbcType=BIGINT},
+      xjll_snzz = #{xjllSnzz,jdbcType=INTEGER},
+      gdxx = #{gdxx,jdbcType=LONGVARCHAR},
+      zylxr = #{zylxr,jdbcType=LONGVARCHAR},
+      jyzk = #{jyzk,jdbcType=LONGVARCHAR},
+      fzjg = #{fzjg,jdbcType=LONGVARCHAR},
+      bgjl = #{bgjl,jdbcType=LONGVARCHAR},
+      jyyc = #{jyyc,jdbcType=LONGVARCHAR},
+      xzcf = #{xzcf,jdbcType=LONGVARCHAR},
+      yzwf = #{yzwf,jdbcType=LONGVARCHAR},
+      ccjc = #{ccjc,jdbcType=LONGVARCHAR},
+      sx = #{sx,jdbcType=LONGVARCHAR},
+      zc = #{zc,jdbcType=LONGVARCHAR},
+      xs = #{xs,jdbcType=LONGVARCHAR},
+      ghdw = #{ghdw,jdbcType=LONGVARCHAR},
+      wfwz = #{wfwz,jdbcType=LONGVARCHAR},
+      jcxx = #{jcxx,jdbcType=LONGVARCHAR},
+      zzs_bn_fy = #{zzsBnFy,jdbcType=LONGVARCHAR},
+      yys_bn_fy = #{yysBnFy,jdbcType=LONGVARCHAR},
+      sds_bn_fy = #{sdsBnFy,jdbcType=LONGVARCHAR},
+      zcfz_bn_fy = #{zcfzBnFy,jdbcType=LONGVARCHAR},
+      lr_bn_fy = #{lrBnFy,jdbcType=LONGVARCHAR},
+      xjll_bn_fy = #{xjllBnFy,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.baiwang.banktax.beans.TaxReport">
+    update bt_user_tax_report
+    set applyid = #{applyid,jdbcType=BIGINT},
+      userid = #{userid,jdbcType=BIGINT},
+      gsmc = #{gsmc,jdbcType=VARCHAR},
+      qyfr = #{qyfr,jdbcType=VARCHAR},
+      zczb = #{zczb,jdbcType=BIGINT},
+      clrq = #{clrq,jdbcType=VARCHAR},
+      txdz = #{txdz,jdbcType=VARCHAR},
+      lxdh = #{lxdh,jdbcType=VARCHAR},
+      jydz = #{jydz,jdbcType=VARCHAR},
+      nsrzt = #{nsrzt,jdbcType=VARCHAR},
+      xydj_pdsj = #{xydjPdsj,jdbcType=VARCHAR},
+      scjysj_q = #{scjysjQ,jdbcType=VARCHAR},
+      scjysj_z = #{scjysjZ,jdbcType=VARCHAR},
+      tyshxydm = #{tyshxydm,jdbcType=VARCHAR},
+      djjg = #{djjg,jdbcType=VARCHAR},
+      swdjh = #{swdjh,jdbcType=VARCHAR},
+      zzjgdm = #{zzjgdm,jdbcType=VARCHAR},
+      qylx = #{qylx,jdbcType=VARCHAR},
+      jyfw = #{jyfw,jdbcType=VARCHAR},
+      zzs_ssn_lj = #{zzsSsnLj,jdbcType=BIGINT},
+      zzs_sn_lj = #{zzsSnLj,jdbcType=BIGINT},
+      zzs_snzz = #{zzsSnzz,jdbcType=INTEGER},
+      yys_ssn_lj = #{yysSsnLj,jdbcType=BIGINT},
+      yys_sn_lj = #{yysSnLj,jdbcType=BIGINT},
+      yys_snzz = #{yysSnzz,jdbcType=INTEGER},
+      sds_ssn_lj = #{sdsSsnLj,jdbcType=BIGINT},
+      sds_sn_lj = #{sdsSnLj,jdbcType=BIGINT},
+      sds_snzz = #{sdsSnzz,jdbcType=INTEGER},
+      zcfz_ssnnc = #{zcfzSsnnc,jdbcType=BIGINT},
+      zcfz_ssnnm = #{zcfzSsnnm,jdbcType=BIGINT},
+      zcfz_snnc = #{zcfzSnnc,jdbcType=BIGINT},
+      zcfz_snnm = #{zcfzSnnm,jdbcType=BIGINT},
+      zcfz_snzz = #{zcfzSnzz,jdbcType=INTEGER},
+      lr_ssnnc = #{lrSsnnc,jdbcType=BIGINT},
+      lr_ssnnm = #{lrSsnnm,jdbcType=BIGINT},
+      lr_snnc = #{lrSnnc,jdbcType=BIGINT},
+      lr_snnm = #{lrSnnm,jdbcType=BIGINT},
+      lr_snzz = #{lrSnzz,jdbcType=INTEGER},
+      xjll_ssnnc = #{xjllSsnnc,jdbcType=BIGINT},
+      xjll_ssnnm = #{xjllSsnnm,jdbcType=BIGINT},
+      xjll_snnc = #{xjllSnnc,jdbcType=BIGINT},
+      xjll_snnm = #{xjllSnnm,jdbcType=BIGINT},
+      xjll_snzz = #{xjllSnzz,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
