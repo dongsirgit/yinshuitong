@@ -19,6 +19,7 @@ public class ProductSynopsisBean implements Serializable{
 	private String pname;//产品名称
 	private String relaBank;//关联银行
 	private String icoUrl;//银行小图标
+	private String logoUrl;//银行logo
 	private String sxed;//授信额度
 	private String ckll;//参考利率
 	private String cptd;//产品特点
@@ -30,6 +31,14 @@ public class ProductSynopsisBean implements Serializable{
 	public void setId(Integer id) {
 	
 		this.id = id;
+	}
+	public String getLogoUrl() {
+	
+		return logoUrl;
+	}
+	public void setLogoUrl(String logoUrl) {
+	
+		this.logoUrl = logoUrl;
 	}
 	public String getPname() {
 	
@@ -91,13 +100,14 @@ public class ProductSynopsisBean implements Serializable{
 	  * @param ckll
 	  * @param cptd
 	  */
-	public ProductSynopsisBean(Integer id, String pname, String relaBank, String icoUrl, String sxed, String ckll,
+	public ProductSynopsisBean(Integer id, String pname, String relaBank, String icoUrl,String logoUrl, String sxed, String ckll,
 			String cptd) {
 		super();
 		this.id = id;
 		this.pname = pname;
 		this.relaBank = relaBank;
 		this.icoUrl = icoUrl;
+		this.logoUrl = logoUrl;
 		this.sxed = sxed;
 		this.ckll = ckll;
 		this.cptd = cptd;

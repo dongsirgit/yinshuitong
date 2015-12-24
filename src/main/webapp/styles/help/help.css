@@ -1,10 +1,10 @@
 @charset "utf-8";
 /* CSS Document */
 /*帮助中心*/
-.content{ margin:10px auto; color:#656565;}
+.content{ margin:30px auto; color:#656565;}
 .content_l{ float:left; height:614px; font-size:14px; width:152px; background:#fff;}
-.content_r{ float:right; height:554px;  height:auto !important; min-height:554px; width:760px; padding:30px 37px; background:#fff; position:relative;}
-.content_l h3{ font-size:14px; color:#fff; font-weight:normal; width:152px; height:30px; line-height:30px; text-align:center; background:#e70011; margin-bottom:10px;}
+.content_r{ float:right; height:554px;  height:auto !important; min-height:554px; width:820px; background:#fff; position:relative;}
+.content_l h3{ font-size:18px; color:#fff; font-weight:normal; width:152px; height:42px; line-height:42px; text-align:center; background:#e70011; margin-bottom:10px;}
 .content_l ul li{ text-align:center; height:24px; line-height:24px; width:152px; cursor:pointer;}
 .content_l ul li.current{ background:#dcc09a; color:#fff;}
 .helpcenter li{ line-height:20px;}
@@ -12,7 +12,47 @@
 .helpcenter li.current{ display:block;}
 .content_l li a:link,.content_l li a:visited{ color:#656565;}
 .content_l .current a:link,.content_l .current a:visited{ color:#fff;}
-.content_l_btn{ display:block; background:#e80e1d; text-align:center; margin:5px auto;}
+.content_l_btn{ display:block; background:#c39b66; text-align:center; margin:5px auto; height:42px; line-height:42px; font-size:18px;}
 .content_l_btn:link,.content_l_btn:visited{ color:#fff;}
 .ftcblue{ color:#3c426e; font-weight:bold;}
 .helpcenter p span{ color:#ac7832;}
+/*新增样式--账户信息*/
+.userinfo { height:60px; line-height:60px; border-bottom:1px solid #d4b48d; margin-bottom:15px; padding:30px 37px;}
+.userinfo img ,.userinfo span ,.userinfo a { display:block; float:left; vertical-align:middle;}
+.userinfo span { font-size:18px; margin:0 30px; color:#656565;}
+.userinfo a { width:95px; height:28px; line-height:28px; background-color:#fff1dc; border:1px solid #f39000; color:#f39000; text-align:center; font-size:14px; border-radius:5px; margin-top:15px;}
+.bb {border-bottom:1px solid #d4b48d;}
+.green { color:#1CAF1B;}
+.user_table { margin:0; padding:0;}
+.user_table .title { text-align:right; color:#909090;}
+.wronginfo { border:1px dashed #e70011; font-size:12px; color:#e70011; background:url(../../images/common/icon_wrong.gif) no-repeat 10px center; padding:10px 30px; margin:10px 30px; }
+.wronginfo a { color:#e70011; font-weight:bold; text-decoration:underline;}
+.order_details { line-height:90px; font-size:18px;}
+.order_details span { margin:0 30px;}
+.details_list { padding:40px;}
+.details_list dl {margin:0 20px; font-size:14px;}
+.details_list dl dt ,.details_list dl dd { height:30px; background:url(../../images/order/dl_bg.gif) repeat-y 3px 0;}
+.details_list dl dt { padding-left:30px; }
+.details_list dl dt span { margin-right:20px;}
+.details_list dl dd { padding-left:128px;}
+.details_list dl dd.last_dd {background:url(../../images/order/dd_bg.gif) no-repeat 3px 0; color:#c39b66;}
+#details_list a{ display:block; width:120px; height:36px; border: 1px solid #C39B66; border-radius:5px; color: #C39B66; margin:20px auto; text-align:center;  font-size: 18px; line-height: 36px;}
+#exit_pwcnt p  { padding:30px 0 0 30px;}
+#exit_pwcnt p a { color:#E3AD11; text-decoration:underline;}
+
+/*认证选择地区*/
+.chose_area { padding:30px;}
+.chose_area h1 { font-size:30px; text-align:center; line-height:48px; font-weight:400; color:#C39B66;}
+.chose_area p { text-align:center; line-height:40px; font-size:14px;}
+.provinces ,.city{ border:1px solid #C39B66; margin:15px; padding:20px;}
+.provinces a ,.city a{ display:inline-block; margin:5px; padding:0 15px; height:30px; line-height:30px; color:#000; text-decoration:none;}
+.provinces a.selected ,.city a.selected { background-color:#C39B66; color:#fff;}
+.chose_result { text-align:center; background-color:#C39B66; margin:15px; padding:20px; color:#fff; font-size:14px;}
+.chose_result span { font-size:30px;}
+.next_btn {text-align:center; display:block; width:200px; height: 42px; line-height: 42px; background-color: #D50614; margin: 28px auto 0 auto; color: #fff; font-size: 18px; border-radius: 5px;}
+.wronginfo_chose { color:#D50614; text-align:center;}
+
+
+
+
+

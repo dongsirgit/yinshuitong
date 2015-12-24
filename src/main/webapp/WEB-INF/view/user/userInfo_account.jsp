@@ -95,19 +95,16 @@
 		}
 	</script>
 </head>
-<body style="background-color: #fefefe; background-image:none;height:auto!important;height:500px;min-height:500px;">
-	    <img src="<%=basePath%>/images/common/headPic.png" style="width:60px;height:60px;float:left"/>
-	    <div class="userInfoDiv">
-	       <span class="userInfoSpan">登录账号:</span><span id ="mobilePhone"></span>
-	    </div>
-	    <div class="userInfoDiv">
-	       <span class="userInfoSpan">登录密码:</span>
-	       <span class="userInfoSpan">已设置</span>
-	       <a href="<%=basePath%>/users/changePwd" style="text-decoration:underline" target="_self">修改密码</a>
-	    </div>
-	    <div style="clear:both;border-bottom:2px solid #dcc09a"></div>
-	       <h4 class="userInfoItemTitle">企业信息</h4>
-	       <span class="userInfoVerifyState">
+<body >
+		<ul class="loan_list">
+        <li class="current" id="myaccount">
+	    <div class="userinfo">
+			<img src="<%=basePath%>/images/common/user.jpg">
+			<span>登录账号:<i id ="mobilePhone"></i></span>
+			<a href="<%=basePath%>/users/changePwd" class="exit_password" target="_self">修改密码</a>
+		</div>
+       <h4 class="listh4">企业信息</h4>
+	       <span >
 	           <c:choose>
 	               <c:when test="${loginedUser.taxVerify == 4}">
 	                                             已经通过实名认证√                          
@@ -116,8 +113,7 @@
                                                         人工审核中，请等待...                                                          
                    </c:when>
 			       <c:otherwise>
-			                         您还未进行认证,认证后才可以办理业务.
-                     <a href="<%=basePath%>/users/identify" target="top" style="text-decoration:underline;color:red">立即认证>></a>
+			       <div class="wronginfo">您还未进行实名认证，认证后才可以办理业务。<a href="<%=basePath%>/users/identify" target="top" style="text-decoration:underline;color:red">立即认证>></a></div>
 			       </c:otherwise> 
 			    </c:choose>
 			    <c:if test="${loginedUser.taxVerify == 4}">
@@ -164,6 +160,8 @@
 	            </td>
 	            </tr>
 			</table> 
+			</li>
+			</ul>
 	    <div style="clear:both;border-bottom:2px solid #dcc09a"></div>
 		<ul class="loan_list">
 	        <li class="current" style="display: block;">

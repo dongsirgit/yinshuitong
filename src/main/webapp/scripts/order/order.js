@@ -11,19 +11,11 @@ $(document).ready(function(e) {
 	$(".selbox").mouseleave(function(){selboxleave();});
 	$(".selbox ul li").on("click",function(){
 			if($(this).not(".hover")){
-				var v=$(this).attr("data-value");
 				$(this).addClass("hover").siblings().removeClass("hover");
-				$(this).parents(".selbox").children("span").text($(this).text());
-				try{
-					var v_id = $(this).parents("ul").attr('id').substring(2, $(this).parents("ul").attr('id').length);
-					$("#"+v_id).val(v);
-				}catch(e){
-					
+				$(this).parents(".selbox").children("span").text($(this).text());				
 				}
-				
-			}
 			selboxleave();				
-	})
+			})
 	//单选框状态显示，内置隐藏的input
 	$(".rediobox").click(function(e) {        
 		if($(this).not(".sel")){
@@ -44,7 +36,6 @@ $(document).ready(function(e) {
 	//服务协议已阅读状态
 	$(".readdiv span").click(function(){
 		$(this).children("em").toggleClass("colorf")
-		id_sub +=1;
 		});
 	//第一次加载状态显示	
 	$(".orderform:not('.orderformed'):eq(1),.orderform:not('.orderformed'):eq(2),.orderformed:eq(0),.orderh3a").hide()	
@@ -73,27 +64,14 @@ $(document).ready(function(e) {
 		})
 	//正式提交浮层
 	$(".mask_alpha,.fdiv").hide();
-	/*$(".btnboxa2").click(function(){
+	$(".btnboxa2").click(function(){
 		$(".fdiv").show(200);
 		$(".mask_alpha").show();
-		});*/
+		});
 	$(".fdivbtn2").click(function(){
 		$(".mask_alpha,.fdiv").hide(200);
 		});
-	//协议确定
-	$("#btn_xieyi_confirm").click(function(){
-		$("#xieyidiv").hide();
-	});	
-	//上传完整性 确定
-	$("#btn_upCheck_confirm").click(function(){
-		$("#upCheckdiv").hide();
-		$(".mask_alpha,.fdiv").hide();
-	});	
-	//保存操作-文件上传中 确定
-	$("#btn_upLoadingCheck_confirm").click(function(){
-		$("#uploadingCheckdiv").hide();
-		$(".mask_alpha,.fdiv").hide();
-	});
+		
 	//相关资料的图片显示
 	var l=$(".piclist li");
 	$(".piclist li img").each(function(i){

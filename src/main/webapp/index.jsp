@@ -57,25 +57,32 @@
 </div>
 
 <div class="indextable">
-	<table style="border-collapse:collapse;" rules="rows" bordercolor="#afaeac" width="1000px;"><!--  -->
-    		<thead height="40px;">
-    			<tr><th colspan="2">贷款名称</th>
-    			<th width="180">授信额度</th>
-    			<th width="180">参考利率</th>
-    			<th>产品特点</th>
-    			<th width="10"></th>
-    			<th width="150px;"></th>
-    		</tr></thead>
-    		<tbody id="list" align="center">
-    			
-    		<tr style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;" height="80px;"><td align="right" width="80"><img src="<%=basePath%>/images/product/bank_jh_ico.png"></td><td align="left" width="100">建设银行<br>税e贷</td><td>最高200万元</td><td>年化利率8.8%</td><td>无抵押，无担保，纯信用贷款，随借随还</td><td><img src="<%=basePath%>/images/product/u74_line.png"></td><td><button onclick="javascript:productDetail(1)">查看详情</button></td></tr><tr style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;" height="80px;"><td align="right" width="80"><img src="<%=basePath%>/images/product/bank_pa_ico.png"></td><td align="left" width="100">平安银行<br>税金贷</td><td>最高100万元</td><td>日利率0.3‰-0.4‰/天</td><td>纯信用，免担保，资料简单，线上操作，随借随还，最快2天放款，便捷高效。</td><td><img src="<%=basePath%>/images/product/u74_line.png"></td><td><button onclick="javascript:productDetail(2)">查看详情</button></td></tr></tbody>
-    		<tfoot align="center">
-    			<tr height="50px;">
-    				<td colspan="7"></td>
-    			</tr>
-    		</tfoot>
-    	</table>
-   
+	<table class="ac ft14">
+    	<tr class="ft12">
+        	<th>银行名称</th>
+        	<th>产品名称</th>
+        	<th>授信额度</th>
+        	<th>参考利率</th>
+        	<th>产品特点</th>
+        	<th>&nbsp;</th>
+        </tr>
+        <tr>
+        	<td><img src="<%=basePath%>/images/common/jh_bank.png"/></td>
+        	<td><i class="ftb">税e贷</i></td>
+        	<td>最高<i class="ft24 red">200</i>万元</td>
+        	<td>年化利率<i class="ft20 red">8.8%</i></td>
+        	<td>无抵押，无担保，纯信用贷款，随借随还</td>
+        	<td><a href="javascript:;" onclick="javascript:productDetail(1)">查看详情</a></td>
+        </tr>
+        <tr>
+        	<td><img src="<%=basePath%>/images/common/jt_bank.png"/></td>
+        	<td><i class="ftb">税金贷</i></td>
+        	<td>最高<i class="ft24 red">100</i>万元</td>
+        	<td>日利率<i class="ft24 red">0.3‰-0.4‰</i>/天</td>
+        	<td>线上操作，随借随还，最快2天放款，便捷高效。</td>
+        	<td><a href="javascript:;" onclick="javascript:productDetail(2)">查看详情</a></td>
+        </tr>
+    </table>
 </div>
  <div class="partner center">
 <!--     <h3>合作伙伴</h3> -->

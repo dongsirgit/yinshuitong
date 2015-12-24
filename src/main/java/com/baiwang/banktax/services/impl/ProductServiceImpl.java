@@ -61,7 +61,7 @@ public class ProductServiceImpl implements IProductService {
 				String[] split = listp.get(i).getTitleInfo().split(";");
 				if(null != split && split.length == 3){
 					list.add(new ProductSynopsisBean(listp.get(i).getId(), listp.get(i).getPname(),
-							listp.get(i).getRelaBank(), listp.get(i).getIcoUrl(), 
+							listp.get(i).getRelaBank(), listp.get(i).getIcoUrl(), listp.get(i).getLogoUrl(),
 							split[0],split[1],split[2]));
 				}else
 					continue;

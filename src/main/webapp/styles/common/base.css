@@ -252,7 +252,7 @@ h1,h2,h3,h4,h5,h6 {font-size:14px; font-weight:bold;}
 body{ background:#f7f7f7 url(../../images/common/bg.gif) repeat-x 0 74px;}
 /*版心居中*/
 .center{ width:1000px; margin:0 auto;}
-.main{ width: 1000px; margin: 22px auto; background:#FFF url(../../images/common/commontopbg.gif) no-repeat; padding: 50px 0 0 0}
+.main{ width: 1000px; margin: 22px auto; background:#FFF url(../../images/common/commontopbg.gif) no-repeat; padding: 50px 0 0 0; overflow:hidden;}
 /*header*/
 .header_wrap{ width:100%; height:74px; background:#fff;}
 .header{ width:1000px; height:74px; margin:0 auto; font-size:14px;}
@@ -284,3 +284,7 @@ body{ background:#f7f7f7 url(../../images/common/bg.gif) repeat-x 0 74px;}
 .con_404in h2{ color:#e36c08; font-weight:normal;}
 .con_404in p{ color:#959595;}
 .con_404in a:link,.con_404in a:visited{ color:#0088cc; text-decoration:underline;}
+/**/
+.crumbsbox a:link,.crumbsbox a:visited{ color:#b67f36;}
+.crumbsbox{ padding:8px 20px 10px; color:#656565; font-size:14px; color:#b67f36; width:960px; margin:0 auto; border-bottom:1px solid #c59f6d;}
+.crumbsbox span{ color:#656565;}

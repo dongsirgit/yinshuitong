@@ -108,7 +108,7 @@
 			<div class="forget_con">
 				<h3>找回密码</h3>
 				<div class="hg">
-				    <label style="width:80px;font-size:15px">手机号:</label>
+<!-- 				    <label style="width:80px;font-size:15px">手机号:</label> -->
 					<input class="inputState" type="text" value="请输入手机号" name="mobilePhone" id="mobilePhone" onblur="checkMobilePhone()" style="color:#b0b0b0;IME-MODE: disabled;" 
                         onkeyup="this.value=this.value.replace(/\D/g,'');if(this.value.length>11){this.value=this.value.substr(0,11)};"  
                         onafterpaste="this.value=this.value.replace(/\D/g,'')"/>
@@ -117,7 +117,7 @@
 				</div>
 				<div class="getPhoneCodeBtn" onclick="getPhoneCode()">获取验证码</div>
 				<div class="hg">
-				    <label style="width:80px;font-size:15px">验证码:</label>
+<!-- 				    <label style="width:80px;font-size:15px">验证码:</label> -->
 					<input class="inputState" type="text" value="验证码" name="phoneCode" id="phoneCode" 
 					   onblur="checkPhoneCode()" style="width:200px;color:#b0b0b0;" disabled="disabled" 
 					   onkeyup="this.value=this.value.replace(/\D/g,'');if(this.value.length>6){this.value=this.value.substr(0,6)};"  

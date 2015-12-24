@@ -55,13 +55,10 @@
 	<iframe src="<%=basePath%>/basic/head" width="100%" height="75px" frameborder="0" scrolling="no"></iframe>
 	
 	<div class="content center clearfix act_list_nobg">
-		<div class="content_l">
-	        <h3>我的银税通</h3>
-	        <ul>
-	        	<li class="current" id="list_loans">我的账户</li>
-	        	<li ><a href="<%=basePath %>/product/list">我要贷款</a></li>
-	        </ul>
-	    </div>
+	    <div class="content_l">
+	        <h3><a id="myaccount_btn" href="<%=basePath%>/users/init/userInfo" style="color:#FFFFFF">我的账户</a></h3>
+	        <a href="<%=basePath %>/product/list" class="content_l_btn">我要贷款</a>
+   		</div>
 		<div class="content_r">
 			<iframe id="openli" src="" allowtransparency="true" width="100%" frameborder="0" scrolling="no" name="openli" onload="javascript:dyniframesize('openli');"></iframe>
 	    </div>

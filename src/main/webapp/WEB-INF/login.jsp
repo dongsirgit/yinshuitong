@@ -101,9 +101,9 @@
         </div>
         <div class="info">
             <span id="userPwdMsg"><c:if test="${null != notePass}">${notePass}</c:if></span>
-            <a href="<%=basePath%>/user/findPwd">忘记密码？</a>
         </div>
         <div class="login_button"><a onclick="login()">登录</a></div>
+        <div class="info"><a class="fl" href="<%=basePath%>/user/findPwd">忘记密码？</a><a class="fr" href="<%=basePath%>/user/forwardRegist">没有账号，快速注册</a></div>
       </form>
     </div>
   </div>
