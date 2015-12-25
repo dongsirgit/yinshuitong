@@ -12,47 +12,16 @@
     <link href="<%=basePath %>/styles/common/base.css" rel="stylesheet" type="text/css">
     <link href="<%=basePath %>/styles/order/order.css" rel="stylesheet" type="text/css">
     <script src="<%=basePath %>/scripts/common/jquery-1.11.1.min.js"></script>
-    
-    <style type="text/css">
-   		.mainn{ width: 1000px;height:auto!important; height:600px; min-height:590px; border:1px solid #AFAEAC; margin: 10px auto; background:#FFF; padding: 0px 0 0 0;}
-   		.procurrent{background-color: blue;color: white;}
-    </style>
-    
-    <script type="text/javascript">
-		$(document).ready(function(){
-			
-		})
-		
-		
-    </script>
-    
 </head>
 <body>
     <iframe src="<%=basePath %>/basic/head" width="100%" height="74px" frameborder="0" scrolling="no"></iframe>
-	
-   	<div class="mainn" align="center">
-   		<div style="width: 80%; height: 100%; padding-top: 20px; padding-bottom: 50px;"><!--  border:1px solid #AFAEAC; -->
-   			<span style=" font-size: 36px;">实名认证<br/></span>
-   		</div>
-   		<div style="width: 50%; height:auto!important; height:60px; min-height:60px; line-height: 30px;">
-	   		<span style="font-size: 18px;">您的证件已提交，管理员审核通过后才可以申请贷款。审核时间为3~5个工作日，请您耐心等待。<br/></span>
-   		</div>
-   		
-   		<div style="width: 80%; height:auto!important; height:60px; min-height:60px; line-height: 30px;">
-	   		<div class="readdiv">
-	   			<br>
-	   			<font style="font-size: 16px;"><a href="<%=basePath %>/product/list" target="_top">返回贷款产品列表>></a></font>
-	   		</div>
-   		</div>
-   		
-    	
-    	
-       
-   	</div>
-    
-   
-    
+    <div class="main">
+	<div class="renzheng_submit">
+    	<h2 class="shimingrzh2">实 名 认 证</h2>
+        <p class="renzheng_submit_p">您的证件已提交，管理员审核通过后才可以申请贷款。审核时间为3~5个工作日，请您耐心等待。</p>
+        <p class="renzheng_submit_return"><a href="<%=basePath %>" target="_top">返回网站首页</a></p>
+    </div>
+</div>
     <%@include file="../base/footer.html" %>
-    
 </body>
 </html>

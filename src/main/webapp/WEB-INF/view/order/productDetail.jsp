@@ -74,8 +74,8 @@
 		}
 		
 		$(document).ready(function(){
-			$(".fdivbtn2").click(function(){
-				$(".mask_alpha,.fdiv").hide(200);
+			$(".fdivbtn2,.fdivbtn1").click(function(){
+				$(".mask_alpha,.fdiv").hide();
 			});
 		})
         
@@ -154,14 +154,14 @@
 	<div id='div_iden2' class="fdiv" style="display: none;">
 		<p>管理员正在审核信息，请耐心等待。</p>
 		<div>
-			<button class="fdivbtn2">确定</button>
+			<button class="fdivbtn1">确定</button>
 		</div>
 	</div>
 
 	<div id='div_unfinish' class="fdiv" style="display: none;">
 		<p>您当前有一条贷款申请未完成,不能重复申请。</p>
 		<div>
-			<button class="fdivbtn2"
+			<button class="fdivbtn1"
 				onclick="javascript:location.href='<%=basePath %>/users/init/userInfo'">确定</button>
 		</div>
 	</div>
