@@ -12,6 +12,7 @@
 <link href="<%=basePath %>/styles/order/order.css" rel="stylesheet"
 	type="text/css">
 <script src="<%=basePath %>/scripts/common/jquery-1.11.1.min.js"></script>
+<script src="<%=basePath %>/scripts/order/order.js"></script>
 <script type="text/javascript">
 var a = '${err_msg}';
 if(a){
@@ -98,14 +99,6 @@ function fo_tel(){
 }
 
 function che_applyNote(){
-// 	$("#applyNote").val($("#applyNote").val().replace(/\s+/g,""));
-// 	if(!/^[\u4e00-\u9fa5a-zA-Z0-9]{10,200}$/.test($("#applyNote").val())){
-// 		$("#e_applyNote").show();
-// 		return false;
-// 	}else{
-// 		$("#e_applyNote").hide();
-// 		return true;
-// 	}
 	if($("#applyNote").val().length<10){
 		$("#e_applyNote").show();
 		return false;
@@ -122,18 +115,20 @@ function fo_applyNote(){
 <body>
 	<iframe src="<%=basePath %>/basic/head" width="100%" height="74px"
 		frameborder="0" scrolling="no"></iframe>
-	<div>
-		<h1 align="center" >填写申请</h1>
-	</div>
-
 	<div class="main">
 		<div class="mainpb">
-			<div>
-				选择的贷款产品：<br/>
-				<img src="<%=basePath %>/images/product/${prosyn.icoUrl}"/><c:out value="${prosyn.relaBank}"/>-<c:out value="${prosyn.pname}"/>
-				&nbsp;&nbsp;&nbsp;<span style="height:50px; vertical-align: middle;">
-				授信额度：<c:out value="${prosyn.sxed}"/>&nbsp;&nbsp;&nbsp;参考利率：<c:out value="${prosyn.ckll}"/></span>
-			</div>
+			<h2 class="orderh2">填写申请</h2>
+			 <div class="order_fill_top">
+				<h3 class="orderh3">选择的贷款产品</h3>
+	            <table>
+	            	<tr>
+	                	<td><img src="<%=basePath %>/images/product/${prosyn.logoUrl}"/></td>
+	                	<td><c:out value="${prosyn.pname}"/></td>
+	                	<td>授信额度：<c:out value="${prosyn.sxed}"/></td>
+	                	<td>参考利率：<c:out value="${prosyn.ckll}"/></td>
+	                </tr>
+	            </table>
+	        </div>
 			<div class="orderform">
 				<div class="item">
 					<span class="label">企业名称：</span><span id="realname"><c:out
@@ -148,7 +143,7 @@ function fo_applyNote(){
 						<span class="label"><b>*</b>期望贷款金额：</span> <input
 							name="applyQuota" id="applyQuota" type="text" maxlength="3"
 							class="text w264" onblur="checkApplyQuota()" onkeyup="checkApplyQuota();" onfocus="fo_quota()"><em>万元</em>
-							<em><span id="quotaCny" style="font-size: 20px"></span></em>
+							<i id="quotaCny" class="amount_money"></i>
 							 <span
 							id="e_applyQuota" class="erro colorred" style="display: none;">×
 							请输入正确贷款金额</span>
@@ -171,40 +166,35 @@ function fo_applyNote(){
 							id="e_telephone" class="erro colorred" style="display: none;">×
 							请输入正确的手机号</span>
 					</div>
-					<div class="item4">
+					<div class="useswrap">
+		                <div class="item usesbox clearfix">
 						<span class="label"><b>*</b>贷款用途：</span>
-						<textarea rows="" cols="" name="applyNote" id="applyNote" class="itemarea" style="width: 600px" maxlength="200"
+						<textarea name="applyNote" id="applyNote" class="uses" maxlength="200"
 							 onblur="che_applyNote()" onfocus="fo_applyNote()"></textarea>
-						<span id="e_applyNote" class="erro colorred"
-							style="display: none;">× 至少输入10个字</span>
+						<p id="e_applyNote" class="colorred" style="display: none;"><span>× 至少输入10个字</span></p>
+						</div>
 					</div>
 					<div class="item">
 						<span class="label"><b>*</b>营业执照：</span>
 						<div>
-							<input type="button" id="browse1" value="上传附件">
+							<div class="fill_filebox fl"><input type="button" id="browse1"><em>上传</em></div>
 							<div id="filelist1">
-								<a class="erropro" href="javascript:;" style="display: none">* 请上传附件</a>
+								<span class="erro colorred">× 请上传附件</span>
 							</div>
 						</div>
 					</div><br/>
 					<div class="item">
 						<span class="label"><b>*</b>贷款申请书：</span> 
 						<div>
-							<input type="button" id="browse2" value="上传附件">
+							<div class="fill_filebox fl"><input type="button" id="browse2"><em>上传</em></div>
 							<div id="filelist2">
-								<a class="erropro" href="javascript:;" style="display: none">* 请上传附件</a>
+								<span class="erro colorred">× 请上传附件</span>
+								<span class="file_pre"><a href="<%=basePath %>/tmplt/apply_template.docx">下载申请书模板</a></span>
 							</div>
 						</div>
 					</div>
-					<div class="item">
-						<a href="<%=basePath %>/tmplt/apply_template.docx">下载申请书模板</a>
-					</div>
-					<div class="item">
-						<h2 style="color: red">注：下载申请书，填写后扫描成图片上传。上传图片支持jpg，jpeg和png格式，大小不超过1M。</h2>
-					</div>
-					<div class="btnbox">
-						<input id="loansub" class="btn-yellow" type="button" value="提交">
-					</div>
+					<p class="fill_p colorred">注：请下载贷款申请书，填写后扫描成图片上传； 图片格式为jpg、jpeg、png，单个文件不大于1M；扫描件或相片皆可，图片上的文字必须清晰；请将图片摆正后上传，方便工作人员审核，避免审核不通过</p>
+					<div class="btnbox"><a id="loansub" class="btn-yellow" href="javascript:;">提交申请</a></div>
 					<span class="clr"></span>
 					<input type="hidden" id="yyzz_atid" name="yyzz_atid">
 					<input type="hidden" id="sqs_atid" name="sqs_atid">
@@ -323,7 +313,7 @@ uploader.bind('Error',function(uploader,err){
 });
 uploader.bind('UploadComplete',function(uploader,files){
 plupload.each(files, function(file) {
-	document.getElementById('filelist1').innerHTML = '<a class="pt5 tdul" name="flag4check" href="<%=basePath %>/users/file/showPicById?id='+$("#yyzz_atid").val()+'" target="_blank">'+file.name+'</a>';
+	document.getElementById('filelist1').innerHTML = '<a class="file_pre" name="flag4check" href="<%=basePath %>/users/file/showPicById?id='+$("#yyzz_atid").val()+'" target="_blank">'+file.name+'</a>';
 });
 $("#browse1").attr('disabled',false);
 });
@@ -377,7 +367,7 @@ uploader_sqs.bind('Error',function(uploader_sqs,err){
 });
 uploader_sqs.bind('UploadComplete',function(uploader_sqs,files){
 	plupload.each(files, function(file) {
-		document.getElementById('filelist2').innerHTML = '<a class="pt5 tdul" name="flag4check" href="<%=basePath %>/users/file/showPicById?id='+$("#sqs_atid").val()+'" target="_blank">'+file.name+'</a>';
+		document.getElementById('filelist2').innerHTML = '<a class="file_pre" name="flag4check" href="<%=basePath %>/users/file/showPicById?id='+$("#sqs_atid").val()+'" target="_blank">'+file.name+'</a>';
 	});
 	$("#browse2").attr('disabled',false);
 	});

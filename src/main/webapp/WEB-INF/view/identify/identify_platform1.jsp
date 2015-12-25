@@ -17,12 +17,6 @@
     <link href="<%=basePath %>/styles/common/base.css" rel="stylesheet" type="text/css">
     <link href="<%=basePath %>/styles/order/order.css" rel="stylesheet" type="text/css">
     <script src="<%=basePath %>/scripts/common/jquery-1.11.1.min.js"></script>
-    
-    <style type="text/css">
-   		.mainn{ width: 1000px;height:auto!important; height:600px; min-height:590px; border:1px solid #AFAEAC; margin: 10px auto; background:#FFF; padding: 0px 0 0 0;}
-   		.procurrent{background-color: blue;color: white;}
-    </style>
-    
     <script type="text/javascript">
     	var id_sub = 0;
 		$(document).ready(function(){
@@ -33,15 +27,17 @@
 				$(this).children("em").toggleClass("colorf");
 			});
 			
-			$(".fdivbtn2").click(function(){
-				$(".mask_alpha,.fdiv").hide(200);
+			$(".fdivbtn1").click(function(){
+				$(".mask_alpha,.fdiv").hide();
 			});
-			
+			$(".fdivbtn2").click(function(){
+				$(".mask_alpha,.fdiv").hide();
+			});
 		})
 		
 		
 		function nextIdentify(id,verifyUrl){//点击去认证
-			if(id_sub%2==0){
+			if($('#xieyi').is(":checked")){
 				$("#xieyidiv").hide();//阅读协议
 			}else{
 				$("#xieyidiv").show();//阅读协议
@@ -99,35 +95,22 @@
 </head>
 <body>
     <iframe src="<%=basePath %>/basic/head" width="100%" height="74px" frameborder="0" scrolling="no"></iframe>
-	
-   	<div class="mainn" align="center">
-   		<div style="width: 80%; height: 100%; padding-top: 20px; padding-bottom: 50px;"><!--  border:1px solid #AFAEAC; -->
-   			<span style=" font-size: 36px;">实名认证<br/></span>
-   		</div>
-   		<div style="width: 80%; height:auto!important; height:60px; min-height:60px; line-height: 30px;">
-	   		<span style="font-size: 16px;">系统将引导您到${province}国税局网站进行实名认证并查询数据<br/></span>
-   		</div>
-   		
-   		<div style="width: 80%; height:auto!important; height:60px; min-height:60px; line-height: 30px;">
-	   		<div class="readdiv"><span><em>√</em></span>
-	   		<font style="font-size: 16px;">我已经阅读并同意<a href="<%=basePath %>/users/identify/toProtocol" target="_blank">《数据授权协议》</a></font></div>
-   		</div>
-   		
-    	<div style="width: 80%; height: 100%; padding-top: 20px; padding-bottom: 8px;"><!--  border:1px solid #AFAEAC; -->
-   			<button onclick="goback()" style="width: 100px;">返回</button>
-   			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-   			<button onclick="nextIdentify('${id}','${verifyUrl}')" style="width: 100px;">去认证</button>
-   			<br/>
-    		<span id='sp_fail' style=" font-size: 13px; color: red; display:none;">认证失败，如有问题请联系客服！</span>
-   		</div>
-    	
-       
-   	</div>
-    
+	<div class="main">
+		<div class="upload shimingrz">
+	    	<h2 class="shimingrzh2">实名认证</h2>
+	        <p class="ac ft16">系统将引导您到${province}国税局网站进行实名认证并查询数据</p>
+	        <p class="ac ft14"><input id="xieyi" type="checkbox"/>我已经阅读并同意<a href="<%=basePath %>/users/identify/toProtocol" target="_blank">《数据授权协议》</a> </p>
+	        <div class="uploadbtn clearfix">
+	        	<a href="javascript:;" onclick="goback()" class="think">返回</a>
+	        	<a href="javascript:;" onclick="nextIdentify('${id}','${verifyUrl}')" class="download">去认证</a>
+	        </div>
+	        <p id='sp_fail' class="wrong" style="display:none;"><em>认证失败，如有问题请联系客服！</em></p>
+	    </div>
+	</div>
     <div class="mask_alpha" style="display: none;"></div>
     <div id='xieyidiv' class="fdiv"  style="display: none;">
         <p>请阅读协议并同意！</p>
-        <div><button class="fdivbtn2">确定</button>
+        <div><button class="fdivbtn1">确定</button>
         </div>
     </div>
     <div id='div_iden' class="fdiv"  style="display: none;">
@@ -139,7 +122,7 @@
     
     <div id='div_reiden' class="fdiv"  style="display: none;">
         <p>该企业已经通过实名认证，不能重复认证!</p>
-        <div><button class="fdivbtn2">确定</button>
+        <div><button class="fdivbtn1">确定</button>
         </div>
     </div>
     

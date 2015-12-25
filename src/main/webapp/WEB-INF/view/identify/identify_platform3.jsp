@@ -28,8 +28,8 @@
 			$(this).children("em").toggleClass("colorf")
 		});
 		
-		$(".fdivbtn2").click(function(){
-			$(".mask_alpha,.fdiv").hide(200);
+		$(".fdivbtn1").click(function(){
+			$(".mask_alpha,.fdiv").hide();
 		});
 		
 	})
@@ -60,7 +60,7 @@
 			return;
 		}
 		
-		if(id_sub%2==0){
+		if($('#xieyi').is(":checked")){
 			$("#xieyidiv").hide();//阅读协议
 		}else{
 			$("#xieyidiv").show();//阅读协议
@@ -178,82 +178,62 @@
 </head>
 <body>
     <iframe src="<%=basePath %>/basic/head" width="100%" height="74px" frameborder="0" scrolling="no"></iframe>
-	
-   	<div class="mainn" align="center">
-   		<div style="width: 80%; height: 100%; padding-top: 20px; padding-bottom: 20px;"><!--  border:1px solid #AFAEAC; -->
-   			<span style=" font-size: 36px;">实名认证<br/></span>
-   		</div>
-   		
-   		<div style="width: 80%; height:auto!important; height:20px; min-height:20px; line-height: 20px;">
-	   		<span style="font-size: 16px;">上传证件认证  需人工审核<br/></span>
-   		</div>
-   		
-   		<div style="width: 50%; height:auto!important; height:60px; min-height:60px;">
-   			<form id = 'form' enctype="multipart/form-data">
-		   		<p style="margin:20px">
-		   			<input id="corpName" style="width: 300px;" name="corpName" type="text" value="请填写公司全称" onfocus="corfocus(this)" onblur="corblur(this)" maxlength="20">
-		   			<br/>
-		   			<span id='sp_fail_cor' style=" font-size: 13px; color: red; display: none;">请输入正确公司名称</span>
-		   		</p>
-		   		<p style="margin:20px">
-		   			<input id="taxSn" name="taxSn" style="width: 300px;" type="text" value="请填写公司纳税识别号"  onfocus="taxfocus(this)" onblur="taxblur(this)" maxlength="20">
-		   			<br/>
-		   			<span id='sp_fail_tax' style=" font-size: 13px; color: red; display: none;">请输入正确纳税识别号</span>
-		   		</p>
-		   		<div class="yzm form-item">
-                	<input type="text" class="changeState" name="code" id="code" style="width: 235px;" 
-                		value="请输入验证码" onfocus="codefocus(this)" onblur="codeblur(this)" maxlength="4"/><!-- onblur="check_code();"  -->
-                    <img id='img_code' src="<%=basePath%>/imageServlet" alt="验证码" title="点击更换" id="code_image" onclick="changeCode()"/>
-                    <span id='sp_fail_code' style=" font-size: 13px; color: red; display:none;"><br>验证码输入错误</span>
-                    <span id='sp_fail_code_null' style=" text-align:right; font-size: 13px; color: red; display:none;"><br>请输入验证码</span>
-               	</div>
-               	
-		   		<p style="margin:20px">税务登记证复印件加盖公章: 
-						<input type="button" id="browse1" value="上传附件">
+	<div class="main">
+		<div class="renzheng_pingtai">
+	    	<h2 class="shimingrzh2">实 名 认 证</h2>
+	        <div class="renzheng_pingtai_in">
+	        	<p class="renzheng_pingtai_in_top">上传证件认证&nbsp;&nbsp;&nbsp;需人工审核</p>
+	        	<form id = 'form'>
+		            <div class="pingtai_info_box">
+			            <input id="corpName" name="corpName" type="text" value="请填写公司全称" onfocus="corfocus(this)" onblur="corblur(this)" maxlength="20">
+					   	<p><span id='sp_fail_cor' style="display: none;">请输入正确公司名称</span></p>
+		            </div>
+		            <div class="pingtai_info_box">
+		            	<input id="taxSn" name="taxSn" type="text" value="请填写公司纳税识别号"  onfocus="taxfocus(this)" onblur="taxblur(this)" maxlength="20">
+				   		<p><span id='sp_fail_tax' style="display: none;">请输入正确纳税识别号</span></p>
+		            </div>
+		            <div class="pingtai_info_box num">
+		            	<input type="text" name="code" id="code" value="请输入验证码" onfocus="codefocus(this)" onblur="codeblur(this)" maxlength="4"/>
+	                    <p><span id='sp_fail_code' style="display:none;">验证码输入错误</span></p>
+	                    <p><span id='sp_fail_code_null' style="display:none;">请输入验证码</span></p>
+	                    <img id='img_code' src="<%=basePath%>/imageServlet" alt="验证码" title="点击更换" onclick="changeCode()"/>
+		            </div>
+	            </form>
+	            <div class="renzheng_up clearfix">
+	            	<p class="fl">税务登记复印件加盖公章</p>
+		            <div>
+						<div class="fill_filebox fl"><input type="button" id="browse1"><em>上传</em></div>
 						<div id="filelist1">
-							<a class="erropro" href="javascript:;" style="display: none">* 请上传附件</a>
+							<span class="erro colorred">× 请上传附件</span>
 						</div>
-		   			<div >
 					</div>
-		   		<br/>
-		   		</p>
-<!-- 		   		<p style="margin:20px"><input type="button" value="获取办卡人信息"> <br/></p> -->
-		   		<p> 注: 图片格式为jps、jpeg、png，单个文件不大于1M;扫描件或相片皆可,图片上的文字必须清晰;请将图片选择摆正后上传,方便工作人员审核,避免审核不通过</p>
-	   		</form>
-   		</div>
-   		
-   		
-   		
-   		<div style="width: 80%; height:auto!important; height:60px; min-height:60px; line-height: 30px;">
-	   		<div class="readdiv"><span><em>√</em></span>
-	   		<font style="font-size: 16px;">我已经阅读并同意<a href="<%=basePath %>/users/identify/toProtocol" target="_blank">《数据授权协议》</a></font></div>
-   		</div>
-   		
-    	<div style="width: 80%; height: 100%; padding-top: 20px; padding-bottom: 8px;"><!--  border:1px solid #AFAEAC; -->
-   			<button onclick="goback()" style="width: 100px;">返回</button>
-   			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-   			<button onclick="nextIdentify()" style="width: 100px;">去认证</button>
-   			<br/>
-    		<span id='sp_fail' style=" font-size: 13px; color: red; display:none;">认证失败，如有问题请联系客服！</span>
-   		</div>
-       
-   	</div>
-    
+	            </div>
+	            <div class="al renzheng_notes"><i class="colorred">注：</i>图片格式为jpg、jpeg、png，单个文件不大于1M；扫描件或相片皆可，图片上 的文字必须清晰；请将图片选择摆正后上传，方便工作人员审核，避免审核不通过</div>
+	            
+	            <p class="ac ft14"><input id="xieyi" type="checkbox"/>我已经阅读并同意<a href="<%=basePath %>/users/identify/toProtocol" target="_blank">《数据授权协议》</a></p>
+	            <div  class="uploadbtn clearfix">
+		   			<a href="javascript:;" onclick="goback()" class="think">返回</a>
+		   			<a href="javascript:;" onclick="nextIdentify()" class="download">去认证</a>
+		    		<span id='sp_fail' style=" font-size: 13px; color: red; display:none;">认证失败，如有问题请联系客服！</span>
+		   		</div>
+	        </div>
+	    </div>
+	</div>
     <div class="mask_alpha" style="display: none;"></div>
     <div id='xieyidiv' class="fdiv"  style="display: none;">
         <p>请阅读协议并同意！</p>
-        <div><button class="fdivbtn2">确定</button>
+        <div><button class="fdivbtn1">确定</button>
         </div>
     </div>
     
     <div id='div_reiden' class="fdiv"  style="display: none;">
         <p>该企业已经通过实名认证，不能重复认证!</p>
-        <div><button class="fdivbtn2">确定</button>
+        <div><button class="fdivbtn1">确定</button>
         </div>
     </div>
     <div id='div_iniden' class="fdiv"  style="display: none;">
         <p>该企业正在进行实名认证，不能重复认证!</p>
-        <div><button class="fdivbtn2">确定</button>
+        <div><button class="fdivbtn1">确定</button>
         </div>
     </div>
 	<div id="upCheckdiv" class="fdiv" style="display: none;">

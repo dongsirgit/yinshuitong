@@ -127,8 +127,8 @@ public class IdentifyController {
 		logger.info("实名认证 选择省份 下一步----用户id:" + user.getId()+"------选择的城市id:"+id);
 		
 		AreaBean area = service.getVerifyType(user, id);
-		logger.info("实名认证 选择省份 下一步----用户id:" + user.getId()+"------认证类型:"+area.getVerifyType());
 		if(null != area){
+			logger.info("实名认证 选择省份 下一步----用户id:" + user.getId()+"------认证类型:"+area.getVerifyType());
 			if("0".equals(area.getVerifyType())){
 				return new ModelAndView("identify/identify_platform1").addObject("province", area.getAname())
 						.addObject("id", session.getId()).addObject("verifyUrl", verifyUrl);

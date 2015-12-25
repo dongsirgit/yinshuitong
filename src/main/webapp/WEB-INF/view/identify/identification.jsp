@@ -16,30 +16,24 @@
 <title>实名认证</title>
     <link href="<%=basePath %>/styles/common/base.css" rel="stylesheet" type="text/css">
     <link href="<%=basePath %>/styles/order/order.css" rel="stylesheet" type="text/css">
+    <link href="<%=basePath %>/styles/help/help.css" rel="stylesheet" type="text/css">
     <script src="<%=basePath %>/scripts/common/jquery-1.11.1.min.js"></script>
-    
-    <style type="text/css">
-   		.mainn{ width: 1000px;height:auto!important; height:600px; min-height:590px; 
-   		border:1px solid #AFAEAC; margin: 10px auto; background:#FFF; padding: 0px 0 0 0;}
-   		.procurrent{background-color: blue;color: white;}
-    </style>
     
     <script type="text/javascript">
 		
 		$(document).ready(function(){
 			
 			$(".province").click(function(){
-				$(this).addClass("procurrent").siblings().removeClass("procurrent");
+				$(this).addClass("selected").siblings().removeClass("selected");
 				$('#sp_province').text($(this).text());
-// 				$('#id').val($(this).attr('value'));
 				$('#div_select_province').hide();
 				$('#div_select_city').hide();
 				getCity($(this).attr('value'));
 				$('#sp_city').text('');
 			});
 			
-			$(document).delegate('.city',"click",function(){
-				$(this).addClass("procurrent").siblings().removeClass("procurrent");
+			$(document).delegate('.city_c',"click",function(){
+				$(this).addClass("selected").siblings().removeClass("selected");
 				$('#sp_city').text($(this).text());
 				$('#div_select_province').hide();
 				$('#div_select_city').hide();
@@ -55,14 +49,11 @@
 					url:"<%=basePath %>/users/identify/getCity",
 					data:{id:id},
 					dataType:"JSON",
-					//dataType:"text",
 					success:function(data){
-						//alert(JSON.stringify(data));
-						$(".city").remove();
+						$(".city_c").remove();
 						$.each( data.list, function(i, n){
-							$("<span class='city' value='"+n.id+"' idenUri='"+n.verifyUrl+"'>&nbsp;&nbsp;"+n.aname+"&nbsp;&nbsp;</span>$").insertAfter("#city");
+							$("<a class='city_c' value='"+n.id+"' idenUri='"+n.verifyUrl+"'>"+n.aname+"</a>").insertAfter("#city");
 						});
-						
 					},
 					error:function(XMLHttpRequest, textStatus, errorThrown) {
 						if(XMLHttpRequest.responseText=="timeOut"){
@@ -92,47 +83,32 @@
 </head>
 <body>
     <iframe src="<%=basePath %>/basic/head" width="100%" height="74px" frameborder="0" scrolling="no"></iframe>
-	
-   	<div class="mainn" align="center">
-   		<div style="width: 80%; height: 100%; padding-top: 20px; padding-bottom: 8px;"><!--  border:1px solid #AFAEAC; -->
-   			<span style=" font-size: 36px;">实名认证<br/></span>
-    		<span style=" font-size: 18px;">请正确选择要认证的企业注册所在地，否则无法顺利通过认证影响您的融资申请</span>
-   		</div>
-   		<div style="width: 80%; height:auto!important; height:60px; min-height:60px; border:1px solid #AFAEAC; padding: 10px; text-align: left; line-height: 30px;">
-	   		<span id="province" style="font-weight: bold;">选择省份:<br/></span>
-   			<c:forEach items="${province}" var="province">
-   				<span class='province' onclick="javascript:;" value='${province.id}'>&nbsp;&nbsp;${province.aname}&nbsp;&nbsp;</span>
+    <div class="main">
+	<div class="chose_area">
+		<h1>实名认证</h1>
+		<p>请正确选择要认证的企业注册所在地，否则无法顺利通过认证影响您的贷款申请</p>
+		<div class="provinces">
+			<h4>选择省份：</h4>
+			<c:forEach items="${province}" var="province">
+   				<a class='province' href="javascript:;" value='${province.id}'>${province.aname}</a>
    			</c:forEach>
-	    		<!-- <span onclick="" style="background-color: blue;color: white;">&nbsp;&nbsp;北京市1&nbsp;&nbsp;</span>
-	    		<span onclick="">&nbsp;&nbsp;上海市&nbsp;&nbsp;</span> -->
-	    		
+		</div>
+		<div class="city">
+			<h4 id='city'>选择地区：</h4>
+		</div>
+		<div class="chose_result">您选择的是：
+			<span id='sp_province'></span>
+   			<span id='sp_city'></span>
    		</div>
-   		<div style="width: 80%; height:auto!important; height:60px; min-height:60px; border:1px solid #AFAEAC; padding: 10px; text-align: left; line-height: 30px;margin-top: 10px;">
-   			<span id='city' style="font-weight: bold; margin-bottom: 50px;">选择地区:<br/></span>
-    		<!-- <span onclick=""  style="background-color: blue;color: white;">&nbsp;海淀区&nbsp;</span> -->
-   		</div>
-    	<div style="width: 80%; height: 100%; border:1px solid #AFAEAC; padding: 10px; text-align:center; line-height: 30px;margin-top: 20px;">
-    		<span style="font-size: 16px;">您选择的是:</span>
-   			<span id='sp_province' style="margin-bottom: 50px; font-size: 28px;"></span>
-   			<span id='sp_city' style="margin-bottom: 50px; font-size: 28px;"></span><br/>
-   		</div>
-    	<div style="width: 80%; height: 100%; padding-top: 20px; padding-bottom: 8px;"><!--  border:1px solid #AFAEAC; -->
-   			<br/><br/>
-   			<button onclick="nextIdentify()" style="width: 100px;">下一步</button>
-   			<br/>
-    		<span id='div_select_province' style=" font-size: 13px; color: red; display: none;">请选择省份!</span>
-    		<span id='div_select_city' style=" font-size: 13px; color: red; display: none;">请选择地区!</span>
-   		</div>
-   		<form id='form' action="<%=basePath %>/users/identify/next" method="post">
+		<a class="next_btn" href="javascript:;" onclick="nextIdentify()">下一步</a>
+		<p id='div_select_province' class="wronginfo_chose" style="display: none;">请选择省份!</p>
+    	<p id='div_select_city' class="wronginfo_chose" style="display: none;">请选择地区!</p>
+	</div>
+	<form id='form' action="<%=basePath %>/users/identify/next" method="post">
     		<input type="hidden" id='id' name='id'>
     		<input type="hidden" id='verifyUrl' name='verifyUrl'>
    		</form>
-       
-   	</div>
-    
-    
-    
+</div>
     <%@include file="../base/footer.html" %>
-    
 </body>
 </html>

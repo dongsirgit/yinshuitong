@@ -17,12 +17,6 @@
     <link href="<%=basePath %>/styles/common/base.css" rel="stylesheet" type="text/css">
     <link href="<%=basePath %>/styles/order/order.css" rel="stylesheet" type="text/css">
     <script src="<%=basePath %>/scripts/common/jquery-1.11.1.min.js"></script>
-    
-    <style type="text/css">
-   		.mainn{ width: 1000px;height:auto!important; height:600px; min-height:590px; border:1px solid #AFAEAC; margin: 10px auto; background:#FFF; padding: 0px 0 0 0;}
-   		.procurrent{background-color: blue;color: white;}
-    </style>
-    
     <script type="text/javascript">
     	var id_sub = 0;
 		$(document).ready(function(){
@@ -33,13 +27,11 @@
 				$(this).children("em").toggleClass("colorf")
 			});
 			
-			$(".fdivbtn2").click(function(){
-				$(".mask_alpha,.fdiv").hide(200);
+			$(".fdivbtn1").click(function(){
+				$(".mask_alpha,.fdiv").hide();
 			});
 			
 		})
-		
-		
 		
 		function nextIdentify(){
 			if($('#corpName').val()=='请填写公司全称' || $('#corpName').val()==''){
@@ -70,7 +62,7 @@
 				return ;
 			}
 			
-			if(id_sub%2==0){
+			if($('#xieyi').is(":checked")){
 				$("#xieyidiv").hide();//阅读协议
 			}else{
 				$("#xieyidiv").show();//阅读协议
@@ -165,64 +157,48 @@
 </head>
 <body>
     <iframe src="<%=basePath %>/basic/head" width="100%" height="74px" frameborder="0" scrolling="no"></iframe>
-	
-   	<div class="mainn" align="center">
-   		<div style="width: 80%; height: 100%; padding-top: 20px; padding-bottom: 20px;"><!--  border:1px solid #AFAEAC; -->
-   			<span style=" font-size: 36px;">实名认证<br/></span>
-   		</div>
-   		
-   		<div style="width: 80%; height:auto!important; height:20px; min-height:20px; line-height: 20px;">
-	   		<span style="font-size: 16px;">请正确填写贵公司在国税系统中留存的信息<br/></span>
-   		</div>
-   		
-   		<div style="width: 80%; height:auto!important; height:60px; min-height:60px;">
-   			<form id = 'form'>
-		   		<p style="margin:20px">
-		   			<input id="corpName" style="width: 300px;" name="corpName" type="text" value="请填写公司全称" 
-		   				onfocus="corfocus(this)" onblur="corblur(this)" maxlength="20"><br/>
-		   			<span id='sp_fail_cor' style=" font-size: 13px; color: red; display: none;">请输入正确公司名称</span>
-		   		</p>
-		   		<p style="margin:20px">
-		   			<input id="taxSn" name="taxSn" style="width: 300px;" type="text" value="请填写公司纳税识别号"  
-		   				onfocus="taxfocus(this)" onblur="taxblur(this)" maxlength="20"><br/>
-		   			<span id='sp_fail_tax' style=" font-size: 13px; color: red; display: none;">请输入正确纳税识别号</span>
-		   		</p>
-		   		<p style="margin:20px">
-		   			<input id="idcard" name="idcard" type="text" style="width: 300px;" value="请填写法定代表人身份证号码" 
-		   				onfocus="idcardfocus(this)" onblur="idcardblur(this)" maxlength="20"><br/>
-		   			<span id='sp_fail_idc' style=" font-size: 13px; color: red; display: none;">请输入正确法定代表人身份证号码</span>
-		   		</p>
-	   		</form>
-   		</div>
-   		
-   		
-   		
-   		<div style="width: 80%; height:auto!important; height:60px; min-height:60px; line-height: 30px;">
-	   		<div class="readdiv"><span><em>√</em></span>
-	   		<font style="font-size: 16px;">我已经阅读并同意<a href="<%=basePath %>/users/identify/toProtocol" target="_blank">《数据授权协议》</a></font></div>
-   		</div>
-   		
-    	<div style="width: 80%; height: 100%; padding-top: 20px; padding-bottom: 8px;"><!--  border:1px solid #AFAEAC; -->
-   			<button onclick="goback()" style="width: 100px;">返回</button>
-   			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-   			<button onclick="javascript:return nextIdentify();" style="width: 100px;">去认证</button>
-   			<br/>
-    		<span id='sp_fail' style=" font-size: 13px; color: red; display:none;">认证失败，如有问题请联系客服！</span>
-   		</div>
-    	<input type="hidden" id='id'>
-       
-   	</div>
-    
+	<div class="main">
+		<div class="renzheng_pingtai">
+	    	<h2 class="shimingrzh2">实 名 认 证</h2>
+	        <div class="renzheng_pingtai_in">
+	        	<p class="renzheng_pingtai_in_top">请正确填写贵公司在国税系统中留存的信息</p>
+	        	<form id = 'form'>
+		            <div class="pingtai_info_box">
+			            <input id="corpName" name="corpName" type="text" value="请填写公司全称" 
+			            	onfocus="corfocus(this)" onblur="corblur(this)" maxlength="20">
+				   		<p><span id='sp_fail_cor' style="display: none;">请输入正确公司名称</span></p>
+		            </div>
+		            <div class="pingtai_info_box">
+			            <input id="taxSn" name="taxSn" type="text" value="请填写公司纳税识别号"  
+			   				onfocus="taxfocus(this)" onblur="taxblur(this)" maxlength="20">
+			   			<p><span id='sp_fail_tax' style="display: none;">请输入正确纳税识别号</span></p>
+		            </div>
+		            <div class="pingtai_info_box">
+		            	<input id="idcard" name="idcard" type="text" value="请填写法定代表人身份证号码" 
+			   				onfocus="idcardfocus(this)" onblur="idcardblur(this)" maxlength="20">
+			   			<p><span id='sp_fail_idc' style="display: none;">请输入正确法定代表人身份证号码</span></p>
+		            </div>
+	            </form>
+	            <p class="ac ft14"><input id="xieyi" type="checkbox"/>我已经阅读并同意<a href="<%=basePath %>/users/identify/toProtocol" target="_blank">《数据授权协议》</a> </p>
+	            <div class="uploadbtn clearfix">
+	                <a href="javascript:;" onclick="goback()" class="think">返回</a>
+	                <a href="javascript:;" onclick="nextIdentify();" class="download">去认证</a>
+	            </div>
+	            <p id='sp_fail' class="renzheng_wrong colorred" style="display:none;"><span>认证失败，如有问题请联系客服！</span></p>
+	        </div>
+	    </div>
+	</div>
+	<input type="hidden" id='id'>
     <div class="mask_alpha" style="display: none;"></div>
     <div id='xieyidiv' class="fdiv"  style="display: none;">
         <p>请阅读协议并同意！</p>
-        <div><button class="fdivbtn2">确定</button>
+        <div><button class="fdivbtn1">确定</button>
         </div>
     </div>
     
     <div id='div_reiden' class="fdiv"  style="display: none;">
         <p>该企业已经通过实名认证，不能重复认证!</p>
-        <div><button class="fdivbtn2">确定</button>
+        <div><button class="fdivbtn1">确定</button>
         </div>
     </div>
     
