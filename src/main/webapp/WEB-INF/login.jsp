@@ -88,7 +88,7 @@
           <label>手机号</label>
             <input type="text" class="inputState" style="color:#b0b0b0;IME-MODE: disabled;" name="mobilePhone" id="mobilePhone" value="请输入手机号码" 
                 onblur="checkMobilePhone()" onkeyup="this.value=this.value.replace(/\D/g,'');if(this.value.length>11){this.value=this.value.substr(0,11)};"  
-                onafterpaste="this.value=this.value.replace(/\D/g,'')" />
+                onafterpaste="this.value=this.value.replace(/\D/g,'')" maxlength="11"/>
             <span style="display: none;">请输入手机号码</span>
         </div>
         <span id="mobilePhoneMsg" style="color:red;height:28px;display:inline-block"></span>

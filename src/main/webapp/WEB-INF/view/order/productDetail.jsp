@@ -35,7 +35,6 @@
 			$('#tologin').submit();
 		}
 		function identify(id){
-			
 			$.ajax({
 				type:"POST",
 				url:"<%=basePath %>/users/identify/identflag",
@@ -56,7 +55,9 @@
 								$('#form').submit();
 							}
 						}else{
-							$(".area").attr("disabled","disabled")
+							alert("此产品未在您认证的地区销售，请重新选择其它产品！")
+// 							$(".area").attr("disabled","disabled")
+
 						}
 					}else{//认证失败
 						$(".mask_alpha").show();
