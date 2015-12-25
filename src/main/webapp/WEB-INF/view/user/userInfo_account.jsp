@@ -124,10 +124,10 @@
 						</div>
 					</c:otherwise>
 				</c:choose> 
-				<%-- 			    <c:if test="${loginedUser.taxVerify == 4}"> --%> 
-				<!-- 				    <a href="javascript:void(0)" style="text-decoration:underline" onclick="generPDF();">生成征信报告</a> -->
-				<!-- 		      		<a href="" id="downloadPDF" style="text-decoration:underline;display: none;" >下载</a> -->
-				<%-- 			    </c:if> --%>
+<%-- 							    <c:if test="${loginedUser.taxVerify == 4}">  --%>
+<!-- 								    <a href="javascript:void(0)" style="text-decoration:underline" onclick="generPDF();">生成征信报告</a> -->
+<!-- 						      		<a href="" id="downloadPDF" style="text-decoration:underline;display: none;" >下载</a> -->
+<%-- 							    </c:if> --%>
 		</span>
 			<table class="user_table bb">
 				<tr>

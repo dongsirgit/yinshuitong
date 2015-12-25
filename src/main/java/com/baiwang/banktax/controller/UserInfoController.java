@@ -107,7 +107,7 @@ public class UserInfoController {
     	User user = (User) session.getAttribute(ConfigUtil.getLoginedUserStr());
     	Long uid = user.getId();
     	Map<String, Object> map = new HashMap<>();
-    	TaxReportWithBLOBs report = taxService.selectByUid(25l);
+    	TaxReportWithBLOBs report = taxService.selectByUid(77l);
     	if(null != report){
     		try {
     			String path = PDFUtil.generatePDF(uid,report);
