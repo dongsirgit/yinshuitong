@@ -204,7 +204,7 @@
 		            <div>
 						<div class="fill_filebox fl"><input type="button" id="browse1"><em>上传</em></div>
 						<div id="filelist1">
-							<span class="erro colorred">× 请上传附件</span>
+							<span class="erro colorred" style="display: none;">× 请上传附件</span>
 						</div>
 					</div>
 	            </div>
