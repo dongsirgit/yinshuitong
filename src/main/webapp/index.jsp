@@ -4,6 +4,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="renderer" content="webkit" /> 
     <title>百望银税通</title>
     <link type="text/css" rel="stylesheet" href="<%=basePath%>/styles/common/base.css" />
     <link type="text/css" rel="stylesheet" href="<%=basePath%>/styles/index/index.css" />

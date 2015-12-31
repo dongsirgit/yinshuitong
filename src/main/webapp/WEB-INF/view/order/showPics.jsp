@@ -8,6 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="renderer" content="webkit" /> 
 <title>图片预览</title>
 <link href="<%=basePath %>/styles/common/base.css" rel="stylesheet" type="text/css">
 <link href="<%=basePath %>/styles/order/order.css" rel="stylesheet" type="text/css">
