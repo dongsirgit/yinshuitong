@@ -177,7 +177,7 @@ function fo_applyNote(){
 					<div class="item">
 						<span class="label"><b>*</b>营业执照：</span>
 						<div>
-							<input class="fill_filebox fl" type="button" id="browse1" value="上传附件">
+							<input class="fill_filebox fl" style="color:#fff; background:#f57e3d;" type="button" id="browse1" value="上传附件">
 							<div id="filelist1">
 								<span id="e_browse1" class="erro colorred" style="display: none;">× 请上传附件</span>
 							</div>
@@ -186,7 +186,7 @@ function fo_applyNote(){
 					<div class="item">
 						<span class="label"><b>*</b>贷款申请书：</span> 
 						<div>
-							<input class="fill_filebox fl" type="button" id="browse2" value="上传附件">
+							<input class="fill_filebox fl" style="color:#fff; background:#f57e3d;" type="button" id="browse2" value="上传附件">
 							<div id="filelist2">
 								<span id="e_browse2" class="erro colorred" style="display: none;">× 请上传附件</span>
 								<span class="file_pre"><a href="<%=basePath %>/tmplt/apply_template.docx">下载申请书模板</a></span>

@@ -202,7 +202,7 @@
 	            <div class="renzheng_up clearfix">
 	            	<p class="fl">税务登记复印件加盖公章</p>
 		            <div>
-						<input class="fill_filebox fl" type="button" id="browse1" value="上传附件">
+						<input class="fill_filebox fl" style="color:#fff; background:#f57e3d;" type="button" id="browse1" value="上传附件">
 						<div id="filelist1">
 							<span class="erro colorred" style="display: none;">× 请上传附件</span>
 						</div>
