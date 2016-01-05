@@ -22,7 +22,7 @@
 		     }
 		})();
 		var settings = {
-				reg_userPwd:/^\S{8,16}$/,
+				reg_userPwd:/^(?![^a-zA-Z]+$)(?!\D+$).{8,16}$/,
                 reg_userPwd_weak:/^(\S)\1+$|^\d{8}$|^[A-Za-z_]{8}$|^\W{8}?$/,
                 reg_userPwd_normal:/^[\d|(A-Za-z_)]{8,}$|^[\d|\W]{8,}$|^[(A-Za-z_)|\W]{8,}$/,       
                 reg_userPwd_strong:/^[\d|(A-Za-z_)|\W]{8,}$/
@@ -147,7 +147,7 @@
 							     onblur="checkPwd1()" 
 							     onkeyup="if(this.value.length>16){this.value=this.value.substr(0,16)};"
 							     onpaste="return false"/> 
-							<input type="text" class="pwdState" id="userPwd1_text" style="color: #b0b0b0;" value="6-20位的字母数字混合组成" />
+							<input type="text" class="pwdState" id="userPwd1_text" style="color: #b0b0b0;" value="8-16位的字母数字混合组成" />
 						</div>
 						<div class="info">
 						  <span id="userPwd1Msg" style="margin-right:130px"></span>

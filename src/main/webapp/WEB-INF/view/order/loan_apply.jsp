@@ -73,7 +73,7 @@ function fo_term(){
 
 function checkConName(){
 	$("#contactName").val($("#contactName").val().replace(/\s+/g,''));
-	if(!/^[\u4e00-\u9fa5]{2,10}$/.test($("#contactName").val())){
+	if(!/^[\u4e00-\u9fa5a-zA-Z]{2,10}$/.test($("#contactName").val())){
 		$("#e_contactName").show();
 		return false;
 	}else{
