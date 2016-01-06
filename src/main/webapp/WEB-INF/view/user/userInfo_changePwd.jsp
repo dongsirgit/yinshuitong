@@ -34,8 +34,9 @@
 					userPwd1Msg:$("#oldUserPwdMsg")
 					},
 					result = verifier.init(settings).checkPwd1();
-			if(result){
+			if(result!=false){
 				$("#oldUserPwdMsg").text("");
+				$("#userPwd2Msg").text("");
 				return true;
 			}
 			return false;
@@ -123,6 +124,7 @@
 	              });
 			}
 		}
+		
 	</script>
 </head>
 <body class="listh4">
@@ -171,7 +173,7 @@
 	<div class="mask_alpha" style="display:none;"></div>
 	<div class="tc tc_password" style="display:none;">
 	    <p>密码修改成功，请牢记新密码！</p>
-	    <a class="sure" href="<%=basePath%>/users/changePwd" target="_self">确定</a>
+	    <a class="sure" href="<%=basePath%>/user/forwardLogin" target="_self">确定</a>
 	</div>
 </body>
 </html>

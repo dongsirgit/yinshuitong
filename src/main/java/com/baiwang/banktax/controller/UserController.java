@@ -67,7 +67,7 @@ public class UserController {
         if (null == user) {
             return "../login";
         } else {
-            //return "../../index";
+        	session.invalidate();
             return "../login";
         }
     }

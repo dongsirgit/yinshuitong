@@ -156,7 +156,7 @@ function fo_applyNote(){
 					</div>
 					<div class="item">
 						<span class="label"><b>*</b>联系人姓名：</span> <input type="text" maxlength="10"
-							name="contactName" id="contactName" class="text w264" onblur="checkConName()" onfocus="fo_conName()" > <span
+							name="contactName" id="contactName" class="text w264" onblur="checkConName()" onfocus="fo_conName()" value="${loginedUser.apName}"> <span
 							id="e_contactName" class="erro colorred" style="display: none;">×
 							请输入正确的姓名</span>
 					</div>
