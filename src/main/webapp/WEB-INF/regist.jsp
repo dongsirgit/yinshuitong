@@ -107,7 +107,7 @@
 		var settings = {
 				userPwd1:$("#userPwd1_hidden"),
 				userPwd1Msg:$("#userPwd1Msg"),
-				reg_userPwd:/^(?![^a-zA-Z]+$)(?!\D+$).{8,16}$/,
+				reg_userPwd:/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/,
 				reg_userPwd_weak:/^(\S)\1+$|^\d{8}$|^[A-Za-z_]{8}$|^\W{8}?$/,
 				reg_userPwd_normal:/^[\d|(A-Za-z_)]{8,}$|^[\d|\W]{8,}$|^[(A-Za-z_)|\W]{8,}$/,		
 				reg_userPwd_strong:/^[\d|(A-Za-z_)|\W]{8,}$/	

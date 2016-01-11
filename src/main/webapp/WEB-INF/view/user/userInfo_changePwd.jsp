@@ -22,7 +22,7 @@
 		     }
 		})();
 		var settings = {
-				reg_userPwd:/^(?![^a-zA-Z]+$)(?!\D+$).{8,16}$/,
+				reg_userPwd:/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/,
                 reg_userPwd_weak:/^(\S)\1+$|^\d{8}$|^[A-Za-z_]{8}$|^\W{8}?$/,
                 reg_userPwd_normal:/^[\d|(A-Za-z_)]{8,}$|^[\d|\W]{8,}$|^[(A-Za-z_)|\W]{8,}$/,       
                 reg_userPwd_strong:/^[\d|(A-Za-z_)|\W]{8,}$/
@@ -137,10 +137,11 @@
 						<input type="hidden" id="passWordHidden" name="passWord" />
 						<div class="userPass form-item ">
 							<label>原密码</label> 
-							<input type="password" id="oldUserPwd" style="color: #b0b0b0;" 
+							<input type="password" id="oldUserPwd" class="pwdState" style="color: #b0b0b0;display:none" value=""
 							onblur="checkOldPwd()" 
 							onkeyup="if(this.value.length>16){this.value=this.value.substr(0,16)};" 
 							onpaste="return false"/>
+							<input type="text" class="pwdState" id="userPwd0_text" style="color: #b0b0b0;" value="请输入原密码" />
 						</div>
 						<div class="info"><span id="oldUserPwdMsg"></span></div>
 						<div class="passWord form-item">
@@ -159,10 +160,11 @@
 						</div>
 						<div class="pass form-item">
 							<label>确认密码</label>
-							<input type="password" style="color: #b0b0b0;" id="userPwd2_hidden" 
+							<input type="password" style="color: #b0b0b0;display:none" id="userPwd2_hidden" class="pwdState" value="" 
 							     onblur="checkPwd2()" 
 							     onkeyup="if(this.value.length>16){this.value=this.value.substr(0,16)};" 
 							     onpaste="return false"/>
+							<input type="text" class="pwdState" id="userPwd2_text" style="color: #b0b0b0;" value="请输入确认密码" />
 						</div>
 						<div class="info"><span id="userPwd2Msg"></span></div>
 						<a onclick="changePwd();">提交</a>
