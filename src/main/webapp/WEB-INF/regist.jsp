@@ -28,7 +28,8 @@
                         <input type="text" class="inputState" id="mobilePhone" style="color:#b0b0b0;IME-MODE: disabled;" name="mobilePhone" value="请输入手机号" 
                             onblur="checkMobilePhone()" 
                             onkeyup="this.value=this.value.replace(/\D/g,'');if(this.value.length>11){this.value=this.value.substr(0,11)};"  
-                            onafterpaste="this.value=this.value.replace(/\D/g,'')"/>
+                            onafterpaste="this.value=this.value.replace(/\D/g,'')"
+                            maxlength="11"/>
                         <span style="display: none">请输入手机号</span>
                     </div>
                     <div class="info"><span id="mobilePhoneMsg"></span></div>
@@ -52,9 +53,9 @@
                     </div>
                     <div class="info">
                         <span id="userPwd1Msg" style="margin-right:130px"></span>
-                        <i class="pwdLevel level1 nolevel">弱</i>
-                        <i class="pwdLevel level2 nolevel">中</i>
-                        <i class="pwdLevel level3 nolevel">强</i>
+<!--                         <i class="pwdLevel level1 nolevel">弱</i> -->
+<!--                         <i class="pwdLevel level2 nolevel">中</i> -->
+<!--                         <i class="pwdLevel level3 nolevel">强</i> -->
                     </div>
                     <div class="form-item pwdState">
                         <label>确认密码</label>
@@ -106,7 +107,7 @@
 		var settings = {
 				userPwd1:$("#userPwd1_hidden"),
 				userPwd1Msg:$("#userPwd1Msg"),
-				reg_userPwd:/^\S{8,16}$/,
+				reg_userPwd:/^(?![^a-zA-Z]+$)(?!\D+$).{8,16}$/,
 				reg_userPwd_weak:/^(\S)\1+$|^\d{8}$|^[A-Za-z_]{8}$|^\W{8}?$/,
 				reg_userPwd_normal:/^[\d|(A-Za-z_)]{8,}$|^[\d|\W]{8,}$|^[(A-Za-z_)|\W]{8,}$/,		
 				reg_userPwd_strong:/^[\d|(A-Za-z_)|\W]{8,}$/	

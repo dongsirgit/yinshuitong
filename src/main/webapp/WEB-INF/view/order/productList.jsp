@@ -15,7 +15,7 @@
 <body>
     <iframe src="<%=basePath %>/basic/head" width="100%" height="74px" frameborder="0" scrolling="no"></iframe>
     <div class="main">
-    	<div class="crumbsbox"><a href="<%=basePath %>" class="ft18">首页</a> &gt; <span>贷款产品列表</span></div>
+    	<div class="crumbsbox"><a href="<%=basePath %>/" class="ft18">首页</a> &gt; <span>贷款产品列表</span></div>
     	<div class="indextable prolist_tab">
         <table class="ac ft14" id='productList'>
             <tr class="ft12">

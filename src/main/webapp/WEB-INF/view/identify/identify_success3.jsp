@@ -19,7 +19,7 @@
 	<div class="renzheng_submit">
     	<h2 class="shimingrzh2">实 名 认 证</h2>
         <p class="renzheng_submit_p">您的证件已提交，管理员审核通过后才可以申请贷款。审核时间为3~5个工作日，请您耐心等待。</p>
-        <p class="renzheng_submit_return"><a href="<%=basePath %>" target="_top">返回网站首页</a></p>
+        <p class="renzheng_submit_return"><a href="<%=basePath %>/" target="_top">返回网站首页</a></p>
     </div>
 </div>
     <%@include file="../base/footer.html" %>

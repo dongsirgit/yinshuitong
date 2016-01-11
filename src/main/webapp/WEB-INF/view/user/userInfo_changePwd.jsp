@@ -153,9 +153,9 @@
 						</div>
 						<div class="info">
 						  <span id="userPwd1Msg" style="margin-right:130px"></span>
-						  <i class="pwdLevel level1 nolevel">弱</i>
-                          <i class="pwdLevel level2 nolevel">中</i>
-                          <i class="pwdLevel level3 nolevel">强</i>
+<!-- 						  <i class="pwdLevel level1 nolevel">弱</i> -->
+<!--                           <i class="pwdLevel level2 nolevel">中</i> -->
+<!--                           <i class="pwdLevel level3 nolevel">强</i> -->
 						</div>
 						<div class="pass form-item">
 							<label>确认密码</label>

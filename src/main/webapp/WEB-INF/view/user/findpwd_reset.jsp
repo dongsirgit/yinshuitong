@@ -84,9 +84,9 @@
                         onpaste="return false"/>
                     <input type="text" class="pwdState" id="userPwd1_text" style="color:#b0b0b0;" value="请输入新密码" />
 					<p class="prompt" id="userPwd1Msg" style="display:inline-block"></p>
-					<i class="pwdLevel level1 nolevel">弱</i>
-                    <i class="pwdLevel level2 nolevel">中</i>
-                    <i class="pwdLevel level3 nolevel">强</i>
+<!-- 					<i class="pwdLevel level1 nolevel">弱</i> -->
+<!--                     <i class="pwdLevel level2 nolevel">中</i> -->
+<!--                     <i class="pwdLevel level3 nolevel">强</i> -->
 				</div>
 				<div class="hg" style="margin-top:10px">
 <!-- 					<label style="width:80px;font-size:15px">确认密码:</label> -->

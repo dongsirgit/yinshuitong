@@ -89,7 +89,7 @@
 	<c:if test="${detail != null}">
 		<div class="main product">
 			<div class="crumbsbox">
-				<a href="<%=basePath %>" class="ft18">首页</a> &gt; <a
+				<a href="<%=basePath %>/" class="ft18">首页</a> &gt; <a
 					href="<%=basePath %>/product/list">贷款产品列表</a> &gt; <span>产品详情</span>
 			</div>
 			<div class="productlist">
