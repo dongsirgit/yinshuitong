@@ -81,7 +81,7 @@
                     <input type="password" class="pwdState" id="userPwd1_hidden" style="color:#000; display:none" value="" 
                         onblur="checkPwd1()" 
                         onkeyup="if(this.value.length>16){this.value=this.value.substr(0,16)};"
-                        onpaste="return false"/>
+                        onpaste="return false" maxlength="16"/>
                     <input type="text" class="pwdState" id="userPwd1_text" style="color:#b0b0b0;" value="请输入新密码" />
 					<p class="prompt" id="userPwd1Msg" style="display:inline-block"></p>
 <!-- 					<i class="pwdLevel level1 nolevel">弱</i> -->
@@ -93,7 +93,7 @@
                     <input type="password" class="pwdState" id="userPwd2_hidden" style="color: #000; display: none" 
                         onblur="checkPwd2()" value="" 
                         onkeyup="if(this.value.length>16){this.value=this.value.substr(0,16)};" 
-                        onpaste="return false"/>
+                        onpaste="return false" maxlength="16"/>
                     <input type="text" class="pwdState" id="userPwd2_text" style="color:#b0b0b0;" value="请再次输入新密码" />
                     <input name="userPass" type="hidden" id="userPwd_md5" />
 					<p class="prompt" id="userPwd2Msg" ></p>

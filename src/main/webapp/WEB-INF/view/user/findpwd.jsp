@@ -110,8 +110,8 @@
 				<div class="hg">
 <!-- 				    <label style="width:80px;font-size:15px">手机号:</label> -->
 					<input class="inputState" type="text" value="请输入手机号" name="mobilePhone" id="mobilePhone" onblur="checkMobilePhone()" style="color:#b0b0b0;IME-MODE: disabled;" 
-                        onkeyup="this.value=this.value.replace(/\D/g,'');if(this.value.length>11){this.value=this.value.substr(0,11)};"  
-                        onafterpaste="this.value=this.value.replace(/\D/g,'')"/>
+                        onkeyup="if(this.value.length>11){this.value=this.value.substr(0,11)};"  
+                        onafterpaste="this.value=this.value.replace(/\D/g,'')" maxlength="11"/>
 					<span style="display:none">请输入手机号</span>
 					<p class="prompt" id="mobilePhoneMsg"></p>
 				</div>
@@ -120,8 +120,8 @@
 <!-- 				    <label style="width:80px;font-size:15px">验证码:</label> -->
 					<input class="inputState" type="text" value="验证码" name="phoneCode" id="phoneCode" 
 					   onblur="checkPhoneCode()" style="width:200px;color:#b0b0b0;" disabled="disabled" 
-					   onkeyup="this.value=this.value.replace(/\D/g,'');if(this.value.length>6){this.value=this.value.substr(0,6)};"  
-                       onafterpaste="this.value=this.value.replace(/\D/g,'')"/>
+					   onkeyup="if(this.value.length>6){this.value=this.value.substr(0,6)};"  
+                       onafterpaste="this.value=this.value.replace(/\D/g,'')" maxlength="6"/>
 					<span style="display:none">验证码</span>
 					<p class="prompt" id="phoneCodeMsg"></p>
 				</div>

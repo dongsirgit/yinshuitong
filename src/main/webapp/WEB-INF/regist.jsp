@@ -27,7 +27,7 @@
                         <label>手机号</label>
                         <input type="text" class="inputState" id="mobilePhone" style="color:#b0b0b0;IME-MODE: disabled;" name="mobilePhone" value="请输入手机号" 
                             onblur="checkMobilePhone()" 
-                            onkeyup="this.value=this.value.replace(/\D/g,'');if(this.value.length>11){this.value=this.value.substr(0,11)};"  
+                            onkeyup="if(this.value.length>11){this.value=this.value.substr(0,11)};"  
                             onafterpaste="this.value=this.value.replace(/\D/g,'')"
                             maxlength="11"/>
                         <span style="display: none">请输入手机号</span>
@@ -38,8 +38,8 @@
                         <label>验证码</label>
                         <input type="text" class="inputState" id="phoneCode" style="color:#b0b0b0;width:148px" name="phoneCode" value="请输入验证码" 
                             onblur="checkPhoneCode()" disabled="disabled"
-                            onkeyup="this.value=this.value.replace(/\D/g,'');if(this.value.length>6){this.value=this.value.substr(0,6)};"  
-                            onpaste="return false" />
+                            onkeyup="if(this.value.length>6){this.value=this.value.substr(0,6)};"  
+                            onpaste="return false" maxlength="6"/>
                         <span style="display: none">请输入验证码</span>
                     </div>
                     <div class="info"><span id="phoneCodeMsg"></span></div>
@@ -48,7 +48,7 @@
                         <input type="password" class="pwdState" id="userPwd1_hidden" style="color:#000; display:none" value="" 
                             onblur="checkPwd1()"  
                             onkeyup="if(this.value.length>16){this.value=this.value.substr(0,16)};"
-                            onpaste="return false" />
+                            onpaste="return false" maxlength="16"/>
                         <input type="text" class="pwdState" id="userPwd1_text" style="color:#b0b0b0;" value="请输入登录密码" />
                     </div>
                     <div class="info">
@@ -62,7 +62,7 @@
                         <input type="password" class="pwdState" id="userPwd2_hidden" style="color: #000; display: none" value="" 
                             onblur="checkPwd2()" 
                             onkeyup="if(this.value.length>16){this.value=this.value.substr(0,16)};"
-                            onpaste="return false" />
+                            onpaste="return false" maxlength="16"/>
                         <input type="text" class="pwdState" id="userPwd2_text" style="color:#b0b0b0;" value="请输入确认密码" />
                         <input name="userPass" type="hidden" id="userPwd_md5" />
                     </div>
